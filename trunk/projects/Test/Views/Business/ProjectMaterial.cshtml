@@ -1,0 +1,14 @@
+﻿@model Int32
+
+<ul id="materialtree"></ul>
+
+<script type="text/javascript">
+    $(function () {
+        $("#materialtree").tree({
+            method: "get",
+            lines: true,
+            url: "Test/Business/GetMaterials?ProjectId=@Model",
+            enableContextMenu: true
+        });
+    });
+</script>

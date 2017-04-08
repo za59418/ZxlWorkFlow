@@ -1,0 +1,6 @@
+E:\oa4\OA4.0统一用户认证\output\DCIIDS.Sqlite.pdb
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\obj\Release\DCIIDS.Sqlite.pdb
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\obj\Release\DCIIDS.Sqlite.csprojResolveAssemblyReference.cache
+E:\oa4\OA4.0统一用户认证\output\DCIIDS.Sqlite.exe
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\obj\Release\DCIIDS.Sqlite.exe
+E:\oa4\OA4.0统一用户认证\output\DCIIDS.Sqlite.exe.config

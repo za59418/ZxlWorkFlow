@@ -1,0 +1,16 @@
+E:\oa4\OA4.0统一用户认证\output\DCIIDS.Sqlite.exe
+E:\oa4\OA4.0统一用户认证\output\DCIIDS.Sqlite.pdb
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\bin\DCIIDS.Sqlite.exe.config
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\bin\DCIIDS.Sqlite.exe
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\bin\DCIIDS.Sqlite.pdb
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\bin\System.Data.SQLite.dll
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Sqlite.exe
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Sqlite.pdb
+E:\oa4\OA4.0统一用户认证\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Sqlite.csprojResolveAssemblyReference.cache
+E:\oa4\OA4.0统一用户认证\output\DCIIDS.Sqlite.exe.config
+E:\Projects\Test\output\DCIIDS.Sqlite.pdb
+E:\Projects\Test\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Sqlite.csprojResolveAssemblyReference.cache
+E:\Projects\Test\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Sqlite.pdb
+E:\Projects\Test\output\DCIIDS.Sqlite.dll.config
+E:\Projects\Test\output\DCIIDS.Sqlite.dll
+E:\Projects\Test\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Sqlite.dll

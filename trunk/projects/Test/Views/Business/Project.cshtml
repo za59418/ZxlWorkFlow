@@ -1,0 +1,24 @@
+﻿@model Int32
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'center',border:false">
+        <!-- Begin of toolbar -->
+        <div id="wu-toolbar">
+            <div class="wu-toolbar-button">
+                <a href="#" class="easyui-linkbutton" iconcls="icon-save" onclick="openAdd()" plain="true">保存</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-redo" onclick="openEdit()" plain="true">发送</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-back" onclick="remove()" plain="true">回退</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-print" onclick="cancel()" plain="true">打印</a>
+            </div>
+        </div>
+        <!-- End of toolbar -->
+        <table id="wu-datagrid" toolbar="#wu-toolbar"></table>
+    </div>
+    <div data-options="region:'east',border:true,split:true," title="" style="width:300px; padding:0px;">
+        <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
+            <div title="表单" data-options="href:'Test/Business/ProjectForm?ProjectId=@Model',closable:false,iconCls:'icon-page-white-excel',cls:'pd3'"></div>
+            <div title="材料" data-options="href:'Test/Business/ProjectMaterial?ProjectId=@Model',closable:false,iconCls:'icon-page-white-word',cls:'pd3'"></div>
+            <div title="流程日志" data-options="href:'temp/layout-1.html',closable:false,iconCls:'icon-node-tree16',cls:'pd3'"></div>
+        </div>
+    </div>
+</div>

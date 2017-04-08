@@ -1,0 +1,59 @@
+﻿
+
+<div class="easyui-layout" data-options="fit:true">
+    <!-- Begin of toolbar -->
+    <div>
+        <div class="wu-toolbar-button">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="openAdd()" plain="true">接件</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-save" onclick="openEdit()" plain="true">保存</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-redo" onclick="remove()" plain="true">发送</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-back" onclick="cancel()" plain="true">回退</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-print" onclick="reload()" plain="true">打印</a>
+        </div>
+    </div>
+    <!-- End of toolbar -->
+    <table id="t1"></table>
+</div>
+<!-- Begin of easyui-dialog -->
+<!-- End of easyui-dialog -->
+<script type="text/javascript">
+    $(function () {
+        var t = $("#t1").treegrid({
+            title: 'test treegrid',
+            width: '100%',
+            height: 400,
+            method: "get",
+            url: "Test/Workbench/Projects",
+            idField: 'ID',
+            treeField: 'PROJECTNO',
+            remoteSort: false,
+            frozenColumns: [[
+                //{ field: 'ID', title: 'ID(id)', width: 80, sortable: true }
+            ]],
+            columns: [[
+                { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
+                { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
+                { field: 'BUILDADRESS', title: '建设地址', width: 200, sortable: true },
+                { field: 'CREATETIME', title: '创建时间', width: 140 },
+                { field: 'ENDTIME', title: '结束时间', width: 140, sortable: true }
+            ]],
+            onDblClickRow: function (field, row) {
+                addTab(field.PROJECTNAME, 'Test/Business/Project?ProjectId=' + field.ID, 'icon-flag-pink', false);
+            },
+            headerContextMenu: [
+                {
+                    text: "冻结该列", disabled: function (e, field) { return t.treegrid("getColumnFields", true).contains(field); },
+                    handler: function (e, field) { t.treegrid("freezeColumn", field); }
+                },
+                {
+                    text: "取消冻结该列", disabled: function (e, field) { return t.treegrid("getColumnFields", false).contains(field); },
+                    handler: function (e, field) { t.treegrid("unfreezeColumn", field); }
+                }
+            ],
+            enableHeaderClickMenu: true,
+            enableHeaderContextMenu: true,
+            enableRowContextMenu: false,
+            offset: { width: -250, height: -150 }
+        });
+    });
+</script>
