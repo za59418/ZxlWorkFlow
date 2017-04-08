@@ -1,0 +1,14 @@
+﻿@model Int32
+
+<ul id="tree"></ul>
+
+<script type="text/javascript">
+    $(function () {
+        $("#tree").tree({
+            method: "get",
+            lines: true,
+            url: "Test/Business/GetForms?ProjectId=@Model",
+            enableContextMenu: true
+        });
+    });
+</script>
