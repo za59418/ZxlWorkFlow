@@ -12,6 +12,7 @@ namespace Test.Model
         public int pid { get; set; }
         public int _parentId { get; set; }
         public string text { get; set; }
+        public string iconCls { get; set; }
 
         public List<AbstractModel> children { get; set; }
 

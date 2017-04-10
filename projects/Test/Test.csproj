@@ -141,13 +141,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\SYS_BUSINESSROLE.cs" />
+    <Compile Include="Model\SYS_USER.cs" />
+    <Compile Include="Model\SYS_BUSINESSROLEUSER.cs" />
     <Compile Include="Model\SYS_BUSINESSMATERIAL.cs" />
+    <Compile Include="Model\SYS_BUSINESSACTIVITY.cs" />
+    <Compile Include="Model\SYS_PROJECTACTIVITY.cs" />
     <Compile Include="Model\SYS_PROJECTMATERIAL.cs" />
     <Compile Include="Model\SYS_PROJECTFORM.cs" />
     <Compile Include="Model\SYS_PROJECT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\easyui.css" />
     <Content Include="Content\icon.css" />
     <Content Include="Images\icons\accept.png" />
     <Content Include="Images\icons\add.png" />
@@ -3126,7 +3132,11 @@
     <Content Include="Scripts\easyui\1.3.4\themes\metro\tree.css" />
     <Content Include="Scripts\easyui\1.3.4\themes\metro\validatebox.css" />
     <Content Include="Scripts\easyui\1.3.4\themes\metro\window.css" />
+    <Content Include="Scripts\jeasyui.extensions.dialog.js" />
+    <Content Include="Scripts\jeasyui.extensions.js" />
+    <Content Include="Scripts\jeasyui.extensions.window.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery.jdirk.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="SQL\init.sql" />
     <Content Include="Web.config" />
@@ -3246,6 +3256,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Business\Project.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Portal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Business\Dialog\Dialog_SendUser.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
