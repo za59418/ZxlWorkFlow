@@ -16,7 +16,7 @@ namespace DCIIDS.Data
 
 		private const char EncodingPrimaryKeys_Assigner = '=';
 
-		protected string m_strPrameterPrefix = "@PAM_";
+		protected string m_strPrameterPrefix = ":PAM_"; //从@改为:
 
 		protected DefaultDbTypeCast m_type2DbType = new DefaultDbTypeCast();
 

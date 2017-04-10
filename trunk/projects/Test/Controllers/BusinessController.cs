@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data;
 using DCIIDS.Data;
 using Test.Model;
+using Test.ModelView;
 
 namespace Test.Controllers
 {
@@ -143,12 +144,47 @@ namespace Test.Controllers
                         role.children.Add(user);
                     }
                 }
+                orm.Close();
             }
 
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write(jss.Serialize(businessRoles));
             System.Web.HttpContext.Current.Response.End();
             return Json(businessRoles);
+        }
+        public ActionResult DoSend(int ProjectId,int RecvUserId)
+        {
+            ServiceResult result = new ServiceResult();
+            SYS_PROJECTACTIVITY currActivity = null;
+            try
+            {
+                using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+                {
+                    currActivity = orm.Init<SYS_PROJECTACTIVITY>("where ref_project_id='" + ProjectId + "' and state=0");
+                    currActivity.ENDTIME = DateTime.Now;
+                    currActivity.STATE = 1;
+                    orm.Save(currActivity);
+
+                    SYS_PROJECTACTIVITY nextActivity = new SYS_PROJECTACTIVITY();
+                    nextActivity.ID = ValueOperator.CreatePk("SYS_PROJECTACTIVITY");
+                    nextActivity.REF_PROJECTPROCESS_ID = currActivity.REF_PROJECTPROCESS_ID;
+                    nextActivity.REF_BUSINESSACTIVITY_ID = orm.Init<SYS_BUSINESSACTIVITYROUTE>("REF_FROM_BUSINESSACTIVITY_ID=" + currActivity.ID).REF_TO_BUSINESSACTIVITY_ID;
+                    nextActivity.REF_USER_ID = RecvUserId;
+                    nextActivity.REF_PROJECT_ID = currActivity.REF_PROJECT_ID;
+                    nextActivity.STARTTIME = DateTime.Now;
+                    nextActivity.STATE = 0;
+                    orm.Insert(nextActivity);
+
+                    orm.Close();
+                    result.ReturnCode = ServiceResultCode.Success;
+                }
+            }
+            catch (Exception e)
+            {
+                result.ReturnCode = ServiceResultCode.Error;
+                result.Message = e.Message;
+            }
+            return Json(result);
         }
 
     }

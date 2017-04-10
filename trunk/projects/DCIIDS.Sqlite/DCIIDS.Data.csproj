@@ -74,6 +74,7 @@
     <Compile Include="Parser\SqlTokenizer.cs" />
     <Compile Include="Parser\StringCollection.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ValueOperator.cs" />
     <Compile Include="Sqlca.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Attribute\TableAttribute.cs" />
