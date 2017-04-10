@@ -14,3 +14,4 @@ E:\ZxlWorkFlow\trunk\output\DCIIDS.Data.dll
 E:\ZxlWorkFlow\trunk\output\DCIIDS.Data.pdb
 E:\ZxlWorkFlow\trunk\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.dll
 E:\ZxlWorkFlow\trunk\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.pdb
+E:\ZxlWorkFlow\trunk\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.csprojResolveAssemblyReference.cache

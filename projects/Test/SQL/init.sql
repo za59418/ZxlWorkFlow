@@ -1,4 +1,4 @@
-CREATE TABLE TEST.SYS_PROJECT 
+CREATE TABLE SYS_PROJECT 
 (	
 	ID integer primary key, 
 	PROJECTNO VARCHAR2(100), 
@@ -12,7 +12,7 @@ CREATE TABLE TEST.SYS_PROJECT
 );
 
 
-CREATE TABLE TEST.SYS_PROJECTFORM 
+CREATE TABLE SYS_PROJECTFORM 
 (	
 	ID integer primary key, 
 	FORMNAME VARCHAR2(50), 
@@ -22,7 +22,7 @@ CREATE TABLE TEST.SYS_PROJECTFORM
 	CREATETIME DATE
 );
 
-CREATE TABLE TEST.SYS_PROJECTMATERIAL 
+CREATE TABLE SYS_PROJECTMATERIAL 
 (	
 	ID integer primary key, 
 	MATERIALNAME VARCHAR2(250), 
@@ -62,7 +62,7 @@ create table sys_businessprocess
 	createtime date
 );
 
-
+create sequence seq_sys_projectactivity;
 create table sys_businessactivity
 (
 	id integer primary key,
@@ -70,6 +70,14 @@ create table sys_businessactivity
 	REF_BUSINESS_ID INTEGER,
 	REF_BUSINESSPROCESS_ID INTEGER,
 	ref_businessrole_id integer
+);
+
+--环节连线
+create table SYS_BUSINESSACTIVITYROUTE
+(
+       ID integer primary key, 
+       REF_FROM_BUSINESSACTIVITY_ID integer,
+       REF_TO_BUSINESSACTIVITY_ID integer
 );
        
 

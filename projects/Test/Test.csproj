@@ -140,7 +140,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\ServiceResult.cs" />
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\SYS_BUSINESSACTIVITYROUTE.cs" />
     <Compile Include="Model\SYS_BUSINESSROLE.cs" />
     <Compile Include="Model\SYS_USER.cs" />
     <Compile Include="Model\SYS_BUSINESSROLEUSER.cs" />
