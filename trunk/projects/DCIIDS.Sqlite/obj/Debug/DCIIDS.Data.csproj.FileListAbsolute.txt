@@ -9,3 +9,8 @@ E:\前端\Test\output\DCIIDS.Data.pdb
 E:\前端\Test\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.csprojResolveAssemblyReference.cache
 E:\前端\Test\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.dll
 E:\前端\Test\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.pdb
+E:\ZxlWorkFlow\trunk\output\DCIIDS.Data.dll.config
+E:\ZxlWorkFlow\trunk\output\DCIIDS.Data.dll
+E:\ZxlWorkFlow\trunk\output\DCIIDS.Data.pdb
+E:\ZxlWorkFlow\trunk\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.dll
+E:\ZxlWorkFlow\trunk\projects\DCIIDS.Sqlite\obj\Debug\DCIIDS.Data.pdb

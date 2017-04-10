@@ -108,5 +108,48 @@ namespace Test.Controllers
             System.Web.HttpContext.Current.Response.End();
             return Json(result);
         }
+
+        public ActionResult Dialog_SendUser(int ProjectId)
+        {
+            return View("Dialog/Dialog_SendUser", ProjectId);
+        }
+        public ActionResult SendUserTree(int ProjectId)
+        {
+            SYS_PROJECTACTIVITY projectActivity = null;
+            SYS_BUSINESSACTIVITY businessActivity = null;
+            List<SYS_BUSINESSROLE> businessRoles = null;
+            List<SYS_BUSINESSROLEUSER> businessRoleUsers = null;
+            using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+            {
+                projectActivity = orm.Init<SYS_PROJECTACTIVITY>("where ref_project_id='" + ProjectId + "' and state=0");
+                businessActivity = orm.Init<SYS_BUSINESSACTIVITY>("where id=" + projectActivity.REF_BUSINESSACTIVITY_ID);
+                businessRoles = orm.Query<SYS_BUSINESSROLE>("where id=" + businessActivity.REF_BUSINESSROLE_ID);
+                foreach (SYS_BUSINESSROLE role in businessRoles)
+                {
+                    role.text = role.ROLENAME;
+                    role.id = role.ID;
+                    role.pid = 0;
+                    role.iconCls = "icon-users";
+                    role.children = new List<AbstractModel>();
+                    businessRoleUsers = orm.Query<SYS_BUSINESSROLEUSER>("where ref_businessrole_id=" + role.ID);
+
+                    foreach (SYS_BUSINESSROLEUSER u in businessRoleUsers)
+                    {
+                        SYS_USER user = orm.Init<SYS_USER>("where id=" + u.REF_USER_ID);
+                        user.text = user.USERNAME;
+                        user.id = user.ID;
+                        user.pid = businessActivity.id;
+                        user.iconCls = "icon-user-suit-black";
+                        role.children.Add(user);
+                    }
+                }
+            }
+
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(jss.Serialize(businessRoles));
+            System.Web.HttpContext.Current.Response.End();
+            return Json(businessRoles);
+        }
+
     }
 }

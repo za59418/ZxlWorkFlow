@@ -68,13 +68,15 @@ create table sys_businessactivity
 	id integer primary key,
 	ACTIVITYNAME VARCHAR2(200),
 	REF_BUSINESS_ID INTEGER,
-	REF_BUSINESSPROCESS_ID INTEGER
+	REF_BUSINESSPROCESS_ID INTEGER,
+	ref_businessrole_id integer
 );
        
 
 create table sys_projectprocess
 (
 	id integer primary key,
+	ref_project_id integer,
 	ref_BUSINESSPROCESS_id integer,
 	ref_user_id integer,
 	createtime date
@@ -83,9 +85,11 @@ create table sys_projectprocess
 create table sys_projectactivity
 (
     id integer primary key,
+	ref_project_id integer,
 	ref_projectprocess_id integer,
     ref_businessactivity_id integer,
     ref_user_id integer,
+	state integer default 0, --0为在办，1为已办
     starttime date,
     endtime date
 );
@@ -99,3 +103,17 @@ create table sys_user
     state number(1,0)
 );
 
+create table sys_businessrole
+(
+    id integer primary key,
+    rolename varchar2(100),
+    ref_business_id integer,
+    createtime date
+);
+
+create table sys_businessroleuser
+(
+    id integer primary key,
+    ref_user_id integer,
+    ref_businessrole_id integer
+);
