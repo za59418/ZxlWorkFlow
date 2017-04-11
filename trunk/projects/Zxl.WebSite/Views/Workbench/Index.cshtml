@@ -2,7 +2,7 @@
 
 <div class="easyui-layout" data-options="fit:true">
     <!-- Begin of toolbar -->
-    <div>
+    <div id ="toolbarProcessing">
         <div class="wu-toolbar-button">
             <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="openAdd()" plain="true">接件</a>
             <a href="#" class="easyui-linkbutton" iconcls="icon-save" onclick="openEdit()" plain="true">保存</a>
@@ -12,24 +12,47 @@
         </div>
     </div>
     <!-- End of toolbar -->
-    <table id="t1"></table>
+    <table id="tbProcessing" class="easyui-datagrid" toolbar="#toolbarProcessing"></table>
 </div>
 <!-- Begin of easyui-dialog -->
 <!-- End of easyui-dialog -->
 <script type="text/javascript">
+    function pagerFilter(data) {
+        if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array                
+            data = {
+                total: data.length,
+                rows: data
+            }
+        }
+        var dg = $(this);
+        var opts = dg.datagrid('options');
+        var pager = dg.datagrid('getPager');
+        pager.pagination({
+            onSelectPage: function (pageNum, pageSize) {
+                opts.pageNumber = pageNum;
+                opts.pageSize = pageSize;
+                pager.pagination('refresh', { pageNumber: pageNum, pageSize: pageSize });
+                dg.datagrid('loadData', data);
+            }
+        });
+        if (!data.originalRows) {
+            data.originalRows = (data.rows);
+        }
+        var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+        var end = start + parseInt(opts.pageSize);
+        data.rows = (data.originalRows.slice(start, end));
+        return data;
+    }
+
     $(function () {
-        var t = $("#t1").treegrid({
-            title: 'test treegrid',
-            width: '100%',
-            height: 400,
-            method: "get",
+        var t = $("#tbProcessing").treegrid({
             url: "Test/Workbench/Projects",
+            loadFilter: pagerFilter,
+            pageSize: 20,
+            pagination: true,
             idField: 'ID',
             treeField: 'PROJECTNO',
-            remoteSort: false,
-            frozenColumns: [[
-                //{ field: 'ID', title: 'ID(id)', width: 80, sortable: true }
-            ]],
+            fit: true,
             columns: [[
                 { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
                 { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
@@ -40,19 +63,6 @@
             onDblClickRow: function (field, row) {
                 addTab(field.PROJECTNAME, 'Test/Business/Project?ProjectId=' + field.ID, 'icon-flag-pink', false);
             },
-            headerContextMenu: [
-                {
-                    text: "冻结该列", disabled: function (e, field) { return t.treegrid("getColumnFields", true).contains(field); },
-                    handler: function (e, field) { t.treegrid("freezeColumn", field); }
-                },
-                {
-                    text: "取消冻结该列", disabled: function (e, field) { return t.treegrid("getColumnFields", false).contains(field); },
-                    handler: function (e, field) { t.treegrid("unfreezeColumn", field); }
-                }
-            ],
-            enableHeaderClickMenu: true,
-            enableHeaderContextMenu: true,
-            enableRowContextMenu: false,
             offset: { width: -250, height: -150 }
         });
     });
