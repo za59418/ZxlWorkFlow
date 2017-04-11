@@ -1,0 +1,17 @@
+﻿@model Int32
+
+<ul id="UserTree"></ul>
+
+<script type="text/javascript">
+    $(function () {
+        $(function () {
+            $("#UserTree").tree({
+                method: "get",
+                lines: true,
+                checkbox: true,
+                url: "Test/Business/SendUserTree?ProjectId=@Model",
+                enableContextMenu: true
+            });
+        });
+    });
+</script>
