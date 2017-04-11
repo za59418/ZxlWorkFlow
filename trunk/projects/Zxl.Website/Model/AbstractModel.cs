@@ -4,7 +4,7 @@ using System.Text;
 using DCIIDS.Main;
 using Zxl.Data;
 
-namespace Zxl.Website.Model
+namespace Zxl.WebSite.Model
 {
 	public class AbstractModel
 	{

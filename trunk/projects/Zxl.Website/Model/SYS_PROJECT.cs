@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Zxl.Data;
 
-namespace Zxl.Website.Model
+namespace Zxl.WebSite.Model
 {
     [Table]
     public class SYS_PROJECT : AbstractModel

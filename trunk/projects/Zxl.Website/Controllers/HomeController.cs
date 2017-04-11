@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 
-namespace Test.Controllers
+namespace Zxl.WebSite.Controllers
 {
     public class HomeController : Controller
     {

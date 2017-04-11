@@ -6,7 +6,7 @@ using Zxl.Data;
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace Zxl.Website.ModelView
+namespace Zxl.WebSite.ModelView
 {
     [JsonObject()]
     public class ServiceResult
