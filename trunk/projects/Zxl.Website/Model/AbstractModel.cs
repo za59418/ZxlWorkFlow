@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using DCIIDS.Main;
-using DCIIDS.Data;
+using Zxl.Data;
 
-namespace Test.Model
+namespace Zxl.Website.Model
 {
 	public class AbstractModel
 	{

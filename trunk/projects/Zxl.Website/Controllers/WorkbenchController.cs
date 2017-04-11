@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
-using DCIIDS.Data;
-using Test.Model;
+using Zxl.Data;
+using Zxl.Website.Model;
 
 namespace Test.Controllers
 {
@@ -19,7 +19,7 @@ namespace Test.Controllers
         public ActionResult Projects()
         {
             List<SYS_PROJECT> list = null;
-            using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 list = orm.Query<SYS_PROJECT>();
             }

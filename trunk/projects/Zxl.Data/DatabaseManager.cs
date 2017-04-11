@@ -5,9 +5,9 @@ using System.IO;
 using System.Data.OracleClient;
 using System.Data;
 using System.Configuration;
-using DCIIDS.Data.Parser;
+using Zxl.Data.Parser;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
     public class DatabaseManager
     {

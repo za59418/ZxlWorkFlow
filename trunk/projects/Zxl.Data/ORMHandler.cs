@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class ORMHandler : DefaultORMHandler, IDisposable
 	{

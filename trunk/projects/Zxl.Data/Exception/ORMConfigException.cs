@@ -1,6 +1,6 @@
 using System;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class ORMConfigException : ORMException
 	{

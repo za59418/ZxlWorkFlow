@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using DCIIDS.Main;
-using DCIIDS.Data;
+using Zxl.Data;
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace Test.ModelView
+namespace Zxl.Website.ModelView
 {
     [JsonObject()]
     public class ServiceResult

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
-using DCIIDS.Data;
+using Zxl.Data;
 using System.Text;
 
 namespace DCIIDS.Main

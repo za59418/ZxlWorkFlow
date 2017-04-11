@@ -1,6 +1,6 @@
 using System;
 
-namespace DCIIDS.Data.Parser
+namespace Zxl.Data.Parser
 {
 	public class LexException : Exception
 	{

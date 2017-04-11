@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class DefaultORMHandler
 	{

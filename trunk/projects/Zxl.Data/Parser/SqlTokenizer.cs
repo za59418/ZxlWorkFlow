@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DCIIDS.Data.Parser
+namespace Zxl.Data.Parser
 {
 	public class SqlTokenizer : BaseTokenizer
 	{

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DCIIDS.Data;
+using Zxl.Data;
 
-namespace Test.Model
+namespace Zxl.Website.Model
 {
     [Table]
     public class SYS_BUSINESSMATERIAL : AbstractModel
