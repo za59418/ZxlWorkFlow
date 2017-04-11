@@ -17,12 +17,12 @@ namespace Test.Model
         public int REF_PROJECTPROCESS_ID { get; set; }
         [Field]
         public int REF_BUSINESSACTIVITY_ID { get; set; }
-        [Field]
-        public int REF_USER_ID { get; set; }
-        [Field]
-        public DateTime STARTTIME { get; set; }
-        [Field]
-        public DateTime ENDTIME { get; set; }
+        //[Field]
+        //public int REF_USER_ID { get; set; }
+        //[Field]
+        //public DateTime STARTTIME { get; set; }
+        //[Field]
+        //public DateTime ENDTIME { get; set; }
         [Field]
         public int REF_PROJECT_ID { get; set; }
         [Field]

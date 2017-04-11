@@ -72,7 +72,7 @@ create table sys_businessactivity
 	ref_businessrole_id integer
 );
 
---环节连线
+--环节模型路由
 create table SYS_BUSINESSACTIVITYROUTE
 (
        ID integer primary key, 
@@ -96,10 +96,31 @@ create table sys_projectactivity
 	ref_project_id integer,
 	ref_projectprocess_id integer,
     ref_businessactivity_id integer,
+    --ref_user_id integer,
+	state integer default 0 --0为在办，1为已办
+    --starttime date,
+    --endtime date
+);
+
+create sequence SEQ_SYS_PROJECTWORKITEM; 
+create table SYS_PROJECTWORKITEM
+(
+    id integer primary key,
+	ref_project_id integer,
+    REF_PROJECTACTIVITY_ID integer,
     ref_user_id integer,
 	state integer default 0, --0为在办，1为已办
     starttime date,
     endtime date
+);
+
+--环节实例路由
+create sequence SEQ_SYS_PROJECTACTIVITYROUTE;
+create table SYS_PROJECTACTIVITYROUTE
+(
+       ID integer primary key, 
+       REF_FROM_PROACT_ID integer,
+       REF_TO_PROACT_ID integer
 );
 
 create table sys_user

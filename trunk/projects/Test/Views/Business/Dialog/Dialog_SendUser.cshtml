@@ -4,14 +4,26 @@
 
 <script type="text/javascript">
     $(function () {
-        $(function () {
-            $("#UserTree").tree({
-                method: "get",
-                lines: true,
-                checkbox: true,
-                url: "Test/Business/SendUserTree?ProjectId=@Model",
-                enableContextMenu: true
-            });
+        $("#UserTree").tree({
+            method: "get",
+            lines: true,
+            checkbox: true,
+            url: "Test/Business/SendUserTree?ProjectId=@Model",
+            enableContextMenu: true,
+            onlyLeafCheck: true,
+            onloadSuccess: function(node, data)
+            {
+                Business.SendUser = '';
+            },
+            onCheck: function (node, checked) {
+                var nodes = $(this).tree('getChecked');
+                var temp = '';
+                for (var i = 0; i < nodes.length; i++) {
+                    if (temp != '') temp += ',';
+                    temp += nodes[i].id;
+                }
+                Business.SendUser = temp;
+            }
         });
     });
 </script>
