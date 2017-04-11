@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Test
+namespace Zxl.WebSite
 {
     public static class WebApiConfig
     {

@@ -5,10 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using Zxl.Data;
-using Zxl.Website.Model;
-using Zxl.Website.ModelView;
+using Zxl.WebSite.Model;
+using Zxl.WebSite.ModelView;
 
-namespace Test.Controllers
+namespace Zxl.WebSite.Controllers
 {
     public class BusinessController : Controller
     {

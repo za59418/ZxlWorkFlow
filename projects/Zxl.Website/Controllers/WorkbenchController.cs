@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using Zxl.Data;
-using Zxl.Website.Model;
+using Zxl.WebSite.Model;
 
-namespace Test.Controllers
+namespace Zxl.WebSite.Controllers
 {
     public class WorkbenchController : Controller
     {

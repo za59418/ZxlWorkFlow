@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Test
+namespace Zxl.WebSite
 {
     public class BundleConfig
     {
