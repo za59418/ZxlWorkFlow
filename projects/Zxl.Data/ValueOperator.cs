@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Data.Common;
 using System.IO;
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class ValueOperator
 	{

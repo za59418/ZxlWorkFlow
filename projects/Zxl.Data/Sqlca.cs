@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class Sqlca : IDisposable
 	{

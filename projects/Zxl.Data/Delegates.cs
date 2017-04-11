@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public delegate void Delegate_ShowMessage(string str);
 	internal delegate void DelegateNavigateTo(string strUrl);

@@ -1,6 +1,6 @@
 using System;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	internal class InnerConvert
 	{

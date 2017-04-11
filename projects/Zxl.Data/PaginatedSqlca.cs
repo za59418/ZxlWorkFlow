@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class PaginatedSqlca : Sqlca
 	{

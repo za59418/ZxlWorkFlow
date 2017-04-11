@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace DCIIDS.Data.Parser
+namespace Zxl.Data.Parser
 {
 	public class BaseTokenizer : LexTokenizer
 	{

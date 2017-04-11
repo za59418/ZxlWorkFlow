@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
-using DCIIDS.Data;
-using Test.Model;
-using Test.ModelView;
+using Zxl.Data;
+using Zxl.Website.Model;
+using Zxl.Website.ModelView;
 
 namespace Test.Controllers
 {
@@ -33,7 +33,7 @@ namespace Test.Controllers
         public ActionResult GetForms(int ProjectId)
         {
             List<SYS_PROJECTFORM> list = null;
-            using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 list = orm.Query<SYS_PROJECTFORM>("where ref_project_id='" + ProjectId + "'");
             }
@@ -75,7 +75,7 @@ namespace Test.Controllers
 
             List<SYS_BUSINESSMATERIAL> result = null;
             List<SYS_PROJECTMATERIAL> projectMaterials = null;
-            using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 SYS_PROJECT prj = orm.Init<SYS_PROJECT>("where id='" + ProjectId + "'");
 
@@ -120,7 +120,7 @@ namespace Test.Controllers
             SYS_BUSINESSACTIVITY nextBusinessActivity = null;
             List<SYS_BUSINESSROLE> businessRoles = null;
             List<SYS_BUSINESSROLEUSER> businessRoleUsers = null;
-            using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 currProjActivity = orm.Init<SYS_PROJECTACTIVITY>("where ref_project_id=" + ProjectId + " and state=0");
                 int nextBusinessActivityId = orm.Init<SYS_BUSINESSACTIVITYROUTE>("where REF_FROM_BUSINESSACTIVITY_ID=" + currProjActivity.REF_BUSINESSACTIVITY_ID).REF_TO_BUSINESSACTIVITY_ID;
@@ -169,7 +169,7 @@ namespace Test.Controllers
                 }
                 else
                 {
-                    using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+                    using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
                     {
                         currActivity = orm.Init<SYS_PROJECTACTIVITY>("where ref_project_id=" + ProjectId + " and state=0");
                         currWorkitem = orm.Init<SYS_PROJECTWORKITEM>("where ref_project_id=" + ProjectId + " and state=0");
@@ -241,7 +241,7 @@ namespace Test.Controllers
 
             try
             {
-                using (ORMHandler orm = DCIIDS.Data.DatabaseManager.ORMHandler)
+                using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
                 {
                     currActivity = orm.Init<SYS_PROJECTACTIVITY>("where ref_project_id='" + ProjectId + "' and state=0");
                     currWorkitem = orm.Init<SYS_PROJECTWORKITEM>("where ref_project_id=" + ProjectId + " and state=0");

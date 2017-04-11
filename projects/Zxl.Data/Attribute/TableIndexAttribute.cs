@@ -1,6 +1,6 @@
 using System;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	public class TableIndexAttribute : Attribute

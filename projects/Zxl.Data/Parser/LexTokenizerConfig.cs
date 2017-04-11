@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DCIIDS.Data.Parser
+namespace Zxl.Data.Parser
 {
 	public class LexTokenizerConfig
 	{

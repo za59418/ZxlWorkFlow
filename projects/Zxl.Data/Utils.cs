@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
     public class Utils
     {

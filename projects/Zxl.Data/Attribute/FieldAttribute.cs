@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
 	public class FieldAttribute : Attribute

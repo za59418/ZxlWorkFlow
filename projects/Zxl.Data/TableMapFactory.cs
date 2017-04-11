@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DCIIDS.Data
+namespace Zxl.Data
 {
 	public class TableMapFactory
 	{
