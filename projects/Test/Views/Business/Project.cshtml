@@ -7,7 +7,7 @@
             <div class="wu-toolbar-button">
                 <a href="#" class="easyui-linkbutton" iconcls="icon-save" onclick="" plain="true">保存</a>
                 <a href="#" class="easyui-linkbutton" iconcls="icon-redo" onclick="Dialog_Send()" plain="true">发送</a>
-                <a href="#" class="easyui-linkbutton" iconcls="icon-back" onclick="" plain="true">回退</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-back" onclick="Dialog_Back()" plain="true">回退</a>
                 <a href="#" class="easyui-linkbutton" iconcls="icon-print" onclick="" plain="true">打印</a>
             </div>
         </div>
@@ -22,16 +22,15 @@
         </div>
     </div>
 </div>
-<div id="wu-dialog" class="easyui-dialog" data-options="closed:true,iconCls:'icon-redo'" style="width:400px; height:500px;">
+<div id="dialogSend" class="easyui-dialog" data-options="closed:true,iconCls:'icon-redo'" style="width:400px; height:500px;">
     <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
         <div title="人员选择" data-options="href:'Test/Business/Dialog_SendUser?ProjectId=@Model',closable:false,iconCls:'icon-user',cls:'pd2'"></div>
     </div>
-
 </div>
+
 <script type="text/javascript">
     function Dialog_Send(){
-        $('#wu-form').form('clear');
-        $('#wu-dialog').dialog({
+        $('#dialogSend').dialog({
             closed: false,
             modal:true,
             title: "发送",
@@ -42,14 +41,14 @@
                 {
                     $.ajax({
                         url: 'Test/Business/DoSend',
-                        data: { ProjectId: @Model, RecvUserId: 2 },
+                        data: { ProjectId: @Model, RecvUserId: Business.SendUser },
                         type: 'POST',
                         success: function (json) {
                             if(json.ReturnCode == 0)
                             {
                                 $.messager.alert('提示', '发送成功！', 'info', 
                                     function(){
-                                        $('#wu-dialog').dialog('close');
+                                        $('#dialogSend').dialog('close');
                                         removeTab();
                                     }
                                 );
@@ -66,9 +65,35 @@
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
-                    $('#wu-dialog').dialog('close');
+                    $('#dialogSend').dialog('close');
                 }
             }]
+        });
+    }
+    function Dialog_Back()
+    {
+        $.messager.confirm('回退确认', '确定要回退到上一个环节吗？', function(r){
+            if (r){
+                $.ajax({
+                    url: 'Test/Business/DoBack',
+                    data: { ProjectId: @Model },
+                    type: 'POST',
+                    success: function (json) {
+                        if(json.ReturnCode == 0)
+                        {
+                            $.messager.alert('提示', '回退成功！', 'info', 
+                                function(){
+                                    removeTab();
+                                }
+                            );
+                        }
+                        else
+                        {
+                            $.messager.alert('提示', '回退失败！<br>' + json.Message, 'error');
+                        }
+                    }
+                });            
+            }
         });
     }
 </script>
