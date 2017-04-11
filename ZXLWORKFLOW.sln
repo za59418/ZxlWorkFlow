@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Website", "projects\Zxl.Website\Zxl.Website.csproj", "{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.WebSite", "projects\Zxl.WebSite\Zxl.WebSite.csproj", "{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Data", "projects\Zxl.Data\Zxl.Data.csproj", "{A37FB0C7-4A07-4C7E-BFB8-AB49B02AD6D7}"
 EndProject
