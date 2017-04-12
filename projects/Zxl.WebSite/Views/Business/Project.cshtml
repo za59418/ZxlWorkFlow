@@ -50,6 +50,7 @@
                                     function(){
                                         $('#dialogSend').dialog('close');
                                         removeTab();
+                                        RefreshProcessing();
                                     }
                                 );
                             }
@@ -84,6 +85,7 @@
                             $.messager.alert('提示', '回退成功！', 'info',
                                 function(){
                                     removeTab();
+                                    RefreshProcessing();
                                 }
                             );
                         }
