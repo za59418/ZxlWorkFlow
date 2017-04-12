@@ -4,16 +4,16 @@
     <!-- Begin of toolbar -->
     <div id ="toolbarProcessing">
         <div class="wu-toolbar-button">
-            <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="Dialog_NewProject()" plain="true">接件</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add1" onclick="Dialog_NewProject()" plain="true">接件</a>
         </div>
     </div>
     <!-- End of toolbar -->
     <table id="tbProcessing" class="easyui-datagrid" toolbar="#toolbarProcessing"></table>
 </div>
 
-<div id="dialogNewProject" class="easyui-dialog" data-options="closed:true,iconCls:'icon-add'" style="width:400px; height:500px;">
+<div id="dialogNewProject" class="easyui-dialog" data-options="closed:true,iconCls:'icon-add1'" style="width:400px; height:500px;">
     <div class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="业务选择" data-options="href:'@Url.Action("Dialog_Business", "Business" )',closable:false,iconCls:'icon-user',cls:'pd2'"></div>
+        <div title="业务选择" data-options="href:'@Url.Action("Dialog_Business", "Business" )',closable:false,iconCls:'icon-computer',cls:'pd2'"></div>
     </div>
 </div>
 
@@ -25,7 +25,7 @@
             title: "接件",
             buttons: [{
                 text: '接件',
-                iconCls: 'icon-add',
+                iconCls: 'icon-add1',
                 handler: function ()
                 {
                     $.ajax({
