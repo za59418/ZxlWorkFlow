@@ -7,14 +7,14 @@
             lines: true,
             url: "@Url.Action("BusinessTree", "Business")",
             enableContextMenu: true,
-        onlyLeafCheck: true,
-        onloadSuccess: function(node, data)
-        {
-            Business.Business = '';
-        },
-        onCheck: function (node, checked) {
-            Business.Business = node.id;
-        }
-    });
+            onlyLeafCheck: true,
+            onloadSuccess: function(node, data)
+            {
+                Business.Business = '';
+            },
+            onClick: function (node) {
+                Business.Business = node.id;
+            }
+        });
     });
 </script>

@@ -30,6 +30,7 @@
                 {
                     $.ajax({
                         url: '@Url.Action("DoNewProject", "Business")',
+                        data: { BusinessId: Business.Business },
                         type: 'POST',
                         success: function (json) {
                             if(json.ReturnCode == 0)

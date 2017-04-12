@@ -19,5 +19,16 @@ namespace Zxl.Data
             }
             return result;
         }
+
+        public static string CreateNo(string tableName, string val)
+        {
+            while (val.Length < 4)
+                val = "0" + val;
+            string month = DateTime.Now.Month+"";
+            if (month.Length < 2)
+                month = "0" + month;
+            string year = DateTime.Now.Year + "";
+            return "CD-" + year + "-" + month + "-" + val; ;
+        }
     }
 }

@@ -1,3 +1,4 @@
+create sequence seq_SYS_PROJECT;
 CREATE TABLE SYS_PROJECT 
 (	
 	ID integer primary key, 
@@ -80,7 +81,7 @@ create table SYS_BUSINESSACTIVITYROUTE
        REF_TO_BUSINESSACTIVITY_ID integer
 );
        
-
+create sequence seq_SYS_PROJECTPROCESS;
 create table sys_projectprocess
 (
 	id integer primary key,
@@ -90,6 +91,7 @@ create table sys_projectprocess
 	createtime date
 );
 
+create sequence seq_SYS_PROJECTACTIVITY;
 create table sys_projectactivity
 (
     id integer primary key,
