@@ -17,14 +17,14 @@
     <div data-options="region:'east',border:true,split:true," title="" style="width:300px; padding:0px;">
         <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
             <div title="表单" data-options="href:'@Url.Action("ProjectForm", "Business", new { ProjectId = Model })',closable:false,iconCls:'icon-page-white-excel',cls:'pd3'"></div>
-            <div title="材料" data-options="href:'Test/Business/ProjectMaterial?ProjectId=@Model',closable:false,iconCls:'icon-page-white-word',cls:'pd3'"></div>
+            <div title="材料" data-options="href:'@Url.Action("ProjectMaterial", "Business", new { ProjectId = Model })',closable:false,iconCls:'icon-page-white-word',cls:'pd3'"></div>
             <div title="流程日志" data-options="href:'temp/layout-1.html',closable:false,iconCls:'icon-node-tree16',cls:'pd3'"></div>
         </div>
     </div>
 </div>
 <div id="dialogSend" class="easyui-dialog" data-options="closed:true,iconCls:'icon-redo'" style="width:400px; height:500px;">
     <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="人员选择" data-options="href:'Test/Business/Dialog_SendUser?ProjectId=@Model',closable:false,iconCls:'icon-user',cls:'pd2'"></div>
+        <div title="人员选择" data-options="href:'@Url.Action("Dialog_SendUser", "Business", new { ProjectId = Model })',closable:false,iconCls:'icon-user',cls:'pd2'"></div>
     </div>
 </div>
 
@@ -40,13 +40,13 @@
                 handler: function ()
                 {
                     $.ajax({
-                        url: 'Test/Business/DoSend',
+                        url: '@Url.Action("DoSend", "Business")',
                         data: { ProjectId: @Model, RecvUserId: Business.SendUser },
                         type: 'POST',
                         success: function (json) {
                             if(json.ReturnCode == 0)
                             {
-                                $.messager.alert('提示', '发送成功！', 'info', 
+                                $.messager.alert('提示', '发送成功！', 'info',
                                     function(){
                                         $('#dialogSend').dialog('close');
                                         removeTab();
@@ -60,14 +60,14 @@
                         }
                     });
                 }
-              },
+            },
               {
-                text: '取消',
-                iconCls: 'icon-cancel',
-                handler: function () {
-                    $('#dialogSend').dialog('close');
-                }
-            }]
+                  text: '取消',
+                  iconCls: 'icon-cancel',
+                  handler: function () {
+                      $('#dialogSend').dialog('close');
+                  }
+              }]
         });
     }
     function Dialog_Back()
@@ -75,13 +75,13 @@
         $.messager.confirm('回退确认', '确定要回退到上一个环节吗？', function(r){
             if (r){
                 $.ajax({
-                    url: 'Test/Business/DoBack',
+                    url: '@Url.Action("DoBack", "Business")',
                     data: { ProjectId: @Model },
                     type: 'POST',
                     success: function (json) {
                         if(json.ReturnCode == 0)
                         {
-                            $.messager.alert('提示', '回退成功！', 'info', 
+                            $.messager.alert('提示', '回退成功！', 'info',
                                 function(){
                                     removeTab();
                                 }
@@ -92,7 +92,7 @@
                             $.messager.alert('提示', '回退失败！<br>' + json.Message, 'error');
                         }
                     }
-                });            
+                });
             }
         });
     }

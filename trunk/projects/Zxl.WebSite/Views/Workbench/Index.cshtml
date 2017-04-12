@@ -18,7 +18,7 @@
 <!-- End of easyui-dialog -->
 <script type="text/javascript">
     function pagerFilter(data) {
-        if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array                
+        if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
             data = {
                 total: data.length,
                 rows: data
@@ -61,13 +61,7 @@
                 { field: 'ENDTIME', title: '结束时间', width: 140, sortable: true }
             ]],
             onDblClickRow: function (field, row) {
-                @{
-                    var s = "";
-                }
-                @s=field.ID;
-
-                var url = '@Url.Action("Project", "Business", new { ProjectId= s})';
-                addTab(field.PROJECTNAME, 'Business/Project?ProjectId=' + field.ID, 'icon-flag-pink', false);
+                addTab(field.PROJECTNAME, '@Url.Action("Project", "Business")' + '?ProjectId=' + field.ID, 'icon-flag-pink', false);
             },
             offset: { width: -250, height: -150 }
         });

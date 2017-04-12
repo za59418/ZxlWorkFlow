@@ -7,8 +7,8 @@
         $("#materialtree").tree({
             method: "get",
             lines: true,
-            url: "Test/Business/GetMaterials?ProjectId=@Model",
+            url: "@Url.Action("GetMaterials", "Business", new { ProjectId = Model })",
             enableContextMenu: true
-        });
+    });
     });
 </script>
