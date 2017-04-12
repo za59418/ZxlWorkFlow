@@ -19,9 +19,10 @@ namespace Zxl.WebSite.Controllers
         public ActionResult Projects()
         {
             List<SYS_PROJECT> list = null;
+            string UserId = Session["UserId"].ToString();
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                list = orm.Query<SYS_PROJECT>();
+                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=0)");
             }
             foreach(SYS_PROJECT prj in list)
             {
