@@ -114,6 +114,48 @@ namespace Zxl.WebSite.Controllers
         {
             return View("Dialog/Dialog_SendUser", ProjectId);
         }
+
+        public ActionResult Dialog_Business()
+        {
+            return View("Dialog/Dialog_Business");
+        }
+
+        public ActionResult BusinessTree()
+        {
+            List<SYS_BUSINESS> businesses = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                businesses = orm.Query<SYS_BUSINESS>();
+                orm.Close();
+            }
+
+            SYS_BUSINESS root = null;
+            if (null != businesses && businesses.Count > 0)
+            {
+                root = new SYS_BUSINESS();
+                root.children = new List<AbstractModel>();
+                root.id = 1;
+                root.pid = 0;
+                root.text = "业务列表";
+
+                foreach (SYS_BUSINESS business in businesses)
+                {
+                    business.id = business.ID;
+                    business.pid = 1;
+                    business.text = business.BUSINESSNAME;
+                    root.children.Add(business);
+                }
+            }
+
+            List<SYS_BUSINESS> result = new List<SYS_BUSINESS>();
+            result.Add(root);
+
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(jss.Serialize(result));
+            System.Web.HttpContext.Current.Response.End();
+            return Json(result);
+        }
+
         public ActionResult SendUserTree(int ProjectId)
         {
             SYS_PROJECTACTIVITY currProjActivity = null;

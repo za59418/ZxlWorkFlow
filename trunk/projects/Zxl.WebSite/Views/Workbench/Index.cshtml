@@ -4,19 +4,61 @@
     <!-- Begin of toolbar -->
     <div id ="toolbarProcessing">
         <div class="wu-toolbar-button">
-            <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="openAdd()" plain="true">接件</a>
-            <a href="#" class="easyui-linkbutton" iconcls="icon-save" onclick="openEdit()" plain="true">保存</a>
-            <a href="#" class="easyui-linkbutton" iconcls="icon-redo" onclick="remove()" plain="true">发送</a>
-            <a href="#" class="easyui-linkbutton" iconcls="icon-back" onclick="cancel()" plain="true">回退</a>
-            <a href="#" class="easyui-linkbutton" iconcls="icon-print" onclick="reload()" plain="true">打印</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="Dialog_NewProject()" plain="true">接件</a>
         </div>
     </div>
     <!-- End of toolbar -->
     <table id="tbProcessing" class="easyui-datagrid" toolbar="#toolbarProcessing"></table>
 </div>
-<!-- Begin of easyui-dialog -->
-<!-- End of easyui-dialog -->
+
+<div id="dialogNewProject" class="easyui-dialog" data-options="closed:true,iconCls:'icon-add'" style="width:400px; height:500px;">
+    <div class="easyui-tabs" data-options="border:false,fit:true">
+        <div title="业务选择" data-options="href:'@Url.Action("Dialog_Business", "Business" )',closable:false,iconCls:'icon-user',cls:'pd2'"></div>
+    </div>
+</div>
+
 <script type="text/javascript">
+    function Dialog_NewProject(){
+        $('#dialogNewProject').dialog({
+            closed: false,
+            modal:true,
+            title: "接件",
+            buttons: [{
+                text: '接件',
+                iconCls: 'icon-add',
+                handler: function ()
+                {
+                    $.ajax({
+                        url: '@Url.Action("DoNewProject", "Business")',
+                        type: 'POST',
+                        success: function (json) {
+                            if(json.ReturnCode == 0)
+                            {
+                                $.messager.alert('提示', '接件成功！', 'info',
+                                    function(){
+                                        $('#dialogNewProject').dialog('close');
+                                        RefreshProcessing();
+                                    }
+                                );
+                            }
+                            else
+                            {
+                                $.messager.alert('提示', '接件失败！<br>' + json.Message, 'error');
+                            }
+                        }
+                    });
+                }
+            },
+              {
+                  text: '取消',
+                  iconCls: 'icon-cancel',
+                  handler: function () {
+                      $('#dialogNewProject').dialog('close');
+                  }
+              }]
+        });
+    }
+
     function pagerFilter(data) {
         if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
             data = {

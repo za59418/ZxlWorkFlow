@@ -1,0 +1,20 @@
+﻿<ul id="BusinessTree"></ul>
+
+<script type="text/javascript">
+    $(function () {
+        $("#BusinessTree").tree({
+            method: "get",
+            lines: true,
+            url: "@Url.Action("BusinessTree", "Business")",
+            enableContextMenu: true,
+        onlyLeafCheck: true,
+        onloadSuccess: function(node, data)
+        {
+            Business.Business = '';
+        },
+        onCheck: function (node, checked) {
+            Business.Business = node.id;
+        }
+    });
+    });
+</script>
