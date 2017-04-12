@@ -30,7 +30,6 @@ namespace Zxl.WebSite.Controllers
         {
             SYS_USER user = null;
 
-            HttpCookie cookie = new HttpCookie("User");
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 user = orm.Init<SYS_USER>("where USERNAME='" + UserName + "' and PASSWORD='" + Password + "'");
