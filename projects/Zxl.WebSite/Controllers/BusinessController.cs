@@ -120,6 +120,62 @@ namespace Zxl.WebSite.Controllers
             return View("Dialog/Dialog_Business");
         }
 
+        public ActionResult DoNewProject(int BusinessId)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+                {
+                    orm.BeginTransaction();
+                    SYS_PROJECT prj = new SYS_PROJECT();
+                    prj.ID = ValueOperator.CreatePk("SYS_PROJECT");
+                    prj.REF_BUSINESS_ID = BusinessId;
+                    prj.PROJECTNO = ValueOperator.CreateNo("SYS_PROJECT", prj.ID + "");
+                    prj.CREATETIME = DateTime.Now;
+                    prj.ISDELETE = 0;
+                    orm.Insert(prj);
+
+                    SYS_PROJECTPROCESS prjPro = new SYS_PROJECTPROCESS();
+                    prjPro.ID = ValueOperator.CreatePk("SYS_PROJECTPROCESS");
+                    prjPro.REF_BUSINESSPROCESS_ID = orm.Init<SYS_BUSINESSPROCESS>("where REF_BUSINESS_ID=" + BusinessId).ID;
+                    prjPro.REF_PROJECT_ID = prj.ID;
+                    prjPro.REF_USER_ID = Convert.ToInt32(Session["UserId"].ToString());
+                    prjPro.CREATETIME = DateTime.Now;
+                    orm.Insert(prjPro);
+
+                    SYS_PROJECTACTIVITY prjAct = new SYS_PROJECTACTIVITY();
+                    prjAct.ID = ValueOperator.CreatePk("SYS_PROJECTACTIVITY");
+                    prjAct.REF_BUSINESSACTIVITY_ID = orm.Init<SYS_BUSINESSACTIVITY>("where REF_BUSINESS_ID=" + BusinessId + "order by id").ID;
+                    prjAct.REF_PROJECT_ID = prj.ID;
+                    prjAct.REF_PROJECTPROCESS_ID = prjPro.ID;
+                    prjAct.STATE = 0;
+                    orm.Insert(prjAct);
+
+                    SYS_PROJECTWORKITEM prjWi = new SYS_PROJECTWORKITEM();
+                    prjWi.ID = ValueOperator.CreatePk("SYS_PROJECTWORKITEM");
+                    prjWi.REF_PROJECT_ID = prj.ID;
+                    prjWi.REF_PROJECTACTIVITY_ID = prjAct.ID;
+                    prjWi.REF_USER_ID = Convert.ToInt32(Session["UserId"].ToString());
+                    prjWi.STARTTIME = DateTime.Now;
+                    prjWi.STATE = 0;
+                    orm.Insert(prjWi);
+
+                    List<SYS_PROJECTFORM> forms = new List<SYS_PROJECTFORM>();
+                    List<SYS_PROJECTMATERIAL> materials = new List<SYS_PROJECTMATERIAL>();
+                    orm.Commit();
+                    orm.Close();
+                    result.ReturnCode = ServiceResultCode.Success;
+                }
+            }
+            catch(Exception e)
+            {
+                result.ReturnCode = ServiceResultCode.Error;
+                result.Message = e.Message;
+            }
+            return Json(result);
+        }
+
         public ActionResult BusinessTree()
         {
             List<SYS_BUSINESS> businesses = null;

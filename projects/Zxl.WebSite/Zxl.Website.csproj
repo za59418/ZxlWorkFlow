@@ -144,6 +144,8 @@
     <Compile Include="ModelView\ServiceResult.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\SYS_BUSINESS.cs" />
+    <Compile Include="Model\SYS_BUSINESSPROCESS.cs" />
+    <Compile Include="Model\SYS_PROJECTPROCESS.cs" />
     <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />
     <Compile Include="Model\SYS_PROJECTACTIVITYROUTE.cs" />
     <Compile Include="Model\SYS_BUSINESSACTIVITYROUTE.cs" />
