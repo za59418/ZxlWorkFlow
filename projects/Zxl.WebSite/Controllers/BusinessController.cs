@@ -132,6 +132,7 @@ namespace Zxl.WebSite.Controllers
                     prj.ID = ValueOperator.CreatePk("SYS_PROJECT");
                     prj.REF_BUSINESS_ID = BusinessId;
                     prj.PROJECTNO = ValueOperator.CreateNo("SYS_PROJECT", prj.ID + "");
+                    prj.PROJECTNAME = prj.PROJECTNO; // 给个初使值
                     prj.CREATETIME = DateTime.Now;
                     prj.ISDELETE = 0;
                     orm.Insert(prj);
