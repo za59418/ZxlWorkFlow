@@ -143,6 +143,7 @@
     <Compile Include="ModelView\LoginViewModel.cs" />
     <Compile Include="ModelView\ServiceResult.cs" />
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\SYS_BUSINESS.cs" />
     <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />
     <Compile Include="Model\SYS_PROJECTACTIVITYROUTE.cs" />
     <Compile Include="Model\SYS_BUSINESSACTIVITYROUTE.cs" />
@@ -3454,6 +3455,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Business\Dialog\Dialog_Business.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

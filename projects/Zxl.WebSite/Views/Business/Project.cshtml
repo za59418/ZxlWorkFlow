@@ -12,9 +12,12 @@
             </div>
         </div>
         <!-- End of toolbar -->
-        <table id="wu-datagrid" toolbar="#wu-toolbar"></table>
+        <div class="easyui-tabs" data-options="border:false, fit:true">
+            <div title="申请表" data-options="href:'',closable:true, iconCls:'icon-page-white-excel' " style="background: #808080;"></div>
+            <div title="审批表" data-options="href:'',closable:true, iconCls:'icon-page-white-excel' " style="background: #808080;"></div>
+        </div>
     </div>
-    <div data-options="region:'east',border:true,split:true," title="" style="width:300px; padding:0px;">
+    <div data-options="region:'east',border:true,split:true," title="" style="width:250px; padding:0px;">
         <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
             <div title="表单" data-options="href:'@Url.Action("ProjectForm", "Business", new { ProjectId = Model })',closable:false,iconCls:'icon-page-white-excel',cls:'pd3'"></div>
             <div title="材料" data-options="href:'@Url.Action("ProjectMaterial", "Business", new { ProjectId = Model })',closable:false,iconCls:'icon-page-white-word',cls:'pd3'"></div>
@@ -71,6 +74,7 @@
               }]
         });
     }
+
     function Dialog_Back()
     {
         $.messager.confirm('回退确认', '确定要回退到上一个环节吗？', function(r){
