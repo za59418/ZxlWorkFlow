@@ -46,7 +46,7 @@
 
     $(function () {
         var t = $("#tbProcessing").treegrid({
-            url: "Test/Workbench/Projects",
+            url: "@Url.Action("Projects", "Workbench")",
             loadFilter: pagerFilter,
             pageSize: 20,
             pagination: true,
@@ -61,7 +61,13 @@
                 { field: 'ENDTIME', title: '结束时间', width: 140, sortable: true }
             ]],
             onDblClickRow: function (field, row) {
-                addTab(field.PROJECTNAME, 'Test/Business/Project?ProjectId=' + field.ID, 'icon-flag-pink', false);
+                @{
+                    var s = "";
+                }
+                @s=field.ID;
+
+                var url = '@Url.Action("Project", "Business", new { ProjectId= s})';
+                addTab(field.PROJECTNAME, 'Business/Project?ProjectId=' + field.ID, 'icon-flag-pink', false);
             },
             offset: { width: -250, height: -150 }
         });
