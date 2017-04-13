@@ -3343,6 +3343,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Workbench\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -3429,9 +3430,6 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Workbench\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Zxl.Data\Zxl.Data.csproj">
       <Project>{a37fb0c7-4a07-4c7e-bfb8-ab49b02ad6d7}</Project>
       <Name>Zxl.Data</Name>
@@ -3457,6 +3455,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Business\Dialog\Dialog_Business.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Business\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
