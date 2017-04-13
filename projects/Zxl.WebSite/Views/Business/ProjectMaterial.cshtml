@@ -2,13 +2,45 @@
 
 <ul id="materialtree"></ul>
 
+<div id="directoryContextMenu" class="easyui-menu" style="width: 120px;">
+    <div onclick="Upload()" iconcls="icon-add1">上传材料</div>
+</div>
+
+<div id="fileContextMenu" class="easyui-menu" style="width: 120px;">
+    <div onclick="" iconcls="icon-search">在线浏览</div>
+    <div onclick="" iconcls="icon-download">下载材料</div>
+    <div onclick="" iconcls="icon-delete">删除材料</div>
+</div>  
+
 <script type="text/javascript">
+    function Upload()
+    {
+
+    }
+
     $(function () {
         $("#materialtree").tree({
             method: "get",
             lines: true,
             url: "@Url.Action("GetMaterials", "Business", new { ProjectId = Model })",
-            enableContextMenu: true
-    });
+            enableContextMenu: true,
+            onContextMenu: function (e, node) {
+                e.preventDefault();
+
+                var leaf = $('#materialtree').tree('isLeaf', node.target);
+
+                if (leaf) {
+                    $('#fileContextMenu').menu('show', {
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                } else {
+                    $('#directoryContextMenu').menu('show', {
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                }
+            }
+        });
     });
 </script>

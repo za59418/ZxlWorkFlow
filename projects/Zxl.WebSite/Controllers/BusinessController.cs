@@ -17,11 +17,27 @@ namespace Zxl.WebSite.Controllers
             return View();
         }
 
+        public ActionResult Projects()
+        {
+            List<SYS_PROJECT> list = null;
+            string UserId = Session["UserId"].ToString();
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=0)");
+            }
+            foreach (SYS_PROJECT prj in list)
+            {
+                prj._parentId = prj.PID;
+            }
+
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(jss.Serialize(new { rows = list }));
+            System.Web.HttpContext.Current.Response.End();
+            return Json(new { rows = list });
+        }
+
         public ActionResult Project(int ProjectId)
         {
-            SYS_PROJECT model = new SYS_PROJECT();
-            model.id = ProjectId;
-
             return View(ProjectId);
         }
 
@@ -64,7 +80,7 @@ namespace Zxl.WebSite.Controllers
             return Json(result);
         }
 
-
+        #region 材料
         public ActionResult ProjectMaterial(int ProjectId)
         {
             return View(ProjectId);
@@ -95,7 +111,7 @@ namespace Zxl.WebSite.Controllers
                 {
                     if (tem.id == projectMaterial.REF_BUSINESSMATERIAL_ID)
                     {
-                        projectMaterial.id = projectMaterial.ID + 10;
+                        projectMaterial.id = projectMaterial.ID;// +10;
                         projectMaterial.pid = tem.id;
                         projectMaterial.text = projectMaterial.MATERIALNAME;
 
@@ -110,6 +126,34 @@ namespace Zxl.WebSite.Controllers
             return Json(result);
         }
 
+        public ActionResult UploadMaterial(int ProjectId, int BusinessMaterialId, string MaterialName)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+                {
+                    SYS_PROJECTMATERIAL material = new SYS_PROJECTMATERIAL();
+                    material.ID = ValueOperator.CreatePk("SYS_PROJECTMATERIAL");
+                    material.REF_PROJECT_ID = ProjectId;
+                    material.REF_BUSINESSMATERIAL_ID = BusinessMaterialId;
+                    material.CREATETIME = DateTime.Now;
+                    material.MATERIALNAME = MaterialName;
+                    material.CREATEUSER = Convert.ToInt32(Session["UserId"].ToString());
+                    orm.Insert(material);
+                    orm.Close();
+                    result.ReturnCode = ServiceResultCode.Success;
+                }
+            }
+            catch(Exception e)
+            {
+                result.ReturnCode = ServiceResultCode.Success;
+                result.Message = e.Message;
+            }
+            return Json(result);
+        }
+
+        #endregion 材料
         public ActionResult Dialog_SendUser(int ProjectId)
         {
             return View("Dialog/Dialog_SendUser", ProjectId);
