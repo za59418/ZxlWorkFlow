@@ -12,10 +12,113 @@
     <div onclick="" iconcls="icon-delete">删除材料</div>
 </div>  
 
+<div id="dialogUpload" class="easyui-dialog" title="文件上传" style="width:400px;height:160px;padding:2px;" data-options="closed:true,iconCls:'icon-upload'">
+    <form id="importFileForm" method="post" enctype="multipart/form-data">
+        <table style="margin:5px;height:70px;">
+            <tr>
+                <td>请选择文件</td>
+                <td width="5px;"></td>
+                <td><input type="file" id="fileImport" name="fileImport" class="easyui-filebox" prompt="choose a file...'"
+                    style="width:260px;" onchange="">
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4"><label id="fileName" /></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <label id="uploadInfo" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 <script type="text/javascript">
     function Upload()
     {
+        $('#dialogUpload').dialog({
+            closed: false,
+            modal: true,
+            title: "文件上传",
+            buttons: [{
+                text: '上传',
+                iconCls: 'icon-upload',
+                handler: function () {
+                    importFileClick();
+                }
+            },
+            {
+                text: '取消',
+                iconCls: 'icon-cancel',
+                handler: function () {
+                    $('#fileImport').val(null);
+                    $('#fileName').html("");
+                    $('#uploadInfo').html("");
+                    $('#dialogUpload').dialog('close');
+                }
+            }]
+        });
+    }
 
+    function importFileClick() {
+        var file = document.getElementById('fileImport').files[0];
+        if (file == null) { alert('错误，请选择文件'); return; }
+        var fileName = file.name;
+        var file_typename = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+
+        var fileSize = 0;
+        if (file.size > 1024 * 1024) {
+            fileSize = Math.round(file.size * 100 / (1024 * 1024)) / 100;
+
+            if (fileSize > 10) {
+                alert('错误，文件超过10MB，禁止上传！'); return;
+            }
+            fileSize = fileSize.toString() + 'MB';
+        }
+        else {
+            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+        }
+        $('#fileName').innerHTML = "<span style='color:Blue'>文件名: " + file.name + ',大小: ' + fileSize + "</span>";
+        //获取form数据
+        var formData = new FormData($("#importFileForm")[0]);
+        formData.append("ProjectId", @Model);
+        formData.append("BusinessMaterialId", Business.Material);
+        formData.append("MaterialName", fileName);
+        formData.append("FileSize", fileSize);
+
+        $.ajax({
+            url: '@Url.Action("UploadMaterial", "Business")',
+            type: 'POST',
+            data: formData, //{ ProjectId: @Model, BusinessMaterialId: Business.Material, MaterialName: fileName, FileSize: fileSize },
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (json) {
+                if(json.ReturnCode == 0)
+                {
+                    $.messager.alert('提示', '上传成功！', 'info',
+                        function(){
+                            RefreshMaterial();
+                            $('#fileImport').val(null);
+                            $('#fileName').html("");
+                            $('#uploadInfo').html("");
+                            $('#dialogUpload').dialog('close');
+                        }
+                    );
+                }
+                else
+                {
+                    $.messager.alert('提示', '上传失败！<br>' + json.Message, 'error');
+                }
+            }
+        });
+    }
+
+    function RefreshMaterial(){
+        $("#materialtree").tree("reload");
     }
 
     $(function () {
@@ -26,10 +129,11 @@
             enableContextMenu: true,
             onContextMenu: function (e, node) {
                 e.preventDefault();
+                Business.Material = node.id; //
+                var isFile = $('#materialtree').tree('isLeaf', node.target);
+                var parent = $('#materialtree').tree('getParent', node.target);  
 
-                var leaf = $('#materialtree').tree('isLeaf', node.target);
-
-                if (leaf) {
+                if (isFile && null!=parent) {
                     $('#fileContextMenu').menu('show', {
                         left: e.pageX,
                         top: e.pageY

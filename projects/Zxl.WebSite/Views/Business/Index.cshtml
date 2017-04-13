@@ -1,0 +1,117 @@
+﻿
+
+<div class="easyui-layout" data-options="fit:true">
+    <!-- Begin of toolbar -->
+    <div id ="toolbarProcessing">
+        <div class="wu-toolbar-button">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add1" onclick="Dialog_NewProject()" plain="true">接件</a>
+        </div>
+    </div>
+    <!-- End of toolbar -->
+    <table id="tbProcessing" class="easyui-datagrid" toolbar="#toolbarProcessing"></table>
+</div>
+
+<div id="dialogNewProject" class="easyui-dialog" data-options="closed:true,iconCls:'icon-add1'" style="width:400px; height:500px;">
+    <div class="easyui-tabs" data-options="border:false,fit:true">
+        <div title="业务选择" data-options="href:'@Url.Action("Dialog_Business", "Business" )',closable:false,iconCls:'icon-computer',cls:'pd2'"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function Dialog_NewProject(){
+        $('#dialogNewProject').dialog({
+            closed: false,
+            modal:true,
+            title: "接件",
+            buttons: [{
+                text: '接件',
+                iconCls: 'icon-add1',
+                handler: function ()
+                {
+                    $.ajax({
+                        url: '@Url.Action("DoNewProject", "Business")',
+                        data: { BusinessId: Business.Business },
+                        type: 'POST',
+                        success: function (json) {
+                            if(json.ReturnCode == 0)
+                            {
+                                $.messager.alert('提示', '接件成功！', 'info',
+                                    function(){
+                                        $('#dialogNewProject').dialog('close');
+                                        RefreshProcessing();
+                                    }
+                                );
+                            }
+                            else
+                            {
+                                $.messager.alert('提示', '接件失败！<br>' + json.Message, 'error');
+                            }
+                        }
+                    });
+                }
+            },
+              {
+                  text: '取消',
+                  iconCls: 'icon-cancel',
+                  handler: function () {
+                      $('#dialogNewProject').dialog('close');
+                  }
+              }]
+        });
+    }
+
+    function pagerFilter(data) {
+        if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
+            data = {
+                total: data.length,
+                rows: data
+            }
+        }
+        var dg = $(this);
+        var opts = dg.datagrid('options');
+        var pager = dg.datagrid('getPager');
+        pager.pagination({
+            onSelectPage: function (pageNum, pageSize) {
+                opts.pageNumber = pageNum;
+                opts.pageSize = pageSize;
+                pager.pagination('refresh', { pageNumber: pageNum, pageSize: pageSize });
+                dg.datagrid('loadData', data);
+            }
+        });
+        if (!data.originalRows) {
+            data.originalRows = (data.rows);
+        }
+        var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+        var end = start + parseInt(opts.pageSize);
+        data.rows = (data.originalRows.slice(start, end));
+        return data;
+    }
+
+    $(function () {
+        var t = $("#tbProcessing").treegrid({
+            url: "@Url.Action("Projects", "Business")",
+            loadFilter: pagerFilter,
+            pageSize: 20,
+            pagination: true,
+            idField: 'ID',
+            treeField: 'PROJECTNO',
+            fit: true,
+            columns: [[
+                { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
+                { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
+                { field: 'BUILDADRESS', title: '建设地址', width: 200, sortable: true },
+                { field: 'CREATETIME', title: '创建时间', width: 140 },
+                { field: 'ENDTIME', title: '结束时间', width: 140, sortable: true }
+            ]],
+            onDblClickRow: function (field, row) {
+                addTab(field.PROJECTNAME, '@Url.Action("Project", "Business")' + '?ProjectId=' + field.ID, 'icon-flag-pink', false);
+            },
+            offset: { width: -250, height: -150 }
+        });
+    });
+
+    function RefreshProcessing()
+    {
+        $("#tbProcessing").treegrid("reload");
+    }
+</script>
