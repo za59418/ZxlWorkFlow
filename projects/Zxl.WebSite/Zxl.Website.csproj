@@ -3323,6 +3323,10 @@
     <Content Include="Scripts\easyui\1.3.4\themes\metro\tree.css" />
     <Content Include="Scripts\easyui\1.3.4\themes\metro\validatebox.css" />
     <Content Include="Scripts\easyui\1.3.4\themes\metro\window.css" />
+    <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\jquery.portal.js" />
+    <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\portal.css" />
+    <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\portal.html" />
+    <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\readme.txt" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\business.js" />
     <Content Include="Scripts\jquery.jdirk.js" />
@@ -3458,6 +3462,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Business\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\datagrid_data.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
