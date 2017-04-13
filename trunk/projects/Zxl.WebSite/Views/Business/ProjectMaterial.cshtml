@@ -3,13 +3,13 @@
 <ul id="materialtree"></ul>
 
 <div id="directoryContextMenu" class="easyui-menu" style="width: 120px;">
-    <div onclick="Upload()" iconcls="icon-add1">上传材料</div>
+    <div onclick="UploadMaterial()" iconcls="icon-add1">上传材料</div>
 </div>
 
 <div id="fileContextMenu" class="easyui-menu" style="width: 120px;">
     <div onclick="" iconcls="icon-search">在线浏览</div>
     <div onclick="" iconcls="icon-download">下载材料</div>
-    <div onclick="" iconcls="icon-delete">删除材料</div>
+    <div onclick="DeleteMaterial()" iconcls="icon-delete">删除材料</div>
 </div>  
 
 <div id="dialogUpload" class="easyui-dialog" title="文件上传" style="width:400px;height:160px;padding:2px;" data-options="closed:true,iconCls:'icon-upload'">
@@ -36,7 +36,7 @@
 </div>
 
 <script type="text/javascript">
-    function Upload()
+    function UploadMaterial()
     {
         $('#dialogUpload').dialog({
             closed: false,
@@ -46,7 +46,7 @@
                 text: '上传',
                 iconCls: 'icon-upload',
                 handler: function () {
-                    importFileClick();
+                    DoUpload();
                 }
             },
             {
@@ -61,8 +61,33 @@
             }]
         });
     }
-
-    function importFileClick() {
+    function DeleteMaterial()
+    {
+        $.messager.confirm('删除确认', '删除后不可恢复，确定要删除该材料吗？', function(r){
+            if (r){
+                $.ajax({
+                    url: '@Url.Action("DeleteMaterial", "Business")',
+                    data: { MaterialId: Business.Material },
+                    type: 'POST',
+                    success: function (json) {
+                        if(json.ReturnCode == 0)
+                        {
+                            $.messager.alert('提示', '删除成功！', 'info',
+                                function(){
+                                    RefreshMaterial();
+                                }
+                            );
+                        }
+                        else
+                        {
+                            $.messager.alert('提示', '删除失败！<br>' + json.Message, 'error');
+                        }
+                    }
+                });
+            }
+        });
+    }
+    function DoUpload() {
         var file = document.getElementById('fileImport').files[0];
         if (file == null) { alert('错误，请选择文件'); return; }
         var fileName = file.name;
@@ -131,7 +156,7 @@
                 e.preventDefault();
                 Business.Material = node.id; //
                 var isFile = $('#materialtree').tree('isLeaf', node.target);
-                var parent = $('#materialtree').tree('getParent', node.target);  
+                var parent = $('#materialtree').tree('getParent', node.target);
 
                 if (isFile && null!=parent) {
                     $('#fileContextMenu').menu('show', {
