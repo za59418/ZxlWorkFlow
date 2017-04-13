@@ -200,7 +200,34 @@ namespace Zxl.WebSite.Controllers
             }
             return Json(result);
         }
-
+        public ActionResult DeleteMaterial(string MaterialId)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+                {
+                    SYS_PROJECTMATERIAL material = orm.Init<SYS_PROJECTMATERIAL>("where ID=" + MaterialId);
+                    if (null != material)
+                    {
+                        string path = material.FILEPATH;
+                        if(System.IO.File.Exists(path))
+                        {
+                            System.IO.File.Delete(path);
+                        }
+                    }
+                    material.Delete();
+                    orm.Close();
+                    result.ReturnCode = ServiceResultCode.Success;
+                }
+            }
+            catch (Exception e)
+            {
+                result.ReturnCode = ServiceResultCode.Success;
+                result.Message = e.Message;
+            }
+            return Json(result);
+        }
         #endregion 材料
         public ActionResult Dialog_SendUser(int ProjectId)
         {
