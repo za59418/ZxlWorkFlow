@@ -2,6 +2,7 @@
 
     this.SendUser = '';
     this.Business = '';
+    this.Material = '';
     this.init = function (ProjectId) {
 
     };

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using System.IO;
 using Zxl.Data;
 using Zxl.WebSite.Model;
 using Zxl.WebSite.ModelView;
@@ -105,6 +106,7 @@ namespace Zxl.WebSite.Controllers
                 tem.id = tem.ID;
                 tem.pid = 0;
                 tem.text = tem.MATERIALNAME;
+                tem.iconCls = "icon-folder";
 
                 tem.children = new List<AbstractModel>();
                 foreach (SYS_PROJECTMATERIAL projectMaterial in projectMaterials)
@@ -114,6 +116,31 @@ namespace Zxl.WebSite.Controllers
                         projectMaterial.id = projectMaterial.ID;// +10;
                         projectMaterial.pid = tem.id;
                         projectMaterial.text = projectMaterial.MATERIALNAME;
+
+                        switch (projectMaterial.MATERIALNAME.Substring(projectMaterial.MATERIALNAME.LastIndexOf(".") + 1).ToLower())
+                        {
+                            case "doc":
+                            case "docx":
+                                projectMaterial.iconCls = "icon-page-white-word";
+                                break;
+                            case "xls":
+                            case "xlsx":
+                                projectMaterial.iconCls = "icon-page-white-excel";
+                                break;
+                            case "ppt":
+                            case "pptx":
+                                projectMaterial.iconCls = "icon-page-white-powerpoint";
+                                break;
+                            case "jpg":
+                            case "jpeg":
+                            case "bmp":
+                            case "png":
+                            case "gif":
+                                projectMaterial.iconCls = "icon-page-white-picture";
+                                break;
+                            default:
+                                break;
+                        }
 
                         tem.children.Add(projectMaterial);
                     }
@@ -126,11 +153,30 @@ namespace Zxl.WebSite.Controllers
             return Json(result);
         }
 
-        public ActionResult UploadMaterial(int ProjectId, int BusinessMaterialId, string MaterialName)
+        [System.Web.Http.HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UploadMaterial() // int ProjectId, int BusinessMaterialId, string MaterialName, string FileSize)
         {
             ServiceResult result = new ServiceResult();
             try
             {
+                HttpFileCollection files = System.Web.HttpContext.Current.Request.Files;
+                int ProjectId = Convert.ToInt32(Request.Form["ProjectId"].ToString());
+                int BusinessMaterialId = Convert.ToInt32(Request.Form["BusinessMaterialId"].ToString());
+                string MaterialName = Request.Form["MaterialName"].ToString();
+                string FileSize = Request.Form["FileSize"].ToString();
+
+                string path = null;
+                if (files.Count > 0)
+                {
+                    HttpPostedFile file = files[0];
+                    string targetDir = "d:\\Files\\";
+                    if (!Directory.Exists(targetDir))
+                        Directory.CreateDirectory(targetDir);
+                    path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                }
+
                 using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
                 {
                     SYS_PROJECTMATERIAL material = new SYS_PROJECTMATERIAL();
@@ -139,13 +185,15 @@ namespace Zxl.WebSite.Controllers
                     material.REF_BUSINESSMATERIAL_ID = BusinessMaterialId;
                     material.CREATETIME = DateTime.Now;
                     material.MATERIALNAME = MaterialName;
+                    material.FILEPATH = path;
+                    material.FILESIZE = FileSize;
                     material.CREATEUSER = Convert.ToInt32(Session["UserId"].ToString());
                     orm.Insert(material);
                     orm.Close();
                     result.ReturnCode = ServiceResultCode.Success;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result.ReturnCode = ServiceResultCode.Success;
                 result.Message = e.Message;
