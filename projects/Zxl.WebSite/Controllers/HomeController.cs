@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data;
 using Zxl.Data;
 using Zxl.WebSite.Model;
+using Zxl.WebSite.ModelView;
 
 namespace Zxl.WebSite.Controllers
 {
@@ -21,18 +22,20 @@ namespace Zxl.WebSite.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult DoLogin(string UserName,string Password)
+        [AllowAnonymous]
+        public ActionResult DoLogin(LoginViewModel model, string returnUrl)
         {
             SYS_USER user = null;
 
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                user = orm.Init<SYS_USER>("where USERNAME='" + UserName + "' and PASSWORD='" + Password + "'");
+                user = orm.Init<SYS_USER>("where USERNAME='" + model.UserName + "' and PASSWORD='" + model.Password + "'");
                 if(null != user)
                 {
                     Session["UserId"] = user.ID + "";
