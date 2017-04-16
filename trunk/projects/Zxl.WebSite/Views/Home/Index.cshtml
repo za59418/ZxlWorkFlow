@@ -85,13 +85,25 @@
 			}]
 		});
 
-		/**
-		* Name 添加菜单选项
-		* Param title 名称
-		* Param href 链接
-		* Param iconCls 图标样式
-		* Param iframe 链接跳转方式（true为iframe，false为href）
-		*/
+		function addFormTab(title, href, iconCls)
+		{
+		    var tabPanel = $('#formTabs');
+		    if (!tabPanel.tabs('exists', title))
+		    {
+		        tabPanel.tabs('add', {
+		            title: title,
+		            href: href,
+		            iconCls: iconCls,
+		            fit: true,
+		            cls: 'pd3',
+		            closable: true
+		        });
+		    }
+		    else {
+		        tabPanel.tabs('select', title);
+		    }
+		}
+
 		function addTab(title, href, iconCls, iframe){
 			var tabPanel = $('#wu-tabs');
 			if(!tabPanel.tabs('exists',title)){

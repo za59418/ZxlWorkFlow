@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using System.IO;
+using System.Xml;
+using System.Text;
 using Zxl.Data;
 using Zxl.WebSite.Model;
 using Zxl.WebSite.ModelView;
@@ -45,6 +47,67 @@ namespace Zxl.WebSite.Controllers
         public ActionResult ProjectForm(int ProjectId)
         {
             return View(ProjectId);
+        }
+
+        public ActionResult Form(int ProjectFormId)
+        {
+            return View(ProjectFormId);
+        }
+
+        public ActionResult BuildForm(int ProjectFormId)
+        {
+            SYS_PROJECTFORM prjForm = null;
+            SYS_BUSINESSFORM businessForm = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                prjForm = orm.Init<SYS_PROJECTFORM>("where ID=" + ProjectFormId);
+                businessForm = orm.Init<SYS_BUSINESSFORM>("where ID=" + prjForm.REF_BUSINESSFORM_ID);
+            }
+            StringBuilder result = new StringBuilder();
+            string content = System.Text.Encoding.Default.GetString(businessForm.CONTENT);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(content);
+            XmlNode controlNode = doc.SelectNodes("Form/Control").Item(0);
+            foreach(XmlNode node in controlNode.ChildNodes)
+            {
+                string NodeType = node.Name;
+                string id = node.Attributes["id"].Value;
+                string name = node.Attributes["name"].Value;
+                string x = node.Attributes["x"].Value;
+                string y = node.Attributes["y"].Value;
+                string width = node.Attributes["width"].Value;
+                string height = node.Attributes["height"].Value;
+                string readonlyT = node.Attributes["readonly"].Value;
+                string isprint = node.Attributes["isprint"].Value;
+                string text = null;
+                if (null != node.Attributes["text"])
+                    text = node.Attributes["text"].Value;
+
+                string temp = "";
+                switch (NodeType)
+                {
+                    case "Label":
+                        temp = "<span id='" + id + "' style='position: absolute;left:" + x + "px;top:" + y + "px;width:" + width + "px;height:" + height + "px' >" + text + "</span>";
+                        break;
+                    case "TextBox":
+                        temp = "<input type='text' id='" + id + "' style='position: absolute;left:" + x + "px;top:" + y + "px;width:" + width + "px;height:" + height + "px' />";
+                        break;
+                    case "ComboBox":
+                        temp = "<select id='" + id + "' style='position: absolute;left:" + x + "px;top:" + y + "px;width:" + width + "px;height:" + height + "px' >" + "</select>";
+                        break;
+                    case "RadioButtonList":
+                        temp = "<input type='radio' id='" + id + "' style='position: absolute;left:" + x + "px;top:" + y + "px;width:" + width + "px;height:" + height + "px' />";
+                        break;
+                    default:
+                        break;
+                }
+                result.Append(temp);                
+            }
+
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write( result.ToString() );
+            System.Web.HttpContext.Current.Response.End();
+            return Content(result.ToString());
         }
 
         public ActionResult GetForms(int ProjectId)

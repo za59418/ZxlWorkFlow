@@ -1,14 +1,17 @@
 ﻿@model Int32
 
-<ul id="tree"></ul>
+<ul id="formTree"></ul>
 
 <script type="text/javascript">
     $(function () {
-        $("#tree").tree({
+        $("#formTree").tree({
             method: "get",
             lines: true,
             url: "@Url.Action("GetForms", "Business", new { ProjectId = Model })",
-            enableContextMenu: true
-    });
+            enableContextMenu: true,
+            onDblClick: function (node) {
+                addFormTab(node.text, '@Url.Action("Form", "Business")' + '?ProjectFormId=' + node.id, 'icon-page-white-excel');
+            },
+        });
     });
 </script>

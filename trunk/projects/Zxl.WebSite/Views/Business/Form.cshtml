@@ -1,0 +1,21 @@
+﻿@model Int32
+
+<div style="overflow-y:scroll; width:100%; height:100%; background: #808080;">
+    <center>
+        <div id="form-@Model" style="position:relative; width:701px; height:856px;background:white;">
+
+        </div>
+    </center>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: '@Url.Action("BuildForm", "Business")',
+            data: { ProjectFormId: @Model },
+            type: 'POST',
+            success: function (json) {
+                $("#form-@Model").append($.parseHTML(json));
+            }
+        });
+    });
+</script>
