@@ -8,7 +8,7 @@
 
 <div id="fileContextMenu" class="easyui-menu" style="width: 120px;">
     <div onclick="ViewMaterial()" iconcls="icon-search">在线预览</div>
-    <div onclick="" iconcls="icon-download">下载材料</div>
+    <div onclick="DownloadMaterial()" iconcls="icon-download">下载材料</div>
     <div onclick="DeleteMaterial()" iconcls="icon-delete">删除材料</div>
 </div>  
 
@@ -71,13 +71,14 @@
             success: function (file) {
                 if(null != file.FILEPATH && '' != file.FILEPATH)
                 {
+                    $('.browser-content .downurl').get(0).innerHTML = '@Url.Action("ViewMaterial", "Business")'; // 下载和翻页都要用
                     var $browser = $(".polling-browser"),
                         $tableContent = $("#formTabs");
                     var width0 = $tableContent.width() - 5;
                     $browser.show();
                     $browser.css({ "width": width0 });
-        
-                    $('.polling-browser').css('height', $("#formTabs").height() - 45);
+
+                    $('.polling-browser').css('height', $("#formTabs").height());
                     $('.browser-content').css('height', $('.polling-browser').height());
                     $('.browser-content iframe').css({ 'height': $('.browser-content').height()});
                     $('.browser-content iframe').attr('src', file.FILEPATH);
@@ -88,8 +89,18 @@
                 }
             }
         });
-
-
+    }
+    function DownloadMaterial()
+    {
+        $.ajax({
+            url: '@Url.Action("DownloadMaterial", "Business")',
+            data: { MaterialId: Business.Material },
+            type: 'POST',
+            dataType: 'json',
+            success: function (file) {
+                window.open(file.FILEPATH);
+            }
+        });
     }
     function DeleteMaterial()
     {
@@ -97,113 +108,113 @@
             if (r){
                 $.ajax({
                     url: '@Url.Action("DeleteMaterial", "Business")',
-                    data: { MaterialId: Business.Material },
-                    type: 'POST',
-                    success: function (json) {
-                        if(json.ReturnCode == 0)
-                        {
-                            $.messager.alert('提示', '删除成功！', 'info',
-                                function(){
-                                    RefreshMaterial();
-                                }
-                            );
+                        data: { MaterialId: Business.Material },
+                        type: 'POST',
+                        success: function (json) {
+                            if(json.ReturnCode == 0)
+                            {
+                                $.messager.alert('提示', '删除成功！', 'info',
+                                    function(){
+                                        RefreshMaterial();
+                                    }
+                                );
+                            }
+                            else
+                            {
+                                $.messager.alert('提示', '删除失败！<br>' + json.Message, 'error');
+                            }
                         }
-                        else
-                        {
-                            $.messager.alert('提示', '删除失败！<br>' + json.Message, 'error');
-                        }
+                    });
+                }
+            });
+        }
+        function DoUpload() {
+            var file = document.getElementById('fileImport').files[0];
+            if (file == null) { alert('错误，请选择文件'); return; }
+            var fileName = file.name;
+            var file_typename = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+
+            var fileSize = 0;
+            if (file.size > 1024 * 1024) {
+                fileSize = Math.round(file.size * 100 / (1024 * 1024)) / 100;
+
+                if (fileSize > 10) {
+                    alert('错误，文件超过10MB，禁止上传！'); return;
+                }
+                fileSize = fileSize.toString() + 'MB';
+            }
+            else {
+                fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+            }
+            $('#fileName').innerHTML = "<span style='color:Blue'>文件名: " + file.name + ',大小: ' + fileSize + "</span>";
+            //获取form数据
+            var formData = new FormData($("#importFileForm")[0]);
+            formData.append("ProjectId", @Model);
+            formData.append("BusinessMaterialId", Business.Material);
+            formData.append("MaterialName", fileName);
+            formData.append("FileSize", fileSize);
+
+            $.ajax({
+                url: '@Url.Action("UploadMaterial", "Business")',
+                type: 'POST',
+                data: formData, //{ ProjectId: @Model, BusinessMaterialId: Business.Material, MaterialName: fileName, FileSize: fileSize },
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (json) {
+                    if(json.ReturnCode == 0)
+                    {
+                        $.messager.alert('提示', '上传成功！', 'info',
+                            function(){
+                                RefreshMaterial();
+                                $('#fileImport').val(null);
+                                $('#fileName').html("");
+                                $('#uploadInfo').html("");
+                                $('#dialogUpload').dialog('close');
+                            }
+                        );
                     }
-                });
-            }
-        });
-    }
-    function DoUpload() {
-        var file = document.getElementById('fileImport').files[0];
-        if (file == null) { alert('错误，请选择文件'); return; }
-        var fileName = file.name;
-        var file_typename = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
-
-        var fileSize = 0;
-        if (file.size > 1024 * 1024) {
-            fileSize = Math.round(file.size * 100 / (1024 * 1024)) / 100;
-
-            if (fileSize > 10) {
-                alert('错误，文件超过10MB，禁止上传！'); return;
-            }
-            fileSize = fileSize.toString() + 'MB';
+                    else
+                    {
+                        $.messager.alert('提示', '上传失败！<br>' + json.Message, 'error');
+                    }
+                }
+            });
         }
-        else {
-            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+
+        function RefreshMaterial(){
+            $("#materialtree").tree("reload");
         }
-        $('#fileName').innerHTML = "<span style='color:Blue'>文件名: " + file.name + ',大小: ' + fileSize + "</span>";
-        //获取form数据
-        var formData = new FormData($("#importFileForm")[0]);
-        formData.append("ProjectId", @Model);
-        formData.append("BusinessMaterialId", Business.Material);
-        formData.append("MaterialName", fileName);
-        formData.append("FileSize", fileSize);
 
-        $.ajax({
-            url: '@Url.Action("UploadMaterial", "Business")',
-            type: 'POST',
-            data: formData, //{ ProjectId: @Model, BusinessMaterialId: Business.Material, MaterialName: fileName, FileSize: fileSize },
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (json) {
-                if(json.ReturnCode == 0)
-                {
-                    $.messager.alert('提示', '上传成功！', 'info',
-                        function(){
-                            RefreshMaterial();
-                            $('#fileImport').val(null);
-                            $('#fileName').html("");
-                            $('#uploadInfo').html("");
-                            $('#dialogUpload').dialog('close');
-                        }
-                    );
+        $(function () {
+            $("#materialtree").tree({
+                method: "get",
+                lines: true,
+                url: "@Url.Action("GetMaterials", "Business", new { ProjectId = Model })",
+                enableContextMenu: true,
+                onDblClick: function (node) {
+                    Business.Material = node.id; //
+                    ViewMaterial();
+                },
+                onContextMenu: function (e, node) {
+                    e.preventDefault();
+                    Business.Material = node.id; //
+                    var isFile = $('#materialtree').tree('isLeaf', node.target);
+                    var parent = $('#materialtree').tree('getParent', node.target);
+
+                    if (isFile && null!=parent) {
+                        $('#fileContextMenu').menu('show', {
+                            left: e.pageX,
+                            top: e.pageY
+                        });
+                    } else {
+                        $('#directoryContextMenu').menu('show', {
+                            left: e.pageX,
+                            top: e.pageY
+                        });
+                    }
                 }
-                else
-                {
-                    $.messager.alert('提示', '上传失败！<br>' + json.Message, 'error');
-                }
-            }
+            });
         });
-    }
-
-    function RefreshMaterial(){
-        $("#materialtree").tree("reload");
-    }
-
-    $(function () {
-        $("#materialtree").tree({
-            method: "get",
-            lines: true,
-            url: "@Url.Action("GetMaterials", "Business", new { ProjectId = Model })",
-            enableContextMenu: true,
-            onDblClick: function (node) {
-                Business.Material = node.id; //
-                ViewMaterial();
-            },
-            onContextMenu: function (e, node) {
-                e.preventDefault();
-                Business.Material = node.id; //
-                var isFile = $('#materialtree').tree('isLeaf', node.target);
-                var parent = $('#materialtree').tree('getParent', node.target);
-
-                if (isFile && null!=parent) {
-                    $('#fileContextMenu').menu('show', {
-                        left: e.pageX,
-                        top: e.pageY
-                    });
-                } else {
-                    $('#directoryContextMenu').menu('show', {
-                        left: e.pageX,
-                        top: e.pageY
-                    });
-                }
-            }
-        });
-    });
 </script>
