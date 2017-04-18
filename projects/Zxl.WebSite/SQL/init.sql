@@ -1,3 +1,12 @@
+create sequence seq_SYS_SYSTEMCONFIG;
+create table SYS_SYSTEMCONFIG
+(
+	ID integer primary key, 
+	KEY VARCHAR2(100), 
+	VALUE VARCHAR2(200),
+	DESCRIPTION VARCHAR2(200)
+);
+
 create sequence seq_SYS_PROJECT;
 CREATE TABLE SYS_PROJECT 
 (	
