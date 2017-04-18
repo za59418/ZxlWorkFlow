@@ -12,19 +12,11 @@
     .browser-content iframe { position:absolute;top:0;left:0; width: 100%;}
     .browser-content button.icon-close
     {
-        z-index: 1021; position: absolute; top: 5px; right: 5px; padding: 5px; 
-        border: 0; background: rgba(0, 0, 0, .5); color: #fff; outline: 0;
+        z-index: 1021; position: absolute; top: 10px; right: 15px; padding: 15px; 
+        border: 0; color: #fff; outline: 0;
         border-radius: 4px;width:16px;height:16px;
-        background:url('../Images/icons/DeleteRed.png') no-repeat center center;
+        background:rgba(0, 0, 0, .5) url('../Images/icons/DeleteRed.png') no-repeat center center;
     }
-
-    .pb-btnGroup{ position: absolute; bottom: 0; width: 100%; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgba(0 ,0 ,0 ,.5);}
-    .pb-btnGroup ul{ width: 100%; margin: 0;}
-    .pb-btnGroup li{ display: inline-block; float: left; width: 13%; text-align: center;}
-    .pb-btnGroup li:first-child, .pb-btnGroup li:last-child{ width: 17.5%;}
-    .pb-btnGroup a{ display: block; height: 40px; line-height: 40px; margin: 0 5px; padding: 0 10px; color: #fff; text-decoration: none;}
-    .pb-btnGroup a.btn{	margin: 3px 10px; padding: 0 20px; height: 34px; line-height: 34px;}
-
 </style>
 <script type="text/javascript">
     function closePdf() {
@@ -33,60 +25,7 @@
         $('.clearfix .Back').css('display', 'none');
         $('.clearfix .screen').css('display', 'block');
         $('.polling-browser').removeClass('on');
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-        else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        }
-        else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-        }
-        else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
     }
-    function Switchscreen() {
-        $('.clearfix .screen').css('display', 'none');
-        $('.clearfix .Back').css('display', 'block');
-        $('.polling-browser').addClass('on');
-        //浏览器 F11 全屏 google chrome 15 +, safri5.1+,firfox10+,IE11支持
-        var docElm = document.documentElement;
-        //W3C 
-        if (docElm.requestFullscreen) {
-            docElm.requestFullscreen();
-        }
-            //FireFox 
-        else if (docElm.mozRequestFullScreen) {
-            docElm.mozRequestFullScreen();
-        }
-            //Chrome等 
-        else if (docElm.webkitRequestFullScreen) {
-            docElm.webkitRequestFullScreen();
-        }
-            //IE11 
-        else if (docElm.msRequestFullscreen) {
-            docElm.msRequestFullscreen();
-        }
-    };
-    function SwitchBack() {
-        $('.clearfix .Back').css('display', 'none');
-        $('.clearfix .screen').css('display', 'block');
-        $('.polling-browser').removeClass('on');
-        //浏览器 退出全屏
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-        else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        }
-        else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-        }
-        else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-    };
 </script>
 
 <div class="easyui-layout" data-options="fit:true">
@@ -111,19 +50,7 @@
                 <iframe></iframe>
                 <button class="icon-close" onclick="closePdf() "></button>
             </div>
-            <div class="pb-btnGroup">
-                <ul class="clearfix">
-                    <li style="width: 23%"><a href="#" class="btn bg-color-green" onclick="openNext(-1)">上一篇</a></li>
-                    <li onclick="Switchscreen()" style="display: block;width: 18%" class="screen"><a href="#"><span class="icon-full-screen"></span> 全屏</a></li>
-                    <li onclick="SwitchBack() " style="display: none;width: 18%" class="Back"><a href="#" style="color:#ff8c00"><span class="icon-Exit-full-screen"></span>返回</a></li>
-                    <li style="width: 18%" onclick="Downfilebutton()"><a href="#"><span class="icon-download"></span>下载</a></li>
-                    <li style="width: 18%" onclick="closePdf()"><a href="#"><span class="icon-close"></span> 关闭</a></li>
-                    <li style="width: 23%"><a href="#" class="btn bg-color-blue" onclick="openNext(1)">下一篇</a></li>
-                </ul>
-            </div>
         </div>
-
-
     </div>
     <div data-options="region:'east',border:true,split:true," title="" style="width:250px; padding:0px;">
         <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
