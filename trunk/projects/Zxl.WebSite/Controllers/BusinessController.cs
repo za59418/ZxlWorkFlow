@@ -10,6 +10,7 @@ using System.Text;
 using Zxl.Data;
 using Zxl.WebSite.Model;
 using Zxl.WebSite.ModelView;
+using Zxl.Printer;
 
 namespace Zxl.WebSite.Controllers
 {
@@ -67,7 +68,11 @@ namespace Zxl.WebSite.Controllers
             string content = System.Text.Encoding.Default.GetString(businessForm.CONTENT);
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(content);
+
             XmlNode controlNode = doc.SelectNodes("Form/Control").Item(0);
+            string formWidth = controlNode.Attributes["width"].Value;
+            string formHeight = controlNode.Attributes["height"].Value;
+            result.Append("<div id='form-" + ProjectFormId + "' style='position:relative; margin:0 auto;margin-top:20px;margin-bottom:20px; width:" + formWidth + "px; height:" + formHeight + "px;background:white;'>");
             foreach(XmlNode node in controlNode.ChildNodes)
             {
                 string NodeType = node.Name;
@@ -103,7 +108,7 @@ namespace Zxl.WebSite.Controllers
                 }
                 result.Append(temp);                
             }
-
+            result.Append("</div>");         
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write( result.ToString() );
             System.Web.HttpContext.Current.Response.End();
@@ -229,15 +234,50 @@ namespace Zxl.WebSite.Controllers
                 string MaterialName = Request.Form["MaterialName"].ToString();
                 string FileSize = Request.Form["FileSize"].ToString();
 
-                string path = null;
+                string uploadRoot = null;
+                string downloadRoot = null;
+                using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+                {
+                    SYS_SYSTEMCONFIG uploadConfig = orm.Init<SYS_SYSTEMCONFIG>("where KEY='UploadFile'");
+                    uploadRoot = uploadConfig.VALUE;
+                    SYS_SYSTEMCONFIG downloadConfig = orm.Init<SYS_SYSTEMCONFIG>("where KEY='DownloadFile'");
+                    downloadRoot = downloadConfig.VALUE;
+                    orm.Close();
+                }
+
+                string uploadPath = null;
+                string pdfPath = null;
+                string viewPath = null;
                 if (files.Count > 0)
                 {
                     HttpPostedFile file = files[0];
-                    string targetDir = "d:\\Files\\";
-                    if (!Directory.Exists(targetDir))
-                        Directory.CreateDirectory(targetDir);
-                    path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
+                    string fileDir = uploadRoot + ProjectId + "/" + BusinessMaterialId + "/";
+                    string pdfDir = uploadRoot + ProjectId + "_Pdf/" + BusinessMaterialId + "/";
+                    if (!Directory.Exists(fileDir))
+                        Directory.CreateDirectory(fileDir);
+                    if (!Directory.Exists(pdfDir))
+                        Directory.CreateDirectory(pdfDir);
+
+                    uploadPath = System.IO.Path.Combine(fileDir, System.IO.Path.GetFileName(file.FileName));
+                    file.SaveAs(uploadPath);
+
+                    //转PDF
+                    try
+                    {
+                        pdfPath = System.IO.Path.Combine(pdfDir, System.IO.Path.GetFileName(file.FileName));
+                        FileInfo fileInfo = new FileInfo(pdfPath);
+                        pdfPath = pdfDir + fileInfo.Name.Replace(fileInfo.Extension, "") + fileInfo.Extension.Replace(".", "_") + ".pdf";
+                        GHPrinter.Instance.ConvertToPdf(uploadPath, pdfPath);
+                        viewPath = downloadRoot + ProjectId + "_Pdf/" + BusinessMaterialId + "/" + fileInfo.Name.Replace(fileInfo.Extension, "") + fileInfo.Extension.Replace(".", "_") + ".pdf";
+                    }
+                    catch(Exception e)
+                    {
+                        viewPath = downloadRoot + ProjectId + "/" + BusinessMaterialId + "/" + System.IO.Path.GetFileName(file.FileName);
+                        result.ReturnCode = ServiceResultCode.Error;
+                        result.Message = e.Message;
+                        return Json(result);
+                    }
+                    
                 }
 
                 using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
@@ -248,7 +288,7 @@ namespace Zxl.WebSite.Controllers
                     material.REF_BUSINESSMATERIAL_ID = BusinessMaterialId;
                     material.CREATETIME = DateTime.Now;
                     material.MATERIALNAME = MaterialName;
-                    material.FILEPATH = path;
+                    material.FILEPATH = viewPath;
                     material.FILESIZE = FileSize;
                     material.CREATEUSER = Convert.ToInt32(Session["UserId"].ToString());
                     orm.Insert(material);
@@ -263,6 +303,7 @@ namespace Zxl.WebSite.Controllers
             }
             return Json(result);
         }
+
         public ActionResult DeleteMaterial(string MaterialId)
         {
             ServiceResult result = new ServiceResult();
@@ -290,6 +331,20 @@ namespace Zxl.WebSite.Controllers
                 result.Message = e.Message;
             }
             return Json(result);
+        }
+        public ActionResult ViewMaterial(string MaterialId)
+        {
+            SYS_PROJECTMATERIAL material = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                material = orm.Init<SYS_PROJECTMATERIAL>("where ID=" + MaterialId);
+                orm.Close();
+            }
+
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(jss.Serialize(material));
+            System.Web.HttpContext.Current.Response.End();
+            return Json(material);
         }
         #endregion 材料
         public ActionResult Dialog_SendUser(int ProjectId)

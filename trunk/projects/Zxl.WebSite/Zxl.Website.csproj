@@ -146,6 +146,7 @@
     <Compile Include="Model\SYS_BUSINESS.cs" />
     <Compile Include="Model\SYS_BUSINESSPROCESS.cs" />
     <Compile Include="Model\SYS_BUSINESSFORM.cs" />
+    <Compile Include="Model\SYS_SYSTEMCONFIG.cs" />
     <Compile Include="Model\SYS_PROJECTPROCESS.cs" />
     <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />
     <Compile Include="Model\SYS_PROJECTACTIVITYROUTE.cs" />
@@ -3436,6 +3437,10 @@
     <ProjectReference Include="..\Zxl.Data\Zxl.Data.csproj">
       <Project>{a37fb0c7-4a07-4c7e-bfb8-ab49b02ad6d7}</Project>
       <Name>Zxl.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zxl.Printer\Zxl.Printer.csproj">
+      <Project>{cb58c7aa-aeeb-46cb-ae5f-4c70638d8ed4}</Project>
+      <Name>Zxl.Printer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

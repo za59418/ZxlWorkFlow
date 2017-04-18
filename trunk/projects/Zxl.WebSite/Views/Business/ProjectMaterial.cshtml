@@ -7,7 +7,7 @@
 </div>
 
 <div id="fileContextMenu" class="easyui-menu" style="width: 120px;">
-    <div onclick="" iconcls="icon-search">在线浏览</div>
+    <div onclick="ViewMaterial()" iconcls="icon-search">在线预览</div>
     <div onclick="" iconcls="icon-download">下载材料</div>
     <div onclick="DeleteMaterial()" iconcls="icon-delete">删除材料</div>
 </div>  
@@ -60,6 +60,36 @@
                 }
             }]
         });
+    }
+    function ViewMaterial()
+    {
+        $.ajax({
+            url: '@Url.Action("ViewMaterial", "Business")',
+            data: { MaterialId: Business.Material },
+            type: 'POST',
+            dataType: 'json',
+            success: function (file) {
+                if(null != file.FILEPATH && '' != file.FILEPATH)
+                {
+                    var $browser = $(".polling-browser"),
+                        $tableContent = $("#formTabs");
+                    var width0 = $tableContent.width() - 5;
+                    $browser.show();
+                    $browser.css({ "width": width0 });
+        
+                    $('.polling-browser').css('height', $("#formTabs").height() - 45);
+                    $('.browser-content').css('height', $('.polling-browser').height());
+                    $('.browser-content iframe').css({ 'height': $('.browser-content').height()});
+                    $('.browser-content iframe').attr('src', file.FILEPATH);
+                }
+                else
+                {
+                    $.messager.alert('提示', '打开文件失败,文件路径为空！', 'error');
+                }
+            }
+        });
+
+
     }
     function DeleteMaterial()
     {
@@ -152,6 +182,10 @@
             lines: true,
             url: "@Url.Action("GetMaterials", "Business", new { ProjectId = Model })",
             enableContextMenu: true,
+            onDblClick: function (node) {
+                Business.Material = node.id; //
+                ViewMaterial();
+            },
             onContextMenu: function (e, node) {
                 e.preventDefault();
                 Business.Material = node.id; //
