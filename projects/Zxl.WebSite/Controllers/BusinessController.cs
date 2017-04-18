@@ -268,7 +268,8 @@ namespace Zxl.WebSite.Controllers
                         FileInfo fileInfo = new FileInfo(pdfPath);
                         pdfPath = pdfDir + fileInfo.Name.Replace(fileInfo.Extension, "") + fileInfo.Extension.Replace(".", "_") + ".pdf";
                         GHPrinter.Instance.ConvertToPdf(uploadPath, pdfPath);
-                        viewPath = downloadRoot + ProjectId + "_Pdf/" + BusinessMaterialId + "/" + fileInfo.Name.Replace(fileInfo.Extension, "") + fileInfo.Extension.Replace(".", "_") + ".pdf";
+                        viewPath = downloadRoot + ProjectId + "/" + BusinessMaterialId + "/" + System.IO.Path.GetFileName(file.FileName);
+                        //viewPath = downloadRoot + ProjectId + "_Pdf/" + BusinessMaterialId + "/" + fileInfo.Name.Replace(fileInfo.Extension, "") + fileInfo.Extension.Replace(".", "_") + ".pdf";
                     }
                     catch(Exception e)
                     {
@@ -335,12 +336,40 @@ namespace Zxl.WebSite.Controllers
         public ActionResult ViewMaterial(string MaterialId)
         {
             SYS_PROJECTMATERIAL material = null;
+            string uploadRoot = null;
+            string downloadRoot = null; //url
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                material = orm.Init<SYS_PROJECTMATERIAL>("where ID=" + MaterialId);
+
+                SYS_SYSTEMCONFIG uploadConfig = orm.Init<SYS_SYSTEMCONFIG>("where KEY='UploadFile'");
+                uploadRoot = uploadConfig.VALUE;
+                SYS_SYSTEMCONFIG downloadConfig = orm.Init<SYS_SYSTEMCONFIG>("where KEY='DownloadFile'");
+                downloadRoot = downloadConfig.VALUE;
+                
+                orm.Close();
+            }
+
+            string fileDir = uploadRoot + material.REF_PROJECT_ID + "/" + material.REF_BUSINESSMATERIAL_ID + "/";
+            string filePath = System.IO.Path.Combine(fileDir, System.IO.Path.GetFileName(material.MATERIALNAME)); // word文件
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            string downloadPath = downloadRoot + material.REF_PROJECT_ID + "_Pdf/" + material.REF_BUSINESSMATERIAL_ID + "/" + fileInfo.Name.Replace(fileInfo.Extension, "") + fileInfo.Extension.Replace(".", "_") + ".pdf";
+            material.FILEPATH = downloadPath;
+
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(jss.Serialize(material));
+            System.Web.HttpContext.Current.Response.End();
+            return Json(material);
+        }
+        public ActionResult DownloadMaterial(string MaterialId)
+        {
+            SYS_PROJECTMATERIAL material = null;
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 material = orm.Init<SYS_PROJECTMATERIAL>("where ID=" + MaterialId);
                 orm.Close();
             }
-
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write(jss.Serialize(material));
             System.Web.HttpContext.Current.Response.End();
