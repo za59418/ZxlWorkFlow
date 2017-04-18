@@ -10,8 +10,16 @@
             url: "@Url.Action("GetForms", "Business", new { ProjectId = Model })",
             enableContextMenu: true,
             onDblClick: function (node) {
-                addFormTab(node.text, '@Url.Action("Form", "Business")' + '?ProjectFormId=' + node.id, 'icon-page-white-excel');
+                var isForm = $('#formTree').tree('isLeaf', node.target);
+                if (isForm)
+                    addFormTab(node.text, '@Url.Action("Form", "Business")' + '?ProjectFormId=' + node.id, 'icon-page-white-excel');
             },
-        });
+            onLoadSuccess: function () {
+                //默认选中第一个表单
+                var firstNodeId = $("#formTree li:eq(1)").find("div").attr("node-id");
+                var firstNodeName = $("#formTree li:eq(1)").find("div").find("span.tree-title").text();
+                addFormTab(firstNodeName, '@Url.Action("Form", "Business")' + '?ProjectFormId=' + firstNodeId, 'icon-page-white-excel');
+            }
+        });        
     });
 </script>
