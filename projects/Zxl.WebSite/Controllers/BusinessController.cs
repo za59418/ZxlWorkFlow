@@ -54,6 +54,10 @@ namespace Zxl.WebSite.Controllers
         {
             return View(ProjectFormId);
         }
+        public ActionResult FormPrint(int ProjectFormId)
+        {
+            return View(ProjectFormId);
+        }
 
         public ActionResult BuildForm(int ProjectFormId)
         {
@@ -111,6 +115,48 @@ namespace Zxl.WebSite.Controllers
             result.Append("</div>");         
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write( result.ToString() );
+            System.Web.HttpContext.Current.Response.End();
+            return Content(result.ToString());
+        }
+        public ActionResult BuildFormPrint(int ProjectFormId)
+        {
+            SYS_PROJECTFORM prjForm = null;
+            SYS_BUSINESSFORM businessForm = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                prjForm = orm.Init<SYS_PROJECTFORM>("where ID=" + ProjectFormId);
+                businessForm = orm.Init<SYS_BUSINESSFORM>("where ID=" + prjForm.REF_BUSINESSFORM_ID);
+            }
+            StringBuilder result = new StringBuilder();
+            string content = System.Text.Encoding.Default.GetString(businessForm.CONTENT);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(content);
+
+            XmlNode controlNode = doc.SelectNodes("Form/Control").Item(0);
+            string formWidth = controlNode.Attributes["width"].Value;
+            string formHeight = controlNode.Attributes["height"].Value;
+            result.Append("<div id='form-" + ProjectFormId + "' style='position:relative; margin:0 auto;margin-top:20px;margin-bottom:20px; width:" + formWidth + "px; height:" + formHeight + "px;background:white;'>");
+            foreach (XmlNode node in controlNode.ChildNodes)
+            {
+                string NodeType = node.Name;
+                string id = node.Attributes["id"].Value;
+                string name = node.Attributes["name"].Value;
+                string x = node.Attributes["x"].Value;
+                string y = node.Attributes["y"].Value;
+                string width = node.Attributes["width"].Value;
+                string height = node.Attributes["height"].Value;
+                string readonlyT = node.Attributes["readonly"].Value;
+                string isprint = node.Attributes["isprint"].Value;
+                string text = null;
+                if (null != node.Attributes["text"])
+                    text = node.Attributes["text"].Value;
+
+                string temp = "<span id='" + id + "' style='position: absolute;left:" + x + "px;top:" + y + "px;width:" + width + "px;height:" + height + "px' >" + text + "</span>";
+                result.Append(temp);
+            }
+            result.Append("</div>");
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(result.ToString());
             System.Web.HttpContext.Current.Response.End();
             return Content(result.ToString());
         }

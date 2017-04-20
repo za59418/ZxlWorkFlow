@@ -17,6 +17,9 @@
         border-radius: 4px;width:16px;height:16px;
         background:rgba(0, 0, 0, .5) url('../Images/icons/DeleteRed.png') no-repeat center center;
     }
+    .h{
+        background: #000;
+    }
 </style>
 <script type="text/javascript">
     function closePdf() {
@@ -34,9 +37,12 @@
         <div id="wu-toolbar">
             <div class="wu-toolbar-button">
                 <a href="#" class="easyui-linkbutton" iconcls="icon-save" onclick="" plain="true">保存</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
                 <a href="#" class="easyui-linkbutton" iconcls="icon-redo" onclick="Dialog_Send()" plain="true">发送</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
                 <a href="#" class="easyui-linkbutton" iconcls="icon-back" onclick="Dialog_Back()" plain="true">回退</a>
-                <a href="#" class="easyui-linkbutton" iconcls="icon-print" onclick="" plain="true">打印</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-print" onclick="Dialog_Print()" plain="true">打印</a>
             </div>
         </div>
         <!-- End of toolbar -->
@@ -66,6 +72,52 @@
     </div>
 </div>
 
+<div id="dialogPrint" class="easyui-dialog" toolbar="#print-toolbar" data-options="closed:true,iconCls:'icon-print', bodyCls:'h'"
+     style="width:1000px;height:600px;">
+</div>
+<div id="print-toolbar">
+    <table cellpadding="0" cellspacing="0" style="width:100%">
+        <tr>
+            <td>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-arrow-nsew" plain="true">放大</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-arrow-in" plain="true">缩小</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-cog" plain="true">设置</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
+                <a href="#" class="easyui-linkbutton" onclick="DoPrint()" iconcls="icon-print" plain="true">打印</a>
+                <span class="datagrid-btn-separator" style="float:none"></span>
+                <a href="#" class="easyui-linkbutton" onclick="ClosePrint()" iconcls="icon-cancel" plain="true">关闭</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    function Dialog_Print()
+    {
+        $('#dialogPrint').dialog({
+            closed: false,
+            modal:true,
+            title: "打印预览",
+            href: '@Url.Action("FormPrint", "Business")' + '?ProjectFormId=1'
+        });
+        $('#dialogPrint').panel('options',{headerCls:'h'})
+    }
+    function DoPrint(){
+        $("#div-print-1").jqprint({
+            debug: false,
+            importCSS: true,
+            printContainer: true,
+            operaSupport: true
+        });
+    }
+    function ClosePrint()
+    {
+        $('#dialogPrint').dialog("close");
+    }
+</script>
 <script type="text/javascript">
     function Dialog_Send(){
         $('#dialogSend').dialog({
@@ -100,13 +152,13 @@
                     });
                 }
             },
-              {
-                  text: '取消',
-                  iconCls: 'icon-cancel',
-                  handler: function () {
-                      $('#dialogSend').dialog('close');
-                  }
-              }]
+                {
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+                        $('#dialogSend').dialog('close');
+                    }
+                }]
         });
     }
 
@@ -137,4 +189,5 @@
             }
         });
     }
+
 </script>

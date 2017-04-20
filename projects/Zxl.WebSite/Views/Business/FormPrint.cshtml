@@ -1,0 +1,15 @@
+﻿@model Int32
+    <div id="div-print-@Model" style="overflow-y:scroll; width:100%; height:100%; background: #808080;">
+    </div>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: '@Url.Action("BuildFormPrint", "Business")',
+            data: { ProjectFormId: @Model },
+            type: 'POST',
+            success: function (content) {
+                $("#div-print-@Model").append($.parseHTML(content));
+            }
+        });
+    });
+</script>
