@@ -3330,6 +3330,7 @@
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\business.js" />
     <Content Include="Scripts\jquery.jdirk.js" />
+    <Content Include="Scripts\jquery.jqprint-0.3.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="SQL\init.sql" />
     <Content Include="Web.config" />
@@ -3469,6 +3470,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Business\Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Business\FormPrint.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
