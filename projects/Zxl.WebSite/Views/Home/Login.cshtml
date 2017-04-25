@@ -48,7 +48,7 @@
                         @Html.ValidationMessageFor(m => m.UserName)
                     </li>
                     <li>
-                        @Html.TextBoxFor(m => m.Password, new { @class = "loginpwd", @placeholder = "请输入密码" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "loginpwd", @placeholder = "请输入密码" })
                         @Html.ValidationMessageFor(m => m.Password)
                     </li>
                     <li>

@@ -3474,6 +3474,9 @@
   <ItemGroup>
     <Content Include="Views\Business\FormPrint.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
