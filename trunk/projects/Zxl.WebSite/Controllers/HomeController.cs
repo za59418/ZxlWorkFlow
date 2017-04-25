@@ -28,6 +28,7 @@ namespace Zxl.WebSite.Controllers
             return View();
         }
 
+        [HttpPost]
         [AllowAnonymous]
         public ActionResult DoLogin(LoginViewModel model, string returnUrl)
         {
