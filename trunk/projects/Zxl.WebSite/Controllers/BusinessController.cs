@@ -11,6 +11,7 @@ using Zxl.Data;
 using Zxl.WebSite.Model;
 using Zxl.WebSite.ModelView;
 using Zxl.Printer;
+using Zxl.Form.Sheet;
 
 namespace Zxl.WebSite.Controllers
 {
@@ -70,14 +71,16 @@ namespace Zxl.WebSite.Controllers
             }
             StringBuilder result = new StringBuilder();
             string content = System.Text.Encoding.Default.GetString(businessForm.CONTENT);
+
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(content);
 
+            #region Controls
             XmlNode controlNode = doc.SelectNodes("Form/Control").Item(0);
             string formWidth = controlNode.Attributes["width"].Value;
             string formHeight = controlNode.Attributes["height"].Value;
             result.Append("<div id='form-" + ProjectFormId + "' style='position:relative; margin:0 auto;margin-top:20px;margin-bottom:20px; width:" + formWidth + "px; height:" + formHeight + "px;background:white;'>");
-            foreach(XmlNode node in controlNode.ChildNodes)
+            foreach (XmlNode node in controlNode.ChildNodes)
             {
                 string NodeType = node.Name;
                 string id = node.Attributes["id"].Value;
@@ -110,14 +113,195 @@ namespace Zxl.WebSite.Controllers
                     default:
                         break;
                 }
-                result.Append(temp);                
+                result.Append(temp);
             }
-            result.Append("</div>");         
+            #endregion Controls
+
+            #region Sheet
+            XmlNode sheetReportNode = doc.SelectNodes("Form/SheetReport/Layout").Item(0);
+            SheetReport sheetReport = new SheetReport();
+            sheetReport.Orientation = sheetReportNode.Attributes["Orientation"].Value;
+            sheetReport.PaperWidthWithTwipsUnit = sheetReportNode.Attributes["PaperWidthWithTwipsUnit"].Value;
+            sheetReport.PaperHeightWithTwipsUnit = sheetReportNode.Attributes["PaperHeightWithTwipsUnit"].Value;
+            sheetReport.BottomMargin = sheetReportNode.Attributes["BottomMargin"].Value;
+            sheetReport.LeftMargin = sheetReportNode.Attributes["LeftMargin"].Value;
+            sheetReport.RightMargin = sheetReportNode.Attributes["RightMargin"].Value;
+            sheetReport.TopMargin = sheetReportNode.Attributes["TopMargin"].Value;
+
+            XmlNodeList sheetPageNodes = sheetReportNode.SelectNodes("SheetPageNode/SheetPage");
+            sheetReport.SheetPages = new List<SheetPage>();
+            int sheetPageNodeIndex = 0;
+            foreach (XmlNode pageNode in sheetPageNodes)
+            {
+                /*用来画表*/
+                //SheetRectangle paperMarginWithTwipsUnit = this.GetPaperMarginWithTwipsUnit();
+
+                int paperActualHeight = Convert.ToInt32(sheetReport.PaperHeightWithTwipsUnit) - 750 * 1440 / 1000 - 750 * 1440 / 1000; //TOP - BOTTOM
+                int pointX = 1000 * 1440 / 1000; //Left
+                int pointY = 750 * 1440 / 1000 - sheetPageNodeIndex * paperActualHeight; // TOP
+                sheetPageNodeIndex++;
+                /**/
+
+                SheetPage sheetPage = new SheetPage();
+                sheetReport.SheetPages.Add(sheetPage);
+
+                XmlNode tableNode = pageNode.SelectSingleNode("SheetTable");
+                SheetTable sheetTable = new SheetTable();
+                sheetPage.SheetTable = sheetTable;
+
+                sheetTable.RowPositionCollection = new List<RowPosition>();
+                XmlNodeList rowPositionNodes = tableNode.SelectNodes("RowPositionCollection/RowPosition");
+                foreach (XmlNode rowPositionNode in rowPositionNodes)
+                {
+                    RowPosition rowPosition = new RowPosition();
+                    rowPosition.position = rowPositionNode.Attributes["position"].Value;
+                    sheetTable.RowPositionCollection.Add(rowPosition);
+                }
+
+                sheetTable.ColumnPositionCollection = new List<ColumnPosition>();
+                XmlNodeList columnPositionNodes = tableNode.SelectNodes("ColumnPositionCollection/ColumnPosition");
+                foreach (XmlNode columnPositionNode in columnPositionNodes)
+                {
+                    ColumnPosition columnPosition = new ColumnPosition();
+                    columnPosition.position = columnPositionNode.Attributes["position"].Value;
+                    sheetTable.ColumnPositionCollection.Add(columnPosition);
+                }
+
+                sheetTable.SheetRows = new List<SheetRow>();
+                XmlNodeList sheetRowNodes = tableNode.SelectNodes("SheetRow");
+                int rowIndex = 0; //用来画表
+                int rowCount = sheetRowNodes.Count;
+                foreach (XmlNode sheetRowNode in sheetRowNodes)
+                {
+                    SheetRow sheetRow = new SheetRow();
+                    sheetTable.SheetRows.Add(sheetRow);
+
+                    XmlNodeList sheetColumnNodes = sheetRowNode.SelectNodes("SheetColumn");
+                    sheetRow.SheetColumns = new List<SheetColumn>();
+                    int columnIndex = 0; //用来画表
+                    int columnCount = sheetColumnNodes.Count;
+                    foreach (XmlNode sheetColumnNode in sheetColumnNodes)
+                    {
+                        SheetColumn sheetColumn = new SheetColumn();
+                        sheetRow.SheetColumns.Add(sheetColumn);
+
+                        XmlNode sheetItemNodeNode = sheetColumnNode.SelectSingleNode("SheetItemNode");
+                        SheetItemNode sheetItemNode = new SheetItemNode();
+                        sheetItemNode.IsCellUnit = sheetItemNodeNode.Attributes["IsCellUnit"].Value;
+                        sheetItemNode.CellPx = sheetItemNodeNode.Attributes["CellPx"].Value;
+                        sheetItemNode.CellPy = sheetItemNodeNode.Attributes["CellPy"].Value;
+                        sheetColumn.SheetItemNode = sheetItemNode;
+
+                        /**/
+                        for (int px = 0; px < Convert.ToInt32(sheetItemNode.CellPx); px++)
+                        {
+                            for (int py = 0; py < Convert.ToInt32(sheetItemNode.CellPy); py++)
+                            {
+                                SheetRectangle nodeRectangle = new SheetRectangle();
+
+                                nodeRectangle.Left = Convert.ToInt32(sheetTable.ColumnPositionCollection[columnIndex].position);
+                                nodeRectangle.Right = Convert.ToInt32(sheetTable.ColumnPositionCollection[columnIndex + 1].position);
+                                nodeRectangle.Top = Convert.ToInt32(sheetTable.RowPositionCollection[rowIndex].position);
+                                nodeRectangle.Bottom = Convert.ToInt32(sheetTable.RowPositionCollection[rowIndex + 1].position);
+
+                                nodeRectangle.Left += pointX;
+                                nodeRectangle.Right += pointX;
+                                nodeRectangle.Top += pointY;
+                                nodeRectangle.Bottom += pointY;
+                                //计算放大倍数，换算为Pixels为单位
+                                nodeRectangle.Left = nodeRectangle.Left * 2 / 30;
+                                nodeRectangle.Right = nodeRectangle.Right * 2 / 30;
+                                nodeRectangle.Top = nodeRectangle.Top * 2 / 30;
+                                nodeRectangle.Bottom = nodeRectangle.Bottom * 2 / 30;
+
+                                float width = nodeRectangle.Right - nodeRectangle.Left;
+                                float height = nodeRectangle.Bottom - nodeRectangle.Top;
+                                result.Append("<div style='position:absolute;border:solid 1px black; left:" + (nodeRectangle.Left + 50) + "px; top:" + nodeRectangle.Top + "px; width:" + width + "px; height:" + height + "px;'></div>");
+
+                                /*
+                                float pageStartPointX = 21 + 20;
+			                    float pageStartPointY = 21 + 16;
+                                // 合并单元格左边框
+					            if(px == 0)
+					            {
+						            float startPointX = nodeRectangle.Left+pageStartPointX;
+                                    float startPointY = nodeRectangle.Top+pageStartPointY;
+						            float endPointX = nodeRectangle.Left+pageStartPointX;
+                                    float endPointY = nodeRectangle.Bottom+pageStartPointY;
+                                    width = endPointX - startPointX;
+                                    height = endPointY - startPointY;
+                                    result.Append("<div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>");
+                                }
+ 					            // 合并单元格上边框
+					            if(py == 0)
+					            {
+						            float startPointX = nodeRectangle.Left+pageStartPointX;
+                                    float startPointY = nodeRectangle.Top+pageStartPointY;
+						            float endPointX = nodeRectangle.Right+pageStartPointX;
+                                    float endPointY = nodeRectangle.Top+pageStartPointY;
+                                    width = endPointX - startPointX;
+                                    height = endPointY - startPointY;
+                                    result.Append("<div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>");
+					            }
+					            // 合并单元格右边框
+					            if(px==Convert.ToInt32(sheetItemNode.CellPx)-1 && columnIndex+Convert.ToInt32(sheetItemNode.CellPy)==columnCount)
+					            {
+						            float startPointX = nodeRectangle.Right+pageStartPointX;
+                                    float startPointY = nodeRectangle.Top+pageStartPointY;
+						            float endPointX = nodeRectangle.Right+pageStartPointX;
+                                    float endPointY = nodeRectangle.Bottom+pageStartPointY;
+                                    width = endPointX - startPointX;
+                                    height = endPointY - startPointY;
+                                    result.Append("<div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>");
+					            }
+					            // 合并单元格下边框
+					            if(py==Convert.ToInt32(sheetItemNode.CellPy)-1 && rowIndex+Convert.ToInt32(sheetItemNode.CellPy)==rowCount)
+					            {
+						            float startPointX = nodeRectangle.Left+pageStartPointX;
+                                    float startPointY = nodeRectangle.Bottom+pageStartPointY;
+						            float endPointX = nodeRectangle.Right+pageStartPointX;
+                                    float endPointY = nodeRectangle.Bottom+pageStartPointY;
+                                    width = endPointX - startPointX;
+                                    height = endPointY - startPointY;
+                                    result.Append("<div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>");
+					            }*/
+                            }
+                        }
+                        /**/
+                        columnIndex++;
+                    }
+                    rowIndex++;
+                }
+            }
+
+            #endregion
+            result.Append("</div>");
+
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
-            System.Web.HttpContext.Current.Response.Write( result.ToString() );
+            System.Web.HttpContext.Current.Response.Write(result.ToString());
             System.Web.HttpContext.Current.Response.End();
             return Content(result.ToString());
         }
+
+        /*
+        private SheetRectangle GetPaperMarginWithTwipsUnit()
+		{
+            SheetRectangle _paperMargin = new SheetRectangle();
+            _paperMargin.Left = 1000;
+            _paperMargin.Top = 750;
+            _paperMargin.Right = 1000;
+            _paperMargin.Bottom = 750;
+
+			SheetRectangle result = new SheetRectangle();			
+			int twipsPerInch = 1440;
+			result.Left = _paperMargin.Left * twipsPerInch/1000;
+			result.Bottom = _paperMargin.Bottom * twipsPerInch/1000;
+			result.Right = _paperMargin.Right * twipsPerInch/1000;
+			result.Top = _paperMargin.Top * twipsPerInch/1000;
+			
+			return result;
+		}*/
+
         public ActionResult BuildFormPrint(int ProjectFormId)
         {
             SYS_PROJECTFORM prjForm = null;

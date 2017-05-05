@@ -23,5 +23,8 @@ namespace Zxl.WebSite.Model
         public DateTime CREATETIME { get; set; }
         [Field]
         public string DESCRIPTION { get; set; }
+        [Field]
+        public byte[] SHEET { get; set; }
+
     }
 }
