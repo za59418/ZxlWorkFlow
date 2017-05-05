@@ -3439,6 +3439,10 @@
       <Project>{a37fb0c7-4a07-4c7e-bfb8-ab49b02ad6d7}</Project>
       <Name>Zxl.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zxl.Form\Zxl.Form.csproj">
+      <Project>{57489b8f-8a3e-448e-a4ef-d660997cd4cd}</Project>
+      <Name>Zxl.Form</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zxl.Printer\Zxl.Printer.csproj">
       <Project>{cb58c7aa-aeeb-46cb-ae5f-4c70638d8ed4}</Project>
       <Name>Zxl.Printer</Name>

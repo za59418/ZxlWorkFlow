@@ -1,0 +1,5 @@
+E:\ZxlWorkFlow\trunk\output\Zxl.Form.dll
+E:\ZxlWorkFlow\trunk\output\Zxl.Form.pdb
+E:\ZxlWorkFlow\trunk\projects\Zxl.Form\obj\Debug\Zxl.Form.dll
+E:\ZxlWorkFlow\trunk\projects\Zxl.Form\obj\Debug\Zxl.Form.pdb
+E:\ZxlWorkFlow\trunk\projects\Zxl.Form\obj\Debug\Zxl.Form.csprojResolveAssemblyReference.cache
