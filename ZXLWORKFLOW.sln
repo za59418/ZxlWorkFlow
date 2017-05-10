@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Data", "projects\Zxl.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Printer", "projects\Zxl.Printer\Zxl.Printer.csproj", "{CB58C7AA-AEEB-46CB-AE5F-4C70638D8ED4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Form", "projects\Zxl.Form\Zxl.Form.csproj", "{57489B8F-8A3E-448E-A4EF-D660997CD4CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CB58C7AA-AEEB-46CB-AE5F-4C70638D8ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB58C7AA-AEEB-46CB-AE5F-4C70638D8ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB58C7AA-AEEB-46CB-AE5F-4C70638D8ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
