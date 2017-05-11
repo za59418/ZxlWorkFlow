@@ -233,7 +233,7 @@ namespace Zxl.WebSite.Controllers
                                 float pageStartPointX = 21 + 20;
                                 float pageStartPointY = 21 + 16;
                                 // 合并单元格左边框
-                                if (px == 0)
+                                //if (px == 0)
                                 {
                                     float startPointX = nodeRectangle.Left + pageStartPointX;
                                     float startPointY = nodeRectangle.Top + pageStartPointY;
@@ -241,10 +241,10 @@ namespace Zxl.WebSite.Controllers
                                     float endPointY = nodeRectangle.Bottom + pageStartPointY;
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append(" <div style='position:absolute;border-left:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                                 // 合并单元格上边框
-                                if (py == 0)
+                                //if (py == 0)
                                 {
                                     float startPointX = nodeRectangle.Left + pageStartPointX;
                                     float startPointY = nodeRectangle.Top + pageStartPointY;
@@ -252,10 +252,10 @@ namespace Zxl.WebSite.Controllers
                                     float endPointY = nodeRectangle.Top + pageStartPointY;
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append(" <div style='position:absolute;border-top:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                                 // 合并单元格右边框
-                                if (px == Convert.ToInt32(sheetItemNode.CellPx) - 1 && columnIndex + Convert.ToInt32(sheetItemNode.CellPx) == columnCount)
+                                //if (px == Convert.ToInt32(sheetItemNode.CellPx) - 1 && columnIndex + Convert.ToInt32(sheetItemNode.CellPx) == columnCount)
                                 {
                                     float startPointX = nodeRectangle.Right + pageStartPointX;
                                     float startPointY = nodeRectangle.Top + pageStartPointY;
@@ -263,7 +263,7 @@ namespace Zxl.WebSite.Controllers
                                     float endPointY = nodeRectangle.Bottom + pageStartPointY;
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append(" <div style='position:absolute;border-right:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                                 // 合并单元格下边框
                                 //if (py == Convert.ToInt32(sheetItemNode.CellPy) - 1 && rowIndex + Convert.ToInt32(sheetItemNode.CellPy) == rowCount)
@@ -279,7 +279,7 @@ namespace Zxl.WebSite.Controllers
                                     }
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append(" <div style='position:absolute;border-bottom:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                             }
                         }
