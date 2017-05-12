@@ -169,19 +169,26 @@ namespace Zxl.WebSite.Controllers
 
                 sheetTable.SheetRows = new List<SheetRow>();
                 XmlNodeList sheetRowNodes = tableNode.SelectNodes("SheetRow");
-                int rowIndex = 0; //用来画表
-                int rowCount = sheetRowNodes.Count;
-                foreach (XmlNode sheetRowNode in sheetRowNodes)
+                //int rowIndex = 0; //用来画表
+
+
+                int rowCount = sheetTable.RowPositionCollection.Count - 1;
+                int columnCount = sheetTable.ColumnPositionCollection.Count - 1;
+
+                for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
                 {
+                    XmlNode sheetRowNode = sheetRowNodes[rowIndex];
                     SheetRow sheetRow = new SheetRow();
                     sheetTable.SheetRows.Add(sheetRow);
 
                     XmlNodeList sheetColumnNodes = sheetRowNode.SelectNodes("SheetColumn");
                     sheetRow.SheetColumns = new List<SheetColumn>();
-                    int columnIndex = 0; //用来画表
-                    int columnCount = sheetColumnNodes.Count;
-                    foreach (XmlNode sheetColumnNode in sheetColumnNodes)
+
+                    //int columnIndex = 0; //用来画表
+                    for (int columnIndex = 0; columnIndex < columnCount; columnIndex++)
                     {
+                        XmlNode sheetColumnNode = sheetColumnNodes[columnIndex];
+
                         SheetColumn sheetColumn = new SheetColumn();
                         sheetRow.SheetColumns.Add(sheetColumn);
 
@@ -192,15 +199,15 @@ namespace Zxl.WebSite.Controllers
                         sheetItemNode.CellPy = sheetItemNodeNode.Attributes["CellPy"].Value;
                         sheetColumn.SheetItemNode = sheetItemNode;
 
-                        //if ("0" == sheetItemNode.IsCellUnit)
-                        //{
-                        //    continue;
-                        //}
+                        if ("0" == sheetItemNode.IsCellUnit)
+                        {
+                            continue;
+                        }
 
                         /**/
-                        for (int px = 0; px < Convert.ToInt32(sheetItemNode.CellPx) + 1; px++)
+                        for (int px = 0; px < Convert.ToInt32(sheetItemNode.CellPx); px++)
                         {
-                            for (int py = 0; py < Convert.ToInt32(sheetItemNode.CellPy) + 1; py++)
+                            for (int py = 0; py < Convert.ToInt32(sheetItemNode.CellPy); py++)
                             {
 
                                 if (px > 0 && px < Convert.ToInt32(sheetItemNode.CellPx) - 1 && py > 0 && py < Convert.ToInt32(sheetItemNode.CellPy) - 1)
@@ -210,10 +217,10 @@ namespace Zxl.WebSite.Controllers
 
                                 SheetRectangle nodeRectangle = new SheetRectangle();
 
-                                nodeRectangle.Left = Convert.ToInt32(sheetTable.ColumnPositionCollection[columnIndex].position);
-                                nodeRectangle.Right = Convert.ToInt32(sheetTable.ColumnPositionCollection[columnIndex + 1].position);
-                                nodeRectangle.Top = Convert.ToInt32(sheetTable.RowPositionCollection[rowIndex].position);
-                                nodeRectangle.Bottom = Convert.ToInt32(sheetTable.RowPositionCollection[rowIndex + 1].position);
+                                nodeRectangle.Left = Convert.ToInt32(sheetTable.ColumnPositionCollection[columnIndex + px].position);
+                                nodeRectangle.Right = Convert.ToInt32(sheetTable.ColumnPositionCollection[columnIndex + px + 1].position);
+                                nodeRectangle.Top = Convert.ToInt32(sheetTable.RowPositionCollection[rowIndex + py].position);
+                                nodeRectangle.Bottom = Convert.ToInt32(sheetTable.RowPositionCollection[rowIndex + py + 1].position);
 
                                 nodeRectangle.Left += pointX;
                                 nodeRectangle.Right += pointX;
@@ -233,7 +240,7 @@ namespace Zxl.WebSite.Controllers
                                 float pageStartPointX = 21 + 20;
                                 float pageStartPointY = 21 + 16;
                                 // 合并单元格左边框
-                                //if (px == 0)
+                                if (px == 0)
                                 {
                                     float startPointX = nodeRectangle.Left + pageStartPointX;
                                     float startPointY = nodeRectangle.Top + pageStartPointY;
@@ -241,10 +248,10 @@ namespace Zxl.WebSite.Controllers
                                     float endPointY = nodeRectangle.Bottom + pageStartPointY;
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border-left:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append( " <div style='position:absolute;border-left:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                                 // 合并单元格上边框
-                                //if (py == 0)
+                                if (py == 0)
                                 {
                                     float startPointX = nodeRectangle.Left + pageStartPointX;
                                     float startPointY = nodeRectangle.Top + pageStartPointY;
@@ -252,10 +259,12 @@ namespace Zxl.WebSite.Controllers
                                     float endPointY = nodeRectangle.Top + pageStartPointY;
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border-top:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append( " <div style='position:absolute;border-top:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                                 // 合并单元格右边框
-                                //if (px == Convert.ToInt32(sheetItemNode.CellPx) - 1 && columnIndex + Convert.ToInt32(sheetItemNode.CellPx) == columnCount)
+                                if (px == Convert.ToInt32(sheetItemNode.CellPx) - 1 //最后一条边
+                                    //&& columnIndex + Convert.ToInt32(sheetItemNode.CellPx) == columnCount
+                                    )
                                 {
                                     float startPointX = nodeRectangle.Right + pageStartPointX;
                                     float startPointY = nodeRectangle.Top + pageStartPointY;
@@ -263,10 +272,12 @@ namespace Zxl.WebSite.Controllers
                                     float endPointY = nodeRectangle.Bottom + pageStartPointY;
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border-right:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append( " <div style='position:absolute;border-right:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                                 // 合并单元格下边框
-                                //if (py == Convert.ToInt32(sheetItemNode.CellPy) - 1 && rowIndex + Convert.ToInt32(sheetItemNode.CellPy) == rowCount)
+                                if (py == Convert.ToInt32(sheetItemNode.CellPy) - 1  //最后一条边
+                                    //&& rowIndex + Convert.ToInt32(sheetItemNode.CellPy) == rowCount
+                                    )
                                 {
                                     float startPointX = nodeRectangle.Left + pageStartPointX;
                                     float startPointY = nodeRectangle.Bottom + pageStartPointY;
@@ -279,14 +290,12 @@ namespace Zxl.WebSite.Controllers
                                     }
                                     width = endPointX - startPointX;
                                     height = endPointY - startPointY;
-                                    result.Append(" <div style='position:absolute;border-bottom:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
+                                    result.Append( " <div style='position:absolute;border-bottom:solid 1px black; left:" + startPointX + "px; top:" + startPointY + "px; width:" + width + "px; height:" + height + "px;'></div>\r\n");
                                 }
                             }
                         }
                         /**/
-                        columnIndex++;
                     }
-                    rowIndex++;
                 }
             }
 
