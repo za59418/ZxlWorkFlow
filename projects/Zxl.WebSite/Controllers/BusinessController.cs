@@ -77,7 +77,7 @@ namespace Zxl.WebSite.Controllers
             XmlNode controlNode = doc.SelectNodes("Form/Control").Item(0);
             string formWidth = controlNode.Attributes["width"].Value;
             string formHeight = controlNode.Attributes["height"].Value;
-            result.Append("<div id='form-" + ProjectFormId + "' style='position:relative; margin:0 auto;margin-top:20px;margin-bottom:20px; width:" + formWidth + "px; height:" + formHeight + "px;background:white;'>");
+            result.Append("<div id='form-" + ProjectFormId + "' style='position:relative; margin:0 auto;margin-top:20px;margin-bottom:20px; width:" + (Convert.ToInt32(formWidth) + 200) + "px; height:" + (Convert.ToInt32(formHeight) + 250) + "px;background:white;'>");
 
             #region Controls
             foreach (XmlNode node in controlNode.ChildNodes)
@@ -307,25 +307,6 @@ namespace Zxl.WebSite.Controllers
             System.Web.HttpContext.Current.Response.End();
             return Content(result.ToString());
         }
-
-        /*
-        private SheetRectangle GetPaperMarginWithTwipsUnit()
-		{
-            SheetRectangle _paperMargin = new SheetRectangle();
-            _paperMargin.Left = 1000;
-            _paperMargin.Top = 750;
-            _paperMargin.Right = 1000;
-            _paperMargin.Bottom = 750;
-
-			SheetRectangle result = new SheetRectangle();			
-			int twipsPerInch = 1440;
-			result.Left = _paperMargin.Left * twipsPerInch/1000;
-			result.Bottom = _paperMargin.Bottom * twipsPerInch/1000;
-			result.Right = _paperMargin.Right * twipsPerInch/1000;
-			result.Top = _paperMargin.Top * twipsPerInch/1000;
-			
-			return result;
-		}*/
 
         public ActionResult BuildFormPrint(int ProjectFormId)
         {
