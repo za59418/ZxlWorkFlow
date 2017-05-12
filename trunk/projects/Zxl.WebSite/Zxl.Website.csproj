@@ -3482,6 +3482,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <Content Include="Views\Business\Processing.cshtml" />
+    <Content Include="Views\Business\Processed.cshtml" />
+    <Content Include="Views\Business\ProcessReceive.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

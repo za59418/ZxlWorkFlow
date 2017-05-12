@@ -2,9 +2,9 @@
     <div class="easyui-accordion" data-options="border:false,fit:true">
         <div title="项目办理" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
-                <li iconcls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="@Url.Action("Index", "Business", new { Nid = "N000001" })" iframe="0">在办箱</a></li>
-                <li iconcls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="@Url.Action("Index", "Business", new { Nid = "N000002" })" iframe="0">已办箱</a></li>
-                <li iconcls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="@Url.Action("Index", "Business", new { Nid = "N000003" })" iframe="0">领取箱</a></li>
+                <li iconcls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="@Url.Action("Processing", "Business")" iframe="0">在办箱</a></li>
+                <li iconcls="icon-reload"><a href="javascript:void(0)" data-icon="icon-reload" data-link="@Url.Action("Processed", "Business")" iframe="0">已办箱</a></li>
+                <li iconcls="icon-application-cascade"><a href="javascript:void(0)" data-icon="icon-application-cascade" data-link="@Url.Action("ProcessReceive", "Business")" iframe="0">领取箱</a></li>
             </ul>
         </div>
         <div title="项目查询" data-options="iconCls:'icon-application-form-edit'" style="padding:5px;">
