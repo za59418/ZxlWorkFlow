@@ -75,7 +75,7 @@ namespace Zxl.WebSite.Controllers
             string UserId = Session["UserId"].ToString();
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=1)");
+                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where state=1)");
             }
             foreach (SYS_PROJECT prj in list)
             {
@@ -87,13 +87,13 @@ namespace Zxl.WebSite.Controllers
             System.Web.HttpContext.Current.Response.End();
             return Json(new { rows = list });
         }
-        public ActionResult ProjectsReceive()
+        public ActionResult ProjectsGlobal()
         {
             List<SYS_PROJECT> list = null;
             string UserId = Session["UserId"].ToString();
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=2)");
+                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem)");
             }
             foreach (SYS_PROJECT prj in list)
             {
