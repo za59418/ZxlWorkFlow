@@ -2,16 +2,21 @@
     <div class="easyui-accordion" data-options="border:false,fit:true">
         <div title="项目办理" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
-                <li iconcls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="@Url.Action("Processing", "Business")" iframe="0">在办箱</a></li>
-                <li iconcls="icon-reload"><a href="javascript:void(0)" data-icon="icon-reload" data-link="@Url.Action("Processed", "Business")" iframe="0">已办箱</a></li>
+                <li iconcls="icon-paintbrush"><a href="javascript:void(0)" data-icon="icon-paintbrush" data-link="@Url.Action("Processing", "Business")" iframe="0">在办箱</a></li>
+                <li iconcls="icon-paint-can-brush"><a href="javascript:void(0)" data-icon="icon-paint-can-brush" data-link="@Url.Action("Processed", "Business")" iframe="0">已办箱</a></li>
                 <li iconcls="icon-application-cascade"><a href="javascript:void(0)" data-icon="icon-application-cascade" data-link="@Url.Action("ProcessReceive", "Business")" iframe="0">领取箱</a></li>
             </ul>
         </div>
-        <div title="项目查询" data-options="iconCls:'icon-application-form-edit'" style="padding:5px;">
+        <div title="统计查询" data-options="iconCls:'icon-search'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
-                <li iconcls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="@Url.Action("Index", "Business", new { Nid = "N000004" })" iframe="0">在办查询</a></li>
-                <li iconcls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="@Url.Action("Index", "Business", new { Nid = "N000005" })" iframe="0">办结查询</a></li>
-                <li iconcls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="@Url.Action("Index", "Business", new { Nid = "N000006" })" iframe="0">全局查询</a></li>
+                <li iconcls="icon-paintbrush"><a href="javascript:void(0)" data-icon="icon-paintbrush" data-link="@Url.Action("Processing", "Search")" iframe="0">在办查询</a></li>
+                <li iconcls="icon-paintcan"><a href="javascript:void(0)" data-icon="icon-paintcan" data-link="@Url.Action("Finished", "Search")" iframe="0">办结查询</a></li>
+                <li iconcls="icon-palette"><a href="javascript:void(0)" data-icon="icon-palette" data-link="@Url.Action("Index", "Search")" iframe="0">全局查询</a></li>
+            </ul>
+        </div>
+        <div title="档案管理" data-options="iconCls:'icon-database'" style="padding:5px;">
+            <ul class="easyui-tree wu-side-tree">
+                <li iconcls="icon-search"><a href="javascript:void(0)" data-icon="icon-search" data-link="@Url.Action("Index", "Archive")" ifra iframe="0">档案查询</a></li>
             </ul>
         </div>
     </div>

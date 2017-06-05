@@ -1,0 +1,70 @@
+﻿
+
+<div class="easyui-layout" data-options="fit:true">
+    <!-- Begin of toolbar -->
+    <div id="toolbarProcessed">
+        <div class="wu-toolbar-button">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-reload" onclick="" plain="true">取回</a>
+        </div>
+    </div>
+    <!-- End of toolbar -->
+    <table id="tbProcessed" class="easyui-datagrid" toolbar="#toolbarProcessed"></table>
+</div>
+
+<script type="text/javascript">
+
+    function pagerFilter(data) {
+        if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
+            data = {
+                total: data.length,
+                rows: data
+            }
+        }
+        var dg = $(this);
+        var opts = dg.datagrid('options');
+        var pager = dg.datagrid('getPager');
+        pager.pagination({
+            onSelectPage: function (pageNum, pageSize) {
+                opts.pageNumber = pageNum;
+                opts.pageSize = pageSize;
+                pager.pagination('refresh', { pageNumber: pageNum, pageSize: pageSize });
+                dg.datagrid('loadData', data);
+            }
+        });
+        if (!data.originalRows) {
+            data.originalRows = (data.rows);
+        }
+        var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+        var end = start + parseInt(opts.pageSize);
+        data.rows = (data.originalRows.slice(start, end));
+        return data;
+    }
+
+    $(function () {
+        var t = $("#tbProcessed").treegrid({
+            url: "@Url.Action("Projectsed", "Business")",
+            loadFilter: pagerFilter,
+            pageSize: 20,
+            pagination: true,
+            idField: 'ID',
+            treeField: 'PROJECTNO',
+            fit: true,
+            columns: [[
+                { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
+                { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
+                { field: 'BUILDADRESS', title: '建设地址', width: 200, sortable: true },
+                { field: 'CREATETIME', title: '创建时间', width: 140, formatter: formatDatebox },
+                { field: 'ENDTIME', title: '结束时间', width: 140, formatter: formatDatebox, sortable: true }
+            ]],
+            onDblClickRow: function (field, row) {
+                addTab(field.PROJECTNAME, '@Url.Action("Project", "Business")' + '?ProjectId=' + field.ID, 'icon-flag-pink', false);
+            },
+            offset: { width: -250, height: -150 }
+        });
+    });
+
+    function RefreshProcessing()
+    {
+        $("#tbProcessed").treegrid("reload");
+    }
+</script>
