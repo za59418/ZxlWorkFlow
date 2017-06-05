@@ -134,12 +134,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WorkbenchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\SearchViewModel.cs" />
     <Compile Include="ModelView\LoginViewModel.cs" />
     <Compile Include="ModelView\ServiceResult.cs" />
     <Compile Include="Model\AbstractModel.cs" />
@@ -1874,6 +1877,7 @@
     <Content Include="Images\bg_header_1.jpg" />
     <Content Include="Images\bg_header_2.jpg" />
     <Content Include="Scripts\cloud.js" />
+    <Content Include="Scripts\DateFormat.js" />
     <Content Include="Scripts\easyui\1.3.2\changelog.txt" />
     <Content Include="Scripts\easyui\1.3.2\demo\accordion\actions.html" />
     <Content Include="Scripts\easyui\1.3.2\demo\accordion\ajax.html" />
@@ -3470,6 +3474,10 @@
     <Content Include="Views\Business\Processing.cshtml" />
     <Content Include="Views\Business\Processed.cshtml" />
     <Content Include="Views\Business\ProcessReceive.cshtml" />
+    <Content Include="Views\Search\Processing.cshtml" />
+    <Content Include="Views\Search\Finished.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

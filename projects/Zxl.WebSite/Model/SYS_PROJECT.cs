@@ -18,6 +18,8 @@ namespace Zxl.WebSite.Model
         [Field]
         public string PROJECTNAME { get; set; }
         [Field]
+        public string BUILDORG { get; set; }
+        [Field]
         public string BUILDADRESS { get; set; }
         [Field]
         public DateTime CREATETIME { get; set; }
