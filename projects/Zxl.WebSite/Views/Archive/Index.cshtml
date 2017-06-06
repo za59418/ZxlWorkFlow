@@ -7,22 +7,22 @@
 
         <div style="padding:5px;margin:10px;">
             <label>项目编号:</label>
-            @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", id = "PROJECTNOA", placeholder = "" })
             <label>项目名称:</label>
-            @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", id = "PROJECTNAMEA", placeholder = "" })
 
             <label>建设单位:</label>
-            @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", id = "BUILDORGA", placeholder = "" })
             <label>建设地址:</label>
-            @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", id = "BUILDADRESSA", placeholder = "" })
         </div>
         <div style="padding:5px;margin:10px;">
             <label>档案编号:</label>
-            @Html.TextBoxFor(m => m.ARCHIVENO, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.ARCHIVENO, new { @class = "easyui-textbox", id = "ARCHIVENOA", placeholder = "" })
             <label>归档时间:</label>
-            @Html.TextBoxFor(m => m.ARCHIVETIMESTART, new { @class = "easyui-datebox", placeholder = "" })
+            @Html.TextBoxFor(m => m.ARCHIVETIMESTART, new { @class = "easyui-datebox", id = "ARCHIVETIMESTARTA", placeholder = "" })
             至
-            @Html.TextBoxFor(m => m.ARCHIVETIMEEND, new { @class = "easyui-datebox", placeholder = "" })
+            @Html.TextBoxFor(m => m.ARCHIVETIMEEND, new { @class = "easyui-datebox", id = "ARCHIVETIMEENDA", placeholder = "" })
 
 
             <a href="#" class="easyui-linkbutton" id="btnSearchArchive" iconcls="icon-search">查询</a>
@@ -62,29 +62,29 @@
         }
 
         $(function () {
-            LoadData();
+            LoadDataA();
             $("#btnSearchArchive").click(function () {
-                LoadData();
+                LoadDataA();
             });
         });
 
-        function LoadData() {
+        function LoadDataA() {
             var data = {
-                PROJECTNO: $("#PROJECTNO").val(),
-                PROJECTNAME: $("#PROJECTNAME").val(),
-                BUILDORG: $("#BUILDORG").val(),
-                BUILDADRESS: $("#BUILDADRESS").val(),
-                ARCHIVENO: $("#ARCHIVENO").val()
+                PROJECTNO: $("#PROJECTNOA").val(),
+                PROJECTNAME: $("#PROJECTNAMEA").val(),
+                BUILDORG: $("#BUILDORGA").val(),
+                BUILDADRESS: $("#BUILDADRESSA").val(),
+                ARCHIVENO: $("#ARCHIVENOA").val()
                 //CREATETIMESTART: $("#CREATETIMESTART").val(),
                 //CREATETIMEEND: $("#CREATETIMEEND").val(),
                 //ENDTIMESTART: $("#ENDTIMESTART").val(),
                 //ENDTIMEEND: $("#ENDTIMEEND").val()
             };
             try {
-                data.ARCHIVETIMESTART = $("#ARCHIVETIMESTART").datebox('getValue');
+                data.ARCHIVETIMESTART = $("#ARCHIVETIMESTARTA").datebox('getValue');
             } catch (e) { }
             try {
-                data.ARCHIVETIMEEND = $("#ARCHIVETIMEEND").datebox('getValue');
+                data.ARCHIVETIMEEND = $("#ARCHIVETIMEENDA").datebox('getValue');
             } catch (e) { }
 
             var t = $("#tbArchive").datagrid({

@@ -8,25 +8,25 @@
 
         <div style="padding:5px;margin:10px;">
             <label>项目编号:</label>
-            @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", id = "PROJECTNOG", placeholder = "" })
             <label>项目名称:</label>
-            @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", id = "PROJECTNAMEG", placeholder = "" })
 
             <label>建设单位:</label>
-            @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", id = "BUILDORGG", placeholder = "" })
             <label>建设地址:</label>
-            @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", placeholder = "" })
+            @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", id = "BUILDADRESSG", placeholder = "" })
         </div>
         <div style="padding:5px;margin:10px;">
             <label>创建时间:</label>
-            @Html.TextBoxFor(m => m.CREATETIMESTART, new { @class = "easyui-datebox", placeholder = "" })
+            @Html.TextBoxFor(m => m.CREATETIMESTART, new { @class = "easyui-datebox", id = "CREATETIMESTARTG", placeholder = "" })
             至
-            @Html.TextBoxFor(m => m.CREATETIMEEND, new { @class = "easyui-datebox", placeholder = "" })
+            @Html.TextBoxFor(m => m.CREATETIMEEND, new { @class = "easyui-datebox", id = "CREATETIMEENDG", placeholder = "" })
 
             <label>办结时间:</label>
-            @Html.TextBoxFor(m => m.ENDTIMESTART, new { @class = "easyui-datebox", placeholder = "" })
+            @Html.TextBoxFor(m => m.ENDTIMESTART, new { @class = "easyui-datebox", id = "ENDTIMESTARTG", placeholder = "" })
             至
-            @Html.TextBoxFor(m => m.ENDTIMEEND, new { @class = "easyui-datebox", placeholder = "" })
+            @Html.TextBoxFor(m => m.ENDTIMEEND, new { @class = "easyui-datebox", id = "ENDTIMEENDG", placeholder = "" })
 
             <a href="#" class="easyui-linkbutton" id="btnSearchGlobal" iconcls="icon-search">查询</a>
         </div>
@@ -66,34 +66,34 @@
         }
 
         $(function () {
-            LoadData();
+            LoadDataG();
             $("#btnSearchGlobal").click(function () {
-                LoadData();
+                LoadDataG();
             });
         });
 
-        function LoadData() {
+        function LoadDataG() {
             var data = {
-                PROJECTNO: $("#PROJECTNO").val(),
-                PROJECTNAME: $("#PROJECTNAME").val(),
-                BUILDORG: $("#BUILDORG").val(),
-                BUILDADRESS: $("#BUILDADRESS").val()
+                PROJECTNO: $("#PROJECTNOG").val(),
+                PROJECTNAME: $("#PROJECTNAMEG").val(),
+                BUILDORG: $("#BUILDORGG").val(),
+                BUILDADRESS: $("#BUILDADRESSG").val()
                 //CREATETIMESTART: $("#CREATETIMESTART").val(),
                 //CREATETIMEEND: $("#CREATETIMEEND").val(),
                 //ENDTIMESTART: $("#ENDTIMESTART").val(),
                 //ENDTIMEEND: $("#ENDTIMEEND").val()
             };
             try {
-                data.CREATETIMESTART = $("#CREATETIMESTART").datebox('getValue');
+                data.CREATETIMESTART = $("#CREATETIMESTARTG").datebox('getValue');
             } catch (e) { }
             try {
-                data.CREATETIMEEND = $("#CREATETIMEEND").datebox('getValue');
+                data.CREATETIMEEND = $("#CREATETIMEENDG").datebox('getValue');
             } catch (e) { }
             try {
-                data.ENDTIMESTART = $("#ENDTIMESTART").datebox('getValue');
+                data.ENDTIMESTART = $("#ENDTIMESTARTG").datebox('getValue');
             } catch (e) { }
             try {
-                data.ENDTIMEEND = $("#ENDTIMEEND").datebox('getValue');
+                data.ENDTIMEEND = $("#ENDTIMEENDG").datebox('getValue');
             } catch (e) { }
 
             var t = $("#tbSearchGlobal").datagrid({
