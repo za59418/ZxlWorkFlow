@@ -24,15 +24,19 @@ namespace Zxl.WebSite.Controllers
 
         public ActionResult Processing()
         {
-            return View();
+            return PartialView();
         }
         public ActionResult Processed()
         {
-            return View();
+            return PartialView();
         }
         public ActionResult ProcessReceive()
         {
-            return View();
+            return PartialView();
+        }
+        public ActionResult ProcessFa()
+        {
+            return PartialView();
         }
 
         public ActionResult Projectsing()
@@ -89,7 +93,24 @@ namespace Zxl.WebSite.Controllers
             System.Web.HttpContext.Current.Response.End();
             return Json(new { rows = list });
         }
+        public ActionResult ProjectsFa()
+        {
+            List<SYS_PROJECT> list = null;
+            string UserId = Session["UserId"].ToString();
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=3)");
+            }
+            foreach (SYS_PROJECT prj in list)
+            {
+                prj._parentId = prj.PID;
+            }
 
+            var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Web.HttpContext.Current.Response.Write(jss.Serialize(new { rows = list }));
+            System.Web.HttpContext.Current.Response.End();
+            return Json(new { rows = list });
+        }
         public ActionResult Project(int ProjectId)
         {
             return View(ProjectId);
