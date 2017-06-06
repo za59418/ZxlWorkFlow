@@ -17,22 +17,34 @@ namespace Zxl.WebSite.Controllers
 {
     public class ArchiveController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(ArchiveViewModel model)
         {
-            return View();
+            return PartialView(model);
         }
 
-        public ActionResult Projectsing()
+        public ActionResult ArchiveData(ArchiveViewModel model)
         {
-            List<SYS_PROJECT> list = null;
-            string UserId = Session["UserId"].ToString();
+            List<SYS_ARCHIVE> list = null;
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=0)");
-            }
-            foreach (SYS_PROJECT prj in list)
-            {
-                prj._parentId = prj.PID;
+                string whereClause = " where 1=1 ";
+
+                if (null != model.PROJECTNO)
+                    whereClause += " and PROJECTNO like '%" + model.PROJECTNO + "%' ";
+                if (null != model.PROJECTNAME)
+                    whereClause += " and PROJECTNAME like '%" + model.PROJECTNAME + "%' ";
+                if (null != model.BUILDORG)
+                    whereClause += " and BUILDORG like '%" + model.BUILDORG + "%' ";
+                if (null != model.BUILDADRESS)
+                    whereClause += " and BUILDADRESS like '%" + model.BUILDADRESS + "%' ";
+                if (null != model.ARCHIVENO)
+                    whereClause += " and ARCHIVENO like '%" + model.ARCHIVENO + "%' ";
+
+                if (null != model.ARCHIVETIMESTART)
+                    whereClause += " and ARCHIVETIME >= to_date('" + model.ARCHIVETIMESTART + "','yyyy-mm-dd') ";
+                if (null != model.ARCHIVETIMEEND)
+                    whereClause += " and ARCHIVETIME <= to_date('" + model.ARCHIVETIMEEND + "','yyyy-mm-dd') ";
+                list = orm.Query<SYS_ARCHIVE>(whereClause);
             }
 
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();

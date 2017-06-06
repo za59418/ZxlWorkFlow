@@ -19,6 +19,9 @@ namespace Zxl.WebSite.Model
         public int REF_BUSINESSACTIVITY_ID { get; set; }
         [Field]
         public int REF_PROJECT_ID { get; set; }
+        /// <summary>
+        /// 状态值 0为在办 1为已办
+        /// </summary>
         [Field]
         public int STATE { get; set; }
 

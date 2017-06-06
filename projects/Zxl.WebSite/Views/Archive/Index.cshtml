@@ -1,5 +1,114 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@using Zxl.WebSite.ModelView
 
-<h2>Index</h2>
+@model ArchiveViewModel
+<div class="easyui-layout" data-options="fix:true" style="width:100%;height:100%;">
+    <div class="easyui-panel" title="档案查询" style="height:120px;overflow:hidden;"
+         data-options="iconCls:'icon-search',collapsible:true,region:'north'">
+
+        <div style="padding:5px;margin:10px;">
+            <label>项目编号:</label>
+            @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", placeholder = "" })
+            <label>项目名称:</label>
+            @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", placeholder = "" })
+
+            <label>建设单位:</label>
+            @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", placeholder = "" })
+            <label>建设地址:</label>
+            @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", placeholder = "" })
+        </div>
+        <div style="padding:5px;margin:10px;">
+            <label>档案编号:</label>
+            @Html.TextBoxFor(m => m.ARCHIVENO, new { @class = "easyui-textbox", placeholder = "" })
+            <label>归档时间:</label>
+            @Html.TextBoxFor(m => m.ARCHIVETIMESTART, new { @class = "easyui-datebox", placeholder = "" })
+            至
+            @Html.TextBoxFor(m => m.ARCHIVETIMEEND, new { @class = "easyui-datebox", placeholder = "" })
+
+
+            <a href="#" class="easyui-linkbutton" id="btnSearchArchive" iconcls="icon-search">查询</a>
+        </div>
+    </div>
+
+    <div class="easyui-panel" title="查询结果" data-options="iconCls:'icon-database',region:'center'">
+        <table id="tbArchive" class="easyui-datagrid"></table>
+    </div>
+</div>
+    <script type="text/javascript">
+        function pagerFilter(data) {
+            if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
+                data = {
+                    total: data.length,
+                    rows: data
+                }
+            }
+            var dg = $(this);
+            var opts = dg.datagrid('options');
+            var pager = dg.datagrid('getPager');
+            pager.pagination({
+                onSelectPage: function (pageNum, pageSize) {
+                    opts.pageNumber = pageNum;
+                    opts.pageSize = pageSize;
+                    pager.pagination('refresh', { pageNumber: pageNum, pageSize: pageSize });
+                    dg.datagrid('loadData', data);
+                }
+            });
+            if (!data.originalRows) {
+                data.originalRows = (data.rows);
+            }
+            var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+            var end = start + parseInt(opts.pageSize);
+            data.rows = (data.originalRows.slice(start, end));
+            return data;
+        }
+
+        $(function () {
+            LoadData();
+            $("#btnSearchArchive").click(function () {
+                LoadData();
+            });
+        });
+
+        function LoadData() {
+            var data = {
+                PROJECTNO: $("#PROJECTNO").val(),
+                PROJECTNAME: $("#PROJECTNAME").val(),
+                BUILDORG: $("#BUILDORG").val(),
+                BUILDADRESS: $("#BUILDADRESS").val(),
+                ARCHIVENO: $("#ARCHIVENO").val()
+                //CREATETIMESTART: $("#CREATETIMESTART").val(),
+                //CREATETIMEEND: $("#CREATETIMEEND").val(),
+                //ENDTIMESTART: $("#ENDTIMESTART").val(),
+                //ENDTIMEEND: $("#ENDTIMEEND").val()
+            };
+            try {
+                data.ARCHIVETIMESTART = $("#ARCHIVETIMESTART").datebox('getValue');
+            } catch (e) { }
+            try {
+                data.ARCHIVETIMEEND = $("#ARCHIVETIMEEND").datebox('getValue');
+            } catch (e) { }
+
+            var t = $("#tbArchive").datagrid({
+                url: "@Url.Action("ArchiveData", "Archive")",
+                queryParams: data,
+                loadFilter: pagerFilter,
+                pagination: true,
+                pageSize: 20,
+                idField: 'ID',
+                treeField: 'ARCHIVENO',
+                fit: true,
+                columns: [[
+                    { field: 'REF_PROJECT_ID', title: '', checkbox: true },
+                    { field: 'ARCHIVENO', title: '档案编号', width: 140, sortable: true },
+                    { field: 'ARCHIVETIME', title: '归档时间', width: 140, formatter: formatDatebox, sortable: true },
+                    { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
+                    { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
+                    { field: 'BUILDORG', title: '建设单位', width: 200, sortable: true },
+                    { field: 'BUILDADRESS', title: '建设地址', width: 200, sortable: true }
+                ]],
+                onDblClickRow: function (field, row) {
+                    addTab(field.PROJECTNAME, '@Url.Action("Project", "Business")' + '?ProjectId=' + field.ID, 'icon-flag-pink', false);
+                },
+                offset: { width: -250, height: -150 }
+            });
+        }
+    </script>
