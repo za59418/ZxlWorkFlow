@@ -22,7 +22,7 @@ CREATE TABLE SYS_PROJECT
 	PID NUMBER
 );
 
-
+create sequence SEQ_SYS_PROJECTFORM;
 CREATE TABLE SYS_PROJECTFORM 
 (	
 	ID integer primary key, 
