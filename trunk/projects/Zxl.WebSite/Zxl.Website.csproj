@@ -3334,6 +3334,7 @@
     <Content Include="Scripts\highchart\exporting.js" />
     <Content Include="Scripts\highchart\highcharts-3d.js" />
     <Content Include="Scripts\highchart\highcharts-zh_CN.js" />
+    <Content Include="Scripts\highchart\highcharts.css" />
     <Content Include="Scripts\highchart\highcharts.js" />
     <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\jquery.portal.js" />
     <Content Include="Scripts\jeasyui-extensions\jquery-easyui-portal\portal.css" />
