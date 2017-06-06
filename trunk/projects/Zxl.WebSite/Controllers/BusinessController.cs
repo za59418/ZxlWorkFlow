@@ -713,8 +713,21 @@ namespace Zxl.WebSite.Controllers
                     prjWi.STATE = 0;
                     orm.Insert(prjWi);
 
-                    List<SYS_PROJECTFORM> forms = new List<SYS_PROJECTFORM>();
-                    List<SYS_PROJECTMATERIAL> materials = new List<SYS_PROJECTMATERIAL>();
+                    List<SYS_BUSINESSFORM> forms = orm.Query<SYS_BUSINESSFORM>("where REF_BUSINESS_ID=" + BusinessId);
+                    foreach(SYS_BUSINESSFORM bform in forms)
+                    {
+                        SYS_PROJECTFORM form = new SYS_PROJECTFORM();
+                        form.ID = ValueOperator.CreatePk("SYS_PROJECTFORM");
+                        form.FORMNAME = bform.FORMNAME;
+                        form.DESCRIPTION = bform.FORMNAME;
+                        form.REF_BUSINESSFORM_ID = bform.ID;
+                        form.REF_PROJECT_ID = prj.ID;
+                        form.CREATETIME = DateTime.Now;
+                        orm.Insert(form);
+                    }
+
+                    //List<SYS_PROJECTMATERIAL> materials = new List<SYS_PROJECTMATERIAL>();
+
                     orm.Commit();
                     orm.Close();
                     result.ReturnCode = ServiceResultCode.Success;

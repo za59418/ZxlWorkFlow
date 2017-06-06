@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>E:\版本更新\Test20150605</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\版本更新\Test20150606</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -103,7 +103,7 @@
       <publishTime>04/12/2017 10:15:33</publishTime>
     </File>
     <File Include="bin/ZXL.Data.dll">
-      <publishTime>06/02/2017 15:38:12</publishTime>
+      <publishTime>06/06/2017 14:07:43</publishTime>
     </File>
     <File Include="bin/Zxl.Form.dll">
       <publishTime>06/02/2017 15:37:29</publishTime>
@@ -112,7 +112,7 @@
       <publishTime>06/02/2017 15:37:29</publishTime>
     </File>
     <File Include="bin/Zxl.WebSite.dll">
-      <publishTime>06/05/2017 17:52:23</publishTime>
+      <publishTime>06/06/2017 14:41:55</publishTime>
     </File>
     <File Include="Content/css/select.css">
       <publishTime>04/12/2017 10:45:18</publishTime>
@@ -9774,6 +9774,21 @@
     <File Include="Scripts/easyui/1.3.4/themes/metro/window.css">
       <publishTime>04/12/2017 10:18:45</publishTime>
     </File>
+    <File Include="Scripts/highchart/exporting.js">
+      <publishTime>06/06/2017 13:57:18</publishTime>
+    </File>
+    <File Include="Scripts/highchart/highcharts-3d.js">
+      <publishTime>06/06/2017 13:56:31</publishTime>
+    </File>
+    <File Include="Scripts/highchart/highcharts-zh_CN.js">
+      <publishTime>06/06/2017 13:57:39</publishTime>
+    </File>
+    <File Include="Scripts/highchart/highcharts.css">
+      <publishTime>06/06/2017 14:02:26</publishTime>
+    </File>
+    <File Include="Scripts/highchart/highcharts.js">
+      <publishTime>06/06/2017 14:02:25</publishTime>
+    </File>
     <File Include="Scripts/jeasyui-extensions/jquery-easyui-portal/jquery.portal.js">
       <publishTime>04/14/2017 09:40:24</publishTime>
     </File>
@@ -9793,10 +9808,10 @@
       <publishTime>04/12/2017 10:17:46</publishTime>
     </File>
     <File Include="SQL/init.sql">
-      <publishTime>06/05/2017 16:55:09</publishTime>
+      <publishTime>06/06/2017 09:45:10</publishTime>
     </File>
     <File Include="Views/Archive/Index.cshtml">
-      <publishTime>06/05/2017 10:45:25</publishTime>
+      <publishTime>06/06/2017 11:41:30</publishTime>
     </File>
     <File Include="Views/Business/Dialog/Dialog_Business.cshtml">
       <publishTime>04/12/2017 17:43:22</publishTime>
@@ -9832,22 +9847,22 @@
       <publishTime>04/18/2017 18:28:25</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/20/2017 15:19:28</publishTime>
+      <publishTime>06/06/2017 14:07:18</publishTime>
     </File>
     <File Include="Views/Home/Login.cshtml">
       <publishTime>04/26/2017 10:40:49</publishTime>
     </File>
     <File Include="Views/Home/Portal.cshtml">
-      <publishTime>04/14/2017 09:40:24</publishTime>
+      <publishTime>06/06/2017 14:30:09</publishTime>
     </File>
     <File Include="Views/Search/Finished.cshtml">
-      <publishTime>06/05/2017 17:49:19</publishTime>
+      <publishTime>06/06/2017 11:41:48</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>06/05/2017 17:49:35</publishTime>
+      <publishTime>06/06/2017 11:41:39</publishTime>
     </File>
     <File Include="Views/Search/Processing.cshtml">
-      <publishTime>06/05/2017 17:36:59</publishTime>
+      <publishTime>06/06/2017 11:41:24</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/12/2017 10:16:14</publishTime>
@@ -9859,7 +9874,7 @@
       <publishTime>04/26/2017 10:40:49</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/05/2017 17:04:01</publishTime>
+      <publishTime>06/06/2017 14:07:34</publishTime>
     </File>
     <File Include="Views/Shared/_SideBar.cshtml">
       <publishTime>06/05/2017 10:42:44</publishTime>
