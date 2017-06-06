@@ -38,7 +38,7 @@
                 }
             },
             title: {
-                text: '2014年某网站不同浏览器访问量占比'
+                text: '案件办理统计'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -56,23 +56,24 @@
             },
             series: [{
                 type: 'pie',
-                name: '浏览器占比',
+                name: '业务类型',
                 data: [
-                    ['Firefox', 45.0],
-                    ['IE', 26.8],
+                    ['建筑选址', 45.0],
+                    ['建筑用地', 26.8],
                     {
-                        name: 'Chrome',
+                        name: '建筑核实',
                         y: 12.8,
                         sliced: true,
                         selected: true
                     },
-                    ['Safari', 8.5],
-                    ['Opera', 6.2],
-                    ['Others', 0.7]
+                    ['建筑工程证', 8.5],
+                    ['市政选址', 6.2],
+                    ['市政用地', 0.7]
                 ]
             }]
         });
-
+    });
+    $(function(){
         $('#container2').highcharts({
             chart: {
                 type: 'column',
@@ -87,16 +88,16 @@
                 marginRight: 40
             },
             title: {
-                text: '以性别划分的水果消费总量'
+                text: '一书三证面积统计'
             },
             xAxis: {
-                categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+                categories: ['建筑选址', '建筑用地', '建筑工程证', '市政选址', '市政用地']
             },
             yAxis: {
                 allowDecimals: false,
                 min: 0,
                 title: {
-                    text: '水果数量'
+                    text: '建筑面积'
                 }
             },
             tooltip: {
@@ -110,24 +111,25 @@
                 }
             },
             series: [{
-                name: '小张',
+                name: '一季度',
                 data: [5, 3, 4, 7, 2],
                 stack: 'male'
             }, {
-                name: '小王',
+                name: '二季度',
                 data: [3, 4, 4, 2, 5],
                 stack: 'male'
             }, {
-                name: '小彭',
+                name: '三季度',
                 data: [2, 5, 6, 2, 1],
                 stack: 'female'
             }, {
-                name: '小潘',
+                name: '四季度',
                 data: [3, 0, 4, 4, 3],
                 stack: 'female'
             }]
         });
-
+    });
+    $(function () {
         $('#container3').highcharts({
             chart: {
                 type: 'pie',
@@ -137,10 +139,10 @@
                 }
             },
             title: {
-                text: '简数科技每周水果消耗量'
+                text: '在办统计'
             },
             subtitle: {
-                text: 'Highcharts 中的3D环形图'
+                text: '本年度当前办件数量'
             },
             plotOptions: {
                 pie: {
@@ -149,24 +151,20 @@
                 }
             },
             series: [{
-                name: '货物金额',
+                name: '办件数量',
                 data: [
-                    ['香蕉', 8],
-                    ['猕猴桃', 3],
-                    ['桃子', 1],
-                    ['橘子', 6],
-                    ['苹果', 8],
-                    ['梨', 4],
-                    ['柑橘', 4],
-                    ['橙子', 1],
-                    ['葡萄 (串)', 1]
+                    ['建筑选址', 8],
+                    ['建筑用地', 3],
+                    ['建筑工程证', 1],
+                    ['建筑核实', 6],
+                    ['市政选址', 8],
+                    ['市政用地', 4],
+                    ['市政工程证', 4],
+                    ['市政核实', 1],
+                    ['建筑方案审查', 1]
                 ]
             }]
-        });
-
-       
-
-        
+        });        
     })
 
         /**
@@ -175,11 +173,11 @@
     window.onload = function () {
         var chart = new Highcharts.Chart('container4', {
             title: {
-                text: '不同城市的月平均气温',
+                text: '办结统计',
                 x: -20
             },
             subtitle: {
-                text: '数据来源: WorldClimate.com',
+                text: '按月统计',
                 x: -20
             },
             xAxis: {
@@ -187,7 +185,7 @@
             },
             yAxis: {
                 title: {
-                    text: '温度 (°C)'
+                    text: '办件数量 (件)'
                 },
                 plotLines: [{
                     value: 0,
@@ -196,7 +194,7 @@
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: '件'
             },
             legend: {
                 layout: 'vertical',
@@ -205,16 +203,16 @@
                 borderWidth: 0
             },
             series: [{
-                name: '东京',
+                name: '高新区',
                 data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
             }, {
-                name: '纽约',
+                name: '城南',
                 data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
             }, {
-                name: '柏林',
+                name: '城北',
                 data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
             }, {
-                name: '伦敦',
+                name: '开发区',
                 data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
             }]
         });
@@ -226,10 +224,10 @@
                 type: 'column'
             },
             title: {
-                text: '月平均降雨量'
+                text: '建筑统计'
             },
             subtitle: {
-                text: '数据来源: WorldClimate.com'
+                text: '按月统计'
             },
             xAxis: {
                 categories: [
@@ -251,7 +249,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: '降雨量 (mm)'
+                    text: '办件数(件)'
                 }
             },
             tooltip: {
@@ -269,16 +267,16 @@
                 }
             },
             series: [{
-                name: '东京',
+                name: '高新区',
                 data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
             }, {
-                name: '纽约',
+                name: '城南',
                 data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
             }, {
-                name: '伦敦',
+                name: '城北',
                 data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
             }, {
-                name: '柏林',
+                name: '开发区',
                 data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
             }]
         });
@@ -291,7 +289,7 @@
                 plotShadow: false
             },
             title: {
-                text: '2014 某网站各浏览器浏览量占比'
+                text: '市政统计'
             },
             tooltip: {
                 headerFormat: '{series.name}<br>',
@@ -312,19 +310,19 @@
             },
             series: [{
                 type: 'pie',
-                name: '浏览器访问量占比',
+                name: '办件数量',
                 data: [
-                    ['Firefox', 45.0],
-                    ['IE', 26.8],
+                    ['建筑选址', 45.0],
+                    ['建筑用地', 26.8],
                     {
-                        name: 'Chrome',
+                        name: '建筑核实',
                         y: 12.8,
                         sliced: true,
                         selected: true
                     },
-                    ['Safari', 8.5],
-                    ['Opera', 6.2],
-                    ['其他', 0.7]
+                    ['建筑工程证', 8.5],
+                    ['市政选址', 6.2],
+                    ['市政用地', 0.7]
                 ]
             }]
         });
