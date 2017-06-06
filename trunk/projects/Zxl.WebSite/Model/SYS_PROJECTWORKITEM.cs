@@ -23,6 +23,9 @@ namespace Zxl.WebSite.Model
         public DateTime STARTTIME { get; set; }
         [Field]
         public DateTime ENDTIME { get; set; }
+        /// <summary>
+        /// 状态值 0为在办 1为已办 2为挂起（即发送给角色，待领取）
+        /// </summary>
         [Field]
         public int STATE { get; set; }
 

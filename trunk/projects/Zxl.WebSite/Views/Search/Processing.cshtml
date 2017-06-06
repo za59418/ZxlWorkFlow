@@ -2,119 +2,121 @@
 
 @model SearchViewModel
 
-<div class="easyui-panel" title="高级查询"
-     data-options="iconCls:'icon-search',closable:false,collapsible:true,fix:true">
+<div class="easyui-layout" data-options="fix:true" style="width:100%;height:100%;">
+    <div class="easyui-panel" title="高级查询" style="height:120px;overflow:hidden;"
+         data-options="iconCls:'icon-search',closable:false,collapsible:true,region:'north'">
 
-    <div style="padding:5px;margin:10px;">
-        <label>项目编号:</label>
-        @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", placeholder = "" })
-        <label>项目名称:</label>
-        @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", placeholder = "" })
+        <div style="padding:5px;margin:10px;">
+            <label>项目编号:</label>
+            @Html.TextBoxFor(m => m.PROJECTNO, new { @class = "easyui-textbox", placeholder = "" })
+            <label>项目名称:</label>
+            @Html.TextBoxFor(m => m.PROJECTNAME, new { @class = "easyui-textbox", placeholder = "" })
 
-        <label>建设单位:</label>
-        @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", placeholder = "" })
-        <label>建设地址:</label>
-        @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", placeholder = "" })
+            <label>建设单位:</label>
+            @Html.TextBoxFor(m => m.BUILDORG, new { @class = "easyui-textbox", placeholder = "" })
+            <label>建设地址:</label>
+            @Html.TextBoxFor(m => m.BUILDADRESS, new { @class = "easyui-textbox", placeholder = "" })
+        </div>
+        <div style="padding:5px;margin:10px;">
+            <label>创建时间:</label>
+            @Html.TextBoxFor(m => m.CREATETIMESTART, new { @class = "easyui-datebox", placeholder = "" })
+            至
+            @Html.TextBoxFor(m => m.CREATETIMEEND, new { @class = "easyui-datebox", placeholder = "" })
+
+            <label>办结时间:</label>
+            @Html.TextBoxFor(m => m.ENDTIMESTART, new { @class = "easyui-datebox", placeholder = "" })
+            至
+            @Html.TextBoxFor(m => m.ENDTIMEEND, new { @class = "easyui-datebox", placeholder = "" })
+
+            <a href="#" class="easyui-linkbutton" id="btnSearchProcessing" iconcls="icon-search">查询</a>
+        </div>
     </div>
-    <div style="padding:5px;margin:10px;">
-        <label>创建时间:</label>
-        @Html.TextBoxFor(m => m.CREATETIMESTART, new { @class = "easyui-datebox", placeholder = "" })
-        至
-        @Html.TextBoxFor(m => m.CREATETIMEEND, new { @class = "easyui-datebox", placeholder = "" })
 
-        <label>办结时间:</label>
-        @Html.TextBoxFor(m => m.ENDTIMESTART, new { @class = "easyui-datebox", placeholder = "" })
-        至
-        @Html.TextBoxFor(m => m.ENDTIMEEND, new { @class = "easyui-datebox", placeholder = "" })
-
-        <a href="#" class="easyui-linkbutton" id="btnSearch" iconcls="icon-search">查询</a>
+    <div class="easyui-panel" title="查询结果" data-options="iconCls:'icon-database',region:'center'">
+        <table id="tbSearchProcessing" class="easyui-datagrid"></table>
     </div>
 </div>
 
-<div class="easyui-panel" title="查询结果" data-options="iconCls:'icon-database',closable:false,fit:true">
-    <table id="tbSearchProcessing" class="easyui-datagrid"></table>
-</div>
-
-<script type="text/javascript">
-    function pagerFilter(data) {
-        if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
-            data = {
-                total: data.length,
-                rows: data
+    <script type="text/javascript">
+        function pagerFilter(data) {
+            if (typeof data.length == 'number' && typeof data.splice == 'function') {// is array
+                data = {
+                    total: data.length,
+                    rows: data
+                }
             }
-        }
-        var dg = $(this);
-        var opts = dg.datagrid('options');
-        var pager = dg.datagrid('getPager');
-        pager.pagination({
-            onSelectPage: function (pageNum, pageSize) {
-                opts.pageNumber = pageNum;
-                opts.pageSize = pageSize;
-                pager.pagination('refresh', { pageNumber: pageNum, pageSize: pageSize });
-                dg.datagrid('loadData', data);
+            var dg = $(this);
+            var opts = dg.datagrid('options');
+            var pager = dg.datagrid('getPager');
+            pager.pagination({
+                onSelectPage: function (pageNum, pageSize) {
+                    opts.pageNumber = pageNum;
+                    opts.pageSize = pageSize;
+                    pager.pagination('refresh', { pageNumber: pageNum, pageSize: pageSize });
+                    dg.datagrid('loadData', data);
+                }
+            });
+            if (!data.originalRows) {
+                data.originalRows = (data.rows);
             }
-        });
-        if (!data.originalRows) {
-            data.originalRows = (data.rows);
+            var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+            var end = start + parseInt(opts.pageSize);
+            data.rows = (data.originalRows.slice(start, end));
+            return data;
         }
-        var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
-        var end = start + parseInt(opts.pageSize);
-        data.rows = (data.originalRows.slice(start, end));
-        return data;
-    }
 
-    $(function () {
-        LoadData();
-        $("#btnSearch").click(function () {
+        $(function () {
             LoadData();
+            $("#btnSearchProcessing").click(function () {
+                LoadData();
+            });
         });
-    });
 
-    function LoadData() {
-        var data = {
-            PROJECTNO: $("#PROJECTNO").val(),
-            PROJECTNAME: $("#PROJECTNAME").val(),
-            BUILDORG: $("#BUILDORG").val(),
-            BUILDADRESS: $("#BUILDADRESS").val()
-            //CREATETIMESTART: $("#CREATETIMESTART").val(),
-            //CREATETIMEEND: $("#CREATETIMEEND").val(),
-            //ENDTIMESTART: $("#ENDTIMESTART").val(),
-            //ENDTIMEEND: $("#ENDTIMEEND").val()
-        };
-        try {
-            data.CREATETIMESTART = $("#CREATETIMESTART").datebox('getValue');
-        } catch (e) { }
-        try {
-            data.CREATETIMEEND = $("#CREATETIMEEND").datebox('getValue');
-        } catch (e) { }
-        try {
-            data.ENDTIMESTART = $("#ENDTIMESTART").datebox('getValue');
-        } catch (e) { }
-        try {
-            data.ENDTIMEEND = $("#ENDTIMEEND").datebox('getValue');
-        } catch (e) { }
+        function LoadData() {
+            var data = {
+                PROJECTNO: $("#PROJECTNO").val(),
+                PROJECTNAME: $("#PROJECTNAME").val(),
+                BUILDORG: $("#BUILDORG").val(),
+                BUILDADRESS: $("#BUILDADRESS").val()
+                //CREATETIMESTART: $("#CREATETIMESTART").val(),
+                //CREATETIMEEND: $("#CREATETIMEEND").val(),
+                //ENDTIMESTART: $("#ENDTIMESTART").val(),
+                //ENDTIMEEND: $("#ENDTIMEEND").val()
+            };
+            try {
+                data.CREATETIMESTART = $("#CREATETIMESTART").datebox('getValue');
+            } catch (e) { }
+            try {
+                data.CREATETIMEEND = $("#CREATETIMEEND").datebox('getValue');
+            } catch (e) { }
+            try {
+                data.ENDTIMESTART = $("#ENDTIMESTART").datebox('getValue');
+            } catch (e) { }
+            try {
+                data.ENDTIMEEND = $("#ENDTIMEEND").datebox('getValue');
+            } catch (e) { }
 
-        var t = $("#tbSearchProcessing").treegrid({
-            url: "@Url.Action("Projectsing", "Search")",
-            queryParams: data,
-            loadFilter: pagerFilter,
-            pageSize: 20,
-            pagination: true,
-            idField: 'ID',
-            treeField: 'PROJECTNO',
-            fit: true,
-            columns: [[
-                { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
-                { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
-                { field: 'BUILDORG', title: '建设单位', width: 200, sortable: true },
-                { field: 'BUILDADRESS', title: '建设地址', width: 200, sortable: true },
-                { field: 'CREATETIME', title: '创建时间', width: 140, formatter: formatDatebox },
-                { field: 'ENDTIME', title: '结束时间', width: 140, formatter: formatDatebox, sortable: true }
-            ]],
-            onDblClickRow: function (field, row) {
-                addTab(field.PROJECTNAME, '@Url.Action("Project", "Business")' + '?ProjectId=' + field.ID, 'icon-flag-pink', false);
-            },
-            offset: { width: -250, height: -150 }
-        });
-    }
-</script>
+            var t = $("#tbSearchProcessing").datagrid({
+                url: "@Url.Action("Projectsing", "Search")",
+                queryParams: data,
+                loadFilter: pagerFilter,
+                pageSize: 20,
+                pagination: true,
+                idField: 'ID',
+                treeField: 'PROJECTNO',
+                fit: true,
+                columns: [[
+                    { field: 'PROJECTNO', title: '项目编号', width: 200, sortable: true },
+                    { field: 'PROJECTNAME', title: '项目名称', width: 200, sortable: true },
+                    { field: 'BUILDORG', title: '建设单位', width: 200, sortable: true },
+                    { field: 'BUILDADRESS', title: '建设地址', width: 200, sortable: true },
+                    { field: 'CREATETIME', title: '创建时间', width: 140, formatter: formatDatebox },
+                    { field: 'ENDTIME', title: '结束时间', width: 140, formatter: formatDatebox, sortable: true }
+                ]],
+                onDblClickRow: function (field, row) {
+                    addTab(field.PROJECTNAME, '@Url.Action("Project", "Business")' + '?ProjectId=' + field.ID, 'icon-flag-pink', false);
+                },
+                offset: { width: -250, height: -150 }
+            });
+        }
+    </script>

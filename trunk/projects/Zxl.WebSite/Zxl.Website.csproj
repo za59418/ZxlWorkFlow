@@ -145,10 +145,12 @@
     <Compile Include="ModelView\SearchViewModel.cs" />
     <Compile Include="ModelView\LoginViewModel.cs" />
     <Compile Include="ModelView\ServiceResult.cs" />
+    <Compile Include="ModelView\ArchiveViewModel.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\SYS_BUSINESS.cs" />
     <Compile Include="Model\SYS_BUSINESSPROCESS.cs" />
     <Compile Include="Model\SYS_BUSINESSFORM.cs" />
+    <Compile Include="Model\SYS_ARCHIVE.cs" />
     <Compile Include="Model\SYS_SYSTEMCONFIG.cs" />
     <Compile Include="Model\SYS_PROJECTPROCESS.cs" />
     <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />

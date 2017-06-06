@@ -168,3 +168,17 @@ create table sys_businessroleuser
     ref_user_id integer,
     ref_businessrole_id integer
 );
+
+--µµ°¸±í
+create sequence SEQ_SYS_ARCHIVE;
+create table sys_archive
+(
+	ID integer primary key, 
+	REF_PROJECT_ID NUMBER,
+	PROJECTNO VARCHAR2(100), 
+	PROJECTNAME VARCHAR2(200),
+	BUILDORG VARCHAR2(200), 
+	BUILDADRESS VARCHAR2(500), 
+	ARCHIVENO  VARCHAR2(100), 
+	ARCHIVETIME DATE
+);
