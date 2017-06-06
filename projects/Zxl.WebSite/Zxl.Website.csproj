@@ -3485,6 +3485,7 @@
     <Content Include="Views\Search\Finished.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Archive\Index.cshtml" />
+    <Content Include="Views\Business\ProcessFa.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
