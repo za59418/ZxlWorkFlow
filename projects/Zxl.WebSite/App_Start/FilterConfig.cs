@@ -10,7 +10,6 @@ namespace Zxl.WebSite
             filters.Add(new HandleErrorAttribute());
             filters.Add(new CheckLoginAttribute());
         }
-
         public class CheckLoginAttribute : AuthorizeAttribute
         {
             protected override bool AuthorizeCore(HttpContextBase httpContext)
