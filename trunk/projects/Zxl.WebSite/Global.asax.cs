@@ -21,6 +21,9 @@ namespace Zxl.WebSite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //unity配置
+            UnityConfig.RegisterTypes();
         }
     }
 }

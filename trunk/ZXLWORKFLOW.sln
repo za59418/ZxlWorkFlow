@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.WebSite", "projects\Zxl.WebSite\Zxl.WebSite.csproj", "{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Data", "projects\Zxl.Data\Zxl.Data.csproj", "{A37FB0C7-4A07-4C7E-BFB8-AB49B02AD6D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Printer", "projects\Zxl.Printer\Zxl.Printer.csproj", "{CB58C7AA-AEEB-46CB-AE5F-4C70638D8ED4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Form", "projects\Zxl.Form\Zxl.Form.csproj", "{57489B8F-8A3E-448E-A4EF-D660997CD4CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.WebSite", "projects\Zxl.WebSite\Zxl.WebSite.csproj", "{FDB30D28-861A-4780-A046-300D18363A70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxl.Business", "projects\Zxl.Business\Zxl.Business.csproj", "{EA7C6760-12EF-4F4F-8716-9F4D33E24392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{877EE4CC-10E6-4B76-8E3E-DB3C337898DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A37FB0C7-4A07-4C7E-BFB8-AB49B02AD6D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A37FB0C7-4A07-4C7E-BFB8-AB49B02AD6D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A37FB0C7-4A07-4C7E-BFB8-AB49B02AD6D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57489B8F-8A3E-448E-A4EF-D660997CD4CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB30D28-861A-4780-A046-300D18363A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB30D28-861A-4780-A046-300D18363A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB30D28-861A-4780-A046-300D18363A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB30D28-861A-4780-A046-300D18363A70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7C6760-12EF-4F4F-8716-9F4D33E24392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7C6760-12EF-4F4F-8716-9F4D33E24392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7C6760-12EF-4F4F-8716-9F4D33E24392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7C6760-12EF-4F4F-8716-9F4D33E24392}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
