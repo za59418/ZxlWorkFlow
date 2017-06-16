@@ -8,15 +8,23 @@ using System.IO;
 using System.Xml;
 using System.Text;
 using Zxl.Data;
-using Zxl.WebSite.Model;
+using Zxl.Business.Model;
+//using Zxl.WebSite.Model;
 using Zxl.WebSite.ModelView;
 using Zxl.Printer;
 using Zxl.Form.Sheet;
+using Microsoft.Practices.Unity;
+using Zxl.Business.Interface;
 
 namespace Zxl.WebSite.Controllers
 {
     public class BusinessController : Controller
     {
+        [Dependency]
+        public IBusinessService BusinessServcie { get; set; }
+        [Dependency]
+        public IUserService UserService { get; set; }
+
         public ActionResult Index()
         {
             return View();
@@ -41,16 +49,21 @@ namespace Zxl.WebSite.Controllers
 
         public ActionResult Projectsing()
         {
-            List<SYS_PROJECT> list = null;
+
+            //List<SYS_PROJECT> list = null;
+            //string UserId = Session["UserId"].ToString();
+            //using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            //{
+            //    list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=0)");
+            //}
+            //foreach (SYS_PROJECT prj in list)
+            //{
+            //    prj._parentId = prj.PID;
+            //}
+
             string UserId = Session["UserId"].ToString();
-            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
-            {
-                list = orm.Query<SYS_PROJECT>("where ID in (select ref_project_id from sys_projectworkitem where ref_user_id = " + UserId + " and state=0)");
-            }
-            foreach (SYS_PROJECT prj in list)
-            {
-                prj._parentId = prj.PID;
-            }
+            List<SYS_PROJECT> list = BusinessServcie.Projectsing(UserId);
+            SYS_USER user = UserService.GetUser(UserId);
 
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write(jss.Serialize(new { rows = list }));
