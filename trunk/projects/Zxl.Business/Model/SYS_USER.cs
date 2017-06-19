@@ -16,6 +16,18 @@ namespace Zxl.Business.Model
         [Field]
         public string USERNAME { get; set; }
         [Field]
+        public string USERIMG { get; set; }
+        [Field]
+        public string DEPARTMENT { get; set; }
+        [Field]
+        public string ROLE { get; set; }
+        [Field]
+        public string MOBILE { get; set; }
+        [Field]
+        public string PHONE { get; set; }
+        [Field]
+        public string EMAIL { get; set; }
+        [Field]
         public string PASSWORD { get; set; }
         [Field]
         public DateTime CREATETIME { get; set; }

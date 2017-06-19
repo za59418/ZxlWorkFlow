@@ -11,5 +11,7 @@ namespace Zxl.Business.Interface
     {
         SYS_USER GetUser(string userId);
         SYS_USER GetUser(string username,string password);
+        SYS_USER modifyPassword(string userId, string password);
+        SYS_USER modifyUserInfo(string userId, string name, string value);
     }
 }

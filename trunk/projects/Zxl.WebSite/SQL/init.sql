@@ -150,6 +150,12 @@ create table sys_user
     id integer primary key,
     username varchar2(100),
     password varchar2(100),
+	USERIMG varchar2(100),
+	DEPARTMENT varchar2(100),
+	ROLE varchar2(100),
+	MOBILE varchar2(100),
+	PHONE varchar2(100),
+	EMAIL varchar2(100),
     createtime date,
     state number(1,0)
 );

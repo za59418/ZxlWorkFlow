@@ -29,5 +29,33 @@ namespace Zxl.Business.Impl
             }
             return user;
         }
+        public SYS_USER modifyPassword(string userId, string password)
+        {
+            SYS_USER user = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                user = orm.Init<SYS_USER>("where ID='" + userId + "'");
+                user.PASSWORD = password;
+                orm.Save(user);
+            }
+            return user;
+        }
+        public SYS_USER modifyUserInfo(string userId, string name, string value)
+        {
+            SYS_USER user = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                user = orm.Init<SYS_USER>("where ID='" + userId + "'");
+                if (name == "MOBILE")
+                    user.MOBILE = value;
+                if (name == "PHONE")
+                    user.PHONE = value;
+                if (name == "EMAIL")
+                    user.EMAIL = value;
+                orm.Save(user);
+            }
+            return user;
+        }
+
     }
 }

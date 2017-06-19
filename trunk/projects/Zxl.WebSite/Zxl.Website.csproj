@@ -240,25 +240,6 @@
     <Compile Include="ModelView\LoginViewModel.cs" />
     <Compile Include="ModelView\SearchViewModel.cs" />
     <Compile Include="ModelView\ServiceResult.cs" />
-    <Compile Include="Model\AbstractModel.cs" />
-    <Compile Include="Model\SYS_ARCHIVE.cs" />
-    <Compile Include="Model\SYS_BUSINESS.cs" />
-    <Compile Include="Model\SYS_BUSINESSACTIVITY.cs" />
-    <Compile Include="Model\SYS_BUSINESSACTIVITYROUTE.cs" />
-    <Compile Include="Model\SYS_BUSINESSFORM.cs" />
-    <Compile Include="Model\SYS_BUSINESSMATERIAL.cs" />
-    <Compile Include="Model\SYS_BUSINESSPROCESS.cs" />
-    <Compile Include="Model\SYS_BUSINESSROLE.cs" />
-    <Compile Include="Model\SYS_BUSINESSROLEUSER.cs" />
-    <Compile Include="Model\SYS_PROJECT.cs" />
-    <Compile Include="Model\SYS_PROJECTACTIVITY.cs" />
-    <Compile Include="Model\SYS_PROJECTACTIVITYROUTE.cs" />
-    <Compile Include="Model\SYS_PROJECTFORM.cs" />
-    <Compile Include="Model\SYS_ProjectMaterial.cs" />
-    <Compile Include="Model\SYS_PROJECTPROCESS.cs" />
-    <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />
-    <Compile Include="Model\SYS_SYSTEMCONFIG.cs" />
-    <Compile Include="Model\SYS_USER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -3479,7 +3460,9 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
-    <Content Include="UnityConfig.config" />
+    <Content Include="UnityConfig.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
