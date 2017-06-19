@@ -8,7 +8,7 @@ using System.IO;
 using System.Xml;
 using System.Text;
 using Zxl.Data;
-using Zxl.WebSite.Model;
+using Zxl.Business.Model;
 using Zxl.WebSite.ModelView;
 using Zxl.Printer;
 using Zxl.Form.Sheet;

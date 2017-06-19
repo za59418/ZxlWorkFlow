@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using Zxl.Data;
-using Zxl.WebSite.Model;
+using Zxl.Business.Model;
 
 namespace Zxl.WebSite.Controllers
 {
