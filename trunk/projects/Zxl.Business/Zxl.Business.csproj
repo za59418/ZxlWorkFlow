@@ -57,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Impl\BusinessService.cs" />
+    <Compile Include="Impl\MessageService.cs" />
     <Compile Include="Impl\UserService.cs" />
     <Compile Include="Interface\IBusinessService.cs" />
+    <Compile Include="Interface\IMessageService.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\SYS_ARCHIVE.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Model\SYS_PROJECTPROCESS.cs" />
     <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />
     <Compile Include="Model\SYS_SYSTEMCONFIG.cs" />
+    <Compile Include="Model\SYS_MESSAGE.cs" />
     <Compile Include="Model\SYS_USER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
