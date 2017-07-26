@@ -1,4 +1,7 @@
-﻿<div id="portal" class="easyui-portal" data-options="fit: true, border: false" style="overflow: hidden;">
+﻿@using Zxl.Business.Model;
+@model List<SYS_MESSAGE>
+
+<div id="portal" class="easyui-portal" data-options="fit: true, border: false" style="overflow: hidden;">
     <div style="width: 30%;">
         <div data-options="title: '案件办理统计', height: 350, collapsible: true, closable: true" style="overflow:hidden;">
             <div id="container1" style="height: 350px"></div>
@@ -25,8 +28,55 @@
     </div>
 </div>
 
+<div id="msgWindow" class="easyui-window" toolbar="#msgToolbar"
+    data-options="iconCls:'icon-comments', resizable:false, maximizable:false, minimizable:false, collapsible:false, closed:true">
+    @foreach (SYS_MESSAGE msg in Model)
+    {
+        <div style="border-bottom:dotted 1px gray;text-indent:2em;">
+            <div>
+                <img src="~/Images/icons/user_b.png" />
+                @msg.SENDUSERNAME
+            </div>
+            <div style="text-indent:4em;">
+                <table>
+                    <tr>
+                        <td width="80%"><span>@msg.CONTENT</span></td>
+                        <td><span>@msg.SENDDATE.ToShortDateString()</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="msgToolbar" style="display:none;">
+    <table cellpadding="0" cellspacing="0" style="width:100%">
+        <tr>
+            <td>
+                <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">全部设为已读</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <script>
+    setTimeout(function () {
+        var bWidth = document.body.clientWidth;
+        var bHeight = document.body.clientHeight;
+
+        $("#msgWindow").dialog({
+            width: 400,
+            height: 250,
+            top: bHeight - 250,
+            left: bWidth - 400,
+            title: '消息',
+            closed: false,
+            cache: false
+            //href: 'get_content.php'
+        });
+        $("#msgToolbar").css("display", "");
+    }, 2000);
+
     $(function () {
         $('#container1').highcharts({
             chart: {
@@ -73,7 +123,7 @@
             }]
         });
     });
-    $(function(){
+    $(function () {
         $('#container2').highcharts({
             chart: {
                 type: 'column',
@@ -164,12 +214,12 @@
                     ['建筑方案审查', 1]
                 ]
             }]
-        });        
+        });
     })
 
-        /**
-  * Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
- **/
+    /**
+* Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
+**/
     window.onload = function () {
         var chart = new Highcharts.Chart('container4', {
             title: {

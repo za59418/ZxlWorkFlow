@@ -7,11 +7,16 @@ using System.Data;
 using Zxl.Data;
 using Zxl.Business.Model;
 using Zxl.WebSite.ModelView;
+using Zxl.Business.Interface;
+using Microsoft.Practices.Unity;
 
 namespace Zxl.WebSite.Controllers
 {
     public class HomeController : Controller
     {
+        [Dependency]
+        public IMessageService MessageService { get; set; }
+
         public ActionResult Index()
         {
             return View();
@@ -19,7 +24,9 @@ namespace Zxl.WebSite.Controllers
 
         public ActionResult Portal()
         {
-            return View();
+            string UserId = Session["UserId"].ToString();
+            List<SYS_MESSAGE> NoReadMsgs = MessageService.GetNoReadMsgs(UserId);
+            return View(NoReadMsgs);
         }
 
         [AllowAnonymous]
