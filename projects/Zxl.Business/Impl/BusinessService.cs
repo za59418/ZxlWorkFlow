@@ -25,5 +25,19 @@ namespace Zxl.Business.Impl
             return list;
         }
 
+        public List<SYS_METADATA> MetaDatas()
+        {
+            List<SYS_METADATA> list = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                list = orm.Query<SYS_METADATA>();
+            }
+            foreach (SYS_METADATA data in list)
+            {
+                data._parentId = -1;
+            }
+            return list;
+        }
+
     }
 }

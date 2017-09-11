@@ -10,5 +10,6 @@ namespace Zxl.Business.Interface
     public interface IBusinessService
     {
         List<SYS_PROJECT> Projectsing(string UserId);
+        List<SYS_METADATA> MetaDatas();
     }
 }
