@@ -1,0 +1,55 @@
+<ion-view title="{{title}}">
+    <ion-nav-bar>
+        <ion-header-bar class="nav-title-slide-ios7 bar-light">
+            <ion-nav-buttons side="left">
+                <a class="button button-icon icon ion-ios-undo-outline" style="font-size: 30px;" ui-sref="tab.wsbj"></a>
+            </ion-nav-buttons>
+        </ion-header-bar>
+    </ion-nav-bar>
+    <ion-content>
+        <form name="dataForm" novalidate="novalidate" ng-submit="save(dataForm);">
+            <div class="list">
+
+                <span class="item item-divider item-dark">项目信息</span>
+                <label class="item item-input">
+                    <span class="input-label">案件地址：</span>
+                    <input type="text" ng-model="data.CaseAdd" required placeholder="请输入案件地址">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">案件名称：</span>
+                    <input type="text" ng-model="data.CaseName" required placeholder="请输入案件名称">
+                </label>
+
+
+                <span class="item item-divider item-dark">申请单位信息</span>
+                <label class="item item-input">
+                    <span class="input-label">单位地址：</span>
+                    <input type="text" ng-model="data.OrgAdd" required placeholder="请输入单位地址">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">单位名称：</span>
+                    <input type="text" ng-model="data.OrgName" required placeholder="请输入单位名称">
+                </label>
+
+                <span class="item item-divider item-dark">联系信息</span>
+                <label class="item item-input item-button-right">
+                    <span class="input-label">查询编号：</span>
+                    <input type="text" ng-model="data.SearchNo" required readonly placeholder="请生成查询编号">
+                    <button class="button button-positive">
+                        生成
+                    </button>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">联系电话：</span>
+                    <input type="text" ng-model="data.ContactTel" required placeholder="请输入联系电话">
+                </label>
+
+                <span class="item item-divider">材料</span>
+
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit" ng-disabled="dataForm.$invalid">提交</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view> 

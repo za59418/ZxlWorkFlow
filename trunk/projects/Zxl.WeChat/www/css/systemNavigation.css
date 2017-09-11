@@ -1,0 +1,199 @@
+﻿.systemNavigationRoot .spinner-container {
+    position: absolute;
+    top: 20px;
+    left: 48%;
+}
+
+.systemNavigationRoot img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 60%;
+    margin: 0px 0 4px 0;
+}
+
+.systemNavigationRoot .item {
+    font-weight: 500;
+}
+
+    .systemNavigationRoot .item:first-child {
+        border-top: none;
+    }
+
+    .systemNavigationRoot .item .colorblue {
+        color: #37dcf3;
+        font-size: 20px;
+    }
+
+.systemNavigations .spinner-container {
+    position: absolute;
+    top: 20px;
+    left: 48%;
+}
+
+.systemNavigations img {
+    max-width: 100%;
+    max-height: 60%;
+    width: 100%;
+}
+
+.systemNavigations .repeatTabsStyle {
+    display: block;
+    background-image: none;
+    background-color: #fff;
+    border-bottom-width: 0;
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin-top: -5px;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .systemNavigations .repeatTabsStyle {
+    top: 0px;
+}
+
+.systemNavigations .businessSystemTabScroll {
+    height: 100%;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+    .systemNavigations .businessSystemTabScroll .scroll {
+        height: 100%;
+        margin-top: -1px;
+        white-space: nowrap;
+    }
+
+    .systemNavigations .businessSystemTabScroll .scroll-bar {
+        opacity: 0;
+    }
+
+    .systemNavigations .businessSystemTabScroll a.tab-item {
+        display: inline-block;
+        width: 25%;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+.systemNavigations .sysNavsTabContent {
+    margin-top: 10px;
+}
+
+    .systemNavigations .sysNavsTabContent > div {
+        border-bottom: 1px solid #d6d6d6;
+        clear: both;
+        background-color: #fff;
+        padding: 15px 10px 15px 15px;
+    }
+
+        .systemNavigations .sysNavsTabContent > div > div {
+            padding: 0px;
+        }
+
+            .systemNavigations .sysNavsTabContent > div > div > span {
+                display: inline-block;
+                width: 25%;
+            }
+
+                .systemNavigations .sysNavsTabContent > div > div > span > a > span {
+                    display: block;
+                    color: #666666;
+                    font-weight: 500;
+                    font-size: 14px;
+                    white-space: normal;
+                }
+
+                .systemNavigations .sysNavsTabContent > div > div > span > a > i {
+                    display: block;
+                    line-height: 55px;
+                    font-size: 35px;
+                }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i > span {
+                        position: absolute;
+                        margin-left: -13px;
+                        height: 24px;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor1 {
+                        color: #28d3c6;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor2 {
+                        color: #85d03e;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor3 {
+                        color: #f6a900;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor4 {
+                        color: #f15d4a;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor5 {
+                        color: #f65073;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor6 {
+                        color: #30c27c;
+                    }
+
+                    .systemNavigations .sysNavsTabContent > div > div > span > a > i.navLinkColor7 {
+                        color: #0eaefd;
+                    }
+
+        .systemNavigations .sysNavsTabContent > div > .SysNavSecTitle {
+            color: #000;
+            font-weight: 500;
+            padding: 10px 0px;
+            font-size: 16px;
+        }
+
+@media(min-width:680px) {
+    .systemNavigationRoot .item {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+        .systemNavigationRoot .item .colorblue {
+            font-size: 25px;
+        }
+
+    .systemNavigationRoot .badge {
+        top: 23px;
+    }
+
+    .systemNavigations .repeatTabsStyle {
+        height: 65px;
+    }
+
+    .systemNavigations .businessSystemTabScroll a.tab-item {
+        font-size: 20px;
+        line-height: 65px;
+    }
+
+    .systemNavigations .sysNavsTabContent > div {
+        padding: 34px 0px 34px 30px;
+    }
+
+        .systemNavigations .sysNavsTabContent > div > div > span > a > span {
+            font-size: 20px;
+        }
+
+        .systemNavigations .sysNavsTabContent > div > div > span > a > i {
+            line-height: 100px;
+            font-size: 60px;
+        }
+
+        .systemNavigations .sysNavsTabContent > div > .SysNavSecTitle {
+            font-size: 22px;
+        }
+
+        .systemNavigations .sysNavsTabContent > div > div > span > a > i > span {
+            margin-left: -22px;
+            margin-top: 10px;
+            height: 26px;
+        }
+}
