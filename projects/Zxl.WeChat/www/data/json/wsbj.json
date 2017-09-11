@@ -1,0 +1,39 @@
+{
+    "businesses": [        
+        {
+            "id": 1,
+            "name": "建设项目选址意见书核发",
+            "shortName": "建筑选址",
+            "pic": "img/wwbj.jpg",
+            "createTime": "2017-07-31"
+        },
+        {
+            "id": 2,
+            "name": "建设用地规划许可审批",
+            "shortName": "建筑用地",
+            "pic": "img/wwbj.jpg",
+            "createTime": "2017-07-31"
+        },
+        {
+            "id": 3,
+            "name": "建设工程规划许可审批",
+            "shortName": "建筑工程证",
+            "pic": "img/wwbj.jpg",
+            "createTime": "2017-07-31"
+        },
+        {
+            "id": 4,
+            "name": "临时建设工程规划许可",
+            "shortName": "建筑临时证",
+            "pic": "img/wwbj.jpg",
+            "createTime": "2017-07-31"
+        },
+        {
+            "id": 5,
+            "name": "建设工程规划核实验收",
+            "shortName": "建筑核实",
+            "pic": "img/wwbj.jpg",
+            "createTime": "2017-07-31"
+        }
+    ]
+}

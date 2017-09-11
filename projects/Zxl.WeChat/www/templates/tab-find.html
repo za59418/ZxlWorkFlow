@@ -1,0 +1,19 @@
+
+<ion-view title="{{title}}" on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()">
+    <!--<ion-content>
+        <h1 >发现页面</h1>
+    </ion-content>-->
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-input">
+                <span class="item-input-wrapper" style="margin-right:16px">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input id="search" type="search" placeholder="请输入您的报建编号" ng-model="searchCont.key" ng-keyup="search()">
+                    <i class="icon ion-close-circled placeholder-icon" style="vertical-align: middle;"
+                       on-tap="clearSearch()" ng-if="searchCont.key.length"></i>
+                </span>
+            </ion-item>
+            <ion-item class="" ng-repeat="item in ItemArr2">{{item.name}}</ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
