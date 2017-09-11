@@ -242,6 +242,10 @@
     <Compile Include="ModelView\ServiceResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="TestService.asmx.cs">
+      <DependentUpon>TestService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\select.css" />
@@ -3425,6 +3429,7 @@
     <Content Include="Scripts\jquery.jqprint-0.3.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="SQL\init.sql" />
+    <Content Include="TestService.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
