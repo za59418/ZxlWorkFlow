@@ -218,3 +218,21 @@ COMMENT ON COLUMN SYS_MESSAGE.RECVSTATE IS '0未接收1已接收';
 COMMENT ON COLUMN SYS_MESSAGE.SHOWRECV IS '显示即接收(0否1是)'; 
 COMMENT ON COLUMN SYS_MESSAGE.CONTENT IS '消息内容';
 COMMENT ON COLUMN SYS_MESSAGE.STATE IS '状态';
+
+
+
+
+
+
+
+
+--定制端
+--元数据
+create sequence SEQ_SYS_METADATA;
+create table SYS_METADATA
+(
+       ID number primary key,
+       NAME varchar2(200),
+       DESCRIPTION varchar2(200),
+       LAYOUT blob
+);
