@@ -11,5 +11,6 @@ namespace Zxl.Business.Interface
     {
         List<SYS_PROJECT> Projectsing(string UserId);
         List<SYS_METADATA> MetaDatas();
+        List<SYS_METADATADETAIL> MetaDataDetails(int MetaDataID);
     }
 }

@@ -236,3 +236,17 @@ create table SYS_METADATA
        DESCRIPTION varchar2(200),
        LAYOUT blob
 );
+
+--ÔªÊý¾Ý×Ö¶Î
+create sequence SEQ_SYS_METADATADETAIL;
+create table SYS_METADATADETAIL
+(
+       id number primary key,
+       ref_metadata_id number,
+       name varchar2(200),
+       description varchar2(200),
+       datatype varchar2(50),
+       length number,
+	   nullable number,
+	   defaultval varchar2(500)
+);

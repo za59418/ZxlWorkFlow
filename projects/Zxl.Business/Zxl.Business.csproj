@@ -64,6 +64,7 @@
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\SYS_ARCHIVE.cs" />
+    <Compile Include="Model\SYS_METADATADETAIL.cs" />
     <Compile Include="Model\SYS_METADATA.cs" />
     <Compile Include="Model\SYS_BUSINESS.cs" />
     <Compile Include="Model\SYS_BUSINESSACTIVITY.cs" />
