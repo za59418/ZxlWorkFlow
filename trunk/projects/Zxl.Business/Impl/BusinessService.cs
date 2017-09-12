@@ -39,5 +39,16 @@ namespace Zxl.Business.Impl
             return list;
         }
 
+        public List<SYS_METADATADETAIL> MetaDataDetails(int MetaDataID)
+        {
+            List<SYS_METADATADETAIL> list = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                list = orm.Query<SYS_METADATADETAIL>("where REF_METADATA_ID=" + MetaDataID);
+            }
+            return list;
+        }
+
+
     }
 }
