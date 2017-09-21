@@ -70,6 +70,12 @@
     <Compile Include="Ctrl\emptyCtrl.Designer.cs">
       <DependentUpon>emptyCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\userCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\userCtrl.Designer.cs">
+      <DependentUpon>userCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\metaDataCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Ctrl\businessDataCtrl.resx">
       <DependentUpon>businessDataCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\userCtrl.resx">
+      <DependentUpon>userCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
@@ -184,6 +193,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\metadata.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\org.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\role.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\businessData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dictionary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\material.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

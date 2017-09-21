@@ -81,7 +81,7 @@ namespace Zxl.Builder
 
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            emptyCtrl ctrl = new emptyCtrl();
+            userCtrl ctrl = new userCtrl();
             ctrl.Dock = DockStyle.Fill;
             AddPage("用户管理", ctrl);
         }
