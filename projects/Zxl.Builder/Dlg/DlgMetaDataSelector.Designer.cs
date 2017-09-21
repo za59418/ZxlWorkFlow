@@ -121,10 +121,12 @@
             this.ClientSize = new System.Drawing.Size(343, 367);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DlgMetaDataSelector";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "业务数据列表";
             ((System.ComponentModel.ISupportInitialize)(this.treeMetaDataList)).EndInit();

@@ -64,11 +64,23 @@
     <Compile Include="Ctrl\businessDataCtrl.Designer.cs">
       <DependentUpon>businessDataCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\emptyCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\emptyCtrl.Designer.cs">
+      <DependentUpon>emptyCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\metaDataCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ctrl\metaDataCtrl.Designer.cs">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgEditMetaData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditMetaData.Designer.cs">
+      <DependentUpon>DlgEditMetaData.cs</DependentUpon>
     </Compile>
     <Compile Include="Dlg\DlgMetaDataSelector.cs">
       <SubType>Form</SubType>
@@ -95,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditMetaData.resx">
+      <DependentUpon>DlgEditMetaData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgMetaDataSelector.resx">
       <DependentUpon>DlgMetaDataSelector.cs</DependentUpon>
@@ -166,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\edit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metadata.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
