@@ -11,6 +11,21 @@ namespace Zxl.Business.Impl
 {
     public class UserService : IUserService
     {
+        public List<SYS_USER> Users()
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Query<SYS_USER>();
+            }
+        }
+        public int DelUser(int UserId)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Delete<SYS_USER>("where ID=" + UserId);
+            }
+        }
+
         public SYS_USER GetUser(string userId)
         {
             SYS_USER user = null;

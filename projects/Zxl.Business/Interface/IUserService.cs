@@ -9,6 +9,8 @@ namespace Zxl.Business.Interface
 {
     public interface IUserService
     {
+        List<SYS_USER> Users();
+        int DelUser(int UserId);
         SYS_USER GetUser(string userId);
         SYS_USER GetUser(string username,string password);
         SYS_USER modifyPassword(string userId, string password);
