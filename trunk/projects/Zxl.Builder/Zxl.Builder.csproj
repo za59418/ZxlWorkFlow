@@ -70,16 +70,16 @@
     <Compile Include="Ctrl\metaDataCtrl.Designer.cs">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DlgMetaDataSelector.cs">
+    <Compile Include="Dlg\DlgMetaDataSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DlgMetaDataSelector.Designer.cs">
+    <Compile Include="Dlg\DlgMetaDataSelector.Designer.cs">
       <DependentUpon>DlgMetaDataSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="DlgEditBusinessData.cs">
+    <Compile Include="Dlg\DlgEditBusinessData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DlgEditBusinessData.Designer.cs">
+    <Compile Include="Dlg\DlgEditBusinessData.Designer.cs">
       <DependentUpon>DlgEditBusinessData.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
@@ -96,10 +96,10 @@
     <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DlgMetaDataSelector.resx">
+    <EmbeddedResource Include="Dlg\DlgMetaDataSelector.resx">
       <DependentUpon>DlgMetaDataSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DlgEditBusinessData.resx">
+    <EmbeddedResource Include="Dlg\DlgEditBusinessData.resx">
       <DependentUpon>DlgEditBusinessData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
