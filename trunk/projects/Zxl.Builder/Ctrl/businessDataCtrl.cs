@@ -46,19 +46,21 @@ namespace Zxl.Builder
                 SYS_BUSINESSDATA temp = node.Tag as SYS_BUSINESSDATA;
                 if (temp.ID == -1) // 根root
                 {
-                    tsmiDelBusinessData.Visible = false;
                     tsmiAddBusinessData.Visible = true;
+                    tsmiEditBusinessData.Visible = false;
+                    tsmiDelBusinessData.Visible = false;
                 }
                 else
                 {
-                    tsmiDelBusinessData.Visible = true;
                     tsmiAddBusinessData.Visible = false;
+                    tsmiEditBusinessData.Visible = true;
+                    tsmiDelBusinessData.Visible = true;
                 }
                 treeBusinessData.ContextMenuStrip = contextMenuBd;
             }
 
             // 加载右边的详情树
-            if (null != treeBusinessData.FocusedNode && treeBusinessData.FocusedNode.Level == 1)
+            if (null != treeBusinessData.FocusedNode && treeBusinessData.FocusedNode.Level != 0) // 点击的是非根节点
             {
                 SYS_BUSINESSDATA currBusinessData = treeBusinessData.FocusedNode.Tag as SYS_BUSINESSDATA;
                 txtBusinessDataName.Text = currBusinessData.NAME;
@@ -145,30 +147,27 @@ namespace Zxl.Builder
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 treeListDetail.ContextMenuStrip = null;
-                SYS_BUSINESSDATA temp = node.Tag as SYS_BUSINESSDATA;
+                SYS_BUSINESSDATADETAIL temp = node.Tag as SYS_BUSINESSDATADETAIL;
 
-                contextMenuBdt.Visible = true;
-                if (node.Level == 0) // 根root或者一级节点
+                if (node.Level == 0) // 根root
                 {
                     tsmiAddMetaData.Visible = true;
                     tsmiDelMetaData.Visible = false;
                 }
-                else if (node.Level == 1)
+                else if (node.Level == 1) // 元数据
                 {
                     tsmiAddMetaData.Visible = true;
                     tsmiDelMetaData.Visible = true;
                 }
-                else // 属性或者字段
+                else // 业务数据详情或者元数据属性
                 {
-                    if (null != temp)
+                    if (null != temp) // 业务数据详情
                     {
                         tsmiAddMetaData.Visible = false;
                         tsmiDelMetaData.Visible = true;
                     }
                     else
                     {
-                        tsmiAddMetaData.Visible = false;
-                        tsmiDelMetaData.Visible = false;
                         contextMenuBdt.Visible = false;
                     }
                 }
@@ -180,10 +179,9 @@ namespace Zxl.Builder
         {
             //当前选中的业务数据
             SYS_BUSINESSDATA currBusinessData = treeBusinessData.FocusedNode.Tag as SYS_BUSINESSDATA;
-            //当前选中的详情
-            SYS_METADATA metaData = treeListDetail.FocusedNode.Tag as SYS_METADATA;
 
-            //List<SYS_BUSINESSDATADETAIL> details = BusinessServcie.BusinessDataDetails(currBusinessData.ID);
+            //当前选中的详情
+            SYS_BUSINESSDATADETAIL detail = treeListDetail.FocusedNode.Tag as SYS_BUSINESSDATADETAIL;
 
             DlgMetaDataSelector dlg = new DlgMetaDataSelector();
             dlg.MetaDatas = BusinessServcie.MetaDatas();
@@ -192,11 +190,7 @@ namespace Zxl.Builder
                 List<SYS_METADATA> list = dlg.SelectedItems;
                 foreach(SYS_METADATA data in list)
                 {
-                    BusinessServcie.AddBusinessDataDetail(currBusinessData.ID, data.ID, metaData.ID);
-                    //SYS_BUSINESSDATADETAIL detail = new SYS_BUSINESSDATADETAIL();
-                    //detail.ID = ValueOperator.CreatePk("SYS_BUSINESSDATADETAIL");
-                    //detail.REF_BUSINESSDATA_ID = currBusinessData.ID;
-                    //detail.REF_METADATA_ID = data.ID;
+                    BusinessServcie.AddBusinessDataDetail(currBusinessData.ID, data.ID, detail.ID);
                 }
             }
             RefreshBusinessDataDetailTree(currBusinessData);
@@ -206,10 +200,9 @@ namespace Zxl.Builder
         {
             //当前选中的业务数据
             SYS_BUSINESSDATA currBusinessData = treeBusinessData.FocusedNode.Tag as SYS_BUSINESSDATA;
-            //当前选中的详情
-            SYS_METADATA metaData = treeListDetail.FocusedNode.Tag as SYS_METADATA;
+            //当前选中的业务数据详情
+            SYS_BUSINESSDATADETAIL detail = treeListDetail.FocusedNode.Tag as SYS_BUSINESSDATADETAIL;
 
-            SYS_BUSINESSDATADETAIL detail = BusinessServcie.BusinessDataDetail(currBusinessData.ID, metaData.ID);
             BusinessServcie.DelBusinessDataDetail(detail.ID);
             RefreshBusinessDataDetailTree(currBusinessData);
         }
@@ -222,30 +215,12 @@ namespace Zxl.Builder
         {
             treeListDetail.Nodes.Clear();
             // 根节点
-            SYS_METADATA obj = new SYS_METADATA();
+            SYS_BUSINESSDATADETAIL obj = new SYS_BUSINESSDATADETAIL();
             obj.ID = 0;
-            obj.NAME = currBusinessData.NAME;
-            TreeListNode root = treeListDetail.AppendNode(new object[] { obj.NAME }, -1);
+            TreeListNode root = treeListDetail.AppendNode(new object[] { currBusinessData.NAME }, -1);
             root.Tag = obj;
 
-            CascadeAddNode(currBusinessData.ID, 0, root);
-            
-            //List<SYS_BUSINESSDATADETAIL> datas = BusinessServcie.BusinessDataDetails(currBusinessData.ID);
-            //foreach (SYS_BUSINESSDATADETAIL data in datas)
-            //{
-            //    // 二级节点
-            //    SYS_METADATA metaData = BusinessServcie.MetaData(data.REF_METADATA_ID);
-            //    TreeListNode metaDataNode = treeListDetail.AppendNode(new object[] { metaData.NAME }, 0);
-            //    metaDataNode.Tag = metaData;
-
-            //    List<SYS_METADATADETAIL> details = BusinessServcie.MetaDataDetails(metaData.ID);
-            //    foreach (SYS_METADATADETAIL detail in details)
-            //    {
-            //        //三级节点
-            //        TreeListNode detailNode = treeListDetail.AppendNode(new object[] { detail.NAME, detail.DESCRIPTION, detail.DATATYPE, detail.LENGTH, detail.NULLABLE, detail.DEFAULTVAL }, metaDataNode);
-            //        detailNode.Tag = detail;
-            //    }
-            //}
+            CascadeAddNode(currBusinessData.ID, 0, root);            
             treeListDetail.ExpandAll();
         }
 
@@ -257,13 +232,13 @@ namespace Zxl.Builder
         void CascadeAddNode(int BusinessDataID, int ParentID, TreeListNode node)
         {
             List<SYS_BUSINESSDATADETAIL> datas = BusinessServcie.BusinessDataDetails(BusinessDataID, ParentID);
-            foreach (SYS_BUSINESSDATADETAIL data in datas)
+            foreach (SYS_BUSINESSDATADETAIL bDetail in datas)
             {
                 // 业务数据
-                SYS_METADATA metaData = BusinessServcie.MetaData(data.REF_METADATA_ID);
+                SYS_METADATA metaData = BusinessServcie.MetaData(bDetail.REF_METADATA_ID);
 
                 TreeListNode metaDataNode = treeListDetail.AppendNode(new object[] { metaData.NAME }, node);
-                metaDataNode.Tag = metaData;
+                metaDataNode.Tag = bDetail; // 设置为业务数据详情
 
                 List<SYS_METADATADETAIL> details = BusinessServcie.MetaDataDetails(metaData.ID);
                 foreach (SYS_METADATADETAIL detail in details)
@@ -272,7 +247,7 @@ namespace Zxl.Builder
                     TreeListNode detailNode = treeListDetail.AppendNode(new object[] { detail.NAME, detail.DESCRIPTION, detail.DATATYPE, detail.LENGTH, detail.NULLABLE, detail.DEFAULTVAL }, metaDataNode);
                     detailNode.Tag = detail;
                 }
-                CascadeAddNode(BusinessDataID, data.ID, metaDataNode); // 递归
+                CascadeAddNode(BusinessDataID, bDetail.ID, metaDataNode); // 递归
             }
         }
         #endregion 业务数据详情点击事件

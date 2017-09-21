@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.treeMetaData = new DevExpress.XtraTreeList.TreeList();
             this.mName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.mDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -56,6 +57,10 @@
             this.txtMetaDataName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtMetaDataDesc = new DevExpress.XtraEditors.TextEdit();
+            this.contextMenuMd = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsAddMetaData = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsEditMetaData = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsDelMetaData = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.treeMetaData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -69,6 +74,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMetaDataName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMetaDataDesc.Properties)).BeginInit();
+            this.contextMenuMd.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeMetaData
@@ -91,7 +97,7 @@
             this.treeMetaData.OptionsView.ShowCheckBoxes = true;
             this.treeMetaData.Size = new System.Drawing.Size(322, 514);
             this.treeMetaData.TabIndex = 0;
-            this.treeMetaData.Click += new System.EventHandler(this.treeMetaData_Click);
+            this.treeMetaData.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeMetaData_MouseUp);
             // 
             // mName
             // 
@@ -339,6 +345,39 @@
             this.txtMetaDataDesc.Size = new System.Drawing.Size(242, 20);
             this.txtMetaDataDesc.TabIndex = 1;
             // 
+            // contextMenuMd
+            // 
+            this.contextMenuMd.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsAddMetaData,
+            this.cmsEditMetaData,
+            this.cmsDelMetaData});
+            this.contextMenuMd.Name = "contextMenuBd";
+            this.contextMenuMd.Size = new System.Drawing.Size(137, 70);
+            // 
+            // cmsAddMetaData
+            // 
+            this.cmsAddMetaData.Image = global::Zxl.Builder.Properties.Resources.add1;
+            this.cmsAddMetaData.Name = "cmsAddMetaData";
+            this.cmsAddMetaData.Size = new System.Drawing.Size(152, 22);
+            this.cmsAddMetaData.Text = "添加元数据";
+            this.cmsAddMetaData.Click += new System.EventHandler(this.cmsAddMetaData_Click);
+            // 
+            // cmsEditMetaData
+            // 
+            this.cmsEditMetaData.Image = global::Zxl.Builder.Properties.Resources.edit1;
+            this.cmsEditMetaData.Name = "cmsEditMetaData";
+            this.cmsEditMetaData.Size = new System.Drawing.Size(152, 22);
+            this.cmsEditMetaData.Text = "编辑元数据";
+            this.cmsEditMetaData.Click += new System.EventHandler(this.cmsEditMetaData_Click);
+            // 
+            // cmsDelMetaData
+            // 
+            this.cmsDelMetaData.Image = global::Zxl.Builder.Properties.Resources.del1;
+            this.cmsDelMetaData.Name = "cmsDelMetaData";
+            this.cmsDelMetaData.Size = new System.Drawing.Size(152, 22);
+            this.cmsDelMetaData.Text = "删除元数据";
+            this.cmsDelMetaData.Click += new System.EventHandler(this.cmsDelMetaData_Click);
+            // 
             // metaDataCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -362,6 +401,7 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMetaDataName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMetaDataDesc.Properties)).EndInit();
+            this.contextMenuMd.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -396,5 +436,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn pNullAble;
         private System.Windows.Forms.DataGridViewTextBoxColumn pDefaultVal;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuMd;
+        private System.Windows.Forms.ToolStripMenuItem cmsAddMetaData;
+        private System.Windows.Forms.ToolStripMenuItem cmsEditMetaData;
+        private System.Windows.Forms.ToolStripMenuItem cmsDelMetaData;
     }
 }

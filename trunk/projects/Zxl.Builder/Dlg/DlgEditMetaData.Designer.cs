@@ -1,6 +1,6 @@
 ﻿namespace Zxl.Builder
 {
-    partial class DlgEditBusinessData
+    partial class DlgEditMetaData
     {
         /// <summary>
         /// Required designer variable.
@@ -133,7 +133,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "业务数据";
+            this.Text = "元数据";
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();

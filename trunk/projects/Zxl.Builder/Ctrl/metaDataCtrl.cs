@@ -10,6 +10,7 @@ using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
 using DevExpress.XtraTreeList.Nodes;
+using DevExpress.XtraTreeList;
 using Zxl.Data;
 
 namespace Zxl.Builder
@@ -22,12 +23,99 @@ namespace Zxl.Builder
         public metaDataCtrl()
         {
             InitializeComponent();
+            RefreshMetaDataTree();
+        }
 
+
+        #region 元数据树事件
+        private void treeMetaData_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            // 复选框控制
+            TreeListHitInfo hitInfo = treeMetaData.CalcHitInfo(new Point(e.X, e.Y));
+            TreeListNode node = hitInfo.Node;
+            treeMetaData.FocusedNode = node;
+            treeMetaData.UncheckAll();
+            if (null != node)
+                node.CheckState = CheckState.Checked;
+            else
+                return;
+
+            //右键菜单控制
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                treeMetaData.ContextMenuStrip = null;
+                if (null != treeMetaData.FocusedNode)
+                {
+                    if (treeMetaData.FocusedNode.Level == 0) // 根root
+                    {
+                        cmsAddMetaData.Visible = true;
+                        cmsEditMetaData.Visible = false;
+                        cmsDelMetaData.Visible = false;
+                    }
+                    else
+                    {
+                        cmsAddMetaData.Visible = false;
+                        cmsEditMetaData.Visible = true;
+                        cmsDelMetaData.Visible = true;
+                    }
+                    treeMetaData.ContextMenuStrip = contextMenuMd;
+                }
+            }
+
+            // 加载右边的详情树
+            if (null != treeMetaData.FocusedNode && treeMetaData.FocusedNode.Level != 0) // 点击的是非根节点
+            {
+                SYS_METADATA currMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
+                txtMetaDataName.Text = currMetaData.NAME;
+                txtMetaDataDesc.Text = currMetaData.DESCRIPTION;
+                RefreshMetadataDetail(currMetaData);
+            }
+        }
+        private void cmsAddMetaData_Click(object sender, EventArgs e)
+        {
+            DlgEditMetaData dlg = new DlgEditMetaData();
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                BusinessServcie.AddMetaData(dlg.MetaDataName, dlg.MetaDataDescription);
+                RefreshMetaDataTree();
+            }
+        }
+
+        private void cmsEditMetaData_Click(object sender, EventArgs e)
+        {
+            TreeListNode currNode = treeMetaData.FocusedNode;
+            SYS_METADATA bData = currNode.Tag as SYS_METADATA;
+
+            DlgEditMetaData dlg = new DlgEditMetaData();
+            dlg.MetaDataId = bData.ID;
+            dlg.MetaDataName = bData.NAME;
+            dlg.MetaDataDescription = bData.DESCRIPTION;
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                BusinessServcie.EditMetaData(bData.ID, dlg.MetaDataName, dlg.MetaDataDescription);
+                RefreshMetaDataTree();
+            }
+        }
+
+        private void cmsDelMetaData_Click(object sender, EventArgs e)
+        {
+            TreeListNode currNode = treeMetaData.FocusedNode;
+
+            SYS_METADATA bData = currNode.Tag as SYS_METADATA;
+            BusinessServcie.DelMetaData(bData.ID);
+
+            RefreshMetaDataTree();
+        }
+
+        void RefreshMetaDataTree()
+        {
             treeMetaData.Nodes.Clear();
             SYS_METADATA obj = new SYS_METADATA();
-            obj.ID = -1;
+            obj.ID = 0;
             obj.NAME = "元数据";
-            TreeListNode root = treeMetaData.AppendNode(new object[] { obj.NAME, "" }, obj.ID);
+            TreeListNode root = treeMetaData.AppendNode(new object[] {obj.NAME }, -1);
 
             List<SYS_METADATA> datas = BusinessServcie.MetaDatas();
             foreach (SYS_METADATA data in datas)
@@ -35,35 +123,12 @@ namespace Zxl.Builder
                 TreeListNode node = treeMetaData.AppendNode(new object[] { data.NAME, data.DESCRIPTION }, root);
                 node.Tag = data;
             }
-
             treeMetaData.ExpandAll();
         }
 
-        private void treeMetaData_Click(object sender, EventArgs e)
-        {
-            if (null != treeMetaData.FocusedNode && treeMetaData.FocusedNode.Level == 1)
-            {
-                btnAddRow.Enabled = false;
-                btnDelRow.Enabled = false;
-                btnSave.Enabled = false;
-                btnCommit.Enabled = false;
-                btnRollback.Enabled = false;
-                treeListProperty.Enabled = false;
-                btnLock.CheckState = CheckState.Unchecked;
+        #endregion 元数据树事件
 
-                treeListProperty.Rows.Clear();
-                SYS_METADATA currMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
-                txtMetaDataName.Text = currMetaData.NAME;
-                txtMetaDataDesc.Text = currMetaData.DESCRIPTION;
-
-                List<SYS_METADATADETAIL> datas = BusinessServcie.MetaDataDetails(currMetaData.ID);
-                foreach (SYS_METADATADETAIL data in datas)
-                {
-                    treeListProperty.Rows.Add(new object[] { data, data.NAME, data.DESCRIPTION, data.DATATYPE, data.LENGTH, data.NULLABLE, data.DEFAULTVAL });
-                }
-            }
-        }
-
+        #region 元数据详情
         private void btnLock_Click(object sender, EventArgs e)
         {
             btnAddRow.Enabled = !btnAddRow.Enabled;
@@ -160,5 +225,16 @@ namespace Zxl.Builder
             btnCommit.Enabled = false;
             btnRollback.Enabled = false;
         }
+
+        void RefreshMetadataDetail(SYS_METADATA currMetaData)
+        {
+            treeListProperty.Rows.Clear();
+            List<SYS_METADATADETAIL> datas = BusinessServcie.MetaDataDetails(currMetaData.ID);
+            foreach (SYS_METADATADETAIL data in datas)
+            {
+                treeListProperty.Rows.Add(new object[] { data, data.NAME, data.DESCRIPTION, data.DATATYPE, data.LENGTH, data.NULLABLE, data.DEFAULTVAL });
+            }
+        }
+        #endregion 元数据详情
     }
 }
