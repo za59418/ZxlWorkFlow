@@ -25,16 +25,42 @@ namespace Zxl.Builder
 
         }
 
+        private void AddPage(string title, UserControl ctrl)
+        {
+            if (MainTab.TabPages.Count!=0)
+            {
+                for (int i=0;i< MainTab.TabPages.Count;i++)
+                {
+                    XtraTabPage page = MainTab.TabPages[i];
+                    if (title == page.Text)
+                    {
+                        MainTab.SelectedTabPageIndex = i;
+                        return;
+                    }
+                }
+            }
+
+            XtraTabPage newPage = new XtraTabPage();
+            newPage.Text = title;
+            newPage.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
+            MainTab.TabPages.Add(newPage);
+            MainTab.SelectedTabPage = newPage;
+            ctrl.Dock = DockStyle.Fill;
+            newPage.Controls.Add(ctrl);
+        }
 
         private void metaData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DevExpress.XtraTab.XtraTabPage metaDataPage = new XtraTabPage();
-            metaDataPage.Text = "元数据管理";
-            MainTab.TabPages.Add(metaDataPage);
-
-            MetaDataControl ctrl = new MetaDataControl();
+            metaDataCtrl ctrl = new metaDataCtrl();
             ctrl.Dock = DockStyle.Fill;
-            metaDataPage.Controls.Add(ctrl);
+            AddPage("元数据管理", ctrl);
+        }
+
+        private void businessData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            businessDataCtrl ctrl = new businessDataCtrl();
+            ctrl.Dock = DockStyle.Fill;
+            AddPage("业务数据管理", ctrl);
         }
     }
 }

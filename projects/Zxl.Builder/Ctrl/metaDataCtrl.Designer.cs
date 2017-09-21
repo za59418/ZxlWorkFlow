@@ -1,6 +1,6 @@
 ﻿namespace Zxl.Builder
 {
-    partial class MetaDataControl
+    partial class metaDataCtrl
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,19 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetaDataControl));
             this.treeMetaData = new DevExpress.XtraTreeList.TreeList();
-            this.Name = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.Description = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.mName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.mDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.treeListProperty = new System.Windows.Forms.DataGridView();
+            this.obj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDataType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.pLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pNullAble = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.pDefaultVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnCommit = new System.Windows.Forms.ToolStripButton();
             this.btnRollback = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnLock = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddRow = new System.Windows.Forms.ToolStripButton();
             this.btnDelRow = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
@@ -49,13 +56,6 @@
             this.txtMetaDataName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtMetaDataDesc = new DevExpress.XtraEditors.TextEdit();
-            this.obj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDataType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.pLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pNullAble = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.pDefaultVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeMetaData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -74,8 +74,8 @@
             // treeMetaData
             // 
             this.treeMetaData.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.Name,
-            this.Description});
+            this.mName,
+            this.mDescription});
             this.treeMetaData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeMetaData.Location = new System.Drawing.Point(0, 0);
             this.treeMetaData.LookAndFeel.SkinName = "iMaginary";
@@ -93,24 +93,24 @@
             this.treeMetaData.TabIndex = 0;
             this.treeMetaData.Click += new System.EventHandler(this.treeMetaData_Click);
             // 
-            // Name
+            // mName
             // 
-            this.Name.Caption = "名称";
-            this.Name.FieldName = "NAME";
-            this.Name.MinWidth = 31;
-            this.Name.Name = "Name";
-            this.Name.OptionsColumn.AllowEdit = false;
-            this.Name.Visible = true;
-            this.Name.VisibleIndex = 0;
+            this.mName.Caption = "名称";
+            this.mName.FieldName = "NAME";
+            this.mName.MinWidth = 31;
+            this.mName.Name = "mName";
+            this.mName.OptionsColumn.AllowEdit = false;
+            this.mName.Visible = true;
+            this.mName.VisibleIndex = 0;
             // 
-            // Description
+            // mDescription
             // 
-            this.Description.Caption = "描述";
-            this.Description.FieldName = "DESCRIPTION";
-            this.Description.Name = "Description";
-            this.Description.OptionsColumn.AllowEdit = false;
-            this.Description.Visible = true;
-            this.Description.VisibleIndex = 1;
+            this.mDescription.Caption = "描述";
+            this.mDescription.FieldName = "DESCRIPTION";
+            this.mDescription.Name = "mDescription";
+            this.mDescription.OptionsColumn.AllowEdit = false;
+            this.mDescription.Visible = true;
+            this.mDescription.VisibleIndex = 1;
             // 
             // splitContainerControl1
             // 
@@ -165,6 +165,52 @@
             this.treeListProperty.Size = new System.Drawing.Size(658, 376);
             this.treeListProperty.TabIndex = 0;
             // 
+            // obj
+            // 
+            this.obj.HeaderText = "Column1";
+            this.obj.Name = "obj";
+            this.obj.Visible = false;
+            // 
+            // pName
+            // 
+            this.pName.HeaderText = "名称";
+            this.pName.Name = "pName";
+            // 
+            // pDescription
+            // 
+            this.pDescription.HeaderText = "描述";
+            this.pDescription.Name = "pDescription";
+            // 
+            // pDataType
+            // 
+            this.pDataType.HeaderText = "数据类型";
+            this.pDataType.Items.AddRange(new object[] {
+            "NUMBER",
+            "VARCHAR2",
+            "CLOB",
+            "BLOB",
+            "DATE"});
+            this.pDataType.Name = "pDataType";
+            this.pDataType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.pDataType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // pLength
+            // 
+            this.pLength.HeaderText = "长度";
+            this.pLength.Name = "pLength";
+            // 
+            // pNullAble
+            // 
+            this.pNullAble.HeaderText = "可为空";
+            this.pNullAble.Name = "pNullAble";
+            // 
+            // pDefaultVal
+            // 
+            this.pDefaultVal.HeaderText = "默认值";
+            this.pDefaultVal.Name = "pDefaultVal";
+            this.pDefaultVal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.pDefaultVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -172,6 +218,7 @@
             this.btnRollback,
             this.toolStripSeparator1,
             this.btnLock,
+            this.toolStripSeparator2,
             this.btnAddRow,
             this.btnDelRow,
             this.btnSave});
@@ -184,7 +231,7 @@
             // btnCommit
             // 
             this.btnCommit.Enabled = false;
-            this.btnCommit.Image = ((System.Drawing.Image)(resources.GetObject("btnCommit.Image")));
+            this.btnCommit.Image = global::Zxl.Builder.Properties.Resources.commit;
             this.btnCommit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.Size = new System.Drawing.Size(23, 22);
@@ -193,7 +240,7 @@
             // btnRollback
             // 
             this.btnRollback.Enabled = false;
-            this.btnRollback.Image = ((System.Drawing.Image)(resources.GetObject("btnRollback.Image")));
+            this.btnRollback.Image = global::Zxl.Builder.Properties.Resources.rollback;
             this.btnRollback.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRollback.Name = "btnRollback";
             this.btnRollback.Size = new System.Drawing.Size(23, 22);
@@ -206,17 +253,22 @@
             // 
             // btnLock
             // 
-            this.btnLock.Image = ((System.Drawing.Image)(resources.GetObject("btnLock.Image")));
+            this.btnLock.Image = global::Zxl.Builder.Properties.Resources._lock;
             this.btnLock.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(23, 22);
             this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnAddRow
             // 
             this.btnAddRow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnAddRow.Enabled = false;
-            this.btnAddRow.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRow.Image")));
+            this.btnAddRow.Image = global::Zxl.Builder.Properties.Resources.add;
             this.btnAddRow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(23, 22);
@@ -227,7 +279,7 @@
             // 
             this.btnDelRow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnDelRow.Enabled = false;
-            this.btnDelRow.Image = ((System.Drawing.Image)(resources.GetObject("btnDelRow.Image")));
+            this.btnDelRow.Image = global::Zxl.Builder.Properties.Resources.decrease;
             this.btnDelRow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelRow.Name = "btnDelRow";
             this.btnDelRow.Size = new System.Drawing.Size(23, 22);
@@ -238,7 +290,7 @@
             // 
             this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnSave.Enabled = false;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::Zxl.Builder.Properties.Resources.ok;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(23, 22);
@@ -287,57 +339,12 @@
             this.txtMetaDataDesc.Size = new System.Drawing.Size(242, 20);
             this.txtMetaDataDesc.TabIndex = 1;
             // 
-            // obj
-            // 
-            this.obj.HeaderText = "Column1";
-            this.obj.Name = "obj";
-            this.obj.Visible = false;
-            // 
-            // pName
-            // 
-            this.pName.HeaderText = "名称";
-            this.pName.Name = "pName";
-            // 
-            // pDescription
-            // 
-            this.pDescription.HeaderText = "描述";
-            this.pDescription.Name = "pDescription";
-            // 
-            // pDataType
-            // 
-            this.pDataType.HeaderText = "数据类型";
-            this.pDataType.Items.AddRange(new object[] {
-            "NUMBER",
-            "VARCHAR2",
-            "CLOB",
-            "BLOB",
-            "DATE"});
-            this.pDataType.Name = "pDataType";
-            this.pDataType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.pDataType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // pLength
-            // 
-            this.pLength.HeaderText = "长度";
-            this.pLength.Name = "pLength";
-            // 
-            // pNullAble
-            // 
-            this.pNullAble.HeaderText = "可为空";
-            this.pNullAble.Name = "pNullAble";
-            // 
-            // pDefaultVal
-            // 
-            this.pDefaultVal.HeaderText = "默认值";
-            this.pDefaultVal.Name = "pDefaultVal";
-            this.pDefaultVal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.pDefaultVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // MetaDataControl
+            // metaDataCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainerControl1);
+            this.Name = "metaDataCtrl";
             this.Size = new System.Drawing.Size(993, 514);
             ((System.ComponentModel.ISupportInitialize)(this.treeMetaData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
@@ -362,8 +369,8 @@
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeMetaData;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn Name;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn Description;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn mName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn mDescription;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
@@ -388,5 +395,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pLength;
         private System.Windows.Forms.DataGridViewCheckBoxColumn pNullAble;
         private System.Windows.Forms.DataGridViewTextBoxColumn pDefaultVal;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

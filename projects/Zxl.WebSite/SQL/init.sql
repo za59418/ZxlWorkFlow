@@ -250,3 +250,21 @@ create table SYS_METADATADETAIL
 	   nullable number,
 	   defaultval varchar2(500)
 );
+--业务数据
+create sequence SEQ_SYS_BUSINESSDATA;
+create table SYS_BUSINESSDATA
+(
+       ID number primary key,
+       NAME varchar2(200),
+       DESCRIPTION varchar2(200)
+);
+--业务数据详情
+create sequence SEQ_SYS_BUSINESSDATADETAIL;
+create table SYS_BUSINESSDATADETAIL
+(
+       id number primary key,
+       ref_businessdata_id number,
+       ref_metadata_id number,
+	   ParentId number default 0
+);
+
