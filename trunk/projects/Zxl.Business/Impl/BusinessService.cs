@@ -46,6 +46,45 @@ namespace Zxl.Business.Impl
                 return orm.Init<SYS_METADATA>("where ID=" + MetaDataID);
             }
         }
+        public SYS_METADATA AddMetaData(string Name, string Description)
+        {
+            SYS_METADATA result = new SYS_METADATA();
+            result.ID = ValueOperator.CreatePk("SYS_METADATA");
+            result.NAME = Name;
+            result.DESCRIPTION = Description;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                orm.Save(result);
+            }
+            return result;
+        }
+        public SYS_METADATA EditMetaData(int Id, string Name, string Description)
+        {
+            SYS_METADATA result = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                result = orm.Init<SYS_METADATA>("where ID=" + Id);
+                result.NAME = Name;
+                result.DESCRIPTION = Description;
+                orm.Update(result);
+            }
+            return result;
+        }
+        public int DelMetaData(int ID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                // 先删详情
+                List<SYS_METADATADETAIL> details = orm.Query<SYS_METADATADETAIL>("where ref_metadata_id=" + ID);
+                foreach (SYS_METADATADETAIL detail in details)
+                {
+                    orm.Delete<SYS_METADATADETAIL>("where ID=" + detail.ID);
+                }
+                //再删业务数据
+                return orm.Delete<SYS_METADATA>("where ID=" + ID);
+            }
+        }
+
 
         public List<SYS_METADATADETAIL> MetaDataDetails(int MetaDataID)
         {
@@ -173,8 +212,26 @@ namespace Zxl.Business.Impl
         {
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                return orm.Delete<SYS_BUSINESSDATADETAIL>("where ID=" + ID);
+
+                return CascadeDelBusinessDataDetail(ID, orm);
             }
+        }
+
+        /// <summary>
+        /// 级联删除子业务数据详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="orm"></param>
+        /// <returns></returns>
+        int CascadeDelBusinessDataDetail(int ID, ORMHandler orm)
+        {
+            List<SYS_BUSINESSDATADETAIL> children = orm.Query<SYS_BUSINESSDATADETAIL>("where ParentID=" + ID);
+            foreach(SYS_BUSINESSDATADETAIL temp in children)
+            {
+                CascadeDelBusinessDataDetail(temp.ID, orm);
+            }
+
+            return orm.Delete<SYS_BUSINESSDATADETAIL>("where ID=" + ID);
         }
 
     }

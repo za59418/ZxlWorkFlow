@@ -12,6 +12,9 @@ namespace Zxl.Business.Interface
         List<SYS_PROJECT> Projectsing(string UserId);
         List<SYS_METADATA> MetaDatas();
         SYS_METADATA MetaData(int MetaDataID);
+        SYS_METADATA AddMetaData(string Name, string Description);
+        SYS_METADATA EditMetaData(int Id, string Name, string Description);
+        int DelMetaData(int ID);
         List<SYS_METADATADETAIL> MetaDataDetails(int MetaDataID);
         SYS_METADATADETAIL SaveMetaDataDetail(SYS_METADATADETAIL obj);
         int DelMetaDataDetail(int ID);
