@@ -11,6 +11,18 @@ namespace Zxl.Business.Interface
     {
         List<SYS_PROJECT> Projectsing(string UserId);
         List<SYS_METADATA> MetaDatas();
+        SYS_METADATA MetaData(int MetaDataID);
         List<SYS_METADATADETAIL> MetaDataDetails(int MetaDataID);
+        SYS_METADATADETAIL SaveMetaDataDetail(SYS_METADATADETAIL obj);
+        int DelMetaDataDetail(int ID);
+
+        List<SYS_BUSINESSDATA> BusinessDatas();
+        List<SYS_BUSINESSDATADETAIL> BusinessDataDetails(int BusinessDataID, int ParentID);
+        SYS_BUSINESSDATADETAIL BusinessDataDetail(int BusinessDataID, int MetaDataID);
+        int DelBusinessData(int ID);
+        SYS_BUSINESSDATA AddBusinessData(string Name, string Description);
+        SYS_BUSINESSDATA EditBusinessData(int Id, string Name, string Description);
+        SYS_BUSINESSDATADETAIL AddBusinessDataDetail(int REF_BUSINESSDATA_ID, int REF_METADATA_ID, int PARENTID);
+        int DelBusinessDataDetail(int ID);
     }
 }

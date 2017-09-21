@@ -58,25 +58,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ctrl\businessDataCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\businessDataCtrl.Designer.cs">
+      <DependentUpon>businessDataCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\metaDataCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\metaDataCtrl.Designer.cs">
+      <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DlgMetaDataSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DlgMetaDataSelector.Designer.cs">
+      <DependentUpon>DlgMetaDataSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DlgEditBusinessData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DlgEditBusinessData.Designer.cs">
+      <DependentUpon>DlgEditBusinessData.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MetaDataControl.Designer.cs">
-      <DependentUpon>MetaDataControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ctrl\businessDataCtrl.resx">
+      <DependentUpon>businessDataCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
+      <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DlgMetaDataSelector.resx">
+      <DependentUpon>DlgMetaDataSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DlgEditBusinessData.resx">
+      <DependentUpon>DlgEditBusinessData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MetaDataControl.resx">
-      <DependentUpon>MetaDataControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -111,22 +138,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\commit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\decrease.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\lock.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ok.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\commit.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\rollback.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\add.png" />
+    <None Include="Resources\refresh.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\decrease.png" />
+    <None Include="Resources\add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\del1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -10,26 +10,27 @@ using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
 using DevExpress.XtraTreeList.Nodes;
+using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class MetaDataControl : UserControl
+    public partial class metaDataCtrl : UserControl
     {
 
         public IBusinessService BusinessServcie = new BusinessService();
 
-        public MetaDataControl()
+        public metaDataCtrl()
         {
             InitializeComponent();
 
             treeMetaData.Nodes.Clear();
             SYS_METADATA obj = new SYS_METADATA();
-            obj.id = -1;
+            obj.ID = -1;
             obj.NAME = "元数据";
-            TreeListNode root = treeMetaData.AppendNode(new object[] { obj.NAME, "" }, obj.id);
+            TreeListNode root = treeMetaData.AppendNode(new object[] { obj.NAME, "" }, obj.ID);
 
             List<SYS_METADATA> datas = BusinessServcie.MetaDatas();
-            foreach(SYS_METADATA data in datas)
+            foreach (SYS_METADATA data in datas)
             {
                 TreeListNode node = treeMetaData.AppendNode(new object[] { data.NAME, data.DESCRIPTION }, root);
                 node.Tag = data;
@@ -85,17 +86,21 @@ namespace Zxl.Builder
             treeListProperty.Rows.Add(new object[] { data, data.NAME, data.DESCRIPTION, data.DATATYPE, data.LENGTH, data.NULLABLE, data.DEFAULTVAL });
 
             int rowIndex = treeListProperty.Rows.Count - 2;
+            //treeListProperty.Rows[0].Selected = false;
+            //treeListProperty.Rows[rowIndex].Selected = true;
+            treeListProperty.Focus();
+            treeListProperty.CurrentCell = treeListProperty.Rows[rowIndex].Cells[1];
 
-            treeListProperty.ClearSelection();
-            treeListProperty.BeginEdit(false);
-            treeListProperty.Rows[rowIndex].Cells[0].Selected = true;
-            treeListProperty.RefreshEdit();
         }
 
         private void btnDelRow_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in treeListProperty.SelectedRows)
+            {
+                SYS_METADATADETAIL temp = row.Cells[0].Value as SYS_METADATADETAIL;
+                BusinessServcie.DelMetaDataDetail(temp.ID);
                 treeListProperty.Rows.Remove(row);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -106,10 +111,41 @@ namespace Zxl.Builder
             btnCommit.Enabled = true;
             btnRollback.Enabled = true;
 
-            foreach(DataGridViewRow row in treeListProperty.Rows)
+            foreach (DataGridViewRow row in treeListProperty.Rows)
             {
-                SYS_METADATADETAIL obj = row.Cells[0].Value as SYS_METADATADETAIL;
+                SYS_METADATADETAIL obj = null;
+                if (null == row.Cells[0].Value && null != row.Cells[1].Value) // 新增的行
+                {
+                    obj = new SYS_METADATADETAIL();
+                    obj.ID = ValueOperator.CreatePk("SYS_METADATADETAIL");
 
+                    SYS_METADATA currMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
+                    obj.REF_METADATA_ID = currMetaData.ID;
+                }
+                else // 旧行
+                {
+                    obj = row.Cells[0].Value as SYS_METADATADETAIL;
+                }
+                if (null != obj)
+                {
+                    if (null != row.Cells[1].Value)
+                        obj.NAME = row.Cells[1].Value.ToString();
+                    if (null != row.Cells[2].Value)
+                        obj.DESCRIPTION = row.Cells[2].Value.ToString();
+                    if (null != row.Cells[3].Value)
+                        obj.DATATYPE = row.Cells[3].Value.ToString();
+                    if (null != row.Cells[4].Value)
+                        obj.LENGTH = Convert.ToInt32(row.Cells[4].Value.ToString());
+
+                    obj.NULLABLE = 1;
+                    if (null != row.Cells[5].Value && false == Convert.ToBoolean(row.Cells[5].Value))
+                        obj.NULLABLE = 0;
+
+                    if (null != row.Cells[6].Value)
+                        obj.DEFAULTVAL = row.Cells[6].Value.ToString();
+
+                    BusinessServcie.SaveMetaDataDetail(obj);
+                }
             }
         }
 
