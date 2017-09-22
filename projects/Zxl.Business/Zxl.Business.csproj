@@ -63,6 +63,10 @@
     <Compile Include="Interface\IMessageService.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\ORUP_ORGANIZATION.cs" />
+    <Compile Include="Model\ORUP_ROLE.cs" />
+    <Compile Include="Model\ORUP_USERORGANIZATION.cs" />
+    <Compile Include="Model\ORUP_USERROLE.cs" />
     <Compile Include="Model\SYS_ARCHIVE.cs" />
     <Compile Include="Model\SYS_BUSINESSDATA.cs" />
     <Compile Include="Model\SYS_BUSINESSDATADETAIL.cs" />
@@ -85,7 +89,7 @@
     <Compile Include="Model\SYS_PROJECTWORKITEM.cs" />
     <Compile Include="Model\SYS_SYSTEMCONFIG.cs" />
     <Compile Include="Model\SYS_MESSAGE.cs" />
-    <Compile Include="Model\SYS_USER.cs" />
+    <Compile Include="Model\ORUP_USER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

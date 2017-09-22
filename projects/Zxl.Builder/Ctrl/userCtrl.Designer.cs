@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.treeUser = new DevExpress.XtraTreeList.TreeList();
-            this.mName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.UName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCreateTime = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.txtNickName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.listRoles = new System.Windows.Forms.ListBox();
             this.listOrganizations = new System.Windows.Forms.ListBox();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -54,30 +58,26 @@
             this.contextMenuUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsAddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsDelUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtCreateTime = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.txtNickName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.treeUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNickName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             this.contextMenuUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNickName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // treeUser
             // 
             this.treeUser.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.mName});
+            this.UName});
             this.treeUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeUser.Location = new System.Drawing.Point(0, 0);
             this.treeUser.LookAndFeel.SkinName = "iMaginary";
@@ -91,19 +91,19 @@
             this.treeUser.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.treeUser.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
             this.treeUser.OptionsView.ShowCheckBoxes = true;
-            this.treeUser.Size = new System.Drawing.Size(322, 516);
+            this.treeUser.Size = new System.Drawing.Size(262, 516);
             this.treeUser.TabIndex = 0;
             this.treeUser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.contextMenuUser_MouseUp);
             // 
-            // mName
+            // UName
             // 
-            this.mName.Caption = "名称";
-            this.mName.FieldName = "NAME";
-            this.mName.MinWidth = 31;
-            this.mName.Name = "mName";
-            this.mName.OptionsColumn.AllowEdit = false;
-            this.mName.Visible = true;
-            this.mName.VisibleIndex = 0;
+            this.UName.Caption = "名称";
+            this.UName.FieldName = "NAME";
+            this.UName.MinWidth = 31;
+            this.UName.Name = "UName";
+            this.UName.OptionsColumn.AllowEdit = false;
+            this.UName.Visible = true;
+            this.UName.VisibleIndex = 0;
             // 
             // splitContainerControl1
             // 
@@ -115,7 +115,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(993, 516);
-            this.splitContainerControl1.SplitterPosition = 322;
+            this.splitContainerControl1.SplitterPosition = 262;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -125,7 +125,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(666, 516);
+            this.panelControl1.Size = new System.Drawing.Size(726, 516);
             this.panelControl1.TabIndex = 5;
             // 
             // groupBox1
@@ -157,6 +157,37 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户信息";
+            // 
+            // txtCreateTime
+            // 
+            this.txtCreateTime.Enabled = false;
+            this.txtCreateTime.Location = new System.Drawing.Point(90, 130);
+            this.txtCreateTime.Name = "txtCreateTime";
+            this.txtCreateTime.Size = new System.Drawing.Size(180, 20);
+            this.txtCreateTime.TabIndex = 22;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(24, 130);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(60, 14);
+            this.labelControl8.TabIndex = 23;
+            this.labelControl8.Text = "创建时间：";
+            // 
+            // txtNickName
+            // 
+            this.txtNickName.Location = new System.Drawing.Point(90, 70);
+            this.txtNickName.Name = "txtNickName";
+            this.txtNickName.Size = new System.Drawing.Size(180, 20);
+            this.txtNickName.TabIndex = 20;
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(48, 70);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(36, 14);
+            this.labelControl9.TabIndex = 21;
+            this.labelControl9.Text = "昵称：";
             // 
             // listRoles
             // 
@@ -322,37 +353,6 @@
             this.cmsDelUser.Text = "删除用户";
             this.cmsDelUser.Click += new System.EventHandler(this.cmsDelUser_Click);
             // 
-            // txtCreateTime
-            // 
-            this.txtCreateTime.Enabled = false;
-            this.txtCreateTime.Location = new System.Drawing.Point(90, 130);
-            this.txtCreateTime.Name = "txtCreateTime";
-            this.txtCreateTime.Size = new System.Drawing.Size(180, 20);
-            this.txtCreateTime.TabIndex = 22;
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Location = new System.Drawing.Point(24, 130);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(60, 14);
-            this.labelControl8.TabIndex = 23;
-            this.labelControl8.Text = "创建时间：";
-            // 
-            // txtNickName
-            // 
-            this.txtNickName.Location = new System.Drawing.Point(90, 70);
-            this.txtNickName.Name = "txtNickName";
-            this.txtNickName.Size = new System.Drawing.Size(180, 20);
-            this.txtNickName.TabIndex = 20;
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Location = new System.Drawing.Point(48, 70);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(36, 14);
-            this.labelControl9.TabIndex = 21;
-            this.labelControl9.Text = "昵称：";
-            // 
             // userCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -367,14 +367,14 @@
             this.panelControl1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNickName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             this.contextMenuUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNickName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -382,7 +382,7 @@
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeUser;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn mName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn UName;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private System.Windows.Forms.ContextMenuStrip contextMenuUser;
         private System.Windows.Forms.ToolStripMenuItem cmsAddUser;

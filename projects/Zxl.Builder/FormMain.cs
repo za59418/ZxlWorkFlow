@@ -88,14 +88,14 @@ namespace Zxl.Builder
 
         private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            emptyCtrl ctrl = new emptyCtrl();
+            roleCtrl ctrl = new roleCtrl();
             ctrl.Dock = DockStyle.Fill;
             AddPage("角色管理", ctrl);
         }
 
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            emptyCtrl ctrl = new emptyCtrl();
+            orgCtrl ctrl = new orgCtrl();
             ctrl.Dock = DockStyle.Fill;
             AddPage("机构管理", ctrl);
         }
