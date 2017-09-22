@@ -132,6 +132,20 @@ namespace Zxl.Builder
             txtEmail.Text = CurrUser.EMAIL;
             txtCreateTime.Text = CurrUser.CREATETIME.ToString("yyyy-MM-dd HH:mm:ss");
             chbInValid.CheckState = CurrUser.STATE == 1 ? CheckState.Unchecked : CheckState.Unchecked;
+
+            listRoles.Items.Clear();
+            List<ORUP_USERROLE> urs = UserServcie.GetUserRolesByUserID(CurrUser.ID);
+            foreach (ORUP_USERROLE ur in urs)
+            {
+                listRoles.Items.Add(UserServcie.GetRole(ur.RoleID).ROLENAME);
+            }
+
+            listOrganizations.Items.Clear();
+            List<ORUP_USERORGANIZATION> uos = UserServcie.GetUserOrgsByUserID(CurrUser.ID);
+            foreach (ORUP_USERORGANIZATION uo in uos)
+            {
+                listOrganizations.Items.Add(UserServcie.GetOrganization(uo.ORGANIZATIONID).ORGNAME);
+            }
         }
 
         #endregion 用户列表事件

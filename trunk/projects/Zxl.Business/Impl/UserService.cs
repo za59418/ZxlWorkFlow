@@ -95,11 +95,25 @@ namespace Zxl.Business.Impl
                 return orm.Query<ORUP_ROLE>();
             }
         }
-        public List<ORUP_USERROLE> UserRoles(int RoleID)
+        public ORUP_ROLE GetRole(int RoleID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Init<ORUP_ROLE>("where ID=" + RoleID);
+            }
+        }
+        public List<ORUP_USERROLE> GetUserRolesByRoleID(int RoleID)
         {
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 return orm.Query<ORUP_USERROLE>("where RoleID=" + RoleID);
+            }
+        }
+        public List<ORUP_USERROLE> GetUserRolesByUserID(int UserID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Query<ORUP_USERROLE>("where UserID=" + UserID);
             }
         }
         public int DelRole(int RoleId)
@@ -153,11 +167,25 @@ namespace Zxl.Business.Impl
                 return orm.Query<ORUP_ORGANIZATION>();
             }
         }
-        public List<ORUP_USERORGANIZATION> UserOrgs(int OrgID)
+        public ORUP_ORGANIZATION GetOrganization(int OrgID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Init<ORUP_ORGANIZATION>("where ID=" + OrgID);
+            }
+        }
+        public List<ORUP_USERORGANIZATION> GetUserOrgsByOrgID(int OrgID)
         {
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 return orm.Query<ORUP_USERORGANIZATION>("where OrganizationID=" + OrgID);
+            }
+        }
+        public List<ORUP_USERORGANIZATION> GetUserOrgsByUserID(int UserID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Query<ORUP_USERORGANIZATION>("where UserID=" + UserID);
             }
         }
         public ORUP_ORGANIZATION SaveOrg(ORUP_ORGANIZATION org)
