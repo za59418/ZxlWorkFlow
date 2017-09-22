@@ -63,7 +63,7 @@ namespace Zxl.WebSite.Controllers
 
             string UserId = Session["UserId"].ToString();
             List<SYS_PROJECT> list = BusinessServcie.Projectsing(UserId);
-            SYS_USER user = UserService.GetUser(UserId);
+            ORUP_USER user = UserService.GetUser(UserId);
 
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write(jss.Serialize(new { rows = list }));
@@ -834,7 +834,7 @@ namespace Zxl.WebSite.Controllers
 
                     foreach (SYS_BUSINESSROLEUSER u in businessRoleUsers)
                     {
-                        SYS_USER user = orm.Init<SYS_USER>("where id=" + u.REF_USER_ID);
+                        ORUP_USER user = orm.Init<ORUP_USER>("where id=" + u.REF_USER_ID);
                         user.text = user.USERNAME;
                         user.id = user.ID;
                         user.pid = nextBusinessActivity.id;

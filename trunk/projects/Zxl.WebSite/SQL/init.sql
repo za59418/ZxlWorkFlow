@@ -145,8 +145,8 @@ create table SYS_PROJECTACTIVITYROUTE
        REF_TO_PROACT_ID integer
 );
 
-create sequence seq_sys_user;
-create table sys_user
+create sequence seq_orup_user;
+create table orup_user
 (
     id integer primary key,
     username varchar2(100),
@@ -160,6 +160,46 @@ create table sys_user
 	EMAIL varchar2(100),
     createtime date,
     state number(1,0)
+);
+
+create sequence SEQ_ORUP_ROLE;
+create table ORUP_ROLE
+(
+	id integer primary key,
+	rolename varchar2(100),
+	roletype number,
+	parent number,
+	createtime date,
+	description varchar2(200),
+	state number(1,0)
+);
+
+create sequence seq_orup_userrole;
+create table orup_userrole
+(
+    id integer primary key,
+    userid number,
+	roleid number
+);
+
+create sequence SEQ_ORUP_ORGANIZATION;
+create table ORUP_ORGANIZATION
+(
+	id integer primary key,
+	orgname varchar2(100),
+	orgtype number,
+	parent number,
+	createtime date,
+	description varchar2(200),
+	state number(1,0)
+);
+
+create sequence seq_orup_userorganization;
+create table orup_userorganization
+(
+    id integer primary key,
+    userid number,
+	organizationid number
 );
 
 create table sys_businessrole

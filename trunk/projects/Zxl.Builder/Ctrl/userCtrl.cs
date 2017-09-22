@@ -27,7 +27,7 @@ namespace Zxl.Builder
             RefreshUserTree();
         }
 
-        public SYS_USER CurrUser { get; set; }
+        public ORUP_USER CurrUser { get; set; }
 
 
         #region 用户列表事件
@@ -64,15 +64,15 @@ namespace Zxl.Builder
             }
 
             // 加载右边的详情树
-            if (null != treeUser.FocusedNode && treeUser.FocusedNode.Level != 0 && treeUser.FocusedNode.Tag is SYS_USER) // 点击的是非根节点
+            if (null != treeUser.FocusedNode && treeUser.FocusedNode.Level != 0 && treeUser.FocusedNode.Tag is ORUP_USER) // 点击的是非根节点
             {
-                CurrUser = treeUser.FocusedNode.Tag as SYS_USER;
+                CurrUser = treeUser.FocusedNode.Tag as ORUP_USER;
                 RefreshUserDetail();
             }
         }
         private void cmsAddUser_Click(object sender, EventArgs e)
         {
-            CurrUser = new SYS_USER();
+            CurrUser = new ORUP_USER();
             CurrUser.CREATETIME = DateTime.Now;
             txtUserName.Focus();
             RefreshUserDetail();
@@ -82,7 +82,7 @@ namespace Zxl.Builder
         {
             TreeListNode currNode = treeUser.FocusedNode;
 
-            SYS_USER user = currNode.Tag as SYS_USER;
+            ORUP_USER user = currNode.Tag as ORUP_USER;
             UserServcie.DelUser(user.ID);
 
             RefreshUserTree();
@@ -91,14 +91,14 @@ namespace Zxl.Builder
         void RefreshUserTree()
         {
             treeUser.Nodes.Clear();
-            SYS_USER obj = new SYS_USER();
+            ORUP_USER obj = new ORUP_USER();
             obj.ID = 0;
             obj.USERNAME = "用户列表";
             TreeListNode root = treeUser.AppendNode(new object[] { obj.USERNAME }, -1);
 
             //按字母分组排序
             string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-            List<SYS_USER> users = UserServcie.Users();
+            List<ORUP_USER> users = UserServcie.Users();
             users.Sort((a, b) => a.USERNAME.CompareTo(b.USERNAME));
             foreach(string letter in letters)
             {
@@ -106,11 +106,11 @@ namespace Zxl.Builder
                 lNode.Tag = letter;
 
                 int userCount = 0;
-                foreach (SYS_USER user in users)
+                foreach (ORUP_USER user in users)
                 {
                     if (ValueOperator.GetSpellCode(user.USERNAME.Substring(0, 1)) == letter)
                     {
-                        TreeListNode node = treeUser.AppendNode(new object[] { user.USERNAME }, lNode);
+                        TreeListNode node = treeUser.AppendNode(new object[] { user.USERNAME + "(" + user.NICKNAME + ")", user.NICKNAME }, lNode);
                         node.Tag = user;
                         userCount++;
                     }

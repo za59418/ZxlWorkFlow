@@ -58,6 +58,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ctrl\orgCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\orgCtrl.Designer.cs">
+      <DependentUpon>orgCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\roleCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\roleCtrl.Designer.cs">
+      <DependentUpon>roleCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\businessDataCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,11 +94,29 @@
     <Compile Include="Ctrl\metaDataCtrl.Designer.cs">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dlg\DlgEditOrg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditOrg.Designer.cs">
+      <DependentUpon>DlgEditOrg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgEditRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditRole.Designer.cs">
+      <DependentUpon>DlgEditRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dlg\DlgEditMetaData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dlg\DlgEditMetaData.Designer.cs">
       <DependentUpon>DlgEditMetaData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgUserSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgUserSelector.Designer.cs">
+      <DependentUpon>DlgUserSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Dlg\DlgMetaDataSelector.cs">
       <SubType>Form</SubType>
@@ -108,6 +138,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ctrl\orgCtrl.resx">
+      <DependentUpon>orgCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\roleCtrl.resx">
+      <DependentUpon>roleCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\businessDataCtrl.resx">
       <DependentUpon>businessDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,8 +153,17 @@
     <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditOrg.resx">
+      <DependentUpon>DlgEditOrg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditRole.resx">
+      <DependentUpon>DlgEditRole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditMetaData.resx">
       <DependentUpon>DlgEditMetaData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgUserSelector.resx">
+      <DependentUpon>DlgUserSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgMetaDataSelector.resx">
       <DependentUpon>DlgMetaDataSelector.cs</DependentUpon>

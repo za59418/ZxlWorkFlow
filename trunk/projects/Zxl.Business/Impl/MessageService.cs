@@ -20,11 +20,11 @@ namespace Zxl.Business.Impl
                 result = orm.Query<SYS_MESSAGE>("where STATE=0 and RECVUSERID='" + UserId + "'");
                 foreach(SYS_MESSAGE msg in result)
                 {
-                    SYS_USER sendUser = orm.Init<SYS_USER>("where ID=" + msg.SENDUSERID);
+                    ORUP_USER sendUser = orm.Init<ORUP_USER>("where ID=" + msg.SENDUSERID);
                     msg.SENDUSERNAME = sendUser.USERNAME;
                     msg.SENDUSERIMG = sendUser.USERIMG;
                     msg.PROJECTNAME = orm.Init<SYS_PROJECT>("where ID=" + msg.REF_PROJECT_ID).PROJECTNAME;
-                    msg.RECVUSERNAME = orm.Init<SYS_USER>("where ID=" + msg.RECVUSERID).USERNAME;
+                    msg.RECVUSERNAME = orm.Init<ORUP_USER>("where ID=" + msg.RECVUSERID).USERNAME;
                 }
             }
             return result;
@@ -38,11 +38,11 @@ namespace Zxl.Business.Impl
                 result = orm.Query<SYS_MESSAGE>("where STATE=1 and RECVUSERID='" + UserId + "'");
                 foreach (SYS_MESSAGE msg in result)
                 {
-                    SYS_USER sendUser = orm.Init<SYS_USER>("where ID=" + msg.SENDUSERID);
+                    ORUP_USER sendUser = orm.Init<ORUP_USER>("where ID=" + msg.SENDUSERID);
                     msg.SENDUSERNAME = sendUser.USERNAME;
                     msg.SENDUSERIMG = sendUser.USERIMG;
                     msg.PROJECTNAME = orm.Init<SYS_PROJECT>("where ID=" + msg.REF_PROJECT_ID).PROJECTNAME;
-                    msg.RECVUSERNAME = orm.Init<SYS_USER>("where ID=" + msg.RECVUSERID).USERNAME;
+                    msg.RECVUSERNAME = orm.Init<ORUP_USER>("where ID=" + msg.RECVUSERID).USERNAME;
                 }
             }
             return result;

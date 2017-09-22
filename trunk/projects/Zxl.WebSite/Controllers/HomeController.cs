@@ -39,11 +39,11 @@ namespace Zxl.WebSite.Controllers
         [AllowAnonymous]
         public ActionResult DoLogin(LoginViewModel model, string returnUrl)
         {
-            SYS_USER user = null;
+            ORUP_USER user = null;
 
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                user = orm.Init<SYS_USER>("where USERNAME='" + model.UserName + "' and PASSWORD='" + model.Password + "'");
+                user = orm.Init<ORUP_USER>("where USERNAME='" + model.UserName + "' and PASSWORD='" + model.Password + "'");
                 if(null != user)
                 {
                     Session["UserId"] = user.ID + "";
