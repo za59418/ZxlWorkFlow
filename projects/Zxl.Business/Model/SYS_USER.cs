@@ -16,6 +16,8 @@ namespace Zxl.Business.Model
         [Field]
         public string USERNAME { get; set; }
         [Field]
+        public string NICKNAME { get; set; }
+        [Field]
         public string USERIMG { get; set; }
         [Field]
         public string DEPARTMENT { get; set; }

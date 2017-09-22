@@ -145,10 +145,12 @@ create table SYS_PROJECTACTIVITYROUTE
        REF_TO_PROACT_ID integer
 );
 
+create sequence seq_sys_user;
 create table sys_user
 (
     id integer primary key,
     username varchar2(100),
+	nickname varchar2(50),
     password varchar2(100),
 	USERIMG varchar2(100),
 	DEPARTMENT varchar2(100),

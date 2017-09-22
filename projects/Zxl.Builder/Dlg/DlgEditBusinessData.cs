@@ -15,6 +15,7 @@ namespace Zxl.Builder
         public DlgEditBusinessData()
         {
             InitializeComponent();
+            tbName.Focus();
         }
 
         public int BusinessId { get; set; }

@@ -26,6 +26,19 @@ namespace Zxl.Business.Impl
             }
         }
 
+        public SYS_USER SaveUser(SYS_USER user)
+        {
+            if (0 == user.ID)
+            {
+                user.ID = ValueOperator.CreatePk("SYS_USER");
+            }
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                orm.Save(user);
+                return user;
+            }
+        }
+
         public SYS_USER GetUser(string userId)
         {
             SYS_USER user = null;
