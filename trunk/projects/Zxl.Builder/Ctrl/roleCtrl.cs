@@ -82,9 +82,10 @@ namespace Zxl.Builder
 
         private void tsmiAdd_Click(object sender, EventArgs e)
         {
+            ORUP_ROLE newRole = new ORUP_ROLE();
+            newRole.CREATETIME = DateTime.Now;
             DlgEditRole dlg = new DlgEditRole();
-            dlg.Role = new ORUP_ROLE();
-            dlg.Role.CREATETIME = DateTime.Now;
+            dlg.Role = newRole;
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 UserService.SaveRole(dlg.Role);

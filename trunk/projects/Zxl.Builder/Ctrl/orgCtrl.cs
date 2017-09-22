@@ -82,9 +82,10 @@ namespace Zxl.Builder
 
         private void tsmiAdd_Click(object sender, EventArgs e)
         {
+            ORUP_ORGANIZATION newOrg = new ORUP_ORGANIZATION();
+            newOrg.CREATETIME = DateTime.Now;
             DlgEditOrg dlg = new DlgEditOrg();
-            dlg.Organization = new ORUP_ORGANIZATION();
-            dlg.Organization.CREATETIME = DateTime.Now;
+            dlg.Organization = newOrg;
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 UserService.SaveOrg(dlg.Organization);
