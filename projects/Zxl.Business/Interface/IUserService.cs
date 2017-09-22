@@ -18,14 +18,18 @@ namespace Zxl.Business.Interface
         ORUP_USER modifyUserInfo(string userId, string name, string value);
 
         List<ORUP_ROLE> Roles();
-        List<ORUP_USERROLE> UserRoles(int RoleID);
+        ORUP_ROLE GetRole(int RoleID);
+        List<ORUP_USERROLE> GetUserRolesByRoleID(int RoleID);
+        List<ORUP_USERROLE> GetUserRolesByUserID(int UserID);
         int DelRole(int RoleId);
         int DelUserRole(int UserRoleId);
         ORUP_ROLE SaveRole(ORUP_ROLE role);
         ORUP_USERROLE SaveUserRole(int UserId,int RoleId);
 
         List<ORUP_ORGANIZATION> Orgs();
-        List<ORUP_USERORGANIZATION> UserOrgs(int OrgID);
+        ORUP_ORGANIZATION GetOrganization(int OrganizationID);
+        List<ORUP_USERORGANIZATION> GetUserOrgsByOrgID(int OrgID);
+        List<ORUP_USERORGANIZATION> GetUserOrgsByUserID(int UserID);
         int DelOrg(int OrgId);
         int DelUserOrg(int UserOrgId);
         ORUP_ORGANIZATION SaveOrg(ORUP_ORGANIZATION org);

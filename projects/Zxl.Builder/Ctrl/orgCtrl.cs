@@ -71,7 +71,6 @@ namespace Zxl.Builder
 
         private void tsmiDel_Click(object sender, EventArgs e)
         {
-            //treeBusinessData
             TreeListNode currNode = treeOrg.FocusedNode;
 
             ORUP_ORGANIZATION org = currNode.Tag as ORUP_ORGANIZATION;
@@ -199,7 +198,7 @@ namespace Zxl.Builder
             // 根节点
             TreeListNode root = treeUserOrg.AppendNode(new object[] { currOrg.ORGNAME }, -1);
             root.Tag = currOrg;
-            List<ORUP_USERORGANIZATION> userOrgs = UserService.UserOrgs(currOrg.ID);
+            List<ORUP_USERORGANIZATION> userOrgs = UserService.GetUserOrgsByOrgID(currOrg.ID);
             foreach (ORUP_USERORGANIZATION uo in userOrgs)
             {
                 ORUP_USER user = UserService.GetUser(uo.USERID);
