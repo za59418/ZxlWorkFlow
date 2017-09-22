@@ -15,6 +15,7 @@ namespace Zxl.Builder
         public DlgEditMetaData()
         {
             InitializeComponent();
+            tbName.Focus();
         }
 
         public int MetaDataId { get; set; }

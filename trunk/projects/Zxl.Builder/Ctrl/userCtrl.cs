@@ -27,6 +27,8 @@ namespace Zxl.Builder
             RefreshUserTree();
         }
 
+        public SYS_USER CurrUser { get; set; }
+
 
         #region 用户列表事件
         private void contextMenuUser_MouseUp(object sender, MouseEventArgs e)
@@ -47,16 +49,14 @@ namespace Zxl.Builder
                 treeUser.ContextMenuStrip = null;
                 if (null != treeUser.FocusedNode)
                 {
-                    if (treeUser.FocusedNode.Level == 0) // 根root
+                    if (treeUser.FocusedNode.Level == 0 || treeUser.FocusedNode.Level == 1) // 根root和字母
                     {
                         cmsAddUser.Visible = true;
-                        cmsEditUser.Visible = false;
                         cmsDelUser.Visible = false;
                     }
                     else
                     {
                         cmsAddUser.Visible = false;
-                        cmsEditUser.Visible = true;
                         cmsDelUser.Visible = true;
                     }
                     treeUser.ContextMenuStrip = contextMenuUser;
@@ -64,37 +64,18 @@ namespace Zxl.Builder
             }
 
             // 加载右边的详情树
-            if (null != treeUser.FocusedNode && treeUser.FocusedNode.Level != 0) // 点击的是非根节点
+            if (null != treeUser.FocusedNode && treeUser.FocusedNode.Level != 0 && treeUser.FocusedNode.Tag is SYS_USER) // 点击的是非根节点
             {
-                SYS_USER currUser = treeUser.FocusedNode.Tag as SYS_USER;
-                RefreshUserDetail(currUser);
+                CurrUser = treeUser.FocusedNode.Tag as SYS_USER;
+                RefreshUserDetail();
             }
         }
         private void cmsAddUser_Click(object sender, EventArgs e)
         {
-            DlgEditMetaData dlg = new DlgEditMetaData();
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BusinessServcie.AddMetaData(dlg.MetaDataName, dlg.MetaDataDescription);
-                RefreshUserTree();
-            }
-        }
-
-        private void cmsEditUser_Click(object sender, EventArgs e)
-        {
-            TreeListNode currNode = treeUser.FocusedNode;
-            SYS_METADATA bData = currNode.Tag as SYS_METADATA;
-
-            DlgEditMetaData dlg = new DlgEditMetaData();
-            dlg.MetaDataId = bData.ID;
-            dlg.MetaDataName = bData.NAME;
-            dlg.MetaDataDescription = bData.DESCRIPTION;
-
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BusinessServcie.EditMetaData(bData.ID, dlg.MetaDataName, dlg.MetaDataDescription);
-                RefreshUserTree();
-            }
+            CurrUser = new SYS_USER();
+            CurrUser.CREATETIME = DateTime.Now;
+            txtUserName.Focus();
+            RefreshUserDetail();
         }
 
         private void cmsDelUser_Click(object sender, EventArgs e)
@@ -115,24 +96,70 @@ namespace Zxl.Builder
             obj.USERNAME = "用户列表";
             TreeListNode root = treeUser.AppendNode(new object[] { obj.USERNAME }, -1);
 
-            List<SYS_USER> datas = UserServcie.Users();
-            foreach (SYS_USER data in datas)
+            //按字母分组排序
+            string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            List<SYS_USER> users = UserServcie.Users();
+            users.Sort((a, b) => a.USERNAME.CompareTo(b.USERNAME));
+            foreach(string letter in letters)
             {
-                TreeListNode node = treeUser.AppendNode(new object[] { data.USERNAME }, root);
-                node.Tag = data;
+                TreeListNode lNode = treeUser.AppendNode(new object[] { letter }, root);
+                lNode.Tag = letter;
+
+                int userCount = 0;
+                foreach (SYS_USER user in users)
+                {
+                    if (ValueOperator.GetSpellCode(user.USERNAME.Substring(0, 1)) == letter)
+                    {
+                        TreeListNode node = treeUser.AppendNode(new object[] { user.USERNAME }, lNode);
+                        node.Tag = user;
+                        userCount++;
+                    }
+                }
+                if (0 == userCount)
+                    treeUser.DeleteNode(lNode);
             }
+
             treeUser.ExpandAll();
         }
 
-        void RefreshUserDetail(SYS_USER currUser)
+        void RefreshUserDetail()
         {
-            txtUserName.Text = currUser.USERNAME;
-            txtMobile.Text = currUser.MOBILE;
-            txtEmail.Text = currUser.EMAIL;
+            txtUserName.Text = CurrUser.USERNAME;
+            txtPassword.Text = CurrUser.PASSWORD;
+            txtNickName.Text = CurrUser.NICKNAME;
+            txtMobile.Text = CurrUser.MOBILE;
+            txtPhone.Text = CurrUser.PHONE;
+            txtEmail.Text = CurrUser.EMAIL;
+            txtCreateTime.Text = CurrUser.CREATETIME.ToString("yyyy-MM-dd HH:mm:ss");
+            chbInValid.CheckState = CurrUser.STATE == 1 ? CheckState.Unchecked : CheckState.Unchecked;
         }
 
         #endregion 用户列表事件
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            CurrUser.USERNAME = txtUserName.Text;
+            CurrUser.PASSWORD = txtPassword.Text;
+            CurrUser.NICKNAME = txtNickName.Text;
+            CurrUser.MOBILE = txtMobile.Text;
+            CurrUser.PHONE = txtPhone.Text;
+            CurrUser.EMAIL = txtEmail.Text;
+            CurrUser.CREATETIME = DateTime.Parse(txtCreateTime.Text);
+            CurrUser.STATE = chbInValid.Checked ? 0 : 1;
 
+            try
+            {
+                CurrUser = UserServcie.SaveUser(CurrUser);
+                if (null != CurrUser)
+                {
+                    MessageBox.Show("保存成功！");
+                    RefreshUserTree();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("保存失败！\r\n" + ex.Message);
+            }
+        }
     }
 }

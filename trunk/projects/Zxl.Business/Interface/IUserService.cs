@@ -11,6 +11,7 @@ namespace Zxl.Business.Interface
     {
         List<SYS_USER> Users();
         int DelUser(int UserId);
+        SYS_USER SaveUser(SYS_USER user);
         SYS_USER GetUser(string userId);
         SYS_USER GetUser(string username,string password);
         SYS_USER modifyPassword(string userId, string password);
