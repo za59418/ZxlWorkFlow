@@ -63,7 +63,7 @@ namespace Zxl.WebSite.Controllers
 
             string UserId = Session["UserId"].ToString();
             List<SYS_PROJECT> list = BusinessServcie.Projectsing(UserId);
-            ORUP_USER user = UserService.GetUser(UserId);
+            ORUP_USER user = UserService.GetUser(Convert.ToInt32(UserId));
 
             var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             System.Web.HttpContext.Current.Response.Write(jss.Serialize(new { rows = list }));

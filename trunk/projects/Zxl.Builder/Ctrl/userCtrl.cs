@@ -110,7 +110,7 @@ namespace Zxl.Builder
                 {
                     if (ValueOperator.GetSpellCode(user.USERNAME.Substring(0, 1)) == letter)
                     {
-                        TreeListNode node = treeUser.AppendNode(new object[] { user.USERNAME + "(" + user.NICKNAME + ")", user.NICKNAME }, lNode);
+                        TreeListNode node = treeUser.AppendNode(new object[] { user.USERNAME }, lNode);
                         node.Tag = user;
                         userCount++;
                     }

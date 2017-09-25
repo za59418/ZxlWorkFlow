@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
+using DevExpress.XtraBars;
+using DevExpress.XtraNavBar;
 using DevExpress.XtraTab.Buttons;
+using DevExpress.XtraBars.Docking;
 
 namespace Zxl.Builder
 {
@@ -25,6 +28,18 @@ namespace Zxl.Builder
             MainTab.Dock = DockStyle.Fill;
             this.Controls.Add(MainTab);
 
+
+            //控制台
+            DockPanel configPanel = new DockPanel();
+            configPanel.Text = "控制台";
+            ControlContainer container = new ControlContainer();
+            configPanel.Controls.Add(container);
+            AddDockPanel(configPanel, DockingStyle.Fill);
+
+            TextBox ctrl = new TextBox();
+            ctrl.Dock = DockStyle.Fill;
+            ctrl.Multiline = true;
+            configPanel.ControlContainer.Controls.Add(ctrl);
         }
 
         private void CloseButtonClick(object sender, EventArgs e)//关闭选项卡方法  
@@ -119,6 +134,42 @@ namespace Zxl.Builder
             emptyCtrl ctrl = new emptyCtrl();
             ctrl.Dock = DockStyle.Fill;
             AddPage("流程管理", ctrl);
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            DockPanel configPanel = new DockPanel();// dockManager1.AddPanel(DevExpress.XtraBars.Docking.DockingStyle.Left);
+            configPanel.Text = "系统配置";
+            ControlContainer container = new ControlContainer();
+
+            configPanel.Controls.Add(container);
+            AddDockPanel(configPanel, DockingStyle.Left);
+
+            configCtrl ctrl = new configCtrl();
+            ctrl.Dock = DockStyle.Fill;
+            configPanel.ControlContainer.Controls.Add(ctrl);
+        }
+
+        void AddDockPanel(DockPanel panel, DockingStyle style)
+        {
+            DockPanel currPanel = null;
+            foreach (DockPanel temp in dockManager1.Panels)
+            {
+                if (temp.Text == panel.Text)
+                {
+                    currPanel = temp;
+                    break;
+                }
+            }
+            if (null != currPanel)
+            {
+                currPanel.Visibility = DockVisibility.Visible;
+            }
+            else
+            {
+                dockManager1.AddPanel(style, panel);
+            }
         }
     }
 }

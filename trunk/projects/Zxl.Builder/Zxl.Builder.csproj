@@ -45,6 +45,7 @@
     <Reference Include="DevExpress.Sparkline.v15.2.Core" />
     <Reference Include="DevExpress.XtraEditors.v15.2" />
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,8 +57,17 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\..\lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ctrl\configCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\configCtrl.Designer.cs">
+      <DependentUpon>configCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\orgCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +103,12 @@
     </Compile>
     <Compile Include="Ctrl\metaDataCtrl.Designer.cs">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgEditConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditConfig.Designer.cs">
+      <DependentUpon>DlgEditConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Dlg\DlgEditOrg.cs">
       <SubType>Form</SubType>
@@ -138,6 +154,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ctrl\configCtrl.resx">
+      <DependentUpon>configCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\orgCtrl.resx">
       <DependentUpon>orgCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditConfig.resx">
+      <DependentUpon>DlgEditConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditOrg.resx">
       <DependentUpon>DlgEditOrg.cs</DependentUpon>

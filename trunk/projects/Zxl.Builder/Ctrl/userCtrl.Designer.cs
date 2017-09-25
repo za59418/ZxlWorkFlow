@@ -91,6 +91,8 @@
             this.treeUser.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.treeUser.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
             this.treeUser.OptionsView.ShowCheckBoxes = true;
+            this.treeUser.OptionsView.ShowHorzLines = false;
+            this.treeUser.OptionsView.ShowVertLines = false;
             this.treeUser.Size = new System.Drawing.Size(262, 516);
             this.treeUser.TabIndex = 0;
             this.treeUser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.contextMenuUser_MouseUp);

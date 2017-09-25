@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="Impl\BusinessService.cs" />
     <Compile Include="Impl\MessageService.cs" />
+    <Compile Include="Impl\ConfigService.cs" />
     <Compile Include="Impl\UserService.cs" />
     <Compile Include="Interface\IBusinessService.cs" />
     <Compile Include="Interface\IMessageService.cs" />
+    <Compile Include="Interface\IConfigService.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\ORUP_ORGANIZATION.cs" />
