@@ -23,6 +23,20 @@ namespace Zxl.Builder
         public businessCtrl()
         {
             InitializeComponent();
+
+            treeBusiness.ItemHeight = 20;
+            imageList1.Images.Clear();
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.folder);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.folderUser);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.role);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.folderMaterial);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.material);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.folderForm);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.form);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.folderProcess);
+            imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.process);
+            treeBusiness.ImageList = imageList1;
+
             RefreshBusinessTree();
         }
 
@@ -30,119 +44,14 @@ namespace Zxl.Builder
 
 
         #region 业务树事件
-        //private void contextMenuUser_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    // 复选框控制
-        //    TreeListHitInfo hitInfo = treeUser.CalcHitInfo(new Point(e.X, e.Y));
-        //    TreeListNode node = hitInfo.Node;
-        //    treeUser.FocusedNode = node;
-        //    treeUser.UncheckAll();
-        //    if (null != node)
-        //        node.CheckState = CheckState.Checked;
-        //    else
-        //        return;
-
-        //    //右键菜单控制
-        //    if (e.Button == System.Windows.Forms.MouseButtons.Right)
-        //    {
-        //        treeUser.ContextMenuStrip = null;
-        //        if (null != treeUser.FocusedNode)
-        //        {
-        //            if (treeUser.FocusedNode.Level == 0 || treeUser.FocusedNode.Level == 1) // 根root和字母
-        //            {
-        //                cmsAddUser.Visible = true;
-        //                cmsDelUser.Visible = false;
-        //            }
-        //            else
-        //            {
-        //                cmsAddUser.Visible = false;
-        //                cmsDelUser.Visible = true;
-        //            }
-        //            treeUser.ContextMenuStrip = contextMenuUser;
-        //        }
-        //    }
-
-        //    // 加载右边的详情树
-        //    if (null != treeUser.FocusedNode && treeUser.FocusedNode.Level != 0 && treeUser.FocusedNode.Tag is ORUP_USER) // 点击的是非根节点
-        //    {
-        //        CurrUser = treeUser.FocusedNode.Tag as ORUP_USER;
-        //        RefreshUserDetail();
-        //    }
-        //}
-        //private void cmsAddUser_Click(object sender, EventArgs e)
-        //{
-        //    CurrUser = new ORUP_USER();
-        //    CurrUser.CREATETIME = DateTime.Now;
-        //    txtUserName.Focus();
-        //    RefreshUserDetail();
-        //}
-
-        //private void cmsDelUser_Click(object sender, EventArgs e)
-        //{
-        //    TreeListNode currNode = treeUser.FocusedNode;
-
-        //    ORUP_USER user = currNode.Tag as ORUP_USER;
-        //    UserServcie.DelUser(user.ID);
-
-        //    RefreshUserTree();
-        //}
-
-        void RefreshBusinessTree()
-        {
-            treeBusiness.Nodes.Clear();
-
-            TreeNode root = treeBusiness.Nodes.Add("root", "业务列表");
-            root.ContextMenuStrip = cmsBusinesses;
-            List<SYS_BUSINESS> businesses = BusinessServcie.Businesses();
-            int i = 0;
-            foreach (SYS_BUSINESS business in businesses)
-            {
-                TreeNode businessNode = root.Nodes.Add(business.ID + "", business.BUSINESSNAME + "(" + business.ID + ")");
-                businessNode.ContextMenuStrip = cmsBusiness;
-                businessNode.Tag = business;
-
-                TreeNode materialsNode = businessNode.Nodes.Add("material", "材料清单");
-                List<SYS_BUSINESSMATERIAL> materials = BusinessServcie.BusinessMaterials(business.ID);
-                foreach(SYS_BUSINESSMATERIAL material in materials)
-                {
-                    TreeNode materialNode = materialsNode.Nodes.Add(material.ID + "", material.MATERIALNAME + "(" + material.ID + ")");
-                    materialNode.Tag = material;
-                }
-                materialsNode.Expand();
-
-                TreeNode formsNode = businessNode.Nodes.Add("form", "表单列表");
-                List<SYS_BUSINESSFORM> forms = BusinessServcie.BusinessForms(business.ID);
-                foreach (SYS_BUSINESSFORM form in forms)
-                {
-                    TreeNode formNode = formsNode.Nodes.Add(form.ID + "", form.FORMNAME + "(" + form.ID + ")");
-                    formNode.Tag = form;
-                }
-                formsNode.Expand();
-
-                TreeNode processesNode = businessNode.Nodes.Add("process", "流程列表");
-                List<SYS_BUSINESSPROCESS> processes = BusinessServcie.BusinessProcesses(business.ID);
-                foreach (SYS_BUSINESSPROCESS process in processes)
-                {
-                    TreeNode processNode = processesNode.Nodes.Add(process.ID + "", process.PROCESSNAME + "(" + process.ID + ")");
-                    processNode.Tag = process;
-                }
-                processesNode.Expand();
-
-                if (i++ == 0)
-                    businessNode.ExpandAll();
-            }
-            root.Expand();
-        }
-
-        
-
-        #endregion 业务树事件
-
-        private void cmsiAddMaterial_Click(object sender, EventArgs e)
+        private void cmsiAddBusiness_Click(object sender, EventArgs e)
         {
             DlgEditBusiness dlg = new DlgEditBusiness();
+            SYS_BUSINESSGROUP group = treeBusiness.SelectedNode.Tag as SYS_BUSINESSGROUP;
             dlg.Business = new SYS_BUSINESS();
+            dlg.Business.REF_GROUP_ID = group.ID;
             dlg.Business.CREATETIME = DateTime.Now;
+
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 BusinessServcie.SaveBusiness(dlg.Business);
@@ -168,5 +77,89 @@ namespace Zxl.Builder
             BusinessServcie.DelBusiness(CurrBusiness.ID);
             RefreshBusinessTree();
         }
+        void RefreshBusinessTree()
+        {
+            treeBusiness.Nodes.Clear();
+
+            TreeNode root = treeBusiness.Nodes.Add("root", "业务列表");
+            root.ImageIndex = 0;
+            root.SelectedImageIndex = 0;
+            List<SYS_BUSINESSGROUP> groups = BusinessServcie.BusinessGroups();
+            foreach (SYS_BUSINESSGROUP group in groups)
+            {
+                TreeNode groupNode = root.Nodes.Add(group.ID + "", group.GROUPNAME);
+
+                groupNode.ContextMenuStrip = cmsBusinesses;
+                groupNode.ImageIndex = 0;
+                groupNode.SelectedImageIndex = 0;
+                groupNode.Tag = group;
+
+                List<SYS_BUSINESS> businesses = BusinessServcie.Businesses(group.ID);
+                foreach (SYS_BUSINESS business in businesses)
+                {
+                    TreeNode businessNode = groupNode.Nodes.Add(business.ID + "", business.BUSINESSNAME + "(" + business.ID + ")");
+                    businessNode.ImageIndex = 0;
+                    businessNode.SelectedImageIndex = 0;
+                    businessNode.ContextMenuStrip = cmsBusiness;
+                    businessNode.Tag = business;
+
+                    TreeNode rolesNode = businessNode.Nodes.Add("material", "角色列表");
+                    rolesNode.ImageIndex = 1;
+                    rolesNode.SelectedImageIndex = 1;
+                    List<SYS_BUSINESSROLE> roles = BusinessServcie.BusinessRoles(business.ID);
+                    foreach (SYS_BUSINESSROLE role in roles)
+                    {
+                        TreeNode roleNode = rolesNode.Nodes.Add(role.ID + "", role.ROLENAME);
+                        roleNode.ImageIndex = 2;
+                        roleNode.SelectedImageIndex = 2;
+                        roleNode.Tag = role;
+                    }
+                    rolesNode.Expand();
+
+                    TreeNode materialsNode = businessNode.Nodes.Add("material", "材料清单");
+                    materialsNode.ImageIndex = 3;
+                    materialsNode.SelectedImageIndex = 3;
+                    List<SYS_BUSINESSMATERIAL> materials = BusinessServcie.BusinessMaterials(business.ID);
+                    foreach (SYS_BUSINESSMATERIAL material in materials)
+                    {
+                        TreeNode materialNode = materialsNode.Nodes.Add(material.ID + "", material.MATERIALNAME + "(" + material.ID + ")");
+                        materialNode.ImageIndex = 4;
+                        materialNode.SelectedImageIndex = 4;
+                        materialNode.Tag = material;
+                    }
+                    materialsNode.Expand();
+
+                    TreeNode formsNode = businessNode.Nodes.Add("form", "表单列表");
+                    formsNode.ImageIndex = 5;
+                    formsNode.SelectedImageIndex = 5;
+                    List<SYS_BUSINESSFORM> forms = BusinessServcie.BusinessForms(business.ID);
+                    foreach (SYS_BUSINESSFORM form in forms)
+                    {
+                        TreeNode formNode = formsNode.Nodes.Add(form.ID + "", form.FORMNAME + "(" + form.ID + ")");
+                        formNode.ImageIndex = 6;
+                        formNode.SelectedImageIndex = 6;
+                        formNode.Tag = form;
+                    }
+                    formsNode.Expand();
+
+                    TreeNode processesNode = businessNode.Nodes.Add("process", "流程");
+                    processesNode.ImageIndex = 7;
+                    processesNode.SelectedImageIndex = 7;
+                    List<SYS_BUSINESSPROCESS> processes = BusinessServcie.BusinessProcesses(business.ID);
+                    foreach (SYS_BUSINESSPROCESS process in processes)
+                    {
+                        TreeNode processNode = processesNode.Nodes.Add(process.ID + "", process.PROCESSNAME + "(" + process.ID + ")");
+                        processNode.ImageIndex = 8;
+                        processNode.SelectedImageIndex = 8;
+                        processNode.Tag = process;
+                    }
+                    processesNode.Expand();
+                }
+                groupNode.Expand();
+            }
+            root.Expand();
+        }      
+
+        #endregion 业务树事件
     }
 }

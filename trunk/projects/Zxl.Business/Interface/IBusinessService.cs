@@ -11,12 +11,17 @@ namespace Zxl.Business.Interface
     {
         List<SYS_PROJECT> Projectsing(string UserId);
 
-        List<SYS_BUSINESS> Businesses();
+        List<SYS_BUSINESSGROUP> BusinessGroups();
+
+        List<SYS_BUSINESS> Businesses(int GroupID);
         SYS_BUSINESS Business(int BusinessID);
         SYS_BUSINESS SaveBusiness(SYS_BUSINESS businesses);
         int DelBusiness(int ID);
 
 
+        List<SYS_BUSINESSROLE> BusinessRoles(int BusinessID);
+        
+        
         List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID);
         SYS_BUSINESSMATERIAL AddMaterial(string NAME, string DESCRIPTION, int SORTINDEX);
         SYS_BUSINESSMATERIAL EditMaterial(int ID, string NAME, string DESCRIPTION, int SORTINDEX);

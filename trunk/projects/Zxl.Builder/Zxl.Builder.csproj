@@ -286,9 +286,6 @@
     <None Include="Resources\user.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\role.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\businessData.png" />
   </ItemGroup>
   <ItemGroup>
@@ -298,7 +295,25 @@
     <None Include="Resources\dictionary.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\role.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folderForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folderUser.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\form.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folderMaterial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folderProcess.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\process.png" />
