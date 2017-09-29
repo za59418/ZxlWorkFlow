@@ -176,6 +176,7 @@
             this.barButtonItem12.LargeGlyph = global::Zxl.Builder.Properties.Resources.form;
             this.barButtonItem12.Name = "barButtonItem12";
             this.barButtonItem12.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
+            this.barButtonItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem12.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem12_ItemClick);
             // 
             // barButtonItem13
@@ -185,11 +186,12 @@
             this.barButtonItem13.LargeGlyph = global::Zxl.Builder.Properties.Resources.material;
             this.barButtonItem13.Name = "barButtonItem13";
             this.barButtonItem13.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
+            this.barButtonItem13.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem13.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem13_ItemClick);
             // 
             // barButtonItem14
             // 
-            this.barButtonItem14.Caption = "流程管理";
+            this.barButtonItem14.Caption = "业务管理";
             this.barButtonItem14.Id = 15;
             this.barButtonItem14.LargeGlyph = global::Zxl.Builder.Properties.Resources.process;
             this.barButtonItem14.Name = "barButtonItem14";
@@ -227,7 +229,7 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem13);
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem14);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "流程管理";
+            this.ribbonPageGroup5.Text = "业务管理";
             // 
             // ribbonPage2
             // 

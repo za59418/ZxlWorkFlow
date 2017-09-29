@@ -131,9 +131,9 @@ namespace Zxl.Builder
 
         private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            emptyCtrl ctrl = new emptyCtrl();
+            businessCtrl ctrl = new businessCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("流程管理", ctrl);
+            AddPage("业务管理", ctrl);
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

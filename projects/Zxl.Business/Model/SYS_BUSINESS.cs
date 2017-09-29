@@ -21,5 +21,7 @@ namespace Zxl.Business.Model
         public DateTime CREATETIME { get; set; }
         [Field]
         public string DESCRIPTION { get; set; }
+        [Field]
+        public int SORTINDEX { get; set; }
     }
 }

@@ -63,16 +63,19 @@ CREATE TABLE SYS_BUSINESSMATERIAL
 	MATERIALNAME VARCHAR2(250), 
 	REF_BUSINESS_ID VARCHAR2(20), 
 	CREATETIME DATE, 
-	DESCRIPTION VARCHAR2(500)
+	DESCRIPTION VARCHAR2(500),
+	SORTINDEX number
 );
 
+create sequence seq_sys_business;
 create table sys_business
 (
 	id integer primary key,
 	BUSINESSNAME varchar2(100),
 	SHORTNAME varchar2(50),       
 	createtime date,
-	description varchar2(200)
+	description varchar2(200),
+	SORTINDEX number
 );
 
 create table sys_businessprocess
