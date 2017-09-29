@@ -14,6 +14,8 @@ namespace Zxl.Business.Model
         [Field(PrimaryKey = true)]
         public int ID { get; set; }
         [Field]
+        public int REF_GROUP_ID { get; set; }
+        [Field]
         public string BUSINESSNAME { get; set; }
         [Field]
         public string SHORTNAME { get; set; }

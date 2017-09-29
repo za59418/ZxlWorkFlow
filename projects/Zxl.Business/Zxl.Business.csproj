@@ -70,6 +70,7 @@
     <Compile Include="Model\ORUP_USERORGANIZATION.cs" />
     <Compile Include="Model\ORUP_USERROLE.cs" />
     <Compile Include="Model\SYS_ARCHIVE.cs" />
+    <Compile Include="Model\SYS_BUSINESSGROUP.cs" />
     <Compile Include="Model\SYS_BUSINESSDATA.cs" />
     <Compile Include="Model\SYS_BUSINESSDATADETAIL.cs" />
     <Compile Include="Model\SYS_METADATADETAIL.cs" />

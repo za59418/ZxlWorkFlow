@@ -32,10 +32,11 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.treeBusiness = new System.Windows.Forms.TreeView();
             this.cmsBusinesses = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmsBusiness = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsiAddBusiness = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsBusiness = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditBusiness = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelBusiness = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             this.cmsBusinesses.SuspendLayout();
@@ -70,27 +71,27 @@
             this.cmsBusinesses.Name = "contextMenuBd";
             this.cmsBusinesses.Size = new System.Drawing.Size(125, 26);
             // 
-            // cmsBusiness
-            // 
-            this.cmsBusiness.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditBusiness,
-            this.tsmiDelBusiness});
-            this.cmsBusiness.Name = "contextMenuBd";
-            this.cmsBusiness.Size = new System.Drawing.Size(153, 70);
-            // 
             // cmsiAddBusiness
             // 
             this.cmsiAddBusiness.Image = global::Zxl.Builder.Properties.Resources.add1;
             this.cmsiAddBusiness.Name = "cmsiAddBusiness";
             this.cmsiAddBusiness.Size = new System.Drawing.Size(124, 22);
             this.cmsiAddBusiness.Text = "添加业务";
-            this.cmsiAddBusiness.Click += new System.EventHandler(this.cmsiAddMaterial_Click);
+            this.cmsiAddBusiness.Click += new System.EventHandler(this.cmsiAddBusiness_Click);
+            // 
+            // cmsBusiness
+            // 
+            this.cmsBusiness.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEditBusiness,
+            this.tsmiDelBusiness});
+            this.cmsBusiness.Name = "contextMenuBd";
+            this.cmsBusiness.Size = new System.Drawing.Size(125, 48);
             // 
             // tsmiEditBusiness
             // 
             this.tsmiEditBusiness.Image = global::Zxl.Builder.Properties.Resources.edit1;
             this.tsmiEditBusiness.Name = "tsmiEditBusiness";
-            this.tsmiEditBusiness.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEditBusiness.Size = new System.Drawing.Size(124, 22);
             this.tsmiEditBusiness.Text = "编辑业务";
             this.tsmiEditBusiness.Click += new System.EventHandler(this.tsmiEditBusiness_Click);
             // 
@@ -98,9 +99,15 @@
             // 
             this.tsmiDelBusiness.Image = global::Zxl.Builder.Properties.Resources.del1;
             this.tsmiDelBusiness.Name = "tsmiDelBusiness";
-            this.tsmiDelBusiness.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDelBusiness.Size = new System.Drawing.Size(124, 22);
             this.tsmiDelBusiness.Text = "删除业务";
             this.tsmiDelBusiness.Click += new System.EventHandler(this.tsmiDelBusiness_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // businessCtrl
             // 
@@ -126,5 +133,6 @@
         private System.Windows.Forms.ContextMenuStrip cmsBusiness;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditBusiness;
         private System.Windows.Forms.ToolStripMenuItem tsmiDelBusiness;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

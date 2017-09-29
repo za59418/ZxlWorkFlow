@@ -47,6 +47,28 @@ CREATE TABLE SYS_PROJECTMATERIAL
 	DESCRIPTION VARCHAR2(500)
 );
 
+create sequence SEQ_SYS_BUSINESSGROUP;
+create table SYS_BUSINESSGROUP
+(
+	ID integer primary key,
+	GROUPNAME varchar2(100),
+	description varchar2(200),
+	SORTINDEX number
+);
+
+
+create sequence seq_sys_business;
+create table sys_business
+(
+	id integer primary key,
+	REF_GROUP_ID number,
+	BUSINESSNAME varchar2(100),
+	SHORTNAME varchar2(50),       
+	createtime date,
+	description varchar2(200),
+	SORTINDEX number
+);
+
 CREATE TABLE SYS_BUSINESSFORM
 (  
 	ID integer primary key, 
@@ -67,16 +89,6 @@ CREATE TABLE SYS_BUSINESSMATERIAL
 	SORTINDEX number
 );
 
-create sequence seq_sys_business;
-create table sys_business
-(
-	id integer primary key,
-	BUSINESSNAME varchar2(100),
-	SHORTNAME varchar2(50),       
-	createtime date,
-	description varchar2(200),
-	SORTINDEX number
-);
 
 create table sys_businessprocess
 (

@@ -25,12 +25,23 @@ namespace Zxl.Business.Impl
             return list;
         }
 
-        public List<SYS_BUSINESS> Businesses()
+        public List<SYS_BUSINESSGROUP> BusinessGroups()
+        {
+            List<SYS_BUSINESSGROUP> list = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                list = orm.Query<SYS_BUSINESSGROUP>();
+            }
+            return list;
+        }
+
+
+        public List<SYS_BUSINESS> Businesses(int GroupID)
         {
             List<SYS_BUSINESS> list = null;
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                list = orm.Query<SYS_BUSINESS>();
+                list = orm.Query<SYS_BUSINESS>("where REF_GROUP_ID=" + GroupID + " order by SortIndex");
             }
             return list;
         }
@@ -61,6 +72,15 @@ namespace Zxl.Business.Impl
                 return orm.Delete<SYS_BUSINESS>("where ID=" + ID);
             }
         }
+
+        public List<SYS_BUSINESSROLE> BusinessRoles(int BusinessID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Query<SYS_BUSINESSROLE>("where REF_BUSINESS_ID=" + BusinessID);
+            }
+        }
+
 
         public List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID)
         {
