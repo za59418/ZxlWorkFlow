@@ -10,6 +10,25 @@ namespace Zxl.Business.Interface
     public interface IBusinessService
     {
         List<SYS_PROJECT> Projectsing(string UserId);
+
+        List<SYS_BUSINESS> Businesses();
+        SYS_BUSINESS Business(int BusinessID);
+        SYS_BUSINESS SaveBusiness(SYS_BUSINESS businesses);
+        int DelBusiness(int ID);
+
+
+        List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID);
+        SYS_BUSINESSMATERIAL AddMaterial(string NAME, string DESCRIPTION, int SORTINDEX);
+        SYS_BUSINESSMATERIAL EditMaterial(int ID, string NAME, string DESCRIPTION, int SORTINDEX);
+        int DelMaterial(int ID);
+
+
+        List<SYS_BUSINESSFORM> BusinessForms(int BusinessID);
+
+
+        List<SYS_BUSINESSPROCESS> BusinessProcesses(int BusinessID);
+        
+        
         List<SYS_METADATA> MetaDatas();
         SYS_METADATA MetaData(int MetaDataID);
         SYS_METADATA AddMetaData(string Name, string Description);

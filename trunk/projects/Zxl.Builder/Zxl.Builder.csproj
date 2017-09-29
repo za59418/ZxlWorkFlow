@@ -92,6 +92,12 @@
     <Compile Include="Ctrl\emptyCtrl.Designer.cs">
       <DependentUpon>emptyCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\businessCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\businessCtrl.Designer.cs">
+      <DependentUpon>businessCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\userCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +115,12 @@
     </Compile>
     <Compile Include="Dlg\DlgEditConfig.Designer.cs">
       <DependentUpon>DlgEditConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusiness.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusiness.Designer.cs">
+      <DependentUpon>DlgEditBusiness.cs</DependentUpon>
     </Compile>
     <Compile Include="Dlg\DlgEditOrg.cs">
       <SubType>Form</SubType>
@@ -166,6 +178,9 @@
     <EmbeddedResource Include="Ctrl\businessDataCtrl.resx">
       <DependentUpon>businessDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\businessCtrl.resx">
+      <DependentUpon>businessCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\userCtrl.resx">
       <DependentUpon>userCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditConfig.resx">
       <DependentUpon>DlgEditConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditBusiness.resx">
+      <DependentUpon>DlgEditBusiness.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditOrg.resx">
       <DependentUpon>DlgEditOrg.cs</DependentUpon>
