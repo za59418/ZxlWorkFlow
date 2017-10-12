@@ -15,118 +15,31 @@ using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class metaDataCtrl : UserControl
+    public partial class metaDataDetailCtrl : UserControl
     {
 
         public IBusinessService BusinessServcie = new BusinessService();
 
-        public metaDataCtrl()
+        public metaDataDetailCtrl()
         {
             InitializeComponent();
-            RefreshMetaDataTree();
         }
-
-
-        #region 元数据树事件
-        private void treeMetaData_MouseUp(object sender, MouseEventArgs e)
+ 
+        private SYS_METADATA _currMetaData;
+        public SYS_METADATA CurrMetaData
         {
-
-            // 复选框控制
-            TreeListHitInfo hitInfo = treeMetaData.CalcHitInfo(new Point(e.X, e.Y));
-            TreeListNode node = hitInfo.Node;
-            treeMetaData.FocusedNode = node;
-            treeMetaData.UncheckAll();
-            if (null != node)
-                node.CheckState = CheckState.Checked;
-            else
-                return;
-
-            //右键菜单控制
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            get
             {
-                treeMetaData.ContextMenuStrip = null;
-                if (null != treeMetaData.FocusedNode)
-                {
-                    if (treeMetaData.FocusedNode.Level == 0) // 根root
-                    {
-                        cmsAddMetaData.Visible = true;
-                        cmsEditMetaData.Visible = false;
-                        cmsDelMetaData.Visible = false;
-                    }
-                    else
-                    {
-                        cmsAddMetaData.Visible = false;
-                        cmsEditMetaData.Visible = true;
-                        cmsDelMetaData.Visible = true;
-                    }
-                    treeMetaData.ContextMenuStrip = contextMenuMd;
-                }
+                return _currMetaData;
             }
-
-            // 加载右边的详情树
-            if (null != treeMetaData.FocusedNode && treeMetaData.FocusedNode.Level != 0) // 点击的是非根节点
+            set
             {
-                SYS_METADATA currMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
-                txtMetaDataName.Text = currMetaData.NAME;
-                txtMetaDataDesc.Text = currMetaData.DESCRIPTION;
-                RefreshMetadataDetail(currMetaData);
+                _currMetaData = value;
+                txtMetaDataName.Text = _currMetaData.NAME;
+                txtMetaDataDesc.Text = _currMetaData.DESCRIPTION;
+                RefreshMetadataDetail(_currMetaData);
             }
         }
-        private void cmsAddMetaData_Click(object sender, EventArgs e)
-        {
-            DlgEditMetaData dlg = new DlgEditMetaData();
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BusinessServcie.AddMetaData(dlg.MetaDataName, dlg.MetaDataDescription);
-                RefreshMetaDataTree();
-            }
-        }
-
-        private void cmsEditMetaData_Click(object sender, EventArgs e)
-        {
-            TreeListNode currNode = treeMetaData.FocusedNode;
-            SYS_METADATA bData = currNode.Tag as SYS_METADATA;
-
-            DlgEditMetaData dlg = new DlgEditMetaData();
-            dlg.MetaDataId = bData.ID;
-            dlg.MetaDataName = bData.NAME;
-            dlg.MetaDataDescription = bData.DESCRIPTION;
-
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BusinessServcie.EditMetaData(bData.ID, dlg.MetaDataName, dlg.MetaDataDescription);
-                RefreshMetaDataTree();
-            }
-        }
-
-        private void cmsDelMetaData_Click(object sender, EventArgs e)
-        {
-            TreeListNode currNode = treeMetaData.FocusedNode;
-
-            SYS_METADATA bData = currNode.Tag as SYS_METADATA;
-            BusinessServcie.DelMetaData(bData.ID);
-
-            RefreshMetaDataTree();
-        }
-
-        void RefreshMetaDataTree()
-        {
-            treeMetaData.Nodes.Clear();
-            SYS_METADATA obj = new SYS_METADATA();
-            obj.ID = 0;
-            obj.NAME = "元数据";
-            TreeListNode root = treeMetaData.AppendNode(new object[] {obj.NAME }, -1);
-
-            List<SYS_METADATA> datas = BusinessServcie.MetaDatas();
-            foreach (SYS_METADATA data in datas)
-            {
-                TreeListNode node = treeMetaData.AppendNode(new object[] { data.NAME, data.DESCRIPTION }, root);
-                node.Tag = data;
-            }
-            treeMetaData.ExpandAll();
-        }
-
-        #endregion 元数据树事件
 
         #region 元数据详情
         private void btnLock_Click(object sender, EventArgs e)
@@ -184,8 +97,7 @@ namespace Zxl.Builder
                     obj = new SYS_METADATADETAIL();
                     obj.ID = ValueOperator.CreatePk("SYS_METADATADETAIL");
 
-                    SYS_METADATA currMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
-                    obj.REF_METADATA_ID = currMetaData.ID;
+                    obj.REF_METADATA_ID = CurrMetaData.ID;
                 }
                 else // 旧行
                 {

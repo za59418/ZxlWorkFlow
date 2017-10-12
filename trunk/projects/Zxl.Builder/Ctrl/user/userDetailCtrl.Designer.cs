@@ -1,6 +1,6 @@
 ﻿namespace Zxl.Builder
 {
-    partial class userCtrl
+    partial class userDetailCtrl
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.treeUser = new DevExpress.XtraTreeList.TreeList();
-            this.UName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCreateTime = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -55,14 +50,6 @@
             this.label2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtUserName = new DevExpress.XtraEditors.TextEdit();
-            this.contextMenuUser = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmsAddUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsDelUser = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.treeUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNickName.Properties)).BeginInit();
@@ -71,64 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
-            this.contextMenuUser.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // treeUser
-            // 
-            this.treeUser.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.UName});
-            this.treeUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeUser.Location = new System.Drawing.Point(0, 0);
-            this.treeUser.LookAndFeel.SkinName = "iMaginary";
-            this.treeUser.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.treeUser.Name = "treeUser";
-            this.treeUser.OptionsBehavior.AutoChangeParent = false;
-            this.treeUser.OptionsBehavior.CloseEditorOnLostFocus = false;
-            this.treeUser.OptionsBehavior.KeepSelectedOnClick = false;
-            this.treeUser.OptionsBehavior.ShowToolTips = false;
-            this.treeUser.OptionsBehavior.SmartMouseHover = false;
-            this.treeUser.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeUser.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeUser.OptionsView.ShowCheckBoxes = true;
-            this.treeUser.OptionsView.ShowHorzLines = false;
-            this.treeUser.OptionsView.ShowVertLines = false;
-            this.treeUser.Size = new System.Drawing.Size(262, 516);
-            this.treeUser.TabIndex = 0;
-            this.treeUser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.contextMenuUser_MouseUp);
-            // 
-            // UName
-            // 
-            this.UName.Caption = "名称";
-            this.UName.FieldName = "NAME";
-            this.UName.MinWidth = 31;
-            this.UName.Name = "UName";
-            this.UName.OptionsColumn.AllowEdit = false;
-            this.UName.Visible = true;
-            this.UName.VisibleIndex = 0;
-            // 
-            // splitContainerControl1
-            // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.treeUser);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(993, 516);
-            this.splitContainerControl1.SplitterPosition = 262;
-            this.splitContainerControl1.TabIndex = 1;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.groupBox1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(726, 516);
-            this.panelControl1.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -153,7 +83,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.txtUserName);
-            this.groupBox1.Location = new System.Drawing.Point(5, 5);
+            this.groupBox1.Location = new System.Drawing.Point(13, 15);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(642, 498);
             this.groupBox1.TabIndex = 6;
@@ -194,19 +124,19 @@
             // listRoles
             // 
             this.listRoles.FormattingEnabled = true;
-            this.listRoles.ItemHeight = 14;
+            this.listRoles.ItemHeight = 12;
             this.listRoles.Location = new System.Drawing.Point(90, 310);
             this.listRoles.Name = "listRoles";
-            this.listRoles.Size = new System.Drawing.Size(490, 130);
+            this.listRoles.Size = new System.Drawing.Size(490, 124);
             this.listRoles.TabIndex = 19;
             // 
             // listOrganizations
             // 
             this.listOrganizations.FormattingEnabled = true;
-            this.listOrganizations.ItemHeight = 14;
+            this.listOrganizations.ItemHeight = 12;
             this.listOrganizations.Location = new System.Drawing.Point(90, 160);
             this.listOrganizations.Name = "listOrganizations";
-            this.listOrganizations.Size = new System.Drawing.Size(490, 130);
+            this.listOrganizations.Size = new System.Drawing.Size(490, 124);
             this.listOrganizations.TabIndex = 18;
             // 
             // labelControl6
@@ -330,43 +260,13 @@
             this.txtUserName.Size = new System.Drawing.Size(180, 20);
             this.txtUserName.TabIndex = 0;
             // 
-            // contextMenuUser
-            // 
-            this.contextMenuUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmsAddUser,
-            this.cmsDelUser});
-            this.contextMenuUser.Name = "contextMenuBd";
-            this.contextMenuUser.Size = new System.Drawing.Size(125, 48);
-            this.contextMenuUser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.contextMenuUser_MouseUp);
-            // 
-            // cmsAddUser
-            // 
-            this.cmsAddUser.Image = global::Zxl.Builder.Properties.Resources.add1;
-            this.cmsAddUser.Name = "cmsAddUser";
-            this.cmsAddUser.Size = new System.Drawing.Size(124, 22);
-            this.cmsAddUser.Text = "添加用户";
-            this.cmsAddUser.Click += new System.EventHandler(this.cmsAddUser_Click);
-            // 
-            // cmsDelUser
-            // 
-            this.cmsDelUser.Image = global::Zxl.Builder.Properties.Resources.del1;
-            this.cmsDelUser.Name = "cmsDelUser";
-            this.cmsDelUser.Size = new System.Drawing.Size(124, 22);
-            this.cmsDelUser.Text = "删除用户";
-            this.cmsDelUser.Click += new System.EventHandler(this.cmsDelUser_Click);
-            // 
-            // userCtrl
+            // userDetailCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainerControl1);
-            this.Name = "userCtrl";
+            this.Controls.Add(this.groupBox1);
+            this.Name = "userDetailCtrl";
             this.Size = new System.Drawing.Size(993, 516);
-            ((System.ComponentModel.ISupportInitialize)(this.treeUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
@@ -376,20 +276,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
-            this.contextMenuUser.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraTreeList.TreeList treeUser;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn UName;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuUser;
-        private System.Windows.Forms.ToolStripMenuItem cmsAddUser;
-        private System.Windows.Forms.ToolStripMenuItem cmsDelUser;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtUserName;
         private DevExpress.XtraEditors.LabelControl label2;

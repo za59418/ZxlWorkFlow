@@ -15,12 +15,12 @@ using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class orgCtrl : UserControl
+    public partial class orgDetailCtrl : UserControl
     {
 
         public IUserService UserService = new UserService();
 
-        public orgCtrl()
+        public orgDetailCtrl()
         {
             InitializeComponent();
             RefreshOrgTree();

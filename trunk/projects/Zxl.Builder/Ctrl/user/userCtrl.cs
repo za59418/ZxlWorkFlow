@@ -27,11 +27,12 @@ namespace Zxl.Builder
             RefreshUserTree();
         }
 
-        public ORUP_USER CurrUser { get; set; }
+        public FormMain MainForm { get; set; }
+        private ORUP_USER CurrUser;
 
 
         #region 用户列表事件
-        private void contextMenuUser_MouseUp(object sender, MouseEventArgs e)
+        private void treeUser_MouseClick(object sender, MouseEventArgs e)
         {
             // 复选框控制
             TreeListHitInfo hitInfo = treeUser.CalcHitInfo(new Point(e.X, e.Y));
@@ -43,39 +44,27 @@ namespace Zxl.Builder
             else
                 return;
 
-            //右键菜单控制
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                treeUser.ContextMenuStrip = null;
-                if (null != treeUser.FocusedNode)
-                {
-                    if (treeUser.FocusedNode.Level == 0 || treeUser.FocusedNode.Level == 1) // 根root和字母
-                    {
-                        cmsAddUser.Visible = true;
-                        cmsDelUser.Visible = false;
-                    }
-                    else
-                    {
-                        cmsAddUser.Visible = false;
-                        cmsDelUser.Visible = true;
-                    }
-                    treeUser.ContextMenuStrip = contextMenuUser;
-                }
-            }
-
+            treeUser.ContextMenuStrip = cmsUsers;
             // 加载右边的详情树
             if (null != treeUser.FocusedNode && treeUser.FocusedNode.Level != 0 && treeUser.FocusedNode.Tag is ORUP_USER) // 点击的是非根节点
             {
                 CurrUser = treeUser.FocusedNode.Tag as ORUP_USER;
-                RefreshUserDetail();
+                treeUser.ContextMenuStrip = cmsUser;
             }
         }
+
+        private void treeUser_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            userDetailCtrl ctrl = new userDetailCtrl();
+            ctrl.Dock = DockStyle.Fill;
+            ctrl.CurrUser = CurrUser;
+            MainForm.AddTab(ctrl.CurrUser.USERNAME, ctrl);
+        }
+
         private void cmsAddUser_Click(object sender, EventArgs e)
         {
             CurrUser = new ORUP_USER();
             CurrUser.CREATETIME = DateTime.Now;
-            txtUserName.Focus();
-            RefreshUserDetail();
         }
 
         private void cmsDelUser_Click(object sender, EventArgs e)
@@ -121,59 +110,6 @@ namespace Zxl.Builder
 
             treeUser.ExpandAll();
         }
-
-        void RefreshUserDetail()
-        {
-            txtUserName.Text = CurrUser.USERNAME;
-            txtPassword.Text = CurrUser.PASSWORD;
-            txtNickName.Text = CurrUser.NICKNAME;
-            txtMobile.Text = CurrUser.MOBILE;
-            txtPhone.Text = CurrUser.PHONE;
-            txtEmail.Text = CurrUser.EMAIL;
-            txtCreateTime.Text = CurrUser.CREATETIME.ToString("yyyy-MM-dd HH:mm:ss");
-            chbInValid.CheckState = CurrUser.STATE == 1 ? CheckState.Unchecked : CheckState.Unchecked;
-
-            listRoles.Items.Clear();
-            List<ORUP_USERROLE> urs = UserServcie.GetUserRolesByUserID(CurrUser.ID);
-            foreach (ORUP_USERROLE ur in urs)
-            {
-                listRoles.Items.Add(UserServcie.GetRole(ur.RoleID).ROLENAME);
-            }
-
-            listOrganizations.Items.Clear();
-            List<ORUP_USERORGANIZATION> uos = UserServcie.GetUserOrgsByUserID(CurrUser.ID);
-            foreach (ORUP_USERORGANIZATION uo in uos)
-            {
-                listOrganizations.Items.Add(UserServcie.GetOrganization(uo.ORGANIZATIONID).ORGNAME);
-            }
-        }
-
         #endregion 用户列表事件
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            CurrUser.USERNAME = txtUserName.Text;
-            CurrUser.PASSWORD = txtPassword.Text;
-            CurrUser.NICKNAME = txtNickName.Text;
-            CurrUser.MOBILE = txtMobile.Text;
-            CurrUser.PHONE = txtPhone.Text;
-            CurrUser.EMAIL = txtEmail.Text;
-            CurrUser.CREATETIME = DateTime.Parse(txtCreateTime.Text);
-            CurrUser.STATE = chbInValid.Checked ? 0 : 1;
-
-            try
-            {
-                CurrUser = UserServcie.SaveUser(CurrUser);
-                if (null != CurrUser)
-                {
-                    MessageBox.Show("保存成功！");
-                    RefreshUserTree();
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("保存失败！\r\n" + ex.Message);
-            }
-        }
     }
 }

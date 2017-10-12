@@ -22,24 +22,52 @@ namespace Zxl.Builder
         {
             InitializeComponent();
 
-            MainTab = new XtraTabControl();
-            MainTab.ClosePageButtonShowMode = ClosePageButtonShowMode.InAllTabPageHeaders; // 显示关闭按钮
-            MainTab.CloseButtonClick += new EventHandler(CloseButtonClick); // 关闭事件
-            MainTab.Dock = DockStyle.Fill;
-            this.Controls.Add(MainTab);
+            //MainTab = new XtraTabControl();
+            //MainTab.ClosePageButtonShowMode = ClosePageButtonShowMode.InAllTabPageHeaders; // 显示关闭按钮
+            //MainTab.CloseButtonClick += new EventHandler(CloseButtonClick); // 关闭事件
+            //MainTab.Dock = DockStyle.Fill;
+            //this.Controls.Add(MainTab);
+
+        }
 
 
-            //控制台
-            DockPanel configPanel = new DockPanel();
-            configPanel.Text = "控制台";
-            ControlContainer container = new ControlContainer();
-            configPanel.Controls.Add(container);
-            AddDockPanel(configPanel, DockingStyle.Fill);
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            Init();
+        }
 
-            TextBox ctrl = new TextBox();
-            ctrl.Dock = DockStyle.Fill;
-            ctrl.Multiline = true;
-            configPanel.ControlContainer.Controls.Add(ctrl);
+
+        void Init()
+        {
+            businessCtrl bCtrl = new businessCtrl();
+            bCtrl.MainForm = this;
+            bCtrl.Dock = DockStyle.Fill;
+            businessPanel.ControlContainer.Controls.Add(bCtrl);
+
+            metaDataCtrl mdCtrl = new metaDataCtrl();
+            mdCtrl.MainForm = this;
+            mdCtrl.Dock = DockStyle.Fill;
+            metaDataPanel.ControlContainer.Controls.Add(mdCtrl);
+
+            businessDataCtrl bdCtrl = new businessDataCtrl();
+            bdCtrl.MainForm = this;
+            bdCtrl.Dock = DockStyle.Fill;
+            businessDataPanel.ControlContainer.Controls.Add(bdCtrl);
+
+            userCtrl uCtrl = new userCtrl();
+            uCtrl.MainForm = this;
+            uCtrl.Dock = DockStyle.Fill;
+            userPanel.ControlContainer.Controls.Add(uCtrl);
+
+            roleCtrl rCtrl = new roleCtrl();
+            rCtrl.MainForm = this;
+            rCtrl.Dock = DockStyle.Fill;
+            rolePanel.ControlContainer.Controls.Add(rCtrl);
+
+            orgCtrl oCtrl = new orgCtrl();
+            oCtrl.MainForm = this;
+            oCtrl.Dock = DockStyle.Fill;
+            orgPanel.ControlContainer.Controls.Add(oCtrl);
         }
 
         private void CloseButtonClick(object sender, EventArgs e)//关闭选项卡方法  
@@ -84,21 +112,49 @@ namespace Zxl.Builder
         {
             metaDataCtrl ctrl = new metaDataCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("元数据管理", ctrl);
+            //AddPage("元数据管理", ctrl);
+            AddTab("元数据管理", ctrl);
         }
 
         private void businessData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             businessDataCtrl ctrl = new businessDataCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("业务数据管理", ctrl);
+            //AddPage("业务数据管理", ctrl);
+            AddTab("业务数据管理", ctrl);
+
         }
+
+
+
+
 
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            //userCtrl ctrl = new userCtrl();
+            //ctrl.Dock = DockStyle.Fill;
+            //AddPage("用户管理", ctrl);
+
             userCtrl ctrl = new userCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("用户管理", ctrl);
+            AddTab("用户管理", ctrl);
+        }
+
+        public void AddTab(string Title, UserControl ctrl)
+        {
+            DockPanel dockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+            ControlContainer controlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
+            dockPanel.Text = Title;
+            dockPanel.Dock = DockingStyle.Fill;
+
+            AddDockPanel(dockPanel, DockingStyle.Fill);
+
+            controlContainer.Dock = DockStyle.Fill;
+            dockPanel.Controls.Add(controlContainer);
+            dockPanel.DockedAsTabbedDocument = true;
+            controlContainer.TabIndex = 0;
+            controlContainer.Controls.Add(ctrl);
+
         }
 
         private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -131,9 +187,21 @@ namespace Zxl.Builder
 
         private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            //businessCtrl ctrl = new businessCtrl();
+            //ctrl.Dock = DockStyle.Fill;
+            //AddPage("业务管理", ctrl);
+
+            DockPanel businessPanel = new DockPanel();// dockManager1.AddPanel(DevExpress.XtraBars.Docking.DockingStyle.Left);
+            businessPanel.Text = "业务管理";
+            ControlContainer container = new ControlContainer();
+
+            businessPanel.Controls.Add(container);
+            AddDockPanel(businessPanel, DockingStyle.Left);
+
             businessCtrl ctrl = new businessCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("业务管理", ctrl);
+            businessPanel.ControlContainer.Controls.Add(ctrl);
+
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -144,7 +212,7 @@ namespace Zxl.Builder
             ControlContainer container = new ControlContainer();
 
             configPanel.Controls.Add(container);
-            AddDockPanel(configPanel, DockingStyle.Left);
+            AddDockPanel(configPanel, DockingStyle.Right);
 
             configCtrl ctrl = new configCtrl();
             ctrl.Dock = DockStyle.Fill;
@@ -154,13 +222,18 @@ namespace Zxl.Builder
         void AddDockPanel(DockPanel panel, DockingStyle style)
         {
             DockPanel currPanel = null;
+            //DockPanel bPanel = null;
             foreach (DockPanel temp in dockManager1.Panels)
             {
+                //if (temp.Text == "业务管理")
+                //    bPanel = temp;
+
                 if (temp.Text == panel.Text)
                 {
                     currPanel = temp;
                     break;
                 }
+
             }
             if (null != currPanel)
             {
@@ -169,7 +242,10 @@ namespace Zxl.Builder
             else
             {
                 dockManager1.AddPanel(style, panel);
+                //if (null != bPanel)
+                //    panel.DockAsTab(bPanel, 0);
             }
         }
+
     }
 }
