@@ -1,6 +1,6 @@
 ﻿namespace Zxl.Builder
 {
-    partial class roleCtrl
+    partial class businessRoleCtrl
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,14 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.treeRole = new DevExpress.XtraTreeList.TreeList();
-            this.bName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.bDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.contextMenuRole = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiAddRole = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEditRole = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDelRole = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.treeUserRole = new DevExpress.XtraTreeList.TreeList();
             this.bdName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -54,10 +46,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtRoleName = new DevExpress.XtraEditors.TextEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeRole)).BeginInit();
-            this.contextMenuRole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeUserRole)).BeginInit();
@@ -69,103 +57,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRoleName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // treeRole
-            // 
-            this.treeRole.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.bName,
-            this.bDescription});
-            this.treeRole.ContextMenuStrip = this.contextMenuRole;
-            this.treeRole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeRole.Location = new System.Drawing.Point(0, 0);
-            this.treeRole.LookAndFeel.SkinName = "iMaginary";
-            this.treeRole.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.treeRole.Name = "treeRole";
-            this.treeRole.OptionsBehavior.AutoChangeParent = false;
-            this.treeRole.OptionsBehavior.CloseEditorOnLostFocus = false;
-            this.treeRole.OptionsBehavior.KeepSelectedOnClick = false;
-            this.treeRole.OptionsBehavior.ShowToolTips = false;
-            this.treeRole.OptionsBehavior.SmartMouseHover = false;
-            this.treeRole.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeRole.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeRole.OptionsView.ShowCheckBoxes = true;
-            this.treeRole.Size = new System.Drawing.Size(322, 514);
-            this.treeRole.TabIndex = 0;
-            this.treeRole.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeRole_MouseUp);
-            // 
-            // bName
-            // 
-            this.bName.Caption = "名称";
-            this.bName.FieldName = "ROLENAME";
-            this.bName.MinWidth = 31;
-            this.bName.Name = "bName";
-            this.bName.OptionsColumn.AllowEdit = false;
-            this.bName.Visible = true;
-            this.bName.VisibleIndex = 0;
-            // 
-            // bDescription
-            // 
-            this.bDescription.Caption = "描述";
-            this.bDescription.FieldName = "DESCRIPTION";
-            this.bDescription.Name = "bDescription";
-            this.bDescription.OptionsColumn.AllowEdit = false;
-            this.bDescription.Visible = true;
-            this.bDescription.VisibleIndex = 1;
-            // 
-            // contextMenuRole
-            // 
-            this.contextMenuRole.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiAddRole,
-            this.tsmiEditRole,
-            this.tsmiDelRole});
-            this.contextMenuRole.Name = "contextMenuBd";
-            this.contextMenuRole.Size = new System.Drawing.Size(125, 70);
-            // 
-            // tsmiAddRole
-            // 
-            this.tsmiAddRole.Image = global::Zxl.Builder.Properties.Resources.add1;
-            this.tsmiAddRole.Name = "tsmiAddRole";
-            this.tsmiAddRole.Size = new System.Drawing.Size(124, 22);
-            this.tsmiAddRole.Text = "添加角色";
-            this.tsmiAddRole.Click += new System.EventHandler(this.tsmiAdd_Click);
-            // 
-            // tsmiEditRole
-            // 
-            this.tsmiEditRole.Image = global::Zxl.Builder.Properties.Resources.edit1;
-            this.tsmiEditRole.Name = "tsmiEditRole";
-            this.tsmiEditRole.Size = new System.Drawing.Size(124, 22);
-            this.tsmiEditRole.Text = "编辑角色";
-            this.tsmiEditRole.Click += new System.EventHandler(this.tsmiEdit_Click);
-            // 
-            // tsmiDelRole
-            // 
-            this.tsmiDelRole.Image = global::Zxl.Builder.Properties.Resources.del1;
-            this.tsmiDelRole.Name = "tsmiDelRole";
-            this.tsmiDelRole.Size = new System.Drawing.Size(124, 22);
-            this.tsmiDelRole.Text = "删除角色";
-            this.tsmiDelRole.Click += new System.EventHandler(this.tsmiDel_Click);
-            // 
-            // splitContainerControl1
-            // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.treeRole);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl2);
-            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(993, 514);
-            this.splitContainerControl1.SplitterPosition = 322;
-            this.splitContainerControl1.TabIndex = 1;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.treeUserRole);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 57);
+            this.panelControl2.Location = new System.Drawing.Point(0, 64);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(666, 457);
+            this.panelControl2.Size = new System.Drawing.Size(993, 450);
             this.panelControl2.TabIndex = 6;
             // 
             // treeUserRole
@@ -190,7 +88,7 @@
             this.treeUserRole.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemCheckEdit1});
-            this.treeUserRole.Size = new System.Drawing.Size(662, 453);
+            this.treeUserRole.Size = new System.Drawing.Size(989, 446);
             this.treeUserRole.TabIndex = 0;
             this.treeUserRole.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeUserRole_MouseUp);
             // 
@@ -310,7 +208,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(666, 57);
+            this.panelControl1.Size = new System.Drawing.Size(993, 64);
             this.panelControl1.TabIndex = 5;
             // 
             // labelControl1
@@ -328,17 +226,14 @@
             this.txtRoleName.Size = new System.Drawing.Size(242, 20);
             this.txtRoleName.TabIndex = 0;
             // 
-            // roleCtrl
+            // businessRoleCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainerControl1);
-            this.Name = "roleCtrl";
+            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.panelControl1);
+            this.Name = "businessRoleCtrl";
             this.Size = new System.Drawing.Size(993, 514);
-            ((System.ComponentModel.ISupportInitialize)(this.treeRole)).EndInit();
-            this.contextMenuRole.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeUserRole)).EndInit();
@@ -355,10 +250,6 @@
 
         #endregion
 
-        private DevExpress.XtraTreeList.TreeList treeRole;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn bName;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn bDescription;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtRoleName;
         private DevExpress.XtraEditors.PanelControl panelControl1;
@@ -372,10 +263,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn bdDefaultVal;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuRole;
-        private System.Windows.Forms.ToolStripMenuItem tsmiAddRole;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDelRole;
-        private System.Windows.Forms.ToolStripMenuItem tsmiEditRole;
         private System.Windows.Forms.ContextMenuStrip contextMenuRoleDetail;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddUser;
         private System.Windows.Forms.ToolStripMenuItem tsmiDelUser;

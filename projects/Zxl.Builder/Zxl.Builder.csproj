@@ -62,28 +62,58 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.Designer.cs">
+      <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\configCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ctrl\configCtrl.Designer.cs">
       <DependentUpon>configCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\orgCtrl.cs">
+    <Compile Include="Ctrl\metadata\metaDataDetailCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\orgCtrl.Designer.cs">
+    <Compile Include="Ctrl\metadata\metaDataDetailCtrl.Designer.cs">
+      <DependentUpon>metaDataDetailCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\org\orgDetailCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\org\orgDetailCtrl.Designer.cs">
+      <DependentUpon>orgDetailCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\org\orgCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\org\orgCtrl.Designer.cs">
       <DependentUpon>orgCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\roleCtrl.cs">
+    <Compile Include="Ctrl\business\businessRoleCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\roleCtrl.Designer.cs">
+    <Compile Include="Ctrl\business\businessRoleCtrl.Designer.cs">
+      <DependentUpon>businessRoleCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\role\roleDetailCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\role\roleDetailCtrl.Designer.cs">
+      <DependentUpon>roleDetailCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\role\roleCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\role\roleCtrl.Designer.cs">
       <DependentUpon>roleCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\businessDataCtrl.cs">
+    <Compile Include="Ctrl\businessdata\businessDataCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\businessDataCtrl.Designer.cs">
+    <Compile Include="Ctrl\businessdata\businessDataCtrl.Designer.cs">
       <DependentUpon>businessDataCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\emptyCtrl.cs">
@@ -92,22 +122,28 @@
     <Compile Include="Ctrl\emptyCtrl.Designer.cs">
       <DependentUpon>emptyCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\businessCtrl.cs">
+    <Compile Include="Ctrl\business\businessCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\businessCtrl.Designer.cs">
+    <Compile Include="Ctrl\business\businessCtrl.Designer.cs">
       <DependentUpon>businessCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\userCtrl.cs">
+    <Compile Include="Ctrl\user\userDetailCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\userCtrl.Designer.cs">
+    <Compile Include="Ctrl\user\userDetailCtrl.Designer.cs">
+      <DependentUpon>userDetailCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\user\userCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\user\userCtrl.Designer.cs">
       <DependentUpon>userCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\metaDataCtrl.cs">
+    <Compile Include="Ctrl\metadata\metaDataCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\metaDataCtrl.Designer.cs">
+    <Compile Include="Ctrl\metadata\metaDataCtrl.Designer.cs">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Dlg\DlgEditConfig.cs">
@@ -166,25 +202,43 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ctrl\businessdata\businessDataDetailCtrl.resx">
+      <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\configCtrl.resx">
       <DependentUpon>configCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\orgCtrl.resx">
+    <EmbeddedResource Include="Ctrl\metadata\metaDataDetailCtrl.resx">
+      <DependentUpon>metaDataDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\org\orgDetailCtrl.resx">
+      <DependentUpon>orgDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\org\orgCtrl.resx">
       <DependentUpon>orgCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\roleCtrl.resx">
+    <EmbeddedResource Include="Ctrl\business\businessRoleCtrl.resx">
+      <DependentUpon>businessRoleCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\role\roleDetailCtrl.resx">
+      <DependentUpon>roleDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\role\roleCtrl.resx">
       <DependentUpon>roleCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\businessDataCtrl.resx">
+    <EmbeddedResource Include="Ctrl\businessdata\businessDataCtrl.resx">
       <DependentUpon>businessDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\businessCtrl.resx">
+    <EmbeddedResource Include="Ctrl\business\businessCtrl.resx">
       <DependentUpon>businessCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\userCtrl.resx">
+    <EmbeddedResource Include="Ctrl\user\userDetailCtrl.resx">
+      <DependentUpon>userDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\user\userCtrl.resx">
       <DependentUpon>userCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\metaDataCtrl.resx">
+    <EmbeddedResource Include="Ctrl\metadata\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditConfig.resx">

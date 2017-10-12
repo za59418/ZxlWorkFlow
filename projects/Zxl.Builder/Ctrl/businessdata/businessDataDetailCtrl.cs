@@ -15,120 +15,30 @@ using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class businessDataCtrl : UserControl
+    public partial class businessDataDetailCtrl : UserControl
     {
 
         public IBusinessService BusinessServcie = new BusinessService();
 
-        public businessDataCtrl()
+        public businessDataDetailCtrl()
         {
             InitializeComponent();
-            RefreshBusinessDataTree();
         }
 
-        #region 业务数据点击事件
-        private void treeBusinessData_MouseUp(object sender, MouseEventArgs e)
+        private SYS_BUSINESSDATA _currBusinessData;
+        public SYS_BUSINESSDATA CurrBusinessData
         {
-            // 复选框控制
-            TreeListHitInfo hitInfo = treeBusinessData.CalcHitInfo(new Point(e.X, e.Y)); 
-            TreeListNode node = hitInfo.Node;
-            treeBusinessData.FocusedNode = node;
-            treeBusinessData.UncheckAll();
-            if (null != node)
-                node.CheckState = CheckState.Checked;
-            else
-                return;
-            
-            //右键菜单控制
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            get
             {
-                treeBusinessData.ContextMenuStrip = null;
-                SYS_BUSINESSDATA temp = node.Tag as SYS_BUSINESSDATA;
-                if (temp.ID == -1) // 根root
-                {
-                    tsmiAddBusinessData.Visible = true;
-                    tsmiEditBusinessData.Visible = false;
-                    tsmiDelBusinessData.Visible = false;
-                }
-                else
-                {
-                    tsmiAddBusinessData.Visible = false;
-                    tsmiEditBusinessData.Visible = true;
-                    tsmiDelBusinessData.Visible = true;
-                }
-                treeBusinessData.ContextMenuStrip = contextMenuBd;
+                return _currBusinessData;
             }
-
-            // 加载右边的详情树
-            if (null != treeBusinessData.FocusedNode && treeBusinessData.FocusedNode.Level != 0) // 点击的是非根节点
+            set
             {
-                SYS_BUSINESSDATA currBusinessData = treeBusinessData.FocusedNode.Tag as SYS_BUSINESSDATA;
-                txtBusinessDataName.Text = currBusinessData.NAME;
-
-                RefreshBusinessDataDetailTree(currBusinessData);
+                _currBusinessData = value;
+                txtBusinessDataName.Text = _currBusinessData.NAME;
+                RefreshBusinessDataDetailTree(_currBusinessData);
             }
         }
-
-        private void tsmiDel_Click(object sender, EventArgs e)
-        {
-            //treeBusinessData
-            TreeListNode currNode = treeBusinessData.FocusedNode;
-
-            SYS_BUSINESSDATA bData = currNode.Tag as SYS_BUSINESSDATA;
-            BusinessServcie.DelBusinessData(bData.ID);
-
-            RefreshBusinessDataTree();
-        }
-
-        private void tsmiAdd_Click(object sender, EventArgs e)
-        {
-            DlgEditBusinessData dlg = new DlgEditBusinessData();
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BusinessServcie.AddBusinessData(dlg.BusinessName, dlg.BusinessDescription);
-                RefreshBusinessDataTree();
-            }
-        }
-
-        private void tsmiEdit_Click(object sender, EventArgs e)
-        {
-            TreeListNode currNode = treeBusinessData.FocusedNode;
-            SYS_BUSINESSDATA bData = currNode.Tag as SYS_BUSINESSDATA;
-
-            DlgEditBusinessData dlg = new DlgEditBusinessData();
-            dlg.BusinessId = bData.ID;
-            dlg.BusinessName = bData.NAME;
-            dlg.BusinessDescription = bData.DESCRIPTION;
-
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BusinessServcie.EditBusinessData(bData.ID, dlg.BusinessName, dlg.BusinessDescription);
-                RefreshBusinessDataTree();
-            }
-        }
-
-        /// <summary>
-        /// 刷新业务数据树
-        /// </summary>
-        void RefreshBusinessDataTree()
-        {
-            treeBusinessData.Nodes.Clear();
-            SYS_BUSINESSDATA obj = new SYS_BUSINESSDATA();
-            obj.ID = -1;
-            obj.NAME = "业务数据";
-            TreeListNode root = treeBusinessData.AppendNode(new object[] { obj.NAME, "" }, obj.ID);
-            root.Tag = obj;
-
-            List<SYS_BUSINESSDATA> datas = BusinessServcie.BusinessDatas();
-            foreach (SYS_BUSINESSDATA data in datas)
-            {
-                TreeListNode node = treeBusinessData.AppendNode(new object[] { data.NAME, data.DESCRIPTION }, root);
-                node.Tag = data;
-            }
-
-            treeBusinessData.ExpandAll();
-        }
-        #endregion 业务数据点击事件
 
         #region 业务数据详情点击事件
         private void treeListDetail_MouseUp(object sender, MouseEventArgs e)
@@ -177,9 +87,6 @@ namespace Zxl.Builder
 
         private void tsmiAddMetaData_Click(object sender, EventArgs e)
         {
-            //当前选中的业务数据
-            SYS_BUSINESSDATA currBusinessData = treeBusinessData.FocusedNode.Tag as SYS_BUSINESSDATA;
-
             //当前选中的详情
             SYS_BUSINESSDATADETAIL detail = treeListDetail.FocusedNode.Tag as SYS_BUSINESSDATADETAIL;
 
@@ -190,21 +97,19 @@ namespace Zxl.Builder
                 List<SYS_METADATA> list = dlg.SelectedItems;
                 foreach(SYS_METADATA data in list)
                 {
-                    BusinessServcie.AddBusinessDataDetail(currBusinessData.ID, data.ID, detail.ID);
+                    BusinessServcie.AddBusinessDataDetail(CurrBusinessData.ID, data.ID, detail.ID);
                 }
             }
-            RefreshBusinessDataDetailTree(currBusinessData);
+            RefreshBusinessDataDetailTree(CurrBusinessData);
         }
 
         private void tsmiDelMetaData_Click(object sender, EventArgs e)
         {
-            //当前选中的业务数据
-            SYS_BUSINESSDATA currBusinessData = treeBusinessData.FocusedNode.Tag as SYS_BUSINESSDATA;
             //当前选中的业务数据详情
             SYS_BUSINESSDATADETAIL detail = treeListDetail.FocusedNode.Tag as SYS_BUSINESSDATADETAIL;
 
             BusinessServcie.DelBusinessDataDetail(detail.ID);
-            RefreshBusinessDataDetailTree(currBusinessData);
+            RefreshBusinessDataDetailTree(CurrBusinessData);
         }
 
         /// <summary>

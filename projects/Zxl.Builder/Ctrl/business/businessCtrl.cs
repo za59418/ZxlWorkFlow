@@ -40,16 +40,42 @@ namespace Zxl.Builder
             RefreshBusinessTree();
         }
 
-        public SYS_BUSINESS CurrBusiness { get; set; }
 
+        public FormMain MainForm { get; set; }
+
+        private SYS_BUSINESS CurrBusiness;
+        public SYS_BUSINESSGROUP CurrBusinessGroup { get; set; }
 
         #region 业务树事件
+        private void treeBusiness_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Tag is SYS_BUSINESS)
+            CurrBusiness = e.Node.Tag as SYS_BUSINESS;
+            else if(e.Node.Tag is SYS_BUSINESSGROUP)
+                CurrBusinessGroup = e.Node.Tag as SYS_BUSINESSGROUP;
+        }
+
+        private void treeBusiness_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            businessRoleCtrl ctrl = new businessRoleCtrl();
+            ctrl.Dock = DockStyle.Fill;
+
+            if (e.Node.Tag is SYS_BUSINESSROLE)
+            {
+                ctrl.CurrRole = e.Node.Tag as SYS_BUSINESSROLE;
+
+                MainForm.AddTab(ctrl.CurrRole.ROLENAME, ctrl);
+            }
+        }
+
         private void cmsiAddBusiness_Click(object sender, EventArgs e)
         {
             DlgEditBusiness dlg = new DlgEditBusiness();
-            SYS_BUSINESSGROUP group = treeBusiness.SelectedNode.Tag as SYS_BUSINESSGROUP;
+
+            //SYS_BUSINESSGROUP group = treeBusiness.SelectedNode.Tag as SYS_BUSINESSGROUP;
+
             dlg.Business = new SYS_BUSINESS();
-            dlg.Business.REF_GROUP_ID = group.ID;
+            dlg.Business.REF_GROUP_ID = CurrBusinessGroup.ID;
             dlg.Business.CREATETIME = DateTime.Now;
 
             if (DialogResult.OK == dlg.ShowDialog())
@@ -62,7 +88,7 @@ namespace Zxl.Builder
         private void tsmiEditBusiness_Click(object sender, EventArgs e)
         {
             DlgEditBusiness dlg = new DlgEditBusiness();
-            CurrBusiness = treeBusiness.SelectedNode.Tag as SYS_BUSINESS;
+            //CurrBusiness = treeBusiness.SelectedNode.Tag as SYS_BUSINESS;
             dlg.Business = BusinessServcie.Business(CurrBusiness.ID);
             if (DialogResult.OK == dlg.ShowDialog())
             {
@@ -73,7 +99,7 @@ namespace Zxl.Builder
 
         private void tsmiDelBusiness_Click(object sender, EventArgs e)
         {
-            CurrBusiness = treeBusiness.SelectedNode.Tag as SYS_BUSINESS;
+            //CurrBusiness = treeBusiness.SelectedNode.Tag as SYS_BUSINESS;
             BusinessServcie.DelBusiness(CurrBusiness.ID);
             RefreshBusinessTree();
         }
