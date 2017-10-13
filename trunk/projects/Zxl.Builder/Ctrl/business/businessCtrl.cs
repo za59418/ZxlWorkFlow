@@ -43,8 +43,8 @@ namespace Zxl.Builder
 
         public FormMain MainForm { get; set; }
 
-        private SYS_BUSINESS CurrBusiness;
-        public SYS_BUSINESSGROUP CurrBusinessGroup { get; set; }
+         public SYS_BUSINESSGROUP CurrBusinessGroup { get; set; }
+       private SYS_BUSINESS CurrBusiness;
 
         #region 业务树事件
         private void treeBusiness_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -63,7 +63,6 @@ namespace Zxl.Builder
             if (e.Node.Tag is SYS_BUSINESSROLE)
             {
                 ctrl.CurrRole = e.Node.Tag as SYS_BUSINESSROLE;
-
                 MainForm.AddTab(ctrl.CurrRole.ROLENAME, ctrl);
             }
         }
@@ -85,7 +84,7 @@ namespace Zxl.Builder
             }
         }
 
-        private void tsmiEditBusiness_Click(object sender, EventArgs e)
+        private void csmiEditBusiness_Click(object sender, EventArgs e)
         {
             DlgEditBusiness dlg = new DlgEditBusiness();
             //CurrBusiness = treeBusiness.SelectedNode.Tag as SYS_BUSINESS;
@@ -97,7 +96,7 @@ namespace Zxl.Builder
             }
         }
 
-        private void tsmiDelBusiness_Click(object sender, EventArgs e)
+        private void csmiDelBusiness_Click(object sender, EventArgs e)
         {
             //CurrBusiness = treeBusiness.SelectedNode.Tag as SYS_BUSINESS;
             BusinessServcie.DelBusiness(CurrBusiness.ID);
@@ -132,12 +131,14 @@ namespace Zxl.Builder
                     TreeNode rolesNode = businessNode.Nodes.Add("material", "角色列表");
                     rolesNode.ImageIndex = 1;
                     rolesNode.SelectedImageIndex = 1;
+                    rolesNode.ContextMenuStrip = cmsRoles;
                     List<SYS_BUSINESSROLE> roles = BusinessServcie.BusinessRoles(business.ID);
                     foreach (SYS_BUSINESSROLE role in roles)
                     {
                         TreeNode roleNode = rolesNode.Nodes.Add(role.ID + "", role.ROLENAME);
                         roleNode.ImageIndex = 2;
                         roleNode.SelectedImageIndex = 2;
+                        roleNode.ContextMenuStrip = cmsRole;
                         roleNode.Tag = role;
                     }
                     rolesNode.Expand();
@@ -145,12 +146,14 @@ namespace Zxl.Builder
                     TreeNode materialsNode = businessNode.Nodes.Add("material", "材料清单");
                     materialsNode.ImageIndex = 3;
                     materialsNode.SelectedImageIndex = 3;
+                    materialsNode.ContextMenuStrip = cmsMaterials;
                     List<SYS_BUSINESSMATERIAL> materials = BusinessServcie.BusinessMaterials(business.ID);
                     foreach (SYS_BUSINESSMATERIAL material in materials)
                     {
                         TreeNode materialNode = materialsNode.Nodes.Add(material.ID + "", material.MATERIALNAME + "(" + material.ID + ")");
                         materialNode.ImageIndex = 4;
                         materialNode.SelectedImageIndex = 4;
+                        materialNode.ContextMenuStrip = cmsMaterial;
                         materialNode.Tag = material;
                     }
                     materialsNode.Expand();
@@ -158,12 +161,14 @@ namespace Zxl.Builder
                     TreeNode formsNode = businessNode.Nodes.Add("form", "表单列表");
                     formsNode.ImageIndex = 5;
                     formsNode.SelectedImageIndex = 5;
+                    formsNode.ContextMenuStrip = cmsForms;
                     List<SYS_BUSINESSFORM> forms = BusinessServcie.BusinessForms(business.ID);
                     foreach (SYS_BUSINESSFORM form in forms)
                     {
                         TreeNode formNode = formsNode.Nodes.Add(form.ID + "", form.FORMNAME + "(" + form.ID + ")");
                         formNode.ImageIndex = 6;
                         formNode.SelectedImageIndex = 6;
+                        formNode.ContextMenuStrip = cmsForm;
                         formNode.Tag = form;
                     }
                     formsNode.Expand();
@@ -171,12 +176,14 @@ namespace Zxl.Builder
                     TreeNode processesNode = businessNode.Nodes.Add("process", "流程");
                     processesNode.ImageIndex = 7;
                     processesNode.SelectedImageIndex = 7;
+                    processesNode.ContextMenuStrip = cmsProcesses;
                     List<SYS_BUSINESSPROCESS> processes = BusinessServcie.BusinessProcesses(business.ID);
                     foreach (SYS_BUSINESSPROCESS process in processes)
                     {
                         TreeNode processNode = processesNode.Nodes.Add(process.ID + "", process.PROCESSNAME + "(" + process.ID + ")");
                         processNode.ImageIndex = 8;
                         processNode.SelectedImageIndex = 8;
+                        processNode.ContextMenuStrip = cmsProcess;
                         processNode.Tag = process;
                     }
                     processesNode.Expand();

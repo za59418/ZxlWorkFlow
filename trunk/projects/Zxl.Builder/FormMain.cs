@@ -108,36 +108,59 @@ namespace Zxl.Builder
             newPage.Controls.Add(ctrl);
         }
 
+
+        //业务
+        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //DockPanel businessPanel = new DockPanel();
+            //businessPanel.Text = "业务管理";
+            //ControlContainer container = new ControlContainer();
+
+            //businessPanel.Controls.Add(container);
+            //AddDockPanel(businessPanel, DockingStyle.Left);
+
+            //businessCtrl ctrl = new businessCtrl();
+            //ctrl.Dock = DockStyle.Fill;
+            //businessPanel.ControlContainer.Controls.Add(ctrl);
+
+            this.containerBusiness.Visibility = DockVisibility.Visible;
+            this.businessPanel.Visibility = DockVisibility.Visible;
+            this.containerBusiness.ActiveChild = this.businessPanel;
+        }
+        //元数据
         private void metaData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            metaDataCtrl ctrl = new metaDataCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            //AddPage("元数据管理", ctrl);
-            AddTab("元数据管理", ctrl);
+            this.containerBusiness.Visibility = DockVisibility.Visible;
+            this.metaDataPanel.Visibility = DockVisibility.Visible;
+            this.containerBusiness.ActiveChild = this.metaDataPanel;
         }
-
+        //业务数据
         private void businessData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            businessDataCtrl ctrl = new businessDataCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            //AddPage("业务数据管理", ctrl);
-            AddTab("业务数据管理", ctrl);
-
+            this.containerBusiness.Visibility = DockVisibility.Visible;
+            this.businessDataPanel.Visibility = DockVisibility.Visible;
+            this.containerBusiness.ActiveChild = this.businessDataPanel;
         }
-
-
-
-
-
+        //用户
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //userCtrl ctrl = new userCtrl();
-            //ctrl.Dock = DockStyle.Fill;
-            //AddPage("用户管理", ctrl);
-
-            userCtrl ctrl = new userCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            AddTab("用户管理", ctrl);
+            this.containerOrup.Visibility = DockVisibility.Visible;
+            this.userPanel.Visibility = DockVisibility.Visible;
+            this.containerOrup.ActiveChild = this.userPanel;
+        }
+        //角色
+        private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.containerOrup.Visibility = DockVisibility.Visible;
+            this.rolePanel.Visibility = DockVisibility.Visible;
+            this.containerOrup.ActiveChild = this.rolePanel;
+        }
+        //机构
+        private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.containerOrup.Visibility = DockVisibility.Visible;
+            this.orgPanel.Visibility = DockVisibility.Visible;
+            this.containerOrup.ActiveChild = this.orgPanel;
         }
 
         public void AddTab(string Title, UserControl ctrl)
@@ -157,20 +180,6 @@ namespace Zxl.Builder
 
         }
 
-        private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            roleCtrl ctrl = new roleCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            AddPage("角色管理", ctrl);
-        }
-
-        private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            orgCtrl ctrl = new orgCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            AddPage("机构管理", ctrl);
-        }
-
         private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             emptyCtrl ctrl = new emptyCtrl();
@@ -185,29 +194,11 @@ namespace Zxl.Builder
             AddPage("材料管理", ctrl);
         }
 
-        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //businessCtrl ctrl = new businessCtrl();
-            //ctrl.Dock = DockStyle.Fill;
-            //AddPage("业务管理", ctrl);
-
-            DockPanel businessPanel = new DockPanel();// dockManager1.AddPanel(DevExpress.XtraBars.Docking.DockingStyle.Left);
-            businessPanel.Text = "业务管理";
-            ControlContainer container = new ControlContainer();
-
-            businessPanel.Controls.Add(container);
-            AddDockPanel(businessPanel, DockingStyle.Left);
-
-            businessCtrl ctrl = new businessCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            businessPanel.ControlContainer.Controls.Add(ctrl);
-
-        }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            DockPanel configPanel = new DockPanel();// dockManager1.AddPanel(DevExpress.XtraBars.Docking.DockingStyle.Left);
+            DockPanel configPanel = new DockPanel();
             configPanel.Text = "系统配置";
             ControlContainer container = new ControlContainer();
 
@@ -222,30 +213,23 @@ namespace Zxl.Builder
         void AddDockPanel(DockPanel panel, DockingStyle style)
         {
             DockPanel currPanel = null;
-            //DockPanel bPanel = null;
             foreach (DockPanel temp in dockManager1.Panels)
             {
-                //if (temp.Text == "业务管理")
-                //    bPanel = temp;
-
                 if (temp.Text == panel.Text)
                 {
                     currPanel = temp;
                     break;
                 }
-
             }
             if (null != currPanel)
             {
                 currPanel.Visibility = DockVisibility.Visible;
+                tabbedView1.ActivateDocument(currPanel);
             }
             else
             {
                 dockManager1.AddPanel(style, panel);
-                //if (null != bPanel)
-                //    panel.DockAsTab(bPanel, 0);
             }
         }
-
     }
 }
