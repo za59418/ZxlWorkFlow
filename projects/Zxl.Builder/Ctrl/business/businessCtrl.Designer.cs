@@ -33,11 +33,39 @@
             this.cmsBusinesses = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsiAddBusiness = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsBusiness = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiEditBusiness = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDelBusiness = new System.Windows.Forms.ToolStripMenuItem();
+            this.csmiEditBusiness = new System.Windows.Forms.ToolStripMenuItem();
+            this.csmiDelBusiness = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.cmsRoles = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiAddRole = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsRole = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiEditRole = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsiDelRole = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsMaterials = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiAddMaterial = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsMaterial = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiEditMaterial = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsiDelMaterial = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsForms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiAddForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsForm = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiEditForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsiDelForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiEditProcess = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsiDelProcess = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsProcesses = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiAddProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsBusinesses.SuspendLayout();
             this.cmsBusiness.SuspendLayout();
+            this.cmsRoles.SuspendLayout();
+            this.cmsRole.SuspendLayout();
+            this.cmsMaterials.SuspendLayout();
+            this.cmsMaterial.SuspendLayout();
+            this.cmsForms.SuspendLayout();
+            this.cmsForm.SuspendLayout();
+            this.cmsProcess.SuspendLayout();
+            this.cmsProcesses.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeBusiness
@@ -55,45 +83,189 @@
             this.cmsBusinesses.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmsiAddBusiness});
             this.cmsBusinesses.Name = "contextMenuBd";
-            this.cmsBusinesses.Size = new System.Drawing.Size(153, 48);
+            this.cmsBusinesses.Size = new System.Drawing.Size(125, 26);
             // 
             // cmsiAddBusiness
             // 
             this.cmsiAddBusiness.Image = global::Zxl.Builder.Properties.Resources.add1;
             this.cmsiAddBusiness.Name = "cmsiAddBusiness";
-            this.cmsiAddBusiness.Size = new System.Drawing.Size(152, 22);
+            this.cmsiAddBusiness.Size = new System.Drawing.Size(124, 22);
             this.cmsiAddBusiness.Text = "添加业务";
             this.cmsiAddBusiness.Click += new System.EventHandler(this.cmsiAddBusiness_Click);
             // 
             // cmsBusiness
             // 
             this.cmsBusiness.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditBusiness,
-            this.tsmiDelBusiness});
+            this.csmiEditBusiness,
+            this.csmiDelBusiness});
             this.cmsBusiness.Name = "contextMenuBd";
             this.cmsBusiness.Size = new System.Drawing.Size(125, 48);
             // 
-            // tsmiEditBusiness
+            // csmiEditBusiness
             // 
-            this.tsmiEditBusiness.Image = global::Zxl.Builder.Properties.Resources.edit1;
-            this.tsmiEditBusiness.Name = "tsmiEditBusiness";
-            this.tsmiEditBusiness.Size = new System.Drawing.Size(124, 22);
-            this.tsmiEditBusiness.Text = "编辑业务";
-            this.tsmiEditBusiness.Click += new System.EventHandler(this.tsmiEditBusiness_Click);
+            this.csmiEditBusiness.Image = global::Zxl.Builder.Properties.Resources.edit1;
+            this.csmiEditBusiness.Name = "csmiEditBusiness";
+            this.csmiEditBusiness.Size = new System.Drawing.Size(124, 22);
+            this.csmiEditBusiness.Text = "编辑业务";
+            this.csmiEditBusiness.Click += new System.EventHandler(this.csmiEditBusiness_Click);
             // 
-            // tsmiDelBusiness
+            // csmiDelBusiness
             // 
-            this.tsmiDelBusiness.Image = global::Zxl.Builder.Properties.Resources.del1;
-            this.tsmiDelBusiness.Name = "tsmiDelBusiness";
-            this.tsmiDelBusiness.Size = new System.Drawing.Size(124, 22);
-            this.tsmiDelBusiness.Text = "删除业务";
-            this.tsmiDelBusiness.Click += new System.EventHandler(this.tsmiDelBusiness_Click);
+            this.csmiDelBusiness.Image = global::Zxl.Builder.Properties.Resources.del1;
+            this.csmiDelBusiness.Name = "csmiDelBusiness";
+            this.csmiDelBusiness.Size = new System.Drawing.Size(124, 22);
+            this.csmiDelBusiness.Text = "删除业务";
+            this.csmiDelBusiness.Click += new System.EventHandler(this.csmiDelBusiness_Click);
             // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // cmsRoles
+            // 
+            this.cmsRoles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiAddRole});
+            this.cmsRoles.Name = "contextMenuBd";
+            this.cmsRoles.Size = new System.Drawing.Size(125, 26);
+            // 
+            // cmsiAddRole
+            // 
+            this.cmsiAddRole.Image = global::Zxl.Builder.Properties.Resources.add1;
+            this.cmsiAddRole.Name = "cmsiAddRole";
+            this.cmsiAddRole.Size = new System.Drawing.Size(124, 22);
+            this.cmsiAddRole.Text = "添加角色";
+            // 
+            // cmsRole
+            // 
+            this.cmsRole.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiEditRole,
+            this.cmsiDelRole});
+            this.cmsRole.Name = "contextMenuBd";
+            this.cmsRole.Size = new System.Drawing.Size(125, 48);
+            // 
+            // cmsiEditRole
+            // 
+            this.cmsiEditRole.Image = global::Zxl.Builder.Properties.Resources.edit1;
+            this.cmsiEditRole.Name = "cmsiEditRole";
+            this.cmsiEditRole.Size = new System.Drawing.Size(124, 22);
+            this.cmsiEditRole.Text = "编辑角色";
+            // 
+            // cmsiDelRole
+            // 
+            this.cmsiDelRole.Image = global::Zxl.Builder.Properties.Resources.del1;
+            this.cmsiDelRole.Name = "cmsiDelRole";
+            this.cmsiDelRole.Size = new System.Drawing.Size(124, 22);
+            this.cmsiDelRole.Text = "删除角色";
+            // 
+            // cmsMaterials
+            // 
+            this.cmsMaterials.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiAddMaterial});
+            this.cmsMaterials.Name = "contextMenuBd";
+            this.cmsMaterials.Size = new System.Drawing.Size(125, 26);
+            // 
+            // cmsiAddMaterial
+            // 
+            this.cmsiAddMaterial.Image = global::Zxl.Builder.Properties.Resources.add1;
+            this.cmsiAddMaterial.Name = "cmsiAddMaterial";
+            this.cmsiAddMaterial.Size = new System.Drawing.Size(124, 22);
+            this.cmsiAddMaterial.Text = "添加材料";
+            // 
+            // cmsMaterial
+            // 
+            this.cmsMaterial.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiEditMaterial,
+            this.cmsiDelMaterial});
+            this.cmsMaterial.Name = "contextMenuBd";
+            this.cmsMaterial.Size = new System.Drawing.Size(125, 48);
+            // 
+            // cmsiEditMaterial
+            // 
+            this.cmsiEditMaterial.Image = global::Zxl.Builder.Properties.Resources.edit1;
+            this.cmsiEditMaterial.Name = "cmsiEditMaterial";
+            this.cmsiEditMaterial.Size = new System.Drawing.Size(124, 22);
+            this.cmsiEditMaterial.Text = "编辑材料";
+            // 
+            // cmsiDelMaterial
+            // 
+            this.cmsiDelMaterial.Image = global::Zxl.Builder.Properties.Resources.del1;
+            this.cmsiDelMaterial.Name = "cmsiDelMaterial";
+            this.cmsiDelMaterial.Size = new System.Drawing.Size(124, 22);
+            this.cmsiDelMaterial.Text = "删除材料";
+            // 
+            // cmsForms
+            // 
+            this.cmsForms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiAddForm});
+            this.cmsForms.Name = "contextMenuBd";
+            this.cmsForms.Size = new System.Drawing.Size(125, 26);
+            // 
+            // cmsiAddForm
+            // 
+            this.cmsiAddForm.Image = global::Zxl.Builder.Properties.Resources.add1;
+            this.cmsiAddForm.Name = "cmsiAddForm";
+            this.cmsiAddForm.Size = new System.Drawing.Size(124, 22);
+            this.cmsiAddForm.Text = "添加表单";
+            // 
+            // cmsForm
+            // 
+            this.cmsForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiEditForm,
+            this.cmsiDelForm});
+            this.cmsForm.Name = "contextMenuBd";
+            this.cmsForm.Size = new System.Drawing.Size(125, 48);
+            // 
+            // cmsiEditForm
+            // 
+            this.cmsiEditForm.Image = global::Zxl.Builder.Properties.Resources.edit1;
+            this.cmsiEditForm.Name = "cmsiEditForm";
+            this.cmsiEditForm.Size = new System.Drawing.Size(124, 22);
+            this.cmsiEditForm.Text = "编辑表单";
+            // 
+            // cmsiDelForm
+            // 
+            this.cmsiDelForm.Image = global::Zxl.Builder.Properties.Resources.del1;
+            this.cmsiDelForm.Name = "cmsiDelForm";
+            this.cmsiDelForm.Size = new System.Drawing.Size(124, 22);
+            this.cmsiDelForm.Text = "删除表单";
+            // 
+            // cmsProcess
+            // 
+            this.cmsProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiEditProcess,
+            this.cmsiDelProcess});
+            this.cmsProcess.Name = "contextMenuBd";
+            this.cmsProcess.Size = new System.Drawing.Size(125, 48);
+            // 
+            // cmsiEditProcess
+            // 
+            this.cmsiEditProcess.Image = global::Zxl.Builder.Properties.Resources.edit1;
+            this.cmsiEditProcess.Name = "cmsiEditProcess";
+            this.cmsiEditProcess.Size = new System.Drawing.Size(124, 22);
+            this.cmsiEditProcess.Text = "编辑流程";
+            // 
+            // cmsiDelProcess
+            // 
+            this.cmsiDelProcess.Image = global::Zxl.Builder.Properties.Resources.del1;
+            this.cmsiDelProcess.Name = "cmsiDelProcess";
+            this.cmsiDelProcess.Size = new System.Drawing.Size(124, 22);
+            this.cmsiDelProcess.Text = "删除流程";
+            // 
+            // cmsProcesses
+            // 
+            this.cmsProcesses.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiAddProcess});
+            this.cmsProcesses.Name = "contextMenuBd";
+            this.cmsProcesses.Size = new System.Drawing.Size(125, 26);
+            // 
+            // cmsiAddProcess
+            // 
+            this.cmsiAddProcess.Image = global::Zxl.Builder.Properties.Resources.add1;
+            this.cmsiAddProcess.Name = "cmsiAddProcess";
+            this.cmsiAddProcess.Size = new System.Drawing.Size(124, 22);
+            this.cmsiAddProcess.Text = "添加流程";
             // 
             // businessCtrl
             // 
@@ -104,6 +276,14 @@
             this.Size = new System.Drawing.Size(289, 516);
             this.cmsBusinesses.ResumeLayout(false);
             this.cmsBusiness.ResumeLayout(false);
+            this.cmsRoles.ResumeLayout(false);
+            this.cmsRole.ResumeLayout(false);
+            this.cmsMaterials.ResumeLayout(false);
+            this.cmsMaterial.ResumeLayout(false);
+            this.cmsForms.ResumeLayout(false);
+            this.cmsForm.ResumeLayout(false);
+            this.cmsProcess.ResumeLayout(false);
+            this.cmsProcesses.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -114,8 +294,28 @@
         private System.Windows.Forms.ToolStripMenuItem cmsiAddBusiness;
         private System.Windows.Forms.TreeView treeBusiness;
         private System.Windows.Forms.ContextMenuStrip cmsBusiness;
-        private System.Windows.Forms.ToolStripMenuItem tsmiEditBusiness;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDelBusiness;
+        private System.Windows.Forms.ToolStripMenuItem csmiEditBusiness;
+        private System.Windows.Forms.ToolStripMenuItem csmiDelBusiness;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ContextMenuStrip cmsRoles;
+        private System.Windows.Forms.ToolStripMenuItem cmsiAddRole;
+        private System.Windows.Forms.ContextMenuStrip cmsRole;
+        private System.Windows.Forms.ToolStripMenuItem cmsiEditRole;
+        private System.Windows.Forms.ToolStripMenuItem cmsiDelRole;
+        private System.Windows.Forms.ContextMenuStrip cmsMaterials;
+        private System.Windows.Forms.ToolStripMenuItem cmsiAddMaterial;
+        private System.Windows.Forms.ContextMenuStrip cmsMaterial;
+        private System.Windows.Forms.ToolStripMenuItem cmsiEditMaterial;
+        private System.Windows.Forms.ToolStripMenuItem cmsiDelMaterial;
+        private System.Windows.Forms.ContextMenuStrip cmsForms;
+        private System.Windows.Forms.ToolStripMenuItem cmsiAddForm;
+        private System.Windows.Forms.ContextMenuStrip cmsForm;
+        private System.Windows.Forms.ToolStripMenuItem cmsiEditForm;
+        private System.Windows.Forms.ToolStripMenuItem cmsiDelForm;
+        private System.Windows.Forms.ContextMenuStrip cmsProcess;
+        private System.Windows.Forms.ToolStripMenuItem cmsiEditProcess;
+        private System.Windows.Forms.ToolStripMenuItem cmsiDelProcess;
+        private System.Windows.Forms.ContextMenuStrip cmsProcesses;
+        private System.Windows.Forms.ToolStripMenuItem cmsiAddProcess;
     }
 }

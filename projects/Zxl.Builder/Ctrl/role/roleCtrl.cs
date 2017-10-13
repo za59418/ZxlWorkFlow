@@ -59,7 +59,6 @@ namespace Zxl.Builder
             ctrl.Dock = DockStyle.Fill;
             ctrl.CurrRole = CurrRole;
             MainForm.AddTab(ctrl.CurrRole.ROLENAME, ctrl);
-
         }
 
 
