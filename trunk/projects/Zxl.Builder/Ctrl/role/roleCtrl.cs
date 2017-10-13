@@ -62,16 +62,6 @@ namespace Zxl.Builder
         }
 
 
-        private void tsmiDel_Click(object sender, EventArgs e)
-        {
-            TreeListNode currNode = treeRole.FocusedNode;
-
-            ORUP_ROLE role = currNode.Tag as ORUP_ROLE;
-            UserService.DelRole(role.ID);
-
-            RefreshRoleTree();
-        }
-
         private void tsmiAdd_Click(object sender, EventArgs e)
         {
             ORUP_ROLE newRole = new ORUP_ROLE();
@@ -80,8 +70,16 @@ namespace Zxl.Builder
             dlg.Role = newRole;
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                UserService.SaveRole(dlg.Role);
-                RefreshRoleTree();
+                try
+                {
+                    UserService.SaveRole(dlg.Role);
+                    RefreshRoleTree();
+                    MainForm.INFO("添加成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("添加失败！" + ex.Message);
+                }
             }
         }
 
@@ -91,8 +89,33 @@ namespace Zxl.Builder
             dlg.Role = treeRole.FocusedNode.Tag as ORUP_ROLE;
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                UserService.SaveRole(dlg.Role);
+                try
+                {
+                    UserService.SaveRole(dlg.Role);
+                    RefreshRoleTree();
+                    MainForm.INFO("编辑成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("编辑失败！" + ex.Message);
+                }
+            }
+        }
+
+        private void tsmiDel_Click(object sender, EventArgs e)
+        {
+            TreeListNode currNode = treeRole.FocusedNode;
+
+            ORUP_ROLE role = currNode.Tag as ORUP_ROLE;
+            try
+            {
+                UserService.DelRole(role.ID);
                 RefreshRoleTree();
+                MainForm.INFO("删除成功！");
+            }
+            catch (Exception ex)
+            {
+                MainForm.ERROR("删除失败！" + ex.Message);
             }
         }
 

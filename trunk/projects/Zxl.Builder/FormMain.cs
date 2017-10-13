@@ -16,24 +16,39 @@ namespace Zxl.Builder
 {
     public partial class FormMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public XtraTabControl MainTab = null;
-
         public FormMain()
         {
             InitializeComponent();
+        }
 
-            //MainTab = new XtraTabControl();
-            //MainTab.ClosePageButtonShowMode = ClosePageButtonShowMode.InAllTabPageHeaders; // 显示关闭按钮
-            //MainTab.CloseButtonClick += new EventHandler(CloseButtonClick); // 关闭事件
-            //MainTab.Dock = DockStyle.Fill;
-            //this.Controls.Add(MainTab);
+        public delegate void DelegateLog(string Msg);
+        public DelegateLog INFO;
+        public DelegateLog WARN;
+        public DelegateLog ERROR;
 
+        void info(string Msg)
+        {
+            this.rtbLog.ForeColor = Color.Green;
+            this.rtbLog.AppendText(">> " + Msg + "\r\n");
+        }
+        void warn(string Msg)
+        {
+            this.rtbLog.ForeColor = Color.Yellow;
+            this.rtbLog.AppendText(">> " + Msg + "\r\n");
+        }
+        void error(string Msg)
+        {
+            this.rtbLog.ForeColor = Color.Red;
+            this.rtbLog.AppendText(">> " + Msg + "\r\n");
         }
 
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             Init();
+            INFO = new DelegateLog(info);
+            WARN = new DelegateLog(warn);
+            ERROR = new DelegateLog(error);
         }
 
 
@@ -69,45 +84,6 @@ namespace Zxl.Builder
             oCtrl.Dock = DockStyle.Fill;
             orgPanel.ControlContainer.Controls.Add(oCtrl);
         }
-
-        private void CloseButtonClick(object sender, EventArgs e)//关闭选项卡方法  
-        {
-            DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs EArg = (DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs)e;
-            string name = EArg.Page.Text;//得到关闭的选项卡的text  
-            foreach (XtraTabPage page in MainTab.TabPages)//遍历得到和关闭的选项卡一样的Text  
-            {
-                if (page.Text == name)
-                {
-                    MainTab.TabPages.Remove(page);
-                    page.Dispose();
-                    return;
-                }
-            }
-        }  
-
-        private void AddPage(string title, UserControl ctrl)
-        {
-            if (MainTab.TabPages.Count!=0)
-            {
-                for (int i=0;i< MainTab.TabPages.Count;i++)
-                {
-                    XtraTabPage page = MainTab.TabPages[i];
-                    if (title == page.Text)
-                    {
-                        MainTab.SelectedTabPageIndex = i;
-                        return;
-                    }
-                }
-            }
-
-            XtraTabPage newPage = new XtraTabPage();
-            newPage.Text = title;
-            MainTab.TabPages.Add(newPage);
-            MainTab.SelectedTabPage = newPage;
-            ctrl.Dock = DockStyle.Fill;
-            newPage.Controls.Add(ctrl);
-        }
-
 
         //业务
         private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -184,14 +160,14 @@ namespace Zxl.Builder
         {
             emptyCtrl ctrl = new emptyCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("表单管理", ctrl);
+            //AddPage("表单管理", ctrl);
         }
 
         private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             emptyCtrl ctrl = new emptyCtrl();
             ctrl.Dock = DockStyle.Fill;
-            AddPage("材料管理", ctrl);
+            //AddPage("材料管理", ctrl);
         }
 
 

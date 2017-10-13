@@ -81,6 +81,32 @@ namespace Zxl.Business.Impl
             }
         }
 
+        public SYS_BUSINESSROLE GetBusinessRole(int RoleID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Init<SYS_BUSINESSROLE>("where ID=" + RoleID);
+            }
+        }
+        public int DelBusinessRole(int RoleId)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Delete<SYS_BUSINESSROLE>("where ID=" + RoleId);
+            }
+        }
+        public SYS_BUSINESSROLE SaveBusinessRole(SYS_BUSINESSROLE role) 
+        {
+            if (0 == role.ID)
+            {
+                role.ID = ValueOperator.CreatePk("SYS_BUSINESSROLE");
+            }
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                orm.Save(role);
+                return role;
+            }
+        }
 
         public List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID)
         {

@@ -72,9 +72,9 @@
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.consolePanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel8_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.rtbLog = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panelContainer1.SuspendLayout();
@@ -494,20 +494,11 @@
             // 
             // dockPanel8_Container
             // 
-            this.dockPanel8_Container.Controls.Add(this.textBox1);
+            this.dockPanel8_Container.Controls.Add(this.rtbLog);
             this.dockPanel8_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel8_Container.Name = "dockPanel8_Container";
             this.dockPanel8_Container.Size = new System.Drawing.Size(665, 169);
             this.dockPanel8_Container.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(665, 169);
-            this.textBox1.TabIndex = 0;
             // 
             // documentManager1
             // 
@@ -515,6 +506,15 @@
             this.documentManager1.View = this.tabbedView1;
             this.documentManager1.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedView1});
+            // 
+            // rtbLog
+            // 
+            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbLog.Location = new System.Drawing.Point(0, 0);
+            this.rtbLog.Name = "rtbLog";
+            this.rtbLog.Size = new System.Drawing.Size(665, 169);
+            this.rtbLog.TabIndex = 1;
+            this.rtbLog.Text = "";
             // 
             // FormMain
             // 
@@ -543,7 +543,6 @@
             this.orgPanel.ResumeLayout(false);
             this.consolePanel.ResumeLayout(false);
             this.dockPanel8_Container.ResumeLayout(false);
-            this.dockPanel8_Container.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).EndInit();
             this.ResumeLayout(false);
@@ -598,7 +597,7 @@
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
         private DevExpress.XtraBars.Docking.DockPanel consolePanel;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel8_Container;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RichTextBox rtbLog;
     }
 }
 
