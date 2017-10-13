@@ -164,6 +164,12 @@
     <Compile Include="Dlg\DlgEditOrg.Designer.cs">
       <DependentUpon>DlgEditOrg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dlg\DlgEditBusinessRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusinessRole.Designer.cs">
+      <DependentUpon>DlgEditBusinessRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dlg\DlgEditRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditOrg.resx">
       <DependentUpon>DlgEditOrg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditBusinessRole.resx">
+      <DependentUpon>DlgEditBusinessRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditRole.resx">
       <DependentUpon>DlgEditRole.cs</DependentUpon>

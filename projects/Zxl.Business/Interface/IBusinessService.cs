@@ -20,6 +20,9 @@ namespace Zxl.Business.Interface
 
 
         List<SYS_BUSINESSROLE> BusinessRoles(int BusinessID);
+        SYS_BUSINESSROLE GetBusinessRole(int RoleID);
+        int DelBusinessRole(int RoleId);
+        SYS_BUSINESSROLE SaveBusinessRole(SYS_BUSINESSROLE role);
         
         
         List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID);

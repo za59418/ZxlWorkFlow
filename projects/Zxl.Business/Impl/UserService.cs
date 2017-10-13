@@ -129,7 +129,6 @@ namespace Zxl.Business.Impl
             {
                 return orm.Delete<ORUP_USERROLE>("where ID=" + UserRoleId);
             }
-
         }
         public ORUP_ROLE SaveRole(ORUP_ROLE role)
         {

@@ -217,6 +217,7 @@ create table orup_userorganization
 	organizationid number
 );
 
+create sequence seq_sys_businessrole;
 create table sys_businessrole
 (
     id integer primary key,

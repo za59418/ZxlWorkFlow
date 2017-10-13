@@ -43,16 +43,47 @@ namespace Zxl.Builder
 
         public FormMain MainForm { get; set; }
 
-         public SYS_BUSINESSGROUP CurrBusinessGroup { get; set; }
-       private SYS_BUSINESS CurrBusiness;
+        public SYS_BUSINESSGROUP CurrBusinessGroup { get; set; }
+        private SYS_BUSINESS CurrBusiness;
+        private SYS_BUSINESSROLE CurrRole;
+        private SYS_BUSINESSMATERIAL CurrMaterial;
+        private SYS_BUSINESSFORM CurrForm;
+        private SYS_BUSINESSPROCESS CurrProcess;
 
         #region 业务树事件
         private void treeBusiness_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Tag is SYS_BUSINESS)
-            CurrBusiness = e.Node.Tag as SYS_BUSINESS;
-            else if(e.Node.Tag is SYS_BUSINESSGROUP)
+            if(e.Node.Tag is SYS_BUSINESSROLE)
+            {
+                CurrRole = e.Node.Tag as SYS_BUSINESSROLE;
+            }
+            else if (e.Node.Tag is SYS_BUSINESSMATERIAL)
+            {
+                CurrMaterial = e.Node.Tag as SYS_BUSINESSMATERIAL;
+            }
+            else if (e.Node.Tag is SYS_BUSINESSFORM)
+            {
+                CurrForm = e.Node.Tag as SYS_BUSINESSFORM;
+            }
+            else if (e.Node.Tag is SYS_BUSINESSPROCESS)
+            {
+                CurrProcess = e.Node.Tag as SYS_BUSINESSPROCESS;
+            }
+            else if (e.Node.Tag is SYS_BUSINESS)
+            {
+                CurrBusiness = e.Node.Tag as SYS_BUSINESS;
+            }
+            else if (e.Node.Tag is SYS_BUSINESSGROUP)
+            {
                 CurrBusinessGroup = e.Node.Tag as SYS_BUSINESSGROUP;
+            }
+            else{ // 角色，材料，表单，流程文件夹
+                if(e.Node.Parent.Tag is SYS_BUSINESS)
+                {
+                    CurrBusiness = e.Node.Parent.Tag as SYS_BUSINESS;
+                    CurrBusinessGroup = e.Node.Parent.Parent.Tag as SYS_BUSINESSGROUP;
+                }
+            }
         }
 
         private void treeBusiness_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -67,6 +98,7 @@ namespace Zxl.Builder
             }
         }
 
+        #region business
         private void cmsiAddBusiness_Click(object sender, EventArgs e)
         {
             DlgEditBusiness dlg = new DlgEditBusiness();
@@ -102,6 +134,41 @@ namespace Zxl.Builder
             BusinessServcie.DelBusiness(CurrBusiness.ID);
             RefreshBusinessTree();
         }
+        #endregion business
+        #region businessrole
+        private void cmsiAddRole_Click(object sender, EventArgs e)
+        {
+            SYS_BUSINESSROLE newRole = new SYS_BUSINESSROLE();
+            newRole.CREATETIME = DateTime.Now;
+            newRole.REF_BUSINESS_ID = CurrBusiness.ID;
+            DlgEditBusinessRole dlg = new DlgEditBusinessRole();
+            dlg.Role = newRole;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                BusinessServcie.SaveBusinessRole(dlg.Role);
+                RefreshBusinessTree();
+            }
+        }
+
+        private void cmsiEditRole_Click(object sender, EventArgs e)
+        {
+            DlgEditBusinessRole dlg = new DlgEditBusinessRole();
+            dlg.Role = BusinessServcie.GetBusinessRole(CurrRole.ID);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                BusinessServcie.SaveBusinessRole(dlg.Role);
+                RefreshBusinessTree();
+            }
+        }
+
+        private void cmsiDelRole_Click(object sender, EventArgs e)
+        {
+            BusinessServcie.DelBusinessRole(CurrRole.ID);
+            RefreshBusinessTree();
+        }
+
+        #endregion businessrole
+
         void RefreshBusinessTree()
         {
             treeBusiness.Nodes.Clear();
@@ -194,5 +261,6 @@ namespace Zxl.Builder
         }      
 
         #endregion 业务树事件
+
     }
 }
