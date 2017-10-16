@@ -68,6 +68,12 @@
     <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.Designer.cs">
       <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\business\businessProcessCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\businessProcessCtrl.Designer.cs">
+      <DependentUpon>businessProcessCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\configCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,6 +234,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Ctrl\businessdata\businessDataDetailCtrl.resx">
       <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\businessProcessCtrl.resx">
+      <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\configCtrl.resx">
       <DependentUpon>configCtrl.cs</DependentUpon>
