@@ -88,13 +88,24 @@ namespace Zxl.Builder
 
         private void treeBusiness_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            businessRoleCtrl ctrl = new businessRoleCtrl();
-            ctrl.Dock = DockStyle.Fill;
 
             if (e.Node.Tag is SYS_BUSINESSROLE)
             {
+                businessRoleCtrl ctrl = new businessRoleCtrl();
+                ctrl.Dock = DockStyle.Fill;
                 ctrl.CurrRole = e.Node.Tag as SYS_BUSINESSROLE;
                 MainForm.AddTab(ctrl.CurrRole.ROLENAME, ctrl);
+            }
+            else if (e.Node.Tag is SYS_BUSINESSFORM)
+            {
+
+            }
+            else if (e.Node.Tag is SYS_BUSINESSPROCESS)
+            {
+                businessProcessCtrl ctrl = new businessProcessCtrl();
+                ctrl.Dock = DockStyle.Fill;
+                ctrl.CurrProcess = e.Node.Tag as SYS_BUSINESSPROCESS;
+                MainForm.AddTab(ctrl.CurrProcess.PROCESSNAME, ctrl);
             }
         }
 
