@@ -77,7 +77,7 @@ namespace Zxl.Business.Impl
         {
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                return orm.Query<SYS_BUSINESSROLE>("where REF_BUSINESS_ID=" + BusinessID);
+                return orm.Query<SYS_BUSINESSROLE>("where REF_BUSINESS_ID=" + BusinessID + " order by SortIndex");
             }
         }
 
@@ -86,13 +86,6 @@ namespace Zxl.Business.Impl
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
                 return orm.Init<SYS_BUSINESSROLE>("where ID=" + RoleID);
-            }
-        }
-        public int DelBusinessRole(int RoleId)
-        {
-            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
-            {
-                return orm.Delete<SYS_BUSINESSROLE>("where ID=" + RoleId);
             }
         }
         public SYS_BUSINESSROLE SaveBusinessRole(SYS_BUSINESSROLE role) 
@@ -107,51 +100,47 @@ namespace Zxl.Business.Impl
                 return role;
             }
         }
+        public int DelBusinessRole(int RoleId)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Delete<SYS_BUSINESSROLE>("where ID=" + RoleId);
+            }
+        }
 
         public List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID)
         {
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                return orm.Query<SYS_BUSINESSMATERIAL>("where REF_BUSINESS_ID=" + BusinessID);
+                return orm.Query<SYS_BUSINESSMATERIAL>("where REF_BUSINESS_ID=" + BusinessID + " order by SortIndex");
             }
         }
-        public SYS_BUSINESSMATERIAL AddMaterial(string NAME, string DESCRIPTION, int SORTINDEX)
-        {
-            SYS_BUSINESSMATERIAL result = new SYS_BUSINESSMATERIAL();
-            result.ID = ValueOperator.CreatePk("SYS_BUSINESSMATERIAL");
-            result.MATERIALNAME = NAME;
-            result.DESCRIPTION = DESCRIPTION;
-            result.CREATETIME = DateTime.Now;
-            result.SORTINDEX = SORTINDEX;
-            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
-            {
-                orm.Save(result);
-            }
-            return result;
-        }
-        public SYS_BUSINESSMATERIAL EditMaterial(int ID, string NAME, string DESCRIPTION, int SORTINDEX)
-        {
-            SYS_BUSINESSMATERIAL result = null;
-            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
-            {
-                result = orm.Init<SYS_BUSINESSMATERIAL>("where ID=" + ID);
-                result.MATERIALNAME = NAME;
-                result.DESCRIPTION = DESCRIPTION;
-                result.CREATETIME = DateTime.Now;
-                result.SORTINDEX = SORTINDEX;
-                orm.Update(result);
-            }
-            return result;
-        }
-        public int DelMaterial(int ID)
+        public SYS_BUSINESSMATERIAL GetBusinessMaterial(int MaterialID)
         {
             using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
             {
-                return orm.Delete<SYS_BUSINESSMATERIAL>("where ID=" + ID);
+                return orm.Init<SYS_BUSINESSMATERIAL>("where ID=" + MaterialID);
             }
         }
-
-
+        public SYS_BUSINESSMATERIAL SaveBusinessMaterial(SYS_BUSINESSMATERIAL material)
+        {
+            if (0 == material.ID)
+            {
+                material.ID = ValueOperator.CreatePk("SYS_BUSINESSMATERIAL");
+            }
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                orm.Save(material);
+                return material;
+            }
+        }
+        public int DelBusinessMaterial(int MaterialID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Delete<SYS_BUSINESSMATERIAL>("where ID=" + MaterialID);
+            }
+        }
 
         public List<SYS_BUSINESSFORM> BusinessForms(int BusinessID)
         {
@@ -160,6 +149,33 @@ namespace Zxl.Business.Impl
                 return orm.Query<SYS_BUSINESSFORM>("where REF_BUSINESS_ID=" + BusinessID);
             }
         }
+        public SYS_BUSINESSFORM GetBusinessForm(int FormID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Init<SYS_BUSINESSFORM>("where ID=" + FormID);
+            }
+        }
+        public SYS_BUSINESSFORM SaveBusinessForm(SYS_BUSINESSFORM form)
+        {
+            if (0 == form.ID)
+            {
+                form.ID = ValueOperator.CreatePk("SYS_BUSINESSFORM");
+            }
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                orm.Save(form);
+                return form;
+            }
+        }
+        public int DelBusinessForm(int FormID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Delete<SYS_BUSINESSFORM>("where ID=" + FormID);
+            }
+        }
+
 
         public List<SYS_BUSINESSPROCESS> BusinessProcesses(int BusinessID)
         {
@@ -169,8 +185,32 @@ namespace Zxl.Business.Impl
             }
         }
 
-
-
+        public SYS_BUSINESSPROCESS GetBusinessProcess(int ProcessID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Init<SYS_BUSINESSPROCESS>("where ID=" + ProcessID);
+            }
+        }
+        public SYS_BUSINESSPROCESS SaveBusinessProcess(SYS_BUSINESSPROCESS process)
+        {
+            if (0 == process.ID)
+            {
+                process.ID = ValueOperator.CreatePk("SYS_BUSINESSPROCESS");
+            }
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                orm.Save(process);
+                return process;
+            }
+        }
+        public int DelBusinessProcess(int ProcessID)
+        {
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                return orm.Delete<SYS_BUSINESSPROCESS>("where ID=" + ProcessID);
+            }
+        }
 
         public List<SYS_METADATA> MetaDatas()
         {

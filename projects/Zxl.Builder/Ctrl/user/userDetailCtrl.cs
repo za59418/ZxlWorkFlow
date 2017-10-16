@@ -26,6 +26,8 @@ namespace Zxl.Builder
             InitializeComponent();
         }
 
+        public FormMain MainForm { get; set; }
+
         private ORUP_USER _CurrUser;
         public ORUP_USER CurrUser
         {
@@ -77,12 +79,12 @@ namespace Zxl.Builder
                 CurrUser = UserServcie.SaveUser(CurrUser);
                 if (null != CurrUser)
                 {
-                    MessageBox.Show("保存成功！");
+                    MainForm.INFO("保存用户成功！");
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show("保存失败！\r\n" + ex.Message);
+                MainForm.ERROR("保存用户失败！\r\n" + ex.Message);
             }
         }
     }

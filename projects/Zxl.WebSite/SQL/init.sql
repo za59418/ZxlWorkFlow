@@ -69,6 +69,7 @@ create table sys_business
 	SORTINDEX number
 );
 
+create sequence SEQ_SYS_BUSINESSFORM;
 CREATE TABLE SYS_BUSINESSFORM
 (  
 	ID integer primary key, 
@@ -76,9 +77,11 @@ CREATE TABLE SYS_BUSINESSFORM
 	REF_BUSINESS_ID VARCHAR2(20), 
 	CONTENT blob,
 	CREATETIME DATE, 
-	DESCRIPTION VARCHAR2(500)
+	DESCRIPTION VARCHAR2(500),
+	SORTINDEX number
 );
 
+create sequence SEQ_SYS_BUSINESSMATERIAL;
 CREATE TABLE SYS_BUSINESSMATERIAL 
 (	
 	ID integer primary key, 
@@ -89,7 +92,7 @@ CREATE TABLE SYS_BUSINESSMATERIAL
 	SORTINDEX number
 );
 
-
+create sequence SEQ_SYS_BUSINESSPROCESS;
 create table sys_businessprocess
 (
 	id integer primary key,
@@ -223,7 +226,8 @@ create table sys_businessrole
     id integer primary key,
     rolename varchar2(100),
     ref_business_id integer,
-    createtime date
+    createtime date,
+	SORTINDEX number
 );
 
 create table sys_businessroleuser

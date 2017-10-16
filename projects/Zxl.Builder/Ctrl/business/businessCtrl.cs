@@ -145,8 +145,16 @@ namespace Zxl.Builder
             dlg.Role = newRole;
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                BusinessServcie.SaveBusinessRole(dlg.Role);
-                RefreshBusinessTree();
+                try
+                {
+                    BusinessServcie.SaveBusinessRole(dlg.Role);
+                    RefreshBusinessTree();
+                    MainForm.INFO("添加业务角色成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("添加业务角色失败！" + ex.Message);
+                }
             }
         }
 
@@ -156,18 +164,200 @@ namespace Zxl.Builder
             dlg.Role = BusinessServcie.GetBusinessRole(CurrRole.ID);
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                BusinessServcie.SaveBusinessRole(dlg.Role);
-                RefreshBusinessTree();
+                try
+                {
+                    BusinessServcie.SaveBusinessRole(dlg.Role);
+                    RefreshBusinessTree();
+                    MainForm.INFO("编辑业务角色成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("编辑业务角色失败！" + ex.Message);
+                }
             }
         }
 
         private void cmsiDelRole_Click(object sender, EventArgs e)
         {
-            BusinessServcie.DelBusinessRole(CurrRole.ID);
-            RefreshBusinessTree();
+            try
+            {
+                BusinessServcie.DelBusinessRole(CurrRole.ID);
+                RefreshBusinessTree();
+                MainForm.INFO("删除业务角色成功！");
+            }
+            catch (Exception ex)
+            {
+                MainForm.ERROR("删除业务角色失败！" + ex.Message);
+            }
         }
 
         #endregion businessrole
+        #region material
+        private void cmsiAddMaterial_Click(object sender, EventArgs e)
+        {
+            SYS_BUSINESSMATERIAL newMaterial = new SYS_BUSINESSMATERIAL();
+            newMaterial.CREATETIME = DateTime.Now;
+            newMaterial.REF_BUSINESS_ID = CurrBusiness.ID;
+            DlgEditBusinessMaterial dlg = new DlgEditBusinessMaterial();
+            dlg.Material = newMaterial;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                try
+                {
+                    BusinessServcie.SaveBusinessMaterial(dlg.Material);
+                    RefreshBusinessTree();
+                    MainForm.INFO("添加业务材料成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("添加业务材料失败！" + ex.Message);
+                }
+            }
+        }
+
+        private void cmsiEditMaterial_Click(object sender, EventArgs e)
+        {
+            DlgEditBusinessMaterial dlg = new DlgEditBusinessMaterial();
+            dlg.Material = BusinessServcie.GetBusinessMaterial(CurrMaterial.ID);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                try
+                {
+                    BusinessServcie.SaveBusinessMaterial(dlg.Material);
+                    RefreshBusinessTree();
+                    MainForm.INFO("编辑业务材料成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("编辑业务材料失败！" + ex.Message);
+                }
+            }
+        }
+
+        private void cmsiDelMaterial_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BusinessServcie.DelBusinessMaterial(CurrMaterial.ID);
+                RefreshBusinessTree();
+                MainForm.INFO("删除业务材料成功！");
+            }
+            catch (Exception ex)
+            {
+                MainForm.ERROR("删除业务材料失败！" + ex.Message);
+            }
+        }
+        #endregion material
+        #region form
+        private void cmsiAddForm_Click(object sender, EventArgs e)
+        {
+            SYS_BUSINESSFORM newForm = new SYS_BUSINESSFORM();
+            newForm.CREATETIME = DateTime.Now;
+            newForm.REF_BUSINESS_ID = CurrBusiness.ID;
+            DlgEditBusinessForm dlg = new DlgEditBusinessForm();
+            dlg.Form = newForm;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                try
+                {
+                    BusinessServcie.SaveBusinessForm(dlg.Form);
+                    RefreshBusinessTree();
+                    MainForm.INFO("添加业务表单成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("添加业务表单失败！" + ex.Message);
+                }
+            }
+        }
+        private void cmsiEditForm_Click(object sender, EventArgs e)
+        {
+            DlgEditBusinessForm dlg = new DlgEditBusinessForm();
+            dlg.Form = BusinessServcie.GetBusinessForm(CurrForm.ID);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                try
+                {
+                    BusinessServcie.SaveBusinessForm(dlg.Form);
+                    RefreshBusinessTree();
+                    MainForm.INFO("编辑业务表单成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("编辑业务表单失败！" + ex.Message);
+                }
+            }
+        }
+        private void cmsiDelForm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BusinessServcie.DelBusinessForm(CurrForm.ID);
+                RefreshBusinessTree();
+                MainForm.INFO("删除业务表单成功！");
+            }
+            catch (Exception ex)
+            {
+                MainForm.ERROR("删除业务表单失败！" + ex.Message);
+            }
+        }
+        #endregion form
+        #region process
+        private void cmsiAddProcess_Click(object sender, EventArgs e)
+        {
+            SYS_BUSINESSPROCESS newProcess = new SYS_BUSINESSPROCESS();
+            newProcess.CREATETIME = DateTime.Now;
+            newProcess.REF_BUSINESS_ID = CurrBusiness.ID;
+            DlgEditBusinessProcess dlg = new DlgEditBusinessProcess();
+            dlg.Process = newProcess;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                try
+                {
+                    BusinessServcie.SaveBusinessProcess(dlg.Process);
+                    RefreshBusinessTree();
+                    MainForm.INFO("添加业务流程成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("添加业务流程失败！" + ex.Message);
+                }
+            }
+        }
+
+        private void cmsiEditProcess_Click(object sender, EventArgs e)
+        {
+            DlgEditBusinessProcess dlg = new DlgEditBusinessProcess();
+            dlg.Process = BusinessServcie.GetBusinessProcess(CurrProcess.ID);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                try
+                {
+                    BusinessServcie.SaveBusinessProcess(dlg.Process);
+                    RefreshBusinessTree();
+                    MainForm.INFO("编辑业务流程成功！");
+                }
+                catch (Exception ex)
+                {
+                    MainForm.ERROR("编辑业务流程失败！" + ex.Message);
+                }
+            }
+        }
+
+        private void cmsiDelProcess_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BusinessServcie.DelBusinessProcess(CurrProcess.ID);
+                RefreshBusinessTree();
+                MainForm.INFO("删除业务流程成功！");
+            }
+            catch (Exception ex)
+            {
+                MainForm.ERROR("删除业务流程失败！" + ex.Message);
+            }
+        }
+        #endregion process
 
         void RefreshBusinessTree()
         {
@@ -258,9 +448,7 @@ namespace Zxl.Builder
                 groupNode.Expand();
             }
             root.Expand();
-        }      
-
+        }
         #endregion 业务树事件
-
     }
 }

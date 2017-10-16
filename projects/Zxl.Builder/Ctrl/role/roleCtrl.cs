@@ -74,11 +74,11 @@ namespace Zxl.Builder
                 {
                     UserService.SaveRole(dlg.Role);
                     RefreshRoleTree();
-                    MainForm.INFO("添加成功！");
+                    MainForm.INFO("添加角色成功！");
                 }
                 catch (Exception ex)
                 {
-                    MainForm.ERROR("添加失败！" + ex.Message);
+                    MainForm.ERROR("添加角色失败！" + ex.Message);
                 }
             }
         }
@@ -93,11 +93,11 @@ namespace Zxl.Builder
                 {
                     UserService.SaveRole(dlg.Role);
                     RefreshRoleTree();
-                    MainForm.INFO("编辑成功！");
+                    MainForm.INFO("编辑角色成功！");
                 }
                 catch (Exception ex)
                 {
-                    MainForm.ERROR("编辑失败！" + ex.Message);
+                    MainForm.ERROR("编辑角色失败！" + ex.Message);
                 }
             }
         }
@@ -111,11 +111,11 @@ namespace Zxl.Builder
             {
                 UserService.DelRole(role.ID);
                 RefreshRoleTree();
-                MainForm.INFO("删除成功！");
+                MainForm.INFO("删除角色成功！");
             }
             catch (Exception ex)
             {
-                MainForm.ERROR("删除失败！" + ex.Message);
+                MainForm.ERROR("删除角色失败！" + ex.Message);
             }
         }
 

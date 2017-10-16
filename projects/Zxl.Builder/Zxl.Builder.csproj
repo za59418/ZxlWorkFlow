@@ -146,6 +146,24 @@
     <Compile Include="Ctrl\metadata\metaDataCtrl.Designer.cs">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dlg\DlgEditBusinessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusinessForm.Designer.cs">
+      <DependentUpon>DlgEditBusinessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusinessMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusinessMaterial.Designer.cs">
+      <DependentUpon>DlgEditBusinessMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusinessProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\DlgEditBusinessProcess.Designer.cs">
+      <DependentUpon>DlgEditBusinessProcess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dlg\DlgEditConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +264,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\metadata\metaDataCtrl.resx">
       <DependentUpon>metaDataCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditBusinessForm.resx">
+      <DependentUpon>DlgEditBusinessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditBusinessMaterial.resx">
+      <DependentUpon>DlgEditBusinessMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\DlgEditBusinessProcess.resx">
+      <DependentUpon>DlgEditBusinessProcess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditConfig.resx">
       <DependentUpon>DlgEditConfig.cs</DependentUpon>

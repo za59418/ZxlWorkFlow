@@ -21,20 +21,26 @@ namespace Zxl.Business.Interface
 
         List<SYS_BUSINESSROLE> BusinessRoles(int BusinessID);
         SYS_BUSINESSROLE GetBusinessRole(int RoleID);
-        int DelBusinessRole(int RoleId);
         SYS_BUSINESSROLE SaveBusinessRole(SYS_BUSINESSROLE role);
+        int DelBusinessRole(int RoleId);
         
         
         List<SYS_BUSINESSMATERIAL> BusinessMaterials(int BusinessID);
-        SYS_BUSINESSMATERIAL AddMaterial(string NAME, string DESCRIPTION, int SORTINDEX);
-        SYS_BUSINESSMATERIAL EditMaterial(int ID, string NAME, string DESCRIPTION, int SORTINDEX);
-        int DelMaterial(int ID);
+        SYS_BUSINESSMATERIAL GetBusinessMaterial(int MaterialID);
+        SYS_BUSINESSMATERIAL SaveBusinessMaterial(SYS_BUSINESSMATERIAL material);
+        int DelBusinessMaterial(int MaterialID);
 
 
         List<SYS_BUSINESSFORM> BusinessForms(int BusinessID);
+        SYS_BUSINESSFORM GetBusinessForm(int FormID);
+        SYS_BUSINESSFORM SaveBusinessForm(SYS_BUSINESSFORM form);
+        int DelBusinessForm(int FormID);
 
 
         List<SYS_BUSINESSPROCESS> BusinessProcesses(int BusinessID);
+        SYS_BUSINESSPROCESS GetBusinessProcess(int ProcessID);
+        SYS_BUSINESSPROCESS SaveBusinessProcess(SYS_BUSINESSPROCESS process);
+        int DelBusinessProcess(int ProcessID);
         
         
         List<SYS_METADATA> MetaDatas();
