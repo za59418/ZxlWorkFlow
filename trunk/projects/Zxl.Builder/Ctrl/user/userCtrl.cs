@@ -56,6 +56,7 @@ namespace Zxl.Builder
         private void treeUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             userDetailCtrl ctrl = new userDetailCtrl();
+            ctrl.MainForm = MainForm;
             ctrl.Dock = DockStyle.Fill;
             ctrl.CurrUser = CurrUser;
             MainForm.AddTab(ctrl.CurrUser.USERNAME, ctrl);

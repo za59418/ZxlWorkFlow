@@ -26,6 +26,7 @@ namespace Zxl.Builder
             {
                 mRole.ROLENAME = tbName.Text;
                 mRole.CREATETIME = DateTime.Parse(tbCreateTime.Text);
+                mRole.SORTINDEX = Convert.ToInt32(tbSortIndex.Text);
                 return mRole;
             }
             set
@@ -33,6 +34,7 @@ namespace Zxl.Builder
                 mRole = value;
                 tbName.Text = mRole.ROLENAME;
                 tbCreateTime.Text = mRole.CREATETIME.ToString("yyyy-MM-dd HH:mm:ss");
+                tbSortIndex.Text = mRole.SORTINDEX + "";
             }
         }
 

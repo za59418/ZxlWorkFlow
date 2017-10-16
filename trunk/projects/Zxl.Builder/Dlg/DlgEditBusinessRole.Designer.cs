@@ -34,6 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbSortIndex = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbCreateTime = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -83,7 +85,7 @@
             this.panelControl1.Controls.Add(this.button1);
             this.panelControl1.Controls.Add(this.button2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 112);
+            this.panelControl1.Location = new System.Drawing.Point(0, 150);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(347, 42);
             this.panelControl1.TabIndex = 6;
@@ -93,6 +95,8 @@
             this.panelControl2.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.label2);
+            this.panelControl2.Controls.Add(this.tbSortIndex);
             this.panelControl2.Controls.Add(this.label3);
             this.panelControl2.Controls.Add(this.tbCreateTime);
             this.panelControl2.Controls.Add(this.tbName);
@@ -100,8 +104,24 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(347, 112);
+            this.panelControl2.Size = new System.Drawing.Size(347, 150);
             this.panelControl2.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(59, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 14);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "排序：";
+            // 
+            // tbSortIndex
+            // 
+            this.tbSortIndex.Location = new System.Drawing.Point(106, 110);
+            this.tbSortIndex.Name = "tbSortIndex";
+            this.tbSortIndex.Size = new System.Drawing.Size(182, 22);
+            this.tbSortIndex.TabIndex = 12;
             // 
             // label3
             // 
@@ -124,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 154);
+            this.ClientSize = new System.Drawing.Size(347, 192);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -155,5 +175,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbCreateTime;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbSortIndex;
     }
 }

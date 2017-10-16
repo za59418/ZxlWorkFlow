@@ -112,7 +112,7 @@
             this.cmsiEditRole,
             this.cmsiDelRole});
             this.cmsRole.Name = "contextMenuBd";
-            this.cmsRole.Size = new System.Drawing.Size(153, 70);
+            this.cmsRole.Size = new System.Drawing.Size(125, 48);
             // 
             // cmsMaterials
             // 
@@ -150,7 +150,7 @@
             this.cmsiEditProcess,
             this.cmsiDelProcess});
             this.cmsProcess.Name = "contextMenuBd";
-            this.cmsProcess.Size = new System.Drawing.Size(125, 48);
+            this.cmsProcess.Size = new System.Drawing.Size(153, 70);
             // 
             // cmsProcesses
             // 
@@ -195,7 +195,7 @@
             // 
             this.cmsiEditRole.Image = global::Zxl.Builder.Properties.Resources.edit1;
             this.cmsiEditRole.Name = "cmsiEditRole";
-            this.cmsiEditRole.Size = new System.Drawing.Size(152, 22);
+            this.cmsiEditRole.Size = new System.Drawing.Size(124, 22);
             this.cmsiEditRole.Text = "编辑角色";
             this.cmsiEditRole.Click += new System.EventHandler(this.cmsiEditRole_Click);
             // 
@@ -203,7 +203,7 @@
             // 
             this.cmsiDelRole.Image = global::Zxl.Builder.Properties.Resources.del1;
             this.cmsiDelRole.Name = "cmsiDelRole";
-            this.cmsiDelRole.Size = new System.Drawing.Size(152, 22);
+            this.cmsiDelRole.Size = new System.Drawing.Size(124, 22);
             this.cmsiDelRole.Text = "删除角色";
             this.cmsiDelRole.Click += new System.EventHandler(this.cmsiDelRole_Click);
             // 
@@ -213,6 +213,7 @@
             this.cmsiAddMaterial.Name = "cmsiAddMaterial";
             this.cmsiAddMaterial.Size = new System.Drawing.Size(124, 22);
             this.cmsiAddMaterial.Text = "添加材料";
+            this.cmsiAddMaterial.Click += new System.EventHandler(this.cmsiAddMaterial_Click);
             // 
             // cmsiEditMaterial
             // 
@@ -220,6 +221,7 @@
             this.cmsiEditMaterial.Name = "cmsiEditMaterial";
             this.cmsiEditMaterial.Size = new System.Drawing.Size(124, 22);
             this.cmsiEditMaterial.Text = "编辑材料";
+            this.cmsiEditMaterial.Click += new System.EventHandler(this.cmsiEditMaterial_Click);
             // 
             // cmsiDelMaterial
             // 
@@ -227,6 +229,7 @@
             this.cmsiDelMaterial.Name = "cmsiDelMaterial";
             this.cmsiDelMaterial.Size = new System.Drawing.Size(124, 22);
             this.cmsiDelMaterial.Text = "删除材料";
+            this.cmsiDelMaterial.Click += new System.EventHandler(this.cmsiDelMaterial_Click);
             // 
             // cmsiAddForm
             // 
@@ -234,6 +237,7 @@
             this.cmsiAddForm.Name = "cmsiAddForm";
             this.cmsiAddForm.Size = new System.Drawing.Size(124, 22);
             this.cmsiAddForm.Text = "添加表单";
+            this.cmsiAddForm.Click += new System.EventHandler(this.cmsiAddForm_Click);
             // 
             // cmsiEditForm
             // 
@@ -241,6 +245,7 @@
             this.cmsiEditForm.Name = "cmsiEditForm";
             this.cmsiEditForm.Size = new System.Drawing.Size(124, 22);
             this.cmsiEditForm.Text = "编辑表单";
+            this.cmsiEditForm.Click += new System.EventHandler(this.cmsiEditForm_Click);
             // 
             // cmsiDelForm
             // 
@@ -248,27 +253,31 @@
             this.cmsiDelForm.Name = "cmsiDelForm";
             this.cmsiDelForm.Size = new System.Drawing.Size(124, 22);
             this.cmsiDelForm.Text = "删除表单";
+            this.cmsiDelForm.Click += new System.EventHandler(this.cmsiDelForm_Click);
             // 
             // cmsiEditProcess
             // 
             this.cmsiEditProcess.Image = global::Zxl.Builder.Properties.Resources.edit1;
             this.cmsiEditProcess.Name = "cmsiEditProcess";
-            this.cmsiEditProcess.Size = new System.Drawing.Size(124, 22);
+            this.cmsiEditProcess.Size = new System.Drawing.Size(152, 22);
             this.cmsiEditProcess.Text = "编辑流程";
+            this.cmsiEditProcess.Click += new System.EventHandler(this.cmsiEditProcess_Click);
             // 
             // cmsiDelProcess
             // 
             this.cmsiDelProcess.Image = global::Zxl.Builder.Properties.Resources.del1;
             this.cmsiDelProcess.Name = "cmsiDelProcess";
-            this.cmsiDelProcess.Size = new System.Drawing.Size(124, 22);
+            this.cmsiDelProcess.Size = new System.Drawing.Size(152, 22);
             this.cmsiDelProcess.Text = "删除流程";
+            this.cmsiDelProcess.Click += new System.EventHandler(this.cmsiDelProcess_Click);
             // 
             // cmsiAddProcess
             // 
             this.cmsiAddProcess.Image = global::Zxl.Builder.Properties.Resources.add1;
             this.cmsiAddProcess.Name = "cmsiAddProcess";
-            this.cmsiAddProcess.Size = new System.Drawing.Size(124, 22);
+            this.cmsiAddProcess.Size = new System.Drawing.Size(152, 22);
             this.cmsiAddProcess.Text = "添加流程";
+            this.cmsiAddProcess.Click += new System.EventHandler(this.cmsiAddProcess_Click);
             // 
             // businessCtrl
             // 
