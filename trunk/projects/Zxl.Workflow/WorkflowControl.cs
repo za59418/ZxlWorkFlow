@@ -15,6 +15,7 @@ namespace Zxl.Workflow
         public WorkflowControl()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
         }
 
         private Tool _currentTool;

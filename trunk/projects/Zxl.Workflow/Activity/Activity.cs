@@ -9,6 +9,17 @@ namespace Zxl.Workflow
 {
     public class Activity
     {
+        public enum HitTestState
+        {
+            None,
+            Center
+        }
+
+        virtual public HitTestState HitTest(int x, int y)
+        {
+            return HitTestState.None;
+        }
+
         private bool _isSelected;
         public bool IsSelected
         {

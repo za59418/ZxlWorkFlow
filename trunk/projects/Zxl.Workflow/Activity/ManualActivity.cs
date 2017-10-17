@@ -16,7 +16,10 @@ namespace Zxl.Workflow
         }
         override protected void DrawIcon(Graphics g)
         {
-            g.DrawImage(Properties.Resources.manual, _rect);
+            if (IsSelected)
+                g.DrawImage(Properties.Resources.manualSelect, _rect);
+            else
+                g.DrawImage(Properties.Resources.manual, _rect);
         }
     }
 }
