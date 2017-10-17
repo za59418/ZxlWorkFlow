@@ -34,6 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Name = "WorkflowControl";
             this.Size = new System.Drawing.Size(551, 385);
             this.Load += new System.EventHandler(this.WorkflowControl_Load);
