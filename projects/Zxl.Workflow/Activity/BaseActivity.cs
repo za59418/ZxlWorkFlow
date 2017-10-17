@@ -9,7 +9,7 @@ namespace Zxl.Workflow
 {
     public abstract class BaseActivity : Activity
     {
-        public const int widthAndHeight = 20;
+        public const int widthAndHeight = 40;
 
         public BaseActivity(int x, int y)
         {
@@ -19,6 +19,7 @@ namespace Zxl.Workflow
             _y = y;
             _rect = new Rectangle(_x - widthAndHeight / 2, _y - widthAndHeight / 2, widthAndHeight, widthAndHeight);
         }
+
         protected Rectangle _rect;
         public Rectangle Rect
         {
@@ -46,6 +47,18 @@ namespace Zxl.Workflow
             }
         }
 
+        public override HitTestState HitTest(int x, int y)
+        {
+            if (_rect.Contains(x, y))
+            {
+                return HitTestState.Center;
+            }
+            else
+            {
+                return HitTestState.None;
+            }
+        }
+
         public override Rectangle GetRange()
         {
             return _rect;
@@ -63,9 +76,9 @@ namespace Zxl.Workflow
             format.Alignment = StringAlignment.Center;
             format.LineAlignment = StringAlignment.Near;
             g.DrawString(_description, font, brush, new PointF(_x, _y + widthAndHeight / 2 + 5), format);
-            //format.Dispose();
-            //font.Dispose();
-            //brush.Dispose();
+            format.Dispose();
+            font.Dispose();
+            brush.Dispose();
         }
         public override void Move(int offX, int offY)
         {

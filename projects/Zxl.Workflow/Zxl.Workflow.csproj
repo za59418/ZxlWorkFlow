@@ -100,15 +100,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\manual.png" />
+    <None Include="Resources\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\start.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\end.png" />
+    <None Include="Resources\manual.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manualSelect.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
