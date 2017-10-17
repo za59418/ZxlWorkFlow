@@ -344,6 +344,10 @@
       <Project>{a37fb0c7-4a07-4c7e-bfb8-ab49b02ad6d7}</Project>
       <Name>Zxl.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zxl.Workflow\Zxl.Workflow.csproj">
+      <Project>{aea72a36-2c08-4052-810e-5c4276e7088d}</Project>
+      <Name>Zxl.Workflow</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add.png" />
@@ -419,6 +423,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\material.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manualselect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manual.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
