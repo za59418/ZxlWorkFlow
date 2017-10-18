@@ -69,6 +69,22 @@ namespace Zxl.Workflow
             }
         }
 
+        private void panelWorkflow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (DialogResult.Yes == MessageBox.Show("确定删除", "系统消息",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                {
+                    foreach (Activity activity in Document.DeleteSelected())
+                    {
+                        //FireVisualObjectDeleteEvent(deleteObject);
+                    }
+                    RedrawAll();
+                }
+            }
+        }
+
         private void WorkflowControl_Load(object sender, EventArgs e)
         {
             CurrentTool = new SelectorTool();
@@ -114,6 +130,7 @@ namespace Zxl.Workflow
                 }
             }
         }
+
 
     }
 }
