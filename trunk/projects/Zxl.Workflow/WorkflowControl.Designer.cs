@@ -31,7 +31,7 @@
             this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panelWorkflow = new WorkflowPanel();
+            this.panelWorkflow = new Zxl.Workflow.WorkflowPanel();
             this.SuspendLayout();
             // 
             // vScrollBar
@@ -72,6 +72,7 @@
             this.panelWorkflow.Size = new System.Drawing.Size(1920, 1080);
             this.panelWorkflow.TabIndex = 2;
             this.panelWorkflow.Paint += new System.Windows.Forms.PaintEventHandler(this.panelWorkflow_Paint);
+            this.panelWorkflow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.panelWorkflow_KeyDown);
             this.panelWorkflow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseDown);
             this.panelWorkflow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseMove);
             this.panelWorkflow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseUp);

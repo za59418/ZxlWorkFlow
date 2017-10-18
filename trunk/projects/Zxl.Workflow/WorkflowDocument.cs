@@ -64,6 +64,39 @@ namespace Zxl.Workflow
             }
         }
 
+        public IList<Activity> DeleteSelected()
+        {
+            IList<Activity> result = new List<Activity>();
+            foreach (Activity activity in ActivityList)
+            {
+                if (activity is LineActivity)
+                {
+                    LineActivity line = activity as LineActivity;
+                    if (line.Source.IsSelected || line.Target.IsSelected || line.IsSelected)
+                    {
+                        ActivityList.Remove(line);
+                        Lines.Remove(line);
+                        result.Add(line);
+                        break;
+                    }
+                }
+            }
+            foreach (Activity activity in ActivityList)
+            {
+                if (!(activity is LineActivity))
+                {
+                    BaseActivity item = activity as BaseActivity;
+                    if (item.IsSelected)
+                    {
+                        ActivityList.Remove(item);
+                        result.Add(item);
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
         public void MoveSelected(int offX, int offY)
         {
             foreach (Activity activity in _activities)
