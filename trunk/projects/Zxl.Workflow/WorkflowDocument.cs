@@ -17,7 +17,7 @@ namespace Zxl.Workflow
         public WorkflowDocument()
         {
             _activities = new List<Activity>();
-            //_lines = new List<LineActivity>();
+            _lines = new List<LineActivity>();
         }
 
         private IList<Activity> _activities;
@@ -26,6 +26,18 @@ namespace Zxl.Workflow
             get
             {
                 return _activities;
+            }
+        }
+        private IList<LineActivity> _lines;
+        public IList<LineActivity> Lines
+        {
+            get
+            {
+                return _lines;
+            }
+            set
+            {
+                _lines = value;
             }
         }
 

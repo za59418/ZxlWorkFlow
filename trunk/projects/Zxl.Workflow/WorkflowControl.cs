@@ -41,6 +41,13 @@ namespace Zxl.Workflow
             }
         }
 
+        public Point ScrollOffset
+        {
+            get
+            {
+                return new Point(hScrollBar.Value, vScrollBar.Value);
+            }
+        }
 
         private void WorkflowControl_MouseDown(object sender, MouseEventArgs e)
         {
@@ -72,9 +79,15 @@ namespace Zxl.Workflow
             Graphics g = e.Graphics;
             if (null != _document && _document.ActivityList != null)
             {
-                foreach (Activity activity in _document.ActivityList)
+                foreach (Activity obj in _document.ActivityList)
                 {
-                    activity.Draw(g);
+                    if (obj is LineActivity)
+                        obj.Draw(g);
+                }
+                foreach (Activity obj in _document.ActivityList)
+                {
+                    if (!(obj is LineActivity))
+                        obj.Draw(g);
                 }
             }
         }

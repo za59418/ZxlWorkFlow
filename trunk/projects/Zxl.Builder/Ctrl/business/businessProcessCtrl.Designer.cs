@@ -110,6 +110,7 @@
             this.nbiArrow.Caption = "连线";
             this.nbiArrow.Name = "nbiArrow";
             this.nbiArrow.SmallImage = global::Zxl.Builder.Properties.Resources.line;
+            this.nbiArrow.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiArrow_LinkClicked);
             // 
             // dockManager1
             // 

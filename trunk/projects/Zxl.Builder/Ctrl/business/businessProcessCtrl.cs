@@ -69,5 +69,10 @@ namespace Zxl.Builder
         {
             workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.MANUAL);
         }
+
+        private void nbiArrow_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.LINE);
+        }
     }
 }
