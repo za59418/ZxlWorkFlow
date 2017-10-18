@@ -53,7 +53,7 @@ namespace Zxl.Workflow
                     tool = new SelectorTool();
                     break;
                 case ActivityType.LINE:
-                    //tool = new LineActivityTool();
+                    tool = new LineActivityTool();
                     break;
             }
             return tool;

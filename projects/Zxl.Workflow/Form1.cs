@@ -37,5 +37,10 @@ namespace Zxl.Workflow
         {
             this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.MANUAL);
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.LINE);
+        }
     }
 }

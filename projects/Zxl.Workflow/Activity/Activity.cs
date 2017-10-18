@@ -15,6 +15,8 @@ namespace Zxl.Workflow
             Center
         }
 
+        protected const int GridSize = 10;
+
         virtual public HitTestState HitTest(int x, int y)
         {
             return HitTestState.None;
@@ -46,6 +48,19 @@ namespace Zxl.Workflow
             return new Rectangle();
         }
 
+        virtual public void AlignToGrid() { }
+        protected int AlignToNumber(int number, int alignNumber)
+        {
+            int newNum = number - (number % alignNumber);
+            if ((number - newNum) > (alignNumber / 2))
+            {
+                return newNum + alignNumber;
+            }
+            else
+            {
+                return newNum;
+            }
+        }
 
         virtual public void Draw(Graphics g) { }
         virtual public void Move(int offX, int offY) { }
