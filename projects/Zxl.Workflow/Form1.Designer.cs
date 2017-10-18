@@ -28,28 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Zxl.Workflow.SelectorTool selectorTool1 = new Zxl.Workflow.SelectorTool();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.workflowControl = new Zxl.Workflow.WorkflowControl();
+            Zxl.Workflow.SelectorTool selectorTool1 = new Zxl.Workflow.SelectorTool();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.workflowControl = new Zxl.Workflow.WorkflowControl();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // workflowControl
-            // 
-            this.workflowControl.BackColor = System.Drawing.Color.White;
-            selectorTool1.Ctrl = this.workflowControl;
-            this.workflowControl.CurrentTool = selectorTool1;
-            this.workflowControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workflowControl.Document = null;
-            this.workflowControl.Location = new System.Drawing.Point(0, 25);
-            this.workflowControl.Name = "workflowControl";
-            this.workflowControl.Size = new System.Drawing.Size(622, 290);
-            this.workflowControl.TabIndex = 1;
             // 
             // toolStrip1
             // 
@@ -104,6 +92,18 @@
             this.toolStripButton4.Text = "line";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
+            // workflowControl
+            // 
+            this.workflowControl.BackColor = System.Drawing.Color.Silver;
+            selectorTool1.Ctrl = this.workflowControl;
+            this.workflowControl.CurrentTool = selectorTool1;
+            this.workflowControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workflowControl.Document = null;
+            this.workflowControl.Location = new System.Drawing.Point(0, 25);
+            this.workflowControl.Name = "workflowControl";
+            this.workflowControl.Size = new System.Drawing.Size(622, 290);
+            this.workflowControl.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -123,11 +123,11 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private WorkflowControl workflowControl;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private WorkflowControl workflowControl;
     }
 }
 

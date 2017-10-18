@@ -15,7 +15,6 @@ namespace Zxl.Workflow
         public WorkflowControl()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
         }
 
         private Tool _currentTool;
@@ -37,8 +36,42 @@ namespace Zxl.Workflow
             }
             set
             {
+                vScrollBar.Value = 0;
+                hScrollBar.Value = 0;
+                panelWorkflow.Left = 20;
+                panelWorkflow.Top = 20;
                 _document = value;
             }
+        }
+
+        private void panelWorkflow_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                CurrentTool.OnMouseDown(e.X, e.Y);
+                CurrentTool.AfterActivityCreate();
+            }
+        }
+
+        private void panelWorkflow_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                CurrentTool.OnMouseMove(e.X, e.Y);
+            }
+        }
+
+        private void panelWorkflow_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                CurrentTool.OnMouseUp(e.X, e.Y);
+            }
+        }
+
+        private void WorkflowControl_Load(object sender, EventArgs e)
+        {
+            CurrentTool = new SelectorTool();
         }
 
         public Point ScrollOffset
@@ -49,57 +82,37 @@ namespace Zxl.Workflow
             }
         }
 
-        private void WorkflowControl_MouseDown(object sender, MouseEventArgs e)
+        private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                CurrentTool.OnMouseDown(e.X, e.Y);
-                CurrentTool.AfterActivityCreate();
-            }
+            panelWorkflow.Top = -e.NewValue + 20;
         }
 
-        private void WorkflowControl_MouseMove(object sender, MouseEventArgs e)
+        private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                CurrentTool.OnMouseMove(e.X, e.Y);
-            }
-        }
-
-        private void WorkflowControl_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                CurrentTool.OnMouseUp(e.X, e.Y);
-            }
-        }
-
-        private void WorkflowControl_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            if (null != _document && _document.ActivityList != null)
-            {
-                foreach (Activity obj in _document.ActivityList)
-                {
-                    if (obj is LineActivity)
-                        obj.Draw(g);
-                }
-                foreach (Activity obj in _document.ActivityList)
-                {
-                    if (!(obj is LineActivity))
-                        obj.Draw(g);
-                }
-            }
-        }
-
-        private void WorkflowControl_Load(object sender, EventArgs e)
-        {
-            CurrentTool = new SelectorTool();
+            panelWorkflow.Left = -e.NewValue + 20;            
         }
 
         public void RedrawAll()
         {
-            this.Invalidate();
+            panelWorkflow.Invalidate();
+        }
+
+        private void panelWorkflow_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            if (null != _document && _document.ActivityList != null)
+            {
+                foreach (Activity activity in _document.ActivityList)
+                {
+                    if (activity is LineActivity)
+                        activity.Draw(g);
+                }
+                foreach (Activity activity in _document.ActivityList)
+                {
+                    if (!(activity is LineActivity))
+                        activity.Draw(g);
+                }
+            }
         }
 
     }

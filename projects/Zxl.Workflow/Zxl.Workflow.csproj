@@ -73,6 +73,12 @@
     </Compile>
     <Compile Include="WorkflowDocument.cs" />
     <Compile Include="WorkflowEngine.cs" />
+    <Compile Include="WorkflowPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WorkflowPanel.Designer.cs">
+      <DependentUpon>WorkflowPanel.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

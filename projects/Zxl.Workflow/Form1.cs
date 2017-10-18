@@ -15,6 +15,7 @@ namespace Zxl.Workflow
         public Form1()
         {
             InitializeComponent();
+
             workflowEngine = new WorkflowEngine();
             workflowControl.Document = workflowEngine.Document;
             workflowControl.RedrawAll();

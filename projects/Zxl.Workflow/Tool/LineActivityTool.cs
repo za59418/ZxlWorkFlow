@@ -47,17 +47,17 @@ namespace Zxl.Workflow
         public override void OnMouseMove(int x, int y)
         {
             Point scrollOffset = Ctrl.ScrollOffset;
-            Point startPoint = Ctrl.PointToScreen(new Point(startMouseX - scrollOffset.X, startMouseY - scrollOffset.Y));
-            ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(endMouseX - scrollOffset.X, endMouseY - scrollOffset.Y)), Color.Black);
-            ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(x - scrollOffset.X, y - scrollOffset.Y)), Color.Black);
+            Point startPoint = Ctrl.PointToScreen(new Point(startMouseX - scrollOffset.X + 20, startMouseY - scrollOffset.Y + 20));
+            ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(endMouseX - scrollOffset.X + 20, endMouseY - scrollOffset.Y + 20)), Color.Black);
+            ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(x - scrollOffset.X + 20, y - scrollOffset.Y + 20)), Color.Black);
             setEndMousePosition(x, y);
         }
 
         public override void OnMouseUp(int x, int y)
         {
             Point scrollOffset = Ctrl.ScrollOffset;
-            Point startPoint = Ctrl.PointToScreen(new Point(startMouseX - scrollOffset.X, startMouseY - scrollOffset.Y));
-            ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(endMouseX - scrollOffset.X, endMouseY - scrollOffset.Y)), Color.Black);
+            Point startPoint = Ctrl.PointToScreen(new Point(startMouseX - scrollOffset.X + 20, startMouseY - scrollOffset.Y + 20));
+            ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(endMouseX - scrollOffset.X + 20, endMouseY - scrollOffset.Y + 20)), Color.Black);
 
             HitTestResult end = Ctrl.Document.HitTest(x, y);
             if ((end == null) || (!(end.result is BaseActivity)))
