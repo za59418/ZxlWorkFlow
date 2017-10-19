@@ -9,7 +9,7 @@ namespace Zxl.Workflow
     public class HitTestResult
     {
         public Activity.HitTestState state;
-        public Activity result;
+        public Activity activity;
     }
 
     public class WorkflowDocument
@@ -41,6 +41,19 @@ namespace Zxl.Workflow
             }
         }
 
+        public void OpenPropertyDialogAtPoint(int x, int y)
+        {
+            HitTestResult result = HitTest(x, y);
+            if (result != null && result.state == Activity.HitTestState.Center)
+            {
+                result.activity.OpenPropertyDialog();
+            }
+            else
+            {
+            }
+        }
+
+
         public HitTestResult HitTest(int x, int y)
         {
             foreach (Activity activity in _activities)
@@ -50,7 +63,7 @@ namespace Zxl.Workflow
                 {
                     HitTestResult result = new HitTestResult();
                     result.state = state;
-                    result.result = activity;
+                    result.activity = activity;
                     return result;
                 }
             }
@@ -69,30 +82,23 @@ namespace Zxl.Workflow
             IList<Activity> result = new List<Activity>();
             foreach (Activity activity in ActivityList)
             {
-                if (activity is LineActivity)
+                if(activity.IsSelected)
                 {
-                    LineActivity line = activity as LineActivity;
-                    if (line.Source.IsSelected || line.Target.IsSelected || line.IsSelected)
+                    result.Add(activity);
+                }
+                else
+                {
+                    if(activity is LineActivity)
                     {
-                        ActivityList.Remove(line);
-                        Lines.Remove(line);
-                        result.Add(line);
-                        break;
+                        LineActivity line = activity as LineActivity;
+                        if (line.Source.IsSelected || line.Target.IsSelected)
+                            result.Add(activity);
                     }
                 }
             }
-            foreach (Activity activity in ActivityList)
+            foreach (Activity activity in result)
             {
-                if (!(activity is LineActivity))
-                {
-                    BaseActivity item = activity as BaseActivity;
-                    if (item.IsSelected)
-                    {
-                        ActivityList.Remove(item);
-                        result.Add(item);
-                        break;
-                    }
-                }
+                ActivityList.Remove(activity);
             }
             return result;
         }

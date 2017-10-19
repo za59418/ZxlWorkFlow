@@ -21,5 +21,14 @@ namespace Zxl.Workflow
             else
                 g.DrawImage(Properties.Resources.manual, _rect);
         }
+
+        override public void OpenPropertyDialog()
+        {
+
+            ActivityInfoDlg dlg = new ActivityInfoDlg();
+            //dlg.WfActivity = this;
+            dlg.ShowDialog();
+            dlg.Dispose();
+        }
     }
 }

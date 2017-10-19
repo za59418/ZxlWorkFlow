@@ -69,9 +69,9 @@
             this.panelControl2.Controls.Add(this.panelControl3);
             this.panelControl2.Controls.Add(this.toolStrip1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Location = new System.Drawing.Point(0, 89);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(993, 514);
+            this.panelControl2.Size = new System.Drawing.Size(993, 425);
             this.panelControl2.TabIndex = 6;
             // 
             // panelControl3
@@ -80,7 +80,7 @@
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(2, 27);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(989, 485);
+            this.panelControl3.Size = new System.Drawing.Size(989, 396);
             this.panelControl3.TabIndex = 5;
             // 
             // treeListProperty
@@ -99,7 +99,7 @@
             this.treeListProperty.Location = new System.Drawing.Point(2, 2);
             this.treeListProperty.Name = "treeListProperty";
             this.treeListProperty.RowTemplate.Height = 23;
-            this.treeListProperty.Size = new System.Drawing.Size(985, 481);
+            this.treeListProperty.Size = new System.Drawing.Size(985, 392);
             this.treeListProperty.TabIndex = 0;
             // 
             // obj
@@ -236,6 +236,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.txtMetaDataName);
             this.panelControl1.Controls.Add(this.labelControl2);
@@ -243,12 +244,12 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(993, 105);
+            this.panelControl1.Size = new System.Drawing.Size(993, 89);
             this.panelControl1.TabIndex = 5;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(21, 24);
+            this.labelControl1.Location = new System.Drawing.Point(19, 22);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(72, 14);
             this.labelControl1.TabIndex = 2;
@@ -263,7 +264,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(57, 64);
+            this.labelControl2.Location = new System.Drawing.Point(57, 53);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(36, 14);
             this.labelControl2.TabIndex = 3;
@@ -271,7 +272,7 @@
             // 
             // txtMetaDataDesc
             // 
-            this.txtMetaDataDesc.Location = new System.Drawing.Point(105, 61);
+            this.txtMetaDataDesc.Location = new System.Drawing.Point(105, 50);
             this.txtMetaDataDesc.Name = "txtMetaDataDesc";
             this.txtMetaDataDesc.Size = new System.Drawing.Size(242, 20);
             this.txtMetaDataDesc.TabIndex = 1;

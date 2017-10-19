@@ -38,13 +38,13 @@ namespace Zxl.Workflow
             }
             else if (result.state == Activity.HitTestState.Center)
             {
-                if (!result.result.IsSelected)
+                if (!result.activity.IsSelected)
                 {
                     //if (_state != State.Select)
                     //{
                         Ctrl.Document.ResetSelected();
                     //}
-                    result.result.IsSelected = true;
+                        result.activity.IsSelected = true;
                     Ctrl.RedrawAll();
                 }
                 _state = State.Select;
