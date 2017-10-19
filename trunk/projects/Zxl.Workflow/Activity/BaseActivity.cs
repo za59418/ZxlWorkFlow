@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Xml;
 
 namespace Zxl.Workflow
 {
@@ -85,6 +86,30 @@ namespace Zxl.Workflow
             _x += offX;
             _y += offY;
             _rect = new Rectangle(_x - widthAndHeight / 2, _y - widthAndHeight / 2, widthAndHeight, widthAndHeight);
+        }
+
+
+        public void SaveToXmlElement(XmlElement activitiesElement)
+        {
+            XmlElement activityElement = activitiesElement.OwnerDocument.CreateElement("activity");
+
+            XmlAttribute attr = activityElement.OwnerDocument.CreateAttribute("id");
+            attr.Value = _id;
+            activityElement.Attributes.Append(attr);
+
+            attr = activityElement.OwnerDocument.CreateAttribute("description");
+            attr.Value = _description;
+            activityElement.Attributes.Append(attr);
+
+            attr = activityElement.OwnerDocument.CreateAttribute("x");
+            attr.Value = _x.ToString();
+            activityElement.Attributes.Append(attr);
+
+            attr = activityElement.OwnerDocument.CreateAttribute("y");
+            attr.Value = _y.ToString();
+            activityElement.Attributes.Append(attr);
+
+            activitiesElement.AppendChild(activityElement);
         }
     }
 }

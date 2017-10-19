@@ -98,6 +98,7 @@ create table sys_businessprocess
 	id integer primary key,
 	PROCESSNAME varchar2(200),
 	ref_business_id integer,
+	layoutcontent blob,
 	createtime date
 );
 

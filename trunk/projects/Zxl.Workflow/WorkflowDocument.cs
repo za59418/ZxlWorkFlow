@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Zxl.Workflow
 {
@@ -18,6 +19,20 @@ namespace Zxl.Workflow
         {
             _activities = new List<Activity>();
             _lines = new List<LineActivity>();
+        }
+
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
 
         private IList<Activity> _activities;
@@ -112,5 +127,25 @@ namespace Zxl.Workflow
             }
         }
 
+        public void SaveToXmlElement(XmlElement flowsElement)
+        {
+            XmlElement flowElement = flowsElement.OwnerDocument.CreateElement("process");
+
+            XmlAttribute attr = flowsElement.OwnerDocument.CreateAttribute("id");
+            attr.Value = _id;
+            flowElement.Attributes.Append(attr);
+
+            attr = flowsElement.OwnerDocument.CreateAttribute("description");
+            attr.Value = _description;
+            flowElement.Attributes.Append(attr);
+
+            XmlElement actsElement = flowElement.OwnerDocument.CreateElement("activities");
+            flowElement.AppendChild(actsElement);
+            foreach (BaseActivity activity in _activities)
+            {
+                activity.SaveToXmlElement(actsElement);
+            }
+            flowsElement.AppendChild(flowElement);
+        }
     }
 }
