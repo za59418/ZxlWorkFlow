@@ -38,14 +38,28 @@ namespace Zxl.Workflow
             {
                 vScrollBar.Value = 0;
                 hScrollBar.Value = 0;
+
                 panelWorkflow.Left = 20;
                 panelWorkflow.Top = 20;
                 _document = value;
             }
         }
 
+        private void WorkflowControl_Resize(object sender, EventArgs e)
+        {
+            int pageSize = Height - hScrollBar.Height;
+            vScrollBar.LargeChange = pageSize;
+            vScrollBar.Maximum = panelWorkflow.Height + 40;
+
+            pageSize = Width - vScrollBar.Width;
+            hScrollBar.LargeChange = pageSize;
+            hScrollBar.Maximum = panelWorkflow.Width + 40;
+        }
+
         private void panelWorkflow_MouseDown(object sender, MouseEventArgs e)
         {
+            Focus();
+
             if (e.Button == MouseButtons.Left)
             {
                 CurrentTool.OnMouseDown(e.X, e.Y);
@@ -67,6 +81,12 @@ namespace Zxl.Workflow
             {
                 CurrentTool.OnMouseUp(e.X, e.Y);
             }
+        }
+
+        private void panelWorkflow_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            _document.OpenPropertyDialogAtPoint(e.X, e.Y);
+            RedrawAll();
         }
 
         private void panelWorkflow_KeyDown(object sender, KeyEventArgs e)
@@ -130,7 +150,5 @@ namespace Zxl.Workflow
                 }
             }
         }
-
-
     }
 }

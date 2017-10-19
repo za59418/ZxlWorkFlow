@@ -31,38 +31,59 @@
             this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panelWorkflow = new Zxl.Workflow.WorkflowPanel();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // vScrollBar
             // 
-            this.vScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.vScrollBar.Location = new System.Drawing.Point(534, 0);
+            this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.vScrollBar.Location = new System.Drawing.Point(0, 0);
             this.vScrollBar.Margin = new System.Windows.Forms.Padding(0, 0, 0, 17);
             this.vScrollBar.Name = "vScrollBar";
-            this.vScrollBar.Size = new System.Drawing.Size(17, 378);
+            this.vScrollBar.Size = new System.Drawing.Size(17, 364);
             this.vScrollBar.TabIndex = 0;
             this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
             // 
             // hScrollBar
             // 
-            this.hScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.hScrollBar.Location = new System.Drawing.Point(0, 378);
+            this.hScrollBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hScrollBar.Location = new System.Drawing.Point(0, 0);
             this.hScrollBar.Margin = new System.Windows.Forms.Padding(0, 0, 17, 0);
             this.hScrollBar.Name = "hScrollBar";
-            this.hScrollBar.Size = new System.Drawing.Size(534, 17);
+            this.hScrollBar.Size = new System.Drawing.Size(526, 17);
             this.hScrollBar.TabIndex = 1;
             this.hScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar_Scroll);
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Location = new System.Drawing.Point(534, 378);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(526, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(17, 17);
             this.panel2.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.hScrollBar);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 364);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(543, 17);
+            this.panel1.TabIndex = 3;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.vScrollBar);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(526, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(17, 364);
+            this.panel3.TabIndex = 4;
             // 
             // panelWorkflow
             // 
@@ -73,6 +94,7 @@
             this.panelWorkflow.TabIndex = 2;
             this.panelWorkflow.Paint += new System.Windows.Forms.PaintEventHandler(this.panelWorkflow_Paint);
             this.panelWorkflow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.panelWorkflow_KeyDown);
+            this.panelWorkflow.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseDoubleClick);
             this.panelWorkflow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseDown);
             this.panelWorkflow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseMove);
             this.panelWorkflow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseUp);
@@ -81,14 +103,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.vScrollBar);
-            this.Controls.Add(this.hScrollBar);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelWorkflow);
             this.Name = "WorkflowControl";
-            this.Size = new System.Drawing.Size(551, 395);
+            this.Size = new System.Drawing.Size(543, 381);
             this.Load += new System.EventHandler(this.WorkflowControl_Load);
+            this.Resize += new System.EventHandler(this.WorkflowControl_Resize);
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -99,5 +123,7 @@
         private System.Windows.Forms.HScrollBar hScrollBar;
         private System.Windows.Forms.Panel panel2;
         private WorkflowPanel panelWorkflow;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

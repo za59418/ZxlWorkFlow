@@ -203,6 +203,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.txtRoleName);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;

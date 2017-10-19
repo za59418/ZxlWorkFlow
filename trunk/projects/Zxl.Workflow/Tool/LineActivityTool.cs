@@ -25,19 +25,19 @@ namespace Zxl.Workflow
         public override void OnMouseDown(int x, int y)
         {
             HitTestResult start = Ctrl.Document.HitTest(x, y);
-            if (null == start || !(start.result is BaseActivity))
+            if (null == start || !(start.activity is BaseActivity))
             {
                 MessageBox.Show("必须从活动开始！");
                 Ctrl.CurrentTool = new SelectorTool();
             }
-            else if (start.result is EndActivity)
+            else if (start.activity is EndActivity)
             {
                 MessageBox.Show("不能从结束活动开始！");
                 Ctrl.CurrentTool = new SelectorTool();
             }
             else
             {
-                startActivity = start.result as BaseActivity;
+                startActivity = start.activity as BaseActivity;
                 startMouseX = x;
                 startMouseY = y;
                 setEndMousePosition(x, y);
@@ -60,18 +60,18 @@ namespace Zxl.Workflow
             ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(endMouseX - scrollOffset.X + 20, endMouseY - scrollOffset.Y + 20)), Color.Black);
 
             HitTestResult end = Ctrl.Document.HitTest(x, y);
-            if ((end == null) || (!(end.result is BaseActivity)))
+            if ((end == null) || (!(end.activity is BaseActivity)))
             {
                 MessageBox.Show("流向没有结束在节点上");
             }
-            else if (end.result is StartActivity)
+            else if (end.activity is StartActivity)
             {
                 MessageBox.Show("流向不能结束于开始节点");
             }
 
             else
             {
-                LineActivity line = new LineActivity(startActivity, end.result as BaseActivity);
+                LineActivity line = new LineActivity(startActivity, end.activity as BaseActivity);
                 line.AlignToGrid();
                 this.Ctrl.Document.ActivityList.Add(line);
                 this.Ctrl.Document.Lines.Add(line);

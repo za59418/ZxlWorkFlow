@@ -36,8 +36,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtRoleName = new DevExpress.XtraEditors.TextEdit();
             this.treeUserRole = new DevExpress.XtraTreeList.TreeList();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.bdName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.bdDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.bdDataType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -45,6 +43,8 @@
             this.bdNullable = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.bdDefaultVal = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.contextMenuRoleDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -80,6 +80,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.txtRoleName);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -128,14 +129,6 @@
             this.treeUserRole.Size = new System.Drawing.Size(993, 457);
             this.treeUserRole.TabIndex = 0;
             this.treeUserRole.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeUserRole_MouseUp);
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            // 
-            // repositoryItemCheckEdit1
-            // 
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // bdName
             // 
@@ -213,6 +206,14 @@
             this.treeListColumn1.Name = "treeListColumn1";
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 6;
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // roleDetailCtrl
             // 
