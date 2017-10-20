@@ -18,8 +18,13 @@ namespace Zxl.Workflow
 
             workflowEngine = new WorkflowEngine();
             workflowControl.Document = workflowEngine.Document;
+            workflowControl.OnInit += new WorkflowControl.InitEventHandler(oninit);
+            workflowControl.OnSave += new WorkflowControl.SaveEventHandler(onsave);
             workflowControl.RedrawAll();
         }
+        private void oninit(object sender, EventArgs e) { }
+        private void onsave(object sender, EventArgs e) { }
+
 
         private WorkflowEngine workflowEngine;
 
