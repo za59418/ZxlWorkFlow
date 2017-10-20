@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Xml;
 
 namespace Zxl.Workflow
 {
@@ -56,6 +57,39 @@ namespace Zxl.Workflow
                 _y = value;
                 _rect = new Rectangle(_x - 4, _y - 4, 8, 8);
             }
+        }
+
+        public void CreateXml(XmlElement linesElement)
+        {
+            XmlElement lineElement = linesElement.OwnerDocument.CreateElement("line");
+
+            XmlAttribute attr = lineElement.OwnerDocument.CreateAttribute("id");
+            attr.Value = _id;
+            lineElement.Attributes.Append(attr);
+
+            attr = lineElement.OwnerDocument.CreateAttribute("description");
+            attr.Value = _description;
+            lineElement.Attributes.Append(attr);
+
+            attr = lineElement.OwnerDocument.CreateAttribute("x");
+            attr.Value = _x.ToString();
+            lineElement.Attributes.Append(attr);
+
+            attr = lineElement.OwnerDocument.CreateAttribute("y");
+            attr.Value = _y.ToString();
+            lineElement.Attributes.Append(attr);
+
+            //source
+            attr = lineElement.OwnerDocument.CreateAttribute("source");
+            attr.Value = _source.ID;
+            lineElement.Attributes.Append(attr);
+
+            //target
+            attr = lineElement.OwnerDocument.CreateAttribute("target");
+            attr.Value = _target.ID;
+            lineElement.Attributes.Append(attr);
+
+            linesElement.AppendChild(lineElement);
         }
 
         public override HitTestState HitTest(int x, int y)

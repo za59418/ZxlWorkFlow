@@ -127,25 +127,39 @@ namespace Zxl.Workflow
             }
         }
 
-        public void SaveToXmlElement(XmlElement flowsElement)
+        public void CreateXml(XmlElement xmlElement)
         {
-            XmlElement flowElement = flowsElement.OwnerDocument.CreateElement("process");
+            XmlElement processElement = xmlElement.OwnerDocument.CreateElement("process");
 
-            XmlAttribute attr = flowsElement.OwnerDocument.CreateAttribute("id");
+            XmlAttribute attr = xmlElement.OwnerDocument.CreateAttribute("id");
             attr.Value = _id;
-            flowElement.Attributes.Append(attr);
+            processElement.Attributes.Append(attr);
 
-            attr = flowsElement.OwnerDocument.CreateAttribute("description");
+            attr = xmlElement.OwnerDocument.CreateAttribute("description");
             attr.Value = _description;
-            flowElement.Attributes.Append(attr);
+            processElement.Attributes.Append(attr);
 
-            XmlElement actsElement = flowElement.OwnerDocument.CreateElement("activities");
-            flowElement.AppendChild(actsElement);
-            foreach (BaseActivity activity in _activities)
+            XmlElement actsElement = processElement.OwnerDocument.CreateElement("activities");
+            processElement.AppendChild(actsElement);
+            foreach (Activity activity in _activities)
             {
-                activity.SaveToXmlElement(actsElement);
+                if (!(activity is LineActivity))
+                {
+                    BaseActivity act = activity as BaseActivity;
+                    act.CreateXml(actsElement);
+                }
             }
-            flowsElement.AppendChild(flowElement);
+            XmlElement linesElement = processElement.OwnerDocument.CreateElement("lines");
+            processElement.AppendChild(linesElement);
+            foreach (Activity activity in _activities)
+            {
+                if (activity is LineActivity)
+                {
+                    LineActivity line = activity as LineActivity;
+                    line.CreateXml(linesElement);
+                }
+            }
+            xmlElement.AppendChild(processElement);
         }
     }
 }

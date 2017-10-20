@@ -105,11 +105,6 @@ namespace Zxl.Workflow
             }
         }
 
-        private void WorkflowControl_Load(object sender, EventArgs e)
-        {
-            CurrentTool = new SelectorTool();
-        }
-
         public Point ScrollOffset
         {
             get
@@ -149,6 +144,97 @@ namespace Zxl.Workflow
                         activity.Draw(g);
                 }
             }
+        }
+
+        public delegate void InitEventHandler(object sender, EventArgs e);
+        public delegate void SaveEventHandler(object sender, EventArgs e);
+        public event InitEventHandler OnInit;
+        public event SaveEventHandler OnSave;
+
+        private void WorkflowControl_Load(object sender, EventArgs e)
+        {
+            CurrentTool = new SelectorTool();
+            OnInit(sender, e);
+        }
+
+        private void cmsiSave_Click(object sender, EventArgs e)
+        {
+            OnSave(this, e);
+        }
+
+        BaseActivity GetNextActivity(BaseActivity currActivity, out LineActivity nextLine)
+        {
+            foreach (Activity act in _document.ActivityList)
+            {
+                if (act is LineActivity && (act as LineActivity).Source.ID == currActivity.ID)
+                {
+                    nextLine = act as LineActivity;
+                    return (act as LineActivity).Target;
+                }
+            }
+            nextLine = null;
+            return null;
+        }
+
+        private void cmsiArrange_Click(object sender, EventArgs e)
+        {
+            StartActivity startActivity = null;
+
+            foreach (Activity act in _document.ActivityList)
+            {
+                if (act is BaseActivity)
+                {
+                    BaseActivity bAct = act as BaseActivity;
+                    if (bAct.GetActivityType() == "0")
+                    {
+                        startActivity = bAct as StartActivity;
+                    }
+                }
+            }
+
+            LineActivity nextLine = null;
+            BaseActivity nextActivity = null;
+            BaseActivity currActivity = startActivity;
+            int i = 1;
+            string direction = "right";
+            while ((nextActivity = GetNextActivity(currActivity, out nextLine)) != null)
+            {
+                if (i % 4 == 0)
+                {
+                    if (direction == "right")
+                        direction = "left";
+                    else
+                        direction = "right";
+
+                    nextLine.X = currActivity.X;
+                    nextLine.Y = currActivity.Y + 100;
+                    nextActivity.X = currActivity.X;
+                    nextActivity.Y = currActivity.Y + 200;
+                    currActivity = nextActivity;
+                }
+                else
+                {
+                    if (direction == "right")
+                    {
+                        nextLine.X = currActivity.X + 100;
+                        nextLine.Y = currActivity.Y;
+                        nextActivity.X = currActivity.X + 200;
+                        nextActivity.Y = currActivity.Y;
+                        currActivity = nextActivity;
+                    }
+                    else
+                    {
+                        nextLine.X = currActivity.X - 100;
+                        nextLine.Y = currActivity.Y;
+                        nextActivity.X = currActivity.X - 200;
+                        nextActivity.Y = currActivity.Y;
+                        currActivity = nextActivity;
+                    }
+                }
+                i++;
+            }
+
+            RedrawAll();
         }
     }
 }

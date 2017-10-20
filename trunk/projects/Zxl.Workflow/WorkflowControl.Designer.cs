@@ -28,14 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cmsProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.panelWorkflow = new Zxl.Workflow.WorkflowPanel();
+            this.cmsiArrange = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.cmsProcess.SuspendLayout();
             this.SuspendLayout();
             // 
             // vScrollBar
@@ -85,9 +90,25 @@
             this.panel3.Size = new System.Drawing.Size(17, 364);
             this.panel3.TabIndex = 4;
             // 
+            // cmsProcess
+            // 
+            this.cmsProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiSave,
+            this.cmsiArrange});
+            this.cmsProcess.Name = "cmsProcess";
+            this.cmsProcess.Size = new System.Drawing.Size(153, 70);
+            // 
+            // cmsiSave
+            // 
+            this.cmsiSave.Name = "cmsiSave";
+            this.cmsiSave.Size = new System.Drawing.Size(152, 22);
+            this.cmsiSave.Text = "保存";
+            this.cmsiSave.Click += new System.EventHandler(this.cmsiSave_Click);
+            // 
             // panelWorkflow
             // 
             this.panelWorkflow.BackColor = System.Drawing.Color.White;
+            this.panelWorkflow.ContextMenuStrip = this.cmsProcess;
             this.panelWorkflow.Location = new System.Drawing.Point(19, 17);
             this.panelWorkflow.Name = "panelWorkflow";
             this.panelWorkflow.Size = new System.Drawing.Size(1920, 1080);
@@ -98,6 +119,13 @@
             this.panelWorkflow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseDown);
             this.panelWorkflow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseMove);
             this.panelWorkflow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseUp);
+            // 
+            // cmsiArrange
+            // 
+            this.cmsiArrange.Name = "cmsiArrange";
+            this.cmsiArrange.Size = new System.Drawing.Size(152, 22);
+            this.cmsiArrange.Text = "整理";
+            this.cmsiArrange.Click += new System.EventHandler(this.cmsiArrange_Click);
             // 
             // WorkflowControl
             // 
@@ -113,6 +141,7 @@
             this.Resize += new System.EventHandler(this.WorkflowControl_Resize);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.cmsProcess.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -125,5 +154,8 @@
         private WorkflowPanel panelWorkflow;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ContextMenuStrip cmsProcess;
+        private System.Windows.Forms.ToolStripMenuItem cmsiSave;
+        private System.Windows.Forms.ToolStripMenuItem cmsiArrange;
     }
 }
