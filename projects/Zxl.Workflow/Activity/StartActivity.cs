@@ -14,12 +14,18 @@ namespace Zxl.Workflow
         {
             Description = "开始";
         }
+
         override protected void DrawIcon(Graphics g)
         {
             if (IsSelected)
                 g.DrawImage(Properties.Resources.startSelect, _rect);
             else
                 g.DrawImage(Properties.Resources.start, _rect);
+        }
+
+        public override string GetActivityType()
+        {
+            return "0";
         }
     }
 }

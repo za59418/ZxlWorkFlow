@@ -88,8 +88,9 @@ namespace Zxl.Workflow
             _rect = new Rectangle(_x - widthAndHeight / 2, _y - widthAndHeight / 2, widthAndHeight, widthAndHeight);
         }
 
+        abstract public String GetActivityType();
 
-        public void SaveToXmlElement(XmlElement activitiesElement)
+        public void CreateXml(XmlElement activitiesElement)
         {
             XmlElement activityElement = activitiesElement.OwnerDocument.CreateElement("activity");
 
@@ -107,6 +108,11 @@ namespace Zxl.Workflow
 
             attr = activityElement.OwnerDocument.CreateAttribute("y");
             attr.Value = _y.ToString();
+            activityElement.Attributes.Append(attr);
+
+            //type
+            attr = activityElement.OwnerDocument.CreateAttribute("type");
+            attr.Value = GetActivityType();
             activityElement.Attributes.Append(attr);
 
             activitiesElement.AppendChild(activityElement);

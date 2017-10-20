@@ -19,5 +19,7 @@ namespace Zxl.Business.Model
         public int REF_BUSINESS_ID { get; set; }
         [Field]
         public DateTime CREATETIME { get; set; }
+        [Field]
+        public byte[] LAYOUTCONTENT { get; set; }
     }
 }

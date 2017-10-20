@@ -13,6 +13,7 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using Zxl.Data;
 using Zxl.Workflow;
+using System.Xml;
 
 namespace Zxl.Builder
 {
@@ -30,10 +31,13 @@ namespace Zxl.Builder
 
             workflowControl = new WorkflowControl();
             workflowControl.Dock = DockStyle.Fill;
+            workflowControl.OnSave += new WorkflowControl.SaveEventHandler(process_Save);
+            workflowControl.OnInit += new WorkflowControl.InitEventHandler(process_Init);
             this.Controls.Add(workflowControl);
 
             workflowEngine = new WorkflowEngine();
             workflowControl.Document = workflowEngine.Document;
+
             workflowControl.RedrawAll();
         }
 
@@ -47,6 +51,31 @@ namespace Zxl.Builder
             set
             {
                 _currProcess = value;
+            }
+        }
+
+        private void process_Save(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement layout = doc.CreateElement("processes");
+            workflowControl.Document.CreateXml(layout);
+
+            SYS_BUSINESSPROCESS process = CurrProcess;
+            process.LAYOUTCONTENT = Encoding.Default.GetBytes(layout.OuterXml); //
+            BusinessService.SaveBusinessProcess(process);
+        }
+        private void process_Init(object sender, EventArgs e)
+        {
+            /*初使化*/
+            SYS_BUSINESSPROCESS process = CurrProcess;
+            if (null != process.LAYOUTCONTENT)
+            {
+                string Layout = Encoding.Default.GetString(process.LAYOUTCONTENT);
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(Layout);
+                workflowEngine.Layout = doc.DocumentElement;
+                /**/
+                workflowEngine.CreateProcess();
             }
         }
 

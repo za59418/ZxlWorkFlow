@@ -30,5 +30,10 @@ namespace Zxl.Workflow
             dlg.ShowDialog();
             dlg.Dispose();
         }
+
+        public override string GetActivityType()
+        {
+            return "2";
+        }
     }
 }
