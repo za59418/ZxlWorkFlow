@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Zxl.Workflow
 {
@@ -26,8 +27,13 @@ namespace Zxl.Workflow
         {
 
             ActivityInfoDlg dlg = new ActivityInfoDlg();
+            dlg.Description = Description;
+            
             //dlg.WfActivity = this;
-            dlg.ShowDialog();
+            if(DialogResult.OK == dlg.ShowDialog())
+            {
+                Description = dlg.Description;
+            }
             dlg.Dispose();
         }
 

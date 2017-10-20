@@ -29,7 +29,7 @@ namespace Zxl.Workflow
         {
             _source = source;
             _target = target;
-            _description = source.Description + "-->" + target.Description;
+            _description = source.Description + "→" + target.Description;
 
             _x = _target.X + (_source.X - _target.X) / 2;
             _y = _target.Y + (_source.Y - _target.Y) / 2;

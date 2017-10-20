@@ -68,7 +68,6 @@ namespace Zxl.Workflow
             }
         }
 
-
         public HitTestResult HitTest(int x, int y)
         {
             foreach (Activity activity in _activities)

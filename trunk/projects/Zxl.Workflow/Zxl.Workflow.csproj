@@ -146,6 +146,12 @@
   <ItemGroup>
     <None Include="Resources\startSelect.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zxl.Business\Zxl.Business.csproj">
+      <Project>{ea7c6760-12ef-4f4f-8716-9f4d33e24392}</Project>
+      <Name>Zxl.Business</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
