@@ -23,10 +23,10 @@ namespace Zxl.Workflow
             get { return tbDescription.Text; }
             set { tbDescription.Text = value; }
         }
-        public string Time
+        public decimal Time
         {
-            get { return nudTime.Text; }
-            set { nudTime.Text = value; }
+            get { return null == nudTime.Text ? 0 : Convert.ToDecimal(nudTime.Text); }
+            set { nudTime.Text = value.ToString(); }
         }
 
         private List<SYS_BUSINESSROLE> _roles;
@@ -35,10 +35,10 @@ namespace Zxl.Workflow
             get {
                 foreach (SYS_BUSINESSROLE role in _roles)
                 {
-                    if (role.ROLENAME == cbRole.SelectedText)
-                        role.IsActive = 1;
+                    if (role.ROLENAME == cbRole.Text)
+                        role.Selected = 1;
                     else
-                        role.IsActive = 0;
+                        role.Selected = 0;
                 }
                 return _roles; 
             }
@@ -48,12 +48,41 @@ namespace Zxl.Workflow
                 foreach (SYS_BUSINESSROLE role in _roles)
                 {
                     cbRole.Items.Add(role.ROLENAME);
-                    if (role.IsActive == 1)
-                        cbRole.SelectedText = role.ROLENAME;
+                    if (role.Selected == 1)
+                        cbRole.Text = role.ROLENAME;
                 }
             }
         }
 
+        private List<SYS_BUSINESSFORM> _forms;
+        public List<SYS_BUSINESSFORM> Forms
+        {
+            get
+            {
+                for (int i = 0; i < _forms.Count; i++)
+                {
+                    if (lvForm.GetItemChecked(i))
+                        _forms[i].Checked = 1;
+                    else
+                        _forms[i].Checked = 0;
+                }
+                return _forms;
+            }
+            set
+            {
+                _forms = value;
+                lvForm.Items.Clear();
+                for (int i = 0; i < _forms.Count; i++)
+                {
+                    lvForm.Items.Add(_forms[i].FORMNAME);
+                    if (_forms[i].Checked == 1)
+                        lvForm.SetItemChecked(i, true);
+                    else
+                        lvForm.SetItemChecked(i, false);
+                }
+            }
+        }
+        
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

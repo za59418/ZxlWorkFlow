@@ -12,5 +12,6 @@ namespace Zxl.Workflow
         {
             return new ManualActivity(x, y);
         }
+
     }
 }

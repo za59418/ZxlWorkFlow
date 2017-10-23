@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Zxl.Business.Model;
 
 namespace Zxl.Workflow
 {
@@ -43,6 +44,9 @@ namespace Zxl.Workflow
             set { _layout = value; }
         }
 
+        public List<SYS_BUSINESSROLE> Roles { get; set; }
+        public List<SYS_BUSINESSFORM> Forms { get; set; }
+
         public void CreateProcess()
         {
             XmlNodeList activityNodes = _layout.SelectNodes("process/activities/activity");
@@ -53,7 +57,10 @@ namespace Zxl.Workflow
                 string type = activityNode.Attributes["type"].Value;
                 int x = Convert.ToInt32(activityNode.Attributes["x"].Value);
                 int y = Convert.ToInt32(activityNode.Attributes["y"].Value);
-                switch(type)
+                decimal time = 0;
+                if (null != activityNode.Attributes["time"])
+                    time = Convert.ToDecimal(activityNode.Attributes["time"].Value);
+                switch (type)
                 {
                     case "0":
                         activity = new StartActivity(x, y);
@@ -63,6 +70,46 @@ namespace Zxl.Workflow
                         break;
                     case "2":
                         activity = new ManualActivity(x, y);
+                        (activity as ManualActivity).Time = time;
+                        //roles
+                        XmlNodeList roleNodes = activityNode.SelectNodes("roles/role");
+                        if (null == roleNodes || roleNodes.Count == 0)
+                        {
+                            (activity as ManualActivity).Roles = Roles;
+                        }
+                        else
+                        {
+                            List<SYS_BUSINESSROLE> roles = new List<SYS_BUSINESSROLE>();
+                            foreach (XmlNode node in roleNodes)
+                            {
+                                SYS_BUSINESSROLE role = new SYS_BUSINESSROLE();
+                                role.ID = Convert.ToInt32(node.Attributes["id"].Value);
+                                role.ROLENAME = node.Attributes["name"].Value;
+                                role.Selected = Convert.ToInt32(node.Attributes["selected"].Value);
+                                roles.Add(role);
+                            }
+                            (activity as ManualActivity).Roles = roles;
+                        }
+                        //forms
+                        XmlNodeList formNodes = activityNode.SelectNodes("forms/form");
+                        if (null == formNodes || formNodes.Count == 0)
+                        {
+                            (activity as ManualActivity).Forms = Forms;
+                        }
+                        else
+                        {
+                            List<SYS_BUSINESSFORM> forms = new List<SYS_BUSINESSFORM>();
+                            foreach (XmlNode node in formNodes)
+                            {
+                                SYS_BUSINESSFORM form = new SYS_BUSINESSFORM();
+                                form.ID = Convert.ToInt32(node.Attributes["id"].Value);
+                                form.FORMNAME = node.Attributes["name"].Value;
+                                form.Checked = Convert.ToInt32(node.Attributes["checked"].Value);
+                                forms.Add(form);
+                            }
+                            (activity as ManualActivity).Forms = forms;
+                        }
+
                         break;
                     default:
                         break;
@@ -76,6 +123,7 @@ namespace Zxl.Workflow
                     activity.Y = y;
                     document.ActivityList.Add(activity);
                     activities.Add(activity);
+
                 }
             }
             XmlNodeList lineNodes = _layout.SelectNodes("process/lines/line");
