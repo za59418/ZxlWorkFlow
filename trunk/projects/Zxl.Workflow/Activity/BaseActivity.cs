@@ -90,7 +90,7 @@ namespace Zxl.Workflow
 
         abstract public String GetActivityType();
 
-        public void CreateXml(XmlElement activitiesElement)
+        virtual public void CreateXml(XmlElement activitiesElement)
         {
             XmlElement activityElement = activitiesElement.OwnerDocument.CreateElement("activity");
 

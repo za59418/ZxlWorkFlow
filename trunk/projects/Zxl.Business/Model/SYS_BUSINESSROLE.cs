@@ -22,6 +22,6 @@ namespace Zxl.Business.Model
         [Field]
         public int SORTINDEX { get; set; }
 
-        public int IsActive { get; set; }
+        public int Selected { get; set; }
     }
 }

@@ -35,7 +35,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.nudTime = new System.Windows.Forms.NumericUpDown();
-            this.lvForm = new System.Windows.Forms.ListView();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@
             this.tbDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lvForm = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -93,9 +93,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lvForm);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.nudTime);
-            this.tabPage1.Controls.Add(this.lvForm);
             this.tabPage1.Controls.Add(this.cbRole);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
@@ -125,14 +125,6 @@
             this.nudTime.Name = "nudTime";
             this.nudTime.Size = new System.Drawing.Size(199, 21);
             this.nudTime.TabIndex = 8;
-            // 
-            // lvForm
-            // 
-            this.lvForm.Location = new System.Drawing.Point(70, 106);
-            this.lvForm.Name = "lvForm";
-            this.lvForm.Size = new System.Drawing.Size(222, 122);
-            this.lvForm.TabIndex = 7;
-            this.lvForm.UseCompatibleStateImageBehavior = false;
             // 
             // cbRole
             // 
@@ -195,6 +187,14 @@
             this.tabPage2.Text = "扩展属性";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lvForm
+            // 
+            this.lvForm.FormattingEnabled = true;
+            this.lvForm.Location = new System.Drawing.Point(70, 106);
+            this.lvForm.Name = "lvForm";
+            this.lvForm.Size = new System.Drawing.Size(222, 132);
+            this.lvForm.TabIndex = 10;
+            // 
             // ActivityInfoDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -226,7 +226,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ListView lvForm;
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -235,6 +234,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown nudTime;
+        private System.Windows.Forms.CheckedListBox lvForm;
 
     }
 }

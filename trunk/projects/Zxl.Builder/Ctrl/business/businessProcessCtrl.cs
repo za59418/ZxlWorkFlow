@@ -68,6 +68,8 @@ namespace Zxl.Builder
         {
             /*初使化*/
             SYS_BUSINESSPROCESS process = CurrProcess;
+            workflowEngine.Roles = BusinessService.BusinessRoles(CurrProcess.REF_BUSINESS_ID);
+            workflowEngine.Forms = BusinessService.BusinessForms(CurrProcess.REF_BUSINESS_ID);
             if (null != process.LAYOUTCONTENT)
             {
                 string Layout = Encoding.Default.GetString(process.LAYOUTCONTENT);

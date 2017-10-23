@@ -27,5 +27,7 @@ namespace Zxl.Business.Model
         public byte[] SHEET { get; set; }
         [Field]
         public int SORTINDEX { get; set; }
+
+        public int Checked { get; set; }
     }
 }
