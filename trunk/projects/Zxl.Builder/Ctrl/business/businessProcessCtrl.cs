@@ -12,7 +12,7 @@ using Zxl.Business.Impl;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using Zxl.Data;
-using Zxl.Workflow;
+using Zxl.WorkflowDesigner;
 using System.Xml;
 
 namespace Zxl.Builder
