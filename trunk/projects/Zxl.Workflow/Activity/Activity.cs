@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Zxl.Business.Model;
+using Zxl.Business.Interface;
+using Zxl.Business.Impl;
 
 namespace Zxl.Workflow
 {
     public class Activity
     {
+        public IBusinessService BusinessService = new BusinessService();
+        public SYS_BUSINESSPROCESS CurrProcess { get; set; }
+
+
         public enum HitTestState
         {
             None,
