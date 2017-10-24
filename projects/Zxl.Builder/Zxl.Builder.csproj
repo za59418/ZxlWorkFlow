@@ -344,9 +344,13 @@
       <Project>{a37fb0c7-4a07-4c7e-bfb8-ab49b02ad6d7}</Project>
       <Name>Zxl.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zxl.Workflow\Zxl.Workflow.csproj">
+    <ProjectReference Include="..\Zxl.FormDesigner\Zxl.FormDesigner.csproj">
+      <Project>{c3f0de65-d4c6-48b0-b80b-224198b533d5}</Project>
+      <Name>Zxl.FormDesigner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zxl.WorkflowDesigner\Zxl.WorkflowDesigner.csproj">
       <Project>{aea72a36-2c08-4052-810e-5c4276e7088d}</Project>
-      <Name>Zxl.Workflow</Name>
+      <Name>Zxl.WorkflowDesigner</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
