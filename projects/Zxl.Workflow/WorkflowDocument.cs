@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Zxl.Business.Model;
 
 namespace Zxl.Workflow
 {
@@ -35,6 +36,8 @@ namespace Zxl.Workflow
             set { _description = value; }
         }
 
+        public SYS_BUSINESSPROCESS CurrProcess { get; set; }
+
         private IList<Activity> _activities;
         public IList<Activity> ActivityList
         {
@@ -61,6 +64,7 @@ namespace Zxl.Workflow
             HitTestResult result = HitTest(x, y);
             if (result != null && result.state == Activity.HitTestState.Center)
             {
+                result.activity.CurrProcess = CurrProcess; // 在人工活动上要用，表单和角色都与它有关
                 result.activity.OpenPropertyDialog();
             }
             else

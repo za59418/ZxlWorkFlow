@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 using Zxl.Business.Model;
+using Zxl.Business.Interface;
+using Zxl.Business.Impl;
 
 namespace Zxl.Workflow
 {
@@ -19,8 +21,83 @@ namespace Zxl.Workflow
         }
 
         public decimal Time { get; set; }
-        public List<SYS_BUSINESSROLE> Roles { get; set; }
-        public List<SYS_BUSINESSFORM> Forms { get; set; }
+
+        private List<SYS_BUSINESSROLE> _roles;
+        public List<SYS_BUSINESSROLE> Roles
+        {
+            get
+            {
+                if (null == _roles)
+                {
+                    if (null != CurrProcess)
+                    {
+                        _roles = BusinessService.BusinessRoles(CurrProcess.REF_BUSINESS_ID);
+                    }
+                }
+                else
+                {
+                    if (null != CurrProcess)
+                    {
+                        List<SYS_BUSINESSROLE> tempRoles = BusinessService.BusinessRoles(CurrProcess.REF_BUSINESS_ID);
+                        foreach (SYS_BUSINESSROLE tempRole in tempRoles)
+                        {
+                            foreach (SYS_BUSINESSROLE role in _roles)
+                            {
+                                if (tempRole.ID == role.ID && role.Selected == 1)
+                                {
+                                    tempRole.Selected = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        _roles = tempRoles;
+                    }
+                }
+                return _roles;
+            }
+            set
+            {
+                _roles = value;
+            }
+        }
+        private List<SYS_BUSINESSFORM> _forms;
+        public List<SYS_BUSINESSFORM> Forms
+        {
+            get
+            {
+                if (null == _forms)
+                {
+                    if (null != CurrProcess)
+                    {
+                        _forms = BusinessService.BusinessForms(CurrProcess.REF_BUSINESS_ID);
+                    }
+                }
+                else
+                {
+                    if (null != CurrProcess)
+                    {
+                        List<SYS_BUSINESSFORM> tempForms = BusinessService.BusinessForms(CurrProcess.REF_BUSINESS_ID);
+                        foreach (SYS_BUSINESSFORM tempForm in tempForms)
+                        {
+                            foreach (SYS_BUSINESSFORM form in _forms)
+                            {
+                                if (tempForm.ID == form.ID && form.Checked == 1)
+                                {
+                                    tempForm.Checked = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        _forms = tempForms;
+                    }
+                }
+                return _forms;
+            }
+            set
+            {
+                _forms = value;
+            }
+        }
 
         override protected void DrawIcon(Graphics g)
         {
@@ -32,7 +109,6 @@ namespace Zxl.Workflow
 
         override public void OpenPropertyDialog()
         {
-
             ActivityInfoDlg dlg = new ActivityInfoDlg();
             dlg.Description = Description;
             dlg.Time = Time;

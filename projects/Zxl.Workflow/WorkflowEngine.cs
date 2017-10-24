@@ -44,9 +44,6 @@ namespace Zxl.Workflow
             set { _layout = value; }
         }
 
-        public List<SYS_BUSINESSROLE> Roles { get; set; }
-        public List<SYS_BUSINESSFORM> Forms { get; set; }
-
         public void CreateProcess()
         {
             XmlNodeList activityNodes = _layout.SelectNodes("process/activities/activity");
@@ -73,11 +70,7 @@ namespace Zxl.Workflow
                         (activity as ManualActivity).Time = time;
                         //roles
                         XmlNodeList roleNodes = activityNode.SelectNodes("roles/role");
-                        if (null == roleNodes || roleNodes.Count == 0)
-                        {
-                            (activity as ManualActivity).Roles = Roles;
-                        }
-                        else
+                        if (null != roleNodes && roleNodes.Count > 0)
                         {
                             List<SYS_BUSINESSROLE> roles = new List<SYS_BUSINESSROLE>();
                             foreach (XmlNode node in roleNodes)
@@ -92,11 +85,7 @@ namespace Zxl.Workflow
                         }
                         //forms
                         XmlNodeList formNodes = activityNode.SelectNodes("forms/form");
-                        if (null == formNodes || formNodes.Count == 0)
-                        {
-                            (activity as ManualActivity).Forms = Forms;
-                        }
-                        else
+                        if (null != formNodes && formNodes.Count > 0)
                         {
                             List<SYS_BUSINESSFORM> forms = new List<SYS_BUSINESSFORM>();
                             foreach (XmlNode node in formNodes)
@@ -109,7 +98,6 @@ namespace Zxl.Workflow
                             }
                             (activity as ManualActivity).Forms = forms;
                         }
-
                         break;
                     default:
                         break;
@@ -123,7 +111,6 @@ namespace Zxl.Workflow
                     activity.Y = y;
                     document.ActivityList.Add(activity);
                     activities.Add(activity);
-
                 }
             }
             XmlNodeList lineNodes = _layout.SelectNodes("process/lines/line");
