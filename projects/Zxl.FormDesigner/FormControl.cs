@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Zxl.WorkflowDesigner
+namespace Zxl.FormDesigner
 {
-    public partial class WorkflowControl : UserControl
+    public partial class FormControl : UserControl
     {
-        public WorkflowControl()
+        public FormControl()
         {
             InitializeComponent();
         }
@@ -27,8 +27,8 @@ namespace Zxl.WorkflowDesigner
                 _currentTool.Ctrl = this;
             }
         }
-        private WorkflowDocument _document;
-        public WorkflowDocument Document
+        private FormDocument _document;
+        public FormDocument Document
         {
             get
             {
@@ -141,7 +141,11 @@ namespace Zxl.WorkflowDesigner
                 foreach (Activity activity in _document.ActivityList)
                 {
                     if (!(activity is LineActivity))
+                    {
+                        BaseActivity act = activity as BaseActivity;
+                        //this.panelWorkflow.Controls.Add(act.MyCtrl);
                         activity.Draw(g);
+                    }
                 }
             }
         }
@@ -178,61 +182,61 @@ namespace Zxl.WorkflowDesigner
 
         private void cmsiArrange_Click(object sender, EventArgs e)
         {
-            StartActivity startActivity = null;
+            //StartActivity startActivity = null;
 
-            foreach (Activity act in _document.ActivityList)
-            {
-                if (act is BaseActivity)
-                {
-                    BaseActivity bAct = act as BaseActivity;
-                    if (bAct.GetActivityType() == "0")
-                    {
-                        startActivity = bAct as StartActivity;
-                    }
-                }
-            }
+            //foreach (Activity act in _document.ActivityList)
+            //{
+            //    if (act is BaseActivity)
+            //    {
+            //        BaseActivity bAct = act as BaseActivity;
+            //        if (bAct.GetActivityType() == "0")
+            //        {
+            //            startActivity = bAct as StartActivity;
+            //        }
+            //    }
+            //}
 
-            LineActivity nextLine = null;
-            BaseActivity nextActivity = null;
-            BaseActivity currActivity = startActivity;
-            int i = 1;
-            string direction = "right";
-            while ((nextActivity = GetNextActivity(currActivity, out nextLine)) != null)
-            {
-                if (i % 4 == 0)
-                {
-                    if (direction == "right")
-                        direction = "left";
-                    else
-                        direction = "right";
+            //LineActivity nextLine = null;
+            //BaseActivity nextActivity = null;
+            //BaseActivity currActivity = startActivity;
+            //int i = 1;
+            //string direction = "right";
+            //while ((nextActivity = GetNextActivity(currActivity, out nextLine)) != null)
+            //{
+            //    if (i % 4 == 0)
+            //    {
+            //        if (direction == "right")
+            //            direction = "left";
+            //        else
+            //            direction = "right";
 
-                    nextLine.X = currActivity.X;
-                    nextLine.Y = currActivity.Y + 50;
-                    nextActivity.X = currActivity.X;
-                    nextActivity.Y = currActivity.Y + 100;
-                    currActivity = nextActivity;
-                }
-                else
-                {
-                    if (direction == "right")
-                    {
-                        nextLine.X = currActivity.X + 100;
-                        nextLine.Y = currActivity.Y;
-                        nextActivity.X = currActivity.X + 200;
-                        nextActivity.Y = currActivity.Y;
-                        currActivity = nextActivity;
-                    }
-                    else
-                    {
-                        nextLine.X = currActivity.X - 100;
-                        nextLine.Y = currActivity.Y;
-                        nextActivity.X = currActivity.X - 200;
-                        nextActivity.Y = currActivity.Y;
-                        currActivity = nextActivity;
-                    }
-                }
-                i++;
-            }
+            //        nextLine.X = currActivity.X;
+            //        nextLine.Y = currActivity.Y + 50;
+            //        nextActivity.X = currActivity.X;
+            //        nextActivity.Y = currActivity.Y + 100;
+            //        currActivity = nextActivity;
+            //    }
+            //    else
+            //    {
+            //        if (direction == "right")
+            //        {
+            //            nextLine.X = currActivity.X + 100;
+            //            nextLine.Y = currActivity.Y;
+            //            nextActivity.X = currActivity.X + 200;
+            //            nextActivity.Y = currActivity.Y;
+            //            currActivity = nextActivity;
+            //        }
+            //        else
+            //        {
+            //            nextLine.X = currActivity.X - 100;
+            //            nextLine.Y = currActivity.Y;
+            //            nextActivity.X = currActivity.X - 200;
+            //            nextActivity.Y = currActivity.Y;
+            //            currActivity = nextActivity;
+            //        }
+            //    }
+            //    i++;
+            //}
 
             RedrawAll();
         }
