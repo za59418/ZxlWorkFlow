@@ -108,16 +108,16 @@ namespace Zxl.FormDesigner
                     }
                 }
 
-                LineControl control = new LineControl(source, target);
-                if (control != null)
-                {
-                    control.ID = lineNode.Attributes["id"].Value;
-                    control.Value = lineNode.Attributes["value"].Value;
-                    control.X = x;
-                    control.Y = y;
-                    document.Lines.Add(control);
-                    document.ControlList.Add(control);
-                }
+                //LineControl control = new LineControl(source, target);
+                //if (control != null)
+                //{
+                //    control.ID = lineNode.Attributes["id"].Value;
+                //    control.Value = lineNode.Attributes["value"].Value;
+                //    control.X = x;
+                //    control.Y = y;
+                //    document.Lines.Add(control);
+                //    document.ControlList.Add(control);
+                //}
             }
         }
 

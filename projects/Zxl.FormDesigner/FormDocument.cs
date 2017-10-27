@@ -14,6 +14,12 @@ namespace Zxl.FormDesigner
         public Control control;
     }
 
+    public enum FormDirection
+    {
+        HORIZONTAL,
+        VERTICAL
+    }
+
     public class FormDocument
     {
         public FormDocument()
@@ -36,7 +42,18 @@ namespace Zxl.FormDesigner
             set { _description = value; }
         }
 
-        public SYS_BUSINESSPROCESS CurrProcess { get; set; }
+        private FormDirection _direction;
+        public FormDirection Direction
+        {
+            get {
+                if (null == _direction)
+                    _direction = FormDirection.VERTICAL;
+                return _direction; 
+            }
+            set { _direction = value; }
+        }
+
+        public SYS_BUSINESSFORM CurrForm { get; set; }
 
         private IList<Control> _controls;
         public IList<Control> ControlList
@@ -109,8 +126,8 @@ namespace Zxl.FormDesigner
                     if (control is LineControl)
                     {
                         LineControl line = control as LineControl;
-                        if (line.Source.IsSelected || line.Target.IsSelected)
-                            result.Add(control);
+                        //if (line.Source.IsSelected || line.Target.IsSelected)
+                        //    result.Add(control);
                     }
                 }
             }

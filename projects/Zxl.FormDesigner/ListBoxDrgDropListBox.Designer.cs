@@ -58,7 +58,7 @@
             // myButton1
             // 
             this.myButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.myButton1.Location = new System.Drawing.Point(338, 99);
+            this.myButton1.Location = new System.Drawing.Point(293, 106);
             this.myButton1.Name = "myButton1";
             this.myButton1.Size = new System.Drawing.Size(75, 23);
             this.myButton1.TabIndex = 4;

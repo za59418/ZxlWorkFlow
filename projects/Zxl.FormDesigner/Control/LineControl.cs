@@ -12,20 +12,20 @@ namespace Zxl.FormDesigner
 {
     public class LineControl : Control
     {
-        private BaseControl _source;
-        public BaseControl Source
+        private Point _source;
+        public Point Source
         {
             get { return _source; }
             set { _source = value; }
         }
-        private BaseControl _target;
-        public BaseControl Target
+        private Point _target;
+        public Point Target
         {
             get { return _target; }
             set { _target = value; }
         }
 
-        public LineControl(BaseControl source, BaseControl target)
+        public LineControl(Point source, Point target)
         {
             _source = source;
             _target = target;
@@ -79,16 +79,6 @@ namespace Zxl.FormDesigner
             attr.Value = _y.ToString();
             lineElement.Attributes.Append(attr);
 
-            //source
-            attr = lineElement.OwnerDocument.CreateAttribute("source");
-            attr.Value = _source.ID;
-            lineElement.Attributes.Append(attr);
-
-            //target
-            attr = lineElement.OwnerDocument.CreateAttribute("target");
-            attr.Value = _target.ID;
-            lineElement.Attributes.Append(attr);
-
             linesElement.AppendChild(lineElement);
         }
 
@@ -121,14 +111,21 @@ namespace Zxl.FormDesigner
 
         public override void Draw(Graphics g)
         {
-            using (Pen p = new Pen(Color.Green))
+            using (Pen p = new Pen(Color.Black))
             {
-                g.DrawLine(p, Source.X, Source.Y, _x, _y);
-                g.DrawLine(p, _x, _y, Target.X, Target.Y);
+                //g.DrawLine(p, Source.X, Source.Y, _x, _y);
+                //g.DrawLine(p, _x, _y, Target.X, Target.Y);
+                if(Source.X == Target.X || Source.Y==Target.Y)
+                {
+                    //画线
+                    g.DrawLine(p, Source.X, Source.Y, Target.X, Target.Y);
+                }                    
+                else
+                {
+                    //画矩形
+                    g.DrawRectangle(p, Math.Min(Source.X, Target.X), Math.Min(Source.Y, Target.Y), Math.Abs(Target.X - Source.X), Math.Abs(Target.Y - Source.Y));
+                }
             }
-
-            Point source = new Point(_x, _y);
-            Point target = new Point(Target.X, Target.Y);
         }
 
         public override void AlignToGrid()
