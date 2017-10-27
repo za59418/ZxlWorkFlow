@@ -41,6 +41,16 @@ namespace Zxl.FormDesigner
 
                 panelForm.Left = 20;
                 panelForm.Top = 20;
+                //if(value.Direction == FormDirection.HORIZONTAL)
+                //{
+                //    panelForm.Width = 1024;
+                //    panelForm.Height = 768;
+                //}
+                //else
+                //{
+                //    panelForm.Width = 768;
+                //    panelForm.Height = 1024;
+                //}
                 _document = value;
             }
         }
@@ -164,20 +174,6 @@ namespace Zxl.FormDesigner
         private void cmsiSave_Click(object sender, EventArgs e)
         {
             OnSave(this, e);
-        }
-
-        BaseControl GetNextControl(BaseControl currControl, out LineControl nextLine)
-        {
-            foreach (Control act in _document.ControlList)
-            {
-                if (act is LineControl && (act as LineControl).Source.ID == currControl.ID)
-                {
-                    nextLine = act as LineControl;
-                    return (act as LineControl).Target;
-                }
-            }
-            nextLine = null;
-            return null;
         }
 
         private void cmsiArrange_Click(object sender, EventArgs e)

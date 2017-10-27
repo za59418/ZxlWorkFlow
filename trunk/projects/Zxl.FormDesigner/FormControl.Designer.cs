@@ -36,8 +36,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.cmsProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsiSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelForm = new Zxl.FormDesigner.FormPanel();
             this.cmsiArrange = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelForm = new Zxl.FormDesigner.FormPanel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.cmsProcess.SuspendLayout();
@@ -96,14 +96,21 @@
             this.cmsiSave,
             this.cmsiArrange});
             this.cmsProcess.Name = "cmsProcess";
-            this.cmsProcess.Size = new System.Drawing.Size(153, 70);
+            this.cmsProcess.Size = new System.Drawing.Size(101, 48);
             // 
             // cmsiSave
             // 
             this.cmsiSave.Name = "cmsiSave";
-            this.cmsiSave.Size = new System.Drawing.Size(152, 22);
+            this.cmsiSave.Size = new System.Drawing.Size(100, 22);
             this.cmsiSave.Text = "保存";
             this.cmsiSave.Click += new System.EventHandler(this.cmsiSave_Click);
+            // 
+            // cmsiArrange
+            // 
+            this.cmsiArrange.Name = "cmsiArrange";
+            this.cmsiArrange.Size = new System.Drawing.Size(100, 22);
+            this.cmsiArrange.Text = "整理";
+            this.cmsiArrange.Click += new System.EventHandler(this.cmsiArrange_Click);
             // 
             // panelForm
             // 
@@ -111,7 +118,7 @@
             this.panelForm.ContextMenuStrip = this.cmsProcess;
             this.panelForm.Location = new System.Drawing.Point(19, 17);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(1920, 1080);
+            this.panelForm.Size = new System.Drawing.Size(768, 1024);
             this.panelForm.TabIndex = 2;
             this.panelForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForm_Paint);
             this.panelForm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.panelForm_KeyDown);
@@ -120,18 +127,11 @@
             this.panelForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelForm_MouseMove);
             this.panelForm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelForm_MouseUp);
             // 
-            // cmsiArrange
-            // 
-            this.cmsiArrange.Name = "cmsiArrange";
-            this.cmsiArrange.Size = new System.Drawing.Size(152, 22);
-            this.cmsiArrange.Text = "整理";
-            this.cmsiArrange.Click += new System.EventHandler(this.cmsiArrange_Click);
-            // 
-            // PanelControl
+            // FormControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelForm);

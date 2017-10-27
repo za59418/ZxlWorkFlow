@@ -98,7 +98,10 @@ namespace Zxl.Builder
             }
             else if (e.Node.Tag is SYS_BUSINESSFORM)
             {
-
+                businessFormCtrl ctrl = new businessFormCtrl();
+                ctrl.Dock = DockStyle.Fill;
+                ctrl.CurrForm = e.Node.Tag as SYS_BUSINESSFORM;
+                MainForm.AddTab(ctrl.CurrForm.FORMNAME, ctrl);
             }
             else if (e.Node.Tag is SYS_BUSINESSPROCESS)
             {

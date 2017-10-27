@@ -22,6 +22,10 @@ namespace Zxl.FormDesigner
             _rect = new Rectangle(_x, _y, _width, _height);
         }
 
+
+        public Cursor Cursor;
+
+
         protected Rectangle _rect;
         public Rectangle Rect
         {
@@ -94,20 +98,33 @@ namespace Zxl.FormDesigner
             if (IsSelected)
             {
                 Pen selectPen = new Pen(Color.SlateGray);
-                selectPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                g.DrawRectangle(selectPen, Rect.X - 1, Rect.Y - 1, Rect.Width + 2, Rect.Height + 2);
-                g.DrawRectangle(selectPen, Rect.X - 2, Rect.Y - 2, Rect.Width + 4, Rect.Height + 4);
 
+
+
+                //resize框
                 selectPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-                g.DrawRectangle(selectPen, Rect.X - 4, Rect.Y - 4, 4, 4);
-                g.DrawRectangle(selectPen, Rect.X + Rect.Width, Rect.Y - 4, 4, 4);
-                g.DrawRectangle(selectPen, Rect.X - 4, Rect.Y + Rect.Height, 4, 4);
-                g.DrawRectangle(selectPen, Rect.X + Rect.Width, Rect.Y + Rect.Height, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X - 5, Rect.Y - 5, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X + Rect.Width + 1, Rect.Y - 5, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X - 5, Rect.Y + Rect.Height + 1, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X + Rect.Width + 1, Rect.Y + Rect.Height + 1, 4, 4);
 
-                g.DrawRectangle(selectPen, Rect.X + Rect.Width / 2 - 2, Rect.Y - 4, 4, 4);
-                g.DrawRectangle(selectPen, Rect.X + Rect.Width / 2 - 2, Rect.Y + Rect.Height, 4, 4);
-                g.DrawRectangle(selectPen, Rect.X - 4, Rect.Y + Rect.Height / 2 - 2, 4, 4);
-                g.DrawRectangle(selectPen, Rect.X + Rect.Width, Rect.Y + Rect.Height / 2 - 2, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X + Rect.Width / 2 - 2, Rect.Y - 5, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X + Rect.Width / 2 - 2, Rect.Y + Rect.Height + 1, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X - 5, Rect.Y + Rect.Height / 2 - 2, 4, 4);
+                g.DrawRectangle(selectPen, Rect.X + Rect.Width + 1, Rect.Y + Rect.Height / 2 - 2, 4, 4);
+
+                //虚线
+                selectPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                g.DrawLine(selectPen, new Point(Rect.X - 1, Rect.Y - 3), new Point(Rect.X + Rect.Width / 2 - 2, Rect.Y - 3));
+                g.DrawLine(selectPen, new Point(Rect.X + Rect.Width / 2 + 2, Rect.Y - 3), new Point(Rect.X + Rect.Width + 1, Rect.Y - 3));
+                g.DrawLine(selectPen, new Point(Rect.X - 1, Rect.Y + Rect.Height + 3), new Point(Rect.X + Rect.Width / 2 - 2, Rect.Y + Rect.Height + 3));
+                g.DrawLine(selectPen, new Point(Rect.X + Rect.Width / 2 + 2, Rect.Y + Rect.Height + 3), new Point(Rect.X + Rect.Width + 1, Rect.Y + Rect.Height + 3));
+
+                g.DrawLine(selectPen, new Point(Rect.X - 3, Rect.Y - 1), new Point(Rect.X - 3, Rect.Y + Rect.Height / 2 - 2));
+                g.DrawLine(selectPen, new Point(Rect.X - 3, Rect.Y + Rect.Height / 2 + 2), new Point(Rect.X - 3, Rect.Y + Rect.Height + 1));
+                g.DrawLine(selectPen, new Point(Rect.X + Rect.Width + 3, Rect.Y - 1), new Point(Rect.X + Rect.Width + 3, Rect.Y + Rect.Height / 2 - 2));
+                g.DrawLine(selectPen, new Point(Rect.X + Rect.Width + 3, Rect.Y + Rect.Height / 2 + 2), new Point(Rect.X + Rect.Width + 3, Rect.Y + Rect.Height + 1));
+                
             }
         }
 

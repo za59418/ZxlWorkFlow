@@ -68,6 +68,12 @@
     <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.Designer.cs">
       <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\business\businessFormCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\businessFormCtrl.Designer.cs">
+      <DependentUpon>businessFormCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\business\businessProcessCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -234,6 +240,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Ctrl\businessdata\businessDataDetailCtrl.resx">
       <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\businessFormCtrl.resx">
+      <DependentUpon>businessFormCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\businessProcessCtrl.resx">
       <DependentUpon>businessProcessCtrl.cs</DependentUpon>
@@ -448,6 +457,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\combo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\textbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\combobox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\radio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

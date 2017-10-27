@@ -16,6 +16,10 @@ namespace Zxl.FormDesigner
         {
             InitializeComponent();
 
+            //Zxl.Test.PickBox x = new Test.PickBox();
+            //x.WireControl(this.button1);
+            //x.WireControl(this.textBox1);
+
             formEngine = new FormEngine();
             formControl.Document = formEngine.Document;
             formControl.OnInit += new FormControl.InitEventHandler(oninit);
