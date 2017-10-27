@@ -10,16 +10,16 @@ namespace Zxl.FormDesigner
 {
     public class HitTestResult
     {
-        public Activity.HitTestState state;
-        public Activity activity;
+        public Control.HitTestState state;
+        public Control control;
     }
 
     public class FormDocument
     {
         public FormDocument()
         {
-            _activities = new List<Activity>();
-            _lines = new List<LineActivity>();
+            _controls = new List<Control>();
+            _lines = new List<LineControl>();
         }
 
         private string _id;
@@ -38,16 +38,16 @@ namespace Zxl.FormDesigner
 
         public SYS_BUSINESSPROCESS CurrProcess { get; set; }
 
-        private IList<Activity> _activities;
-        public IList<Activity> ActivityList
+        private IList<Control> _controls;
+        public IList<Control> ControlList
         {
             get
             {
-                return _activities;
+                return _controls;
             }
         }
-        private IList<LineActivity> _lines;
-        public IList<LineActivity> Lines
+        private IList<LineControl> _lines;
+        public IList<LineControl> Lines
         {
             get
             {
@@ -62,10 +62,10 @@ namespace Zxl.FormDesigner
         public void OpenPropertyDialogAtPoint(int x, int y)
         {
             HitTestResult result = HitTest(x, y);
-            if (result != null && result.state == Activity.HitTestState.Center)
+            if (result != null && result.state == Control.HitTestState.Center)
             {
-                //result.activity.CurrProcess = CurrProcess; // 在人工活动上要用，表单和角色都与它有关
-                result.activity.OpenPropertyDialog();
+                //result.control.CurrProcess = CurrProcess; // 在人工活动上要用，表单和角色都与它有关
+                result.control.OpenPropertyDialog();
             }
             else
             {
@@ -74,14 +74,14 @@ namespace Zxl.FormDesigner
 
         public HitTestResult HitTest(int x, int y)
         {
-            foreach (Activity activity in _activities)
+            foreach (Control control in _controls)
             {
-                Activity.HitTestState state = activity.HitTest(x, y);
-                if (Activity.HitTestState.None != state)
+                Control.HitTestState state = control.HitTest(x, y);
+                if (Control.HitTestState.None != state)
                 {
                     HitTestResult result = new HitTestResult();
                     result.state = state;
-                    result.activity = activity;
+                    result.control = control;
                     return result;
                 }
             }
@@ -89,44 +89,44 @@ namespace Zxl.FormDesigner
         }
         public void ResetSelected()
         {
-            foreach (Activity activity in _activities)
+            foreach (Control control in _controls)
             {
-                activity.IsSelected = false;
+                control.IsSelected = false;
             }
         }
 
-        public IList<Activity> DeleteSelected()
+        public IList<Control> DeleteSelected()
         {
-            IList<Activity> result = new List<Activity>();
-            foreach (Activity activity in ActivityList)
+            IList<Control> result = new List<Control>();
+            foreach (Control control in ControlList)
             {
-                if(activity.IsSelected)
+                if (control.IsSelected)
                 {
-                    result.Add(activity);
+                    result.Add(control);
                 }
                 else
                 {
-                    if(activity is LineActivity)
+                    if (control is LineControl)
                     {
-                        LineActivity line = activity as LineActivity;
+                        LineControl line = control as LineControl;
                         if (line.Source.IsSelected || line.Target.IsSelected)
-                            result.Add(activity);
+                            result.Add(control);
                     }
                 }
             }
-            foreach (Activity activity in result)
+            foreach (Control control in result)
             {
-                ActivityList.Remove(activity);
+                ControlList.Remove(control);
             }
             return result;
         }
 
         public void MoveSelected(int offX, int offY)
         {
-            foreach (Activity activity in _activities)
+            foreach (Control control in _controls)
             {
-                if (activity.IsSelected)
-                    activity.Move(offX, offY);
+                if (control.IsSelected)
+                    control.Move(offX, offY);
             }
         }
 
@@ -144,21 +144,21 @@ namespace Zxl.FormDesigner
 
             XmlElement actsElement = processElement.OwnerDocument.CreateElement("activities");
             processElement.AppendChild(actsElement);
-            foreach (Activity activity in _activities)
+            foreach (Control control in _controls)
             {
-                if (!(activity is LineActivity))
+                if (!(control is LineControl))
                 {
-                    BaseActivity act = activity as BaseActivity;
+                    BaseControl act = control as BaseControl;
                     act.CreateXml(actsElement);
                 }
             }
             XmlElement linesElement = processElement.OwnerDocument.CreateElement("lines");
             processElement.AppendChild(linesElement);
-            foreach (Activity activity in _activities)
+            foreach (Control control in _controls)
             {
-                if (activity is LineActivity)
+                if (control is LineControl)
                 {
-                    LineActivity line = activity as LineActivity;
+                    LineControl line = control as LineControl;
                     line.CreateXml(linesElement);
                 }
             }

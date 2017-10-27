@@ -36,15 +36,15 @@ namespace Zxl.FormDesigner
                 Ctrl.RedrawAll();
                 _state = State.RangeSelect;
             }
-            else if (result.state == Activity.HitTestState.Center)
+            else if (result.state == Control.HitTestState.Center)
             {
-                if (!result.activity.IsSelected)
+                if (!result.control.IsSelected)
                 {
                     //if (_state != State.Select)
                     //{
                         Ctrl.Document.ResetSelected();
                     //}
-                        result.activity.IsSelected = true;
+                        result.control.IsSelected = true;
                     Ctrl.RedrawAll();
                 }
                 _state = State.Select;

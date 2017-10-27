@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zxl.FormDesigner
 {
-    public class TextBoxActivityTool : BaseTool
+    public class TextBoxControlTool : BaseTool
     {
-        protected override BaseActivity CreateActivity(int x, int y)
+        protected override BaseControl CreateControl(int x, int y)
         {
-            return new TextBoxActivity(x, y, 80, 20);
+            return new TextBoxControl(x, y, 80, 20);
         }
 
     }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Zxl.FormDesigner
 {
-    public partial class FormPanel : Control
+    public partial class FormPanel : System.Windows.Forms.Control
     {
         public FormPanel()
         {

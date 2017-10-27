@@ -11,7 +11,7 @@ namespace Zxl.FormDesigner
         virtual public void OnMouseDown(int x, int y) { }
         virtual public void OnMouseUp(int x, int y) { }
         virtual public void OnMouseMove(int x, int y) { }
-        virtual public void AfterActivityCreate() { }
+        virtual public void AfterControlCreate() { }
 
         private FormControl _ctrl;
         public FormControl Ctrl

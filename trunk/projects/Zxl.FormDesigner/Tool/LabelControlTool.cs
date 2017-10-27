@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zxl.FormDesigner
 {
-    public class DateTimePickerActivityTool : BaseTool
+    public class LabelControlTool : BaseTool
     {
-        protected override BaseActivity CreateActivity(int x, int y)
+        protected override BaseControl CreateControl(int x, int y)
         {
-            return new DateTimePickerActivity(x, y, 80, 20);
+            return new LabelControl(x, y, 80, 20);
         }
 
     }

@@ -30,30 +30,29 @@
         {
             Zxl.FormDesigner.SelectorTool selectorTool1 = new Zxl.FormDesigner.SelectorTool();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.workflowControl = new Zxl.FormDesigner.FormControl();
+            this.formControl = new Zxl.FormDesigner.FormControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // workflowControl
+            // formControl
             // 
-            this.workflowControl.BackColor = System.Drawing.Color.Silver;
-            selectorTool1.Ctrl = this.workflowControl;
-            this.workflowControl.CurrentTool = selectorTool1;
-            this.workflowControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workflowControl.Document = null;
-            this.workflowControl.Location = new System.Drawing.Point(0, 25);
-            this.workflowControl.Name = "workflowControl";
-            this.workflowControl.Size = new System.Drawing.Size(782, 412);
-            this.workflowControl.TabIndex = 1;
+            this.formControl.BackColor = System.Drawing.Color.Silver;
+            selectorTool1.Ctrl = this.formControl;
+            this.formControl.CurrentTool = selectorTool1;
+            this.formControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.formControl.Document = null;
+            this.formControl.Location = new System.Drawing.Point(0, 25);
+            this.formControl.Name = "formControl";
+            this.formControl.Size = new System.Drawing.Size(782, 412);
+            this.formControl.TabIndex = 1;
             // 
             // toolStrip1
             // 
@@ -62,7 +61,6 @@
             this.toolStripButton7,
             this.toolStripButton3,
             this.toolStripButton8,
-            this.toolStripButton2,
             this.toolStripButton6,
             this.toolStripButton5,
             this.toolStripButton4});
@@ -112,16 +110,6 @@
             this.toolStripButton8.Text = "combobox";
             this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(99, 22);
-            this.toolStripButton2.Text = "datetimepicker";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
             // toolStripButton6
             // 
             this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -157,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 437);
-            this.Controls.Add(this.workflowControl);
+            this.Controls.Add(this.formControl);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -172,10 +160,9 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private FormControl workflowControl;
+        private FormControl formControl;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton7;

@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Zxl.FormDesigner
 {
-    public abstract class BaseActivity : Activity
+    public abstract class BaseControl : Control
     {
-        public BaseActivity(int x, int y, int width, int height)
+        public BaseControl(int x, int y, int width, int height)
         {
             _id = Guid.NewGuid().ToString().Replace("-", "");
             _value = "";
@@ -93,7 +93,7 @@ namespace Zxl.FormDesigner
         {
             if (IsSelected)
             {
-                Pen selectPen = new Pen(Color.Blue);
+                Pen selectPen = new Pen(Color.SlateGray);
                 selectPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
                 g.DrawRectangle(selectPen, Rect.X - 1, Rect.Y - 1, Rect.Width + 2, Rect.Height + 2);
                 g.DrawRectangle(selectPen, Rect.X - 2, Rect.Y - 2, Rect.Width + 4, Rect.Height + 4);
@@ -111,8 +111,6 @@ namespace Zxl.FormDesigner
             }
         }
 
-        public Control MyCtrl;
-
         public override void Move(int offX, int offY)
         {
             _x += offX;
@@ -120,34 +118,34 @@ namespace Zxl.FormDesigner
             _rect = new Rectangle(_x, _y, _width, _height);
         }
 
-        abstract public String GetActivityType();
+        abstract public String GetControlType();
 
         virtual public void CreateXml(XmlElement activitiesElement)
         {
-            XmlElement activityElement = activitiesElement.OwnerDocument.CreateElement("activity");
+            XmlElement controlElement = activitiesElement.OwnerDocument.CreateElement("control");
 
-            XmlAttribute attr = activityElement.OwnerDocument.CreateAttribute("id");
+            XmlAttribute attr = controlElement.OwnerDocument.CreateAttribute("id");
             attr.Value = _id;
-            activityElement.Attributes.Append(attr);
+            controlElement.Attributes.Append(attr);
 
-            attr = activityElement.OwnerDocument.CreateAttribute("value");
+            attr = controlElement.OwnerDocument.CreateAttribute("value");
             attr.Value = _value;
-            activityElement.Attributes.Append(attr);
+            controlElement.Attributes.Append(attr);
 
-            attr = activityElement.OwnerDocument.CreateAttribute("x");
+            attr = controlElement.OwnerDocument.CreateAttribute("x");
             attr.Value = _x.ToString();
-            activityElement.Attributes.Append(attr);
+            controlElement.Attributes.Append(attr);
 
-            attr = activityElement.OwnerDocument.CreateAttribute("y");
+            attr = controlElement.OwnerDocument.CreateAttribute("y");
             attr.Value = _y.ToString();
-            activityElement.Attributes.Append(attr);
+            controlElement.Attributes.Append(attr);
 
             //type
-            attr = activityElement.OwnerDocument.CreateAttribute("type");
-            attr.Value = GetActivityType();
-            activityElement.Attributes.Append(attr);
+            attr = controlElement.OwnerDocument.CreateAttribute("type");
+            attr.Value = GetControlType();
+            controlElement.Attributes.Append(attr);
 
-            activitiesElement.AppendChild(activityElement);
+            activitiesElement.AppendChild(controlElement);
         }
     }
 }

@@ -39,35 +39,35 @@ namespace Zxl.FormDesigner
                 vScrollBar.Value = 0;
                 hScrollBar.Value = 0;
 
-                panelWorkflow.Left = 20;
-                panelWorkflow.Top = 20;
+                panelForm.Left = 20;
+                panelForm.Top = 20;
                 _document = value;
             }
         }
 
-        private void WorkflowControl_Resize(object sender, EventArgs e)
+        private void FormControl_Resize(object sender, EventArgs e)
         {
             int pageSize = Height - hScrollBar.Height;
             vScrollBar.LargeChange = pageSize;
-            vScrollBar.Maximum = panelWorkflow.Height + 40;
+            vScrollBar.Maximum = panelForm.Height + 40;
 
             pageSize = Width - vScrollBar.Width;
             hScrollBar.LargeChange = pageSize;
-            hScrollBar.Maximum = panelWorkflow.Width + 40;
+            hScrollBar.Maximum = panelForm.Width + 40;
         }
 
-        private void panelWorkflow_MouseDown(object sender, MouseEventArgs e)
+        private void panelForm_MouseDown(object sender, MouseEventArgs e)
         {
             Focus();
 
             if (e.Button == MouseButtons.Left)
             {
                 CurrentTool.OnMouseDown(e.X, e.Y);
-                CurrentTool.AfterActivityCreate();
+                CurrentTool.AfterControlCreate();
             }
         }
 
-        private void panelWorkflow_MouseMove(object sender, MouseEventArgs e)
+        private void panelForm_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -75,7 +75,7 @@ namespace Zxl.FormDesigner
             }
         }
 
-        private void panelWorkflow_MouseUp(object sender, MouseEventArgs e)
+        private void panelForm_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -83,20 +83,20 @@ namespace Zxl.FormDesigner
             }
         }
 
-        private void panelWorkflow_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void panelForm_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             _document.OpenPropertyDialogAtPoint(e.X, e.Y);
             RedrawAll();
         }
 
-        private void panelWorkflow_KeyDown(object sender, KeyEventArgs e)
+        private void panelForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
                 if (DialogResult.Yes == MessageBox.Show("确定删除", "系统消息",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                 {
-                    foreach (Activity activity in Document.DeleteSelected())
+                    foreach (Control control in Document.DeleteSelected())
                     {
                         //FireVisualObjectDeleteEvent(deleteObject);
                     }
@@ -115,36 +115,36 @@ namespace Zxl.FormDesigner
 
         private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            panelWorkflow.Top = -e.NewValue + 20;
+            panelForm.Top = -e.NewValue + 20;
         }
 
         private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            panelWorkflow.Left = -e.NewValue + 20;            
+            panelForm.Left = -e.NewValue + 20;            
         }
 
         public void RedrawAll()
         {
-            panelWorkflow.Invalidate();
+            panelForm.Invalidate();
         }
 
-        private void panelWorkflow_Paint(object sender, PaintEventArgs e)
+        private void panelForm_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            if (null != _document && _document.ActivityList != null)
+            if (null != _document && _document.ControlList != null)
             {
-                foreach (Activity activity in _document.ActivityList)
+                foreach (Control control in _document.ControlList)
                 {
-                    if (activity is LineActivity)
-                        activity.Draw(g);
+                    if (control is LineControl)
+                        control.Draw(g);
                 }
-                foreach (Activity activity in _document.ActivityList)
+                foreach (Control control in _document.ControlList)
                 {
-                    if (!(activity is LineActivity))
+                    if (!(control is LineControl))
                     {
-                        BaseActivity act = activity as BaseActivity;
-                        //this.panelWorkflow.Controls.Add(act.MyCtrl);
-                        activity.Draw(g);
+                        BaseControl act = control as BaseControl;
+                        //this.panelForm.Controls.Add(act.MyCtrl);
+                        control.Draw(g);
                     }
                 }
             }
@@ -155,7 +155,7 @@ namespace Zxl.FormDesigner
         public event InitEventHandler OnInit;
         public event SaveEventHandler OnSave;
 
-        private void WorkflowControl_Load(object sender, EventArgs e)
+        private void FormControl_Load(object sender, EventArgs e)
         {
             CurrentTool = new SelectorTool();
             OnInit(sender, e);
@@ -166,14 +166,14 @@ namespace Zxl.FormDesigner
             OnSave(this, e);
         }
 
-        BaseActivity GetNextActivity(BaseActivity currActivity, out LineActivity nextLine)
+        BaseControl GetNextControl(BaseControl currControl, out LineControl nextLine)
         {
-            foreach (Activity act in _document.ActivityList)
+            foreach (Control act in _document.ControlList)
             {
-                if (act is LineActivity && (act as LineActivity).Source.ID == currActivity.ID)
+                if (act is LineControl && (act as LineControl).Source.ID == currControl.ID)
                 {
-                    nextLine = act as LineActivity;
-                    return (act as LineActivity).Target;
+                    nextLine = act as LineControl;
+                    return (act as LineControl).Target;
                 }
             }
             nextLine = null;
@@ -182,62 +182,6 @@ namespace Zxl.FormDesigner
 
         private void cmsiArrange_Click(object sender, EventArgs e)
         {
-            //StartActivity startActivity = null;
-
-            //foreach (Activity act in _document.ActivityList)
-            //{
-            //    if (act is BaseActivity)
-            //    {
-            //        BaseActivity bAct = act as BaseActivity;
-            //        if (bAct.GetActivityType() == "0")
-            //        {
-            //            startActivity = bAct as StartActivity;
-            //        }
-            //    }
-            //}
-
-            //LineActivity nextLine = null;
-            //BaseActivity nextActivity = null;
-            //BaseActivity currActivity = startActivity;
-            //int i = 1;
-            //string direction = "right";
-            //while ((nextActivity = GetNextActivity(currActivity, out nextLine)) != null)
-            //{
-            //    if (i % 4 == 0)
-            //    {
-            //        if (direction == "right")
-            //            direction = "left";
-            //        else
-            //            direction = "right";
-
-            //        nextLine.X = currActivity.X;
-            //        nextLine.Y = currActivity.Y + 50;
-            //        nextActivity.X = currActivity.X;
-            //        nextActivity.Y = currActivity.Y + 100;
-            //        currActivity = nextActivity;
-            //    }
-            //    else
-            //    {
-            //        if (direction == "right")
-            //        {
-            //            nextLine.X = currActivity.X + 100;
-            //            nextLine.Y = currActivity.Y;
-            //            nextActivity.X = currActivity.X + 200;
-            //            nextActivity.Y = currActivity.Y;
-            //            currActivity = nextActivity;
-            //        }
-            //        else
-            //        {
-            //            nextLine.X = currActivity.X - 100;
-            //            nextLine.Y = currActivity.Y;
-            //            nextActivity.X = currActivity.X - 200;
-            //            nextActivity.Y = currActivity.Y;
-            //            currActivity = nextActivity;
-            //        }
-            //    }
-            //    i++;
-            //}
-
             RedrawAll();
         }
     }
