@@ -49,16 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity\Activity.cs" />
-    <Compile Include="Activity\BaseActivity.cs" />
-    <Compile Include="Activity\LineActivity.cs" />
-    <Compile Include="Activity\LabelActivity.cs" />
-    <Compile Include="Activity\DateTimePickerActivity.cs" />
-    <Compile Include="Activity\RadioButtonActivity.cs" />
-    <Compile Include="Activity\CheckBoxActivity.cs" />
-    <Compile Include="Activity\ComboBoxActivity.cs" />
-    <Compile Include="Activity\ButtonActivity.cs" />
-    <Compile Include="Activity\TextBoxActivity.cs" />
+    <Compile Include="Control\Control.cs" />
+    <Compile Include="Control\BaseControl.cs" />
+    <Compile Include="Control\LineControl.cs" />
+    <Compile Include="Control\LabelControl.cs" />
+    <Compile Include="Control\RadioButtonControl.cs" />
+    <Compile Include="Control\CheckBoxControl.cs" />
+    <Compile Include="Control\ComboBoxControl.cs" />
+    <Compile Include="Control\ButtonControl.cs" />
+    <Compile Include="Control\TextBoxControl.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,14 +76,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tool\BaseTool.cs" />
-    <Compile Include="Tool\LineActivityTool.cs" />
-    <Compile Include="Tool\LabelActivityTool.cs" />
-    <Compile Include="Tool\DateTimePickerActivityTool.cs" />
-    <Compile Include="Tool\RadioButtonActivityTool.cs" />
-    <Compile Include="Tool\CheckBoxActivityTool.cs" />
-    <Compile Include="Tool\ComboBoxActivityTool.cs" />
-    <Compile Include="Tool\ButtonActivityTool.cs" />
-    <Compile Include="Tool\TextBoxActivityTool.cs" />
+    <Compile Include="Tool\LineControlTool.cs" />
+    <Compile Include="Tool\LabelControlTool.cs" />
+    <Compile Include="Tool\RadioButtonControlTool.cs" />
+    <Compile Include="Tool\CheckBoxControlTool.cs" />
+    <Compile Include="Tool\ComboBoxControlTool.cs" />
+    <Compile Include="Tool\ButtonControlTool.cs" />
+    <Compile Include="Tool\TextBoxControlTool.cs" />
     <Compile Include="Tool\SelectorTool.cs" />
     <Compile Include="Tool\Tool.cs" />
     <Compile Include="FormControl.cs">
@@ -117,6 +115,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="FormControl.resx">
       <DependentUpon>FormControl.cs</DependentUpon>
@@ -143,6 +142,15 @@
       <Project>{a37fb0c7-4a07-4c7e-bfb8-ab49b02ad6d7}</Project>
       <Name>Zxl.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\radio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\combo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zxl.FormDesigner
 {
-    public class ComboBoxActivityTool : BaseTool
+    public class ComboBoxControlTool : BaseTool
     {
-        protected override BaseActivity CreateActivity(int x, int y)
+        protected override BaseControl CreateControl(int x, int y)
         {
-            return new ComboBoxActivity(x, y, 80, 20);
+            return new ComboBoxControl(x, y, 80, 20);
         }
 
     }

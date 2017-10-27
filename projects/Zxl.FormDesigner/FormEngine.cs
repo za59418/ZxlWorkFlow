@@ -8,7 +8,7 @@ using Zxl.Business.Model;
 
 namespace Zxl.FormDesigner
 {
-    public enum ActivityType
+    public enum ControlType
     {
         LABEL,
         BUTTON,
@@ -50,41 +50,39 @@ namespace Zxl.FormDesigner
 
         public void CreateProcess()
         {
-            XmlNodeList activityNodes = _layout.SelectNodes("process/activities/activity");
-            List<BaseActivity> activities = new List<BaseActivity>();
-            foreach (XmlNode activityNode in activityNodes)
+            XmlNodeList controlNodes = _layout.SelectNodes("process/controls/control");
+            List<BaseControl> controls = new List<BaseControl>();
+            foreach (XmlNode controlNode in controlNodes)
             {
-                BaseActivity activity = null;
-                string type = activityNode.Attributes["type"].Value;
-                int x = Convert.ToInt32(activityNode.Attributes["x"].Value);
-                int y = Convert.ToInt32(activityNode.Attributes["y"].Value);
+                BaseControl control = null;
+                string type = controlNode.Attributes["type"].Value;
+                int x = Convert.ToInt32(controlNode.Attributes["x"].Value);
+                int y = Convert.ToInt32(controlNode.Attributes["y"].Value);
                 decimal time = 0;
-                if (null != activityNode.Attributes["time"])
-                    time = Convert.ToDecimal(activityNode.Attributes["time"].Value);
+                if (null != controlNode.Attributes["time"])
+                    time = Convert.ToDecimal(controlNode.Attributes["time"].Value);
                 switch (type)
                 {
-                    //case "0":
-                    //    activity = new StartActivity(x, y);
-                    //    break;
+
                     case "1":
 
                         break;
                     case "2":
-                        activity = new TextBoxActivity(x, y, 80, 20);
+                        control = new TextBoxControl(x, y, 80, 20);
 
                         break;
                     default:
                         break;
                 }
 
-                if (activity != null)
+                if (control != null)
                 {
-                    activity.ID = activityNode.Attributes["id"].Value;
-                    activity.Value = activityNode.Attributes["value"].Value;
-                    activity.X = x;
-                    activity.Y = y;
-                    document.ActivityList.Add(activity);
-                    activities.Add(activity);
+                    control.ID = controlNode.Attributes["id"].Value;
+                    control.Value = controlNode.Attributes["value"].Value;
+                    control.X = x;
+                    control.Y = y;
+                    document.ControlList.Add(control);
+                    controls.Add(control);
                 }
             }
             XmlNodeList lineNodes = _layout.SelectNodes("process/lines/line");
@@ -94,9 +92,9 @@ namespace Zxl.FormDesigner
                 int y = Convert.ToInt32(lineNode.Attributes["y"].Value);
                 string sourceId = lineNode.Attributes["source"].Value;
                 string targetId = lineNode.Attributes["target"].Value;
-                BaseActivity source = null;
-                BaseActivity target = null;
-                foreach (BaseActivity act in activities)
+                BaseControl source = null;
+                BaseControl target = null;
+                foreach (BaseControl act in controls)
                 {
                     if (act.ID == sourceId)
                     {
@@ -110,50 +108,47 @@ namespace Zxl.FormDesigner
                     }
                 }
 
-                LineActivity activity = new LineActivity(source, target);
-                if (activity != null)
+                LineControl control = new LineControl(source, target);
+                if (control != null)
                 {
-                    activity.ID = lineNode.Attributes["id"].Value;
-                    activity.Value = lineNode.Attributes["value"].Value;
-                    activity.X = x;
-                    activity.Y = y;
-                    document.Lines.Add(activity);
-                    document.ActivityList.Add(activity);
+                    control.ID = lineNode.Attributes["id"].Value;
+                    control.Value = lineNode.Attributes["value"].Value;
+                    control.X = x;
+                    control.Y = y;
+                    document.Lines.Add(control);
+                    document.ControlList.Add(control);
                 }
             }
         }
 
-        public Tool SetCurrentTool(ActivityType type)
+        public Tool SetCurrentTool(ControlType type)
         {
             Tool tool = null;
             switch (type)
             {
-                case ActivityType.LABEL:
-                    tool = new LabelActivityTool();
+                case ControlType.LABEL:
+                    tool = new LabelControlTool();
                     break;
-                case ActivityType.BUTTON:
-                    tool = new ButtonActivityTool();
+                case ControlType.BUTTON:
+                    tool = new ButtonControlTool();
                     break;
-                case ActivityType.COMBOBOX:
-                    tool = new ComboBoxActivityTool();
+                case ControlType.COMBOBOX:
+                    tool = new ComboBoxControlTool();
                     break;
-                case ActivityType.TEXTBOX:
-                    tool = new TextBoxActivityTool();
+                case ControlType.TEXTBOX:
+                    tool = new TextBoxControlTool();
                     break;
-                case ActivityType.DATETIMEPICKER:
-                    tool = new DateTimePickerActivityTool();
+                case ControlType.CHECKBOX:
+                    tool = new CheckBoxControlTool();
                     break;
-                case ActivityType.CHECKBOX:
-                    tool = new CheckBoxActivityTool();
+                case ControlType.RADIOBUTTON:
+                    tool = new RadioButtonControlTool();
                     break;
-                case ActivityType.RADIOBUTTON:
-                    tool = new RadioButtonActivityTool();
-                    break;
-                case ActivityType.SELECT:
+                case ControlType.SELECT:
                     tool = new SelectorTool();
                     break;
-                case ActivityType.LINE:
-                    tool = new LineActivityTool();
+                case ControlType.LINE:
+                    tool = new LineControlTool();
                     break;
             }
             return tool;

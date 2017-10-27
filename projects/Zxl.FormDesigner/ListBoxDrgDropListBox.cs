@@ -32,7 +32,7 @@ namespace Zxl.FormDesigner
             CurY = e.Y;
             Mousedown = true;
 
-            ((Control)sender).Cursor = Cursors.NoMove2D;
+            ((System.Windows.Forms.Control)sender).Cursor = Cursors.NoMove2D;
 
         }
 
@@ -45,7 +45,7 @@ namespace Zxl.FormDesigner
                 // 转换成工作区坐标
                 pTemp = this.PointToClient(pTemp);
                 // 定位事件源的 Location
-                Control control = sender as Control;
+                System.Windows.Forms.Control control = sender as System.Windows.Forms.Control;
                 control.Location = new Point(pTemp.X - CurX, pTemp.Y - CurY);
             }
         }

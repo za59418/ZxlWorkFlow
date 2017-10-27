@@ -36,7 +36,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.cmsProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsiSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelWorkflow = new Zxl.FormDesigner.FormPanel();
+            this.panelForm = new Zxl.FormDesigner.FormPanel();
             this.cmsiArrange = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -105,20 +105,20 @@
             this.cmsiSave.Text = "保存";
             this.cmsiSave.Click += new System.EventHandler(this.cmsiSave_Click);
             // 
-            // panelWorkflow
+            // panelForm
             // 
-            this.panelWorkflow.BackColor = System.Drawing.Color.White;
-            this.panelWorkflow.ContextMenuStrip = this.cmsProcess;
-            this.panelWorkflow.Location = new System.Drawing.Point(19, 17);
-            this.panelWorkflow.Name = "panelWorkflow";
-            this.panelWorkflow.Size = new System.Drawing.Size(1920, 1080);
-            this.panelWorkflow.TabIndex = 2;
-            this.panelWorkflow.Paint += new System.Windows.Forms.PaintEventHandler(this.panelWorkflow_Paint);
-            this.panelWorkflow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.panelWorkflow_KeyDown);
-            this.panelWorkflow.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseDoubleClick);
-            this.panelWorkflow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseDown);
-            this.panelWorkflow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseMove);
-            this.panelWorkflow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelWorkflow_MouseUp);
+            this.panelForm.BackColor = System.Drawing.Color.White;
+            this.panelForm.ContextMenuStrip = this.cmsProcess;
+            this.panelForm.Location = new System.Drawing.Point(19, 17);
+            this.panelForm.Name = "panelForm";
+            this.panelForm.Size = new System.Drawing.Size(1920, 1080);
+            this.panelForm.TabIndex = 2;
+            this.panelForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForm_Paint);
+            this.panelForm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.panelForm_KeyDown);
+            this.panelForm.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelForm_MouseDoubleClick);
+            this.panelForm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelForm_MouseDown);
+            this.panelForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelForm_MouseMove);
+            this.panelForm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelForm_MouseUp);
             // 
             // cmsiArrange
             // 
@@ -127,18 +127,18 @@
             this.cmsiArrange.Text = "整理";
             this.cmsiArrange.Click += new System.EventHandler(this.cmsiArrange_Click);
             // 
-            // WorkflowControl
+            // PanelControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelWorkflow);
-            this.Name = "WorkflowControl";
+            this.Controls.Add(this.panelForm);
+            this.Name = "FormControl";
             this.Size = new System.Drawing.Size(543, 381);
-            this.Load += new System.EventHandler(this.WorkflowControl_Load);
-            this.Resize += new System.EventHandler(this.WorkflowControl_Resize);
+            this.Load += new System.EventHandler(this.FormControl_Load);
+            this.Resize += new System.EventHandler(this.FormControl_Resize);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.cmsProcess.ResumeLayout(false);
@@ -151,7 +151,7 @@
         private System.Windows.Forms.VScrollBar vScrollBar;
         private System.Windows.Forms.HScrollBar hScrollBar;
         private System.Windows.Forms.Panel panel2;
-        private FormPanel panelWorkflow;
+        private FormPanel panelForm;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ContextMenuStrip cmsProcess;

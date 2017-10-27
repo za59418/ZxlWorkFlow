@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zxl.FormDesigner
 {
-    public class LabelActivityTool : BaseTool
+    public class ButtonControlTool : BaseTool
     {
-        protected override BaseActivity CreateActivity(int x, int y)
+        protected override BaseControl CreateControl(int x, int y)
         {
-            return new LabelActivity(x, y, 80, 20);
+            return new ButtonControl(x, y, 80, 20);
         }
 
     }

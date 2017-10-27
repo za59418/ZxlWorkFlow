@@ -8,9 +8,9 @@ using System.Drawing;
 
 namespace Zxl.FormDesigner
 {
-    public class LineActivityTool: Tool
+    public class LineControlTool : Tool
     {
-        private BaseActivity startActivity;
+        private BaseControl startControl;
         private int startMouseX;
         private int startMouseY;
         private int endMouseX;
@@ -25,7 +25,7 @@ namespace Zxl.FormDesigner
         public override void OnMouseDown(int x, int y)
         {
             HitTestResult start = Ctrl.Document.HitTest(x, y);
-            if (null == start || !(start.activity is BaseActivity))
+            if (null == start || !(start.control is BaseControl))
             {
                 MessageBox.Show("必须从活动开始！");
                 Ctrl.CurrentTool = new SelectorTool();
@@ -33,7 +33,7 @@ namespace Zxl.FormDesigner
 
             else
             {
-                startActivity = start.activity as BaseActivity;
+                startControl = start.control as BaseControl;
                 startMouseX = x;
                 startMouseY = y;
                 setEndMousePosition(x, y);
@@ -56,20 +56,16 @@ namespace Zxl.FormDesigner
             ControlPaint.DrawReversibleLine(startPoint, Ctrl.PointToScreen(new Point(endMouseX - scrollOffset.X + 20, endMouseY - scrollOffset.Y + 20)), Color.Black);
 
             HitTestResult end = Ctrl.Document.HitTest(x, y);
-            if ((end == null) || (!(end.activity is BaseActivity)))
+            if ((end == null) || (!(end.control is BaseControl)))
             {
                 MessageBox.Show("流向没有结束在节点上");
             }
-            //else if (end.activity is StartActivity)
-            //{
-            //    MessageBox.Show("流向不能结束于开始节点");
-            //}
 
             else
             {
-                LineActivity line = new LineActivity(startActivity, end.activity as BaseActivity);
+                LineControl line = new LineControl(startControl, end.control as BaseControl);
                 line.AlignToGrid();
-                this.Ctrl.Document.ActivityList.Add(line);
+                this.Ctrl.Document.ControlList.Add(line);
                 this.Ctrl.Document.Lines.Add(line);
             }
             Ctrl.RedrawAll();

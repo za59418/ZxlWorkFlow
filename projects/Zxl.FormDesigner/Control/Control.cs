@@ -10,7 +10,7 @@ using Zxl.Business.Impl;
 
 namespace Zxl.FormDesigner
 {
-    public class Activity
+    public class Control
     {
         public enum HitTestState
         {

@@ -10,22 +10,22 @@ using System.Xml;
 
 namespace Zxl.FormDesigner
 {
-    public class LineActivity : Activity
+    public class LineControl : Control
     {
-        private BaseActivity _source;
-        public BaseActivity Source
+        private BaseControl _source;
+        public BaseControl Source
         {
             get { return _source; }
             set { _source = value; }
         }
-        private BaseActivity _target;
-        public BaseActivity Target
+        private BaseControl _target;
+        public BaseControl Target
         {
             get { return _target; }
             set { _target = value; }
         }
 
-        public LineActivity(BaseActivity source, BaseActivity target)
+        public LineControl(BaseControl source, BaseControl target)
         {
             _source = source;
             _target = target;

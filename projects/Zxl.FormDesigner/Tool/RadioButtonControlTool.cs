@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zxl.FormDesigner
 {
-    public class RadioButtonActivityTool : BaseTool
+    public class RadioButtonControlTool : BaseTool
     {
-        protected override BaseActivity CreateActivity(int x, int y)
+        protected override BaseControl CreateControl(int x, int y)
         {
-            return new RadioButtonActivity(x, y, 80, 20);
+            return new RadioButtonControl(x, y, 80, 20);
         }
 
     }

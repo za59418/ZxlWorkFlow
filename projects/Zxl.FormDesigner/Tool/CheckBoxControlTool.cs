@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zxl.FormDesigner
 {
-    public class CheckBoxActivityTool : BaseTool
+    public class CheckBoxControlTool : BaseTool
     {
-        protected override BaseActivity CreateActivity(int x, int y)
+        protected override BaseControl CreateControl(int x, int y)
         {
-            return new CheckBoxActivity(x, y, 80, 20);
+            return new CheckBoxControl(x, y, 80, 20);
         }
 
     }

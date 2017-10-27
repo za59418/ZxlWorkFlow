@@ -16,55 +16,55 @@ namespace Zxl.FormDesigner
         {
             InitializeComponent();
 
-            workflowEngine = new FormEngine();
-            workflowControl.Document = workflowEngine.Document;
-            workflowControl.OnInit += new FormControl.InitEventHandler(oninit);
-            workflowControl.OnSave += new FormControl.SaveEventHandler(onsave);
-            workflowControl.RedrawAll();
+            formEngine = new FormEngine();
+            formControl.Document = formEngine.Document;
+            formControl.OnInit += new FormControl.InitEventHandler(oninit);
+            formControl.OnSave += new FormControl.SaveEventHandler(onsave);
+            formControl.RedrawAll();
         }
         private void oninit(object sender, EventArgs e) { }
         private void onsave(object sender, EventArgs e) { }
 
 
-        private FormEngine workflowEngine;
+        private FormEngine formEngine;
 
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.LABEL);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.LABEL);
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.DATETIMEPICKER);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.DATETIMEPICKER);
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.TEXTBOX);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.TEXTBOX);
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.CHECKBOX);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.CHECKBOX);
         }
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.RADIOBUTTON);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.RADIOBUTTON);
         }
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.LINE);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.LINE);
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.BUTTON);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.BUTTON);
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
-            this.workflowControl.CurrentTool = workflowEngine.SetCurrentTool(ActivityType.COMBOBOX);
+            this.formControl.CurrentTool = formEngine.SetCurrentTool(ControlType.COMBOBOX);
         }
     }
 }
