@@ -152,8 +152,8 @@ namespace Zxl.FormDesigner
                 {
                     if (!(control is LineControl))
                     {
-                        BaseControl act = control as BaseControl;
-                        //this.panelForm.Controls.Add(act.MyCtrl);
+                        BaseControl ctrl = control as BaseControl;
+                        //this.panelForm.Controls.Add(ctrl);
                         control.Draw(g);
                     }
                 }

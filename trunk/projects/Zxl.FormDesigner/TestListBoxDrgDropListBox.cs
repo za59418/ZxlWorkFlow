@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Zxl.FormDesigner
+namespace Zxl.Test
 {
-    public partial class ListBoxDrgDropListBox : Form
+    public partial class TestListBoxDrgDropListBox : Form
     {
 
         private bool Mousedown;
@@ -21,7 +21,7 @@ namespace Zxl.FormDesigner
         private int CurX = 0;
         private int CurY = 0;
 
-        public ListBoxDrgDropListBox()
+        public TestListBoxDrgDropListBox()
         {
             InitializeComponent();
         }
