@@ -16,7 +16,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -68,11 +68,35 @@
     <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.Designer.cs">
       <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\business\businessFormCtrl.cs">
+    <Compile Include="Ctrl\businessdata\DockBusinessData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\businessdata\DockBusinessData.Designer.cs">
+      <DependentUpon>DockBusinessData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\businessdata\DockBusinessDataDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\businessdata\DockBusinessDataDetail.Designer.cs">
+      <DependentUpon>DockBusinessDataDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockActivity.Designer.cs">
+      <DependentUpon>DockActivity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusiness.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusiness.Designer.cs">
+      <DependentUpon>DockBusiness.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\businessFormCtrl2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\business\businessFormCtrl.Designer.cs">
-      <DependentUpon>businessFormCtrl.cs</DependentUpon>
+    <Compile Include="Ctrl\business\businessFormCtrl2.Designer.cs">
+      <DependentUpon>businessFormCtrl2.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\business\businessProcessCtrl.cs">
       <SubType>UserControl</SubType>
@@ -80,17 +104,86 @@
     <Compile Include="Ctrl\business\businessProcessCtrl.Designer.cs">
       <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\business\DockProcessDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockProcessDesigner.Designer.cs">
+      <DependentUpon>DockProcessDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusinessProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusinessProcess.Designer.cs">
+      <DependentUpon>DockBusinessProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\DAP2ControlMapping.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Dap2xProvoider.cs" />
+    <Compile Include="Ctrl\business\formDesigner\FormDesignerProvider.cs" />
+    <Compile Include="Ctrl\business\formDesigner\IFormDesigner.cs" />
+    <Compile Include="Ctrl\business\formDesigner\NativeOriginalStyleFormDesigner.cs" />
+    <Compile Include="Ctrl\business\formDesigner\NativeWordStyleFormDesigner.cs" />
+    <Compile Include="Ctrl\business\formDesigner\OriginalStyleFormDesigner.cs" />
+    <Compile Include="Ctrl\business\formDesigner\WordStyleFormDesigner.cs" />
+    <Compile Include="Ctrl\business\formDesigner\XmlParser.cs" />
+    <Compile Include="Ctrl\business\form\Controls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\form\Controls.Designer.cs">
+      <DependentUpon>Controls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\form\Forms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\form\Forms.Designer.cs">
+      <DependentUpon>Forms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\configCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ctrl\configCtrl.Designer.cs">
       <DependentUpon>configCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\DockConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\DockConsole.Designer.cs">
+      <DependentUpon>DockConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\DockConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\DockConfig.Designer.cs">
+      <DependentUpon>DockConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\metadata\DockMetaData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\metadata\DockMetaData.Designer.cs">
+      <DependentUpon>DockMetaData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\metadata\DockMetaDataDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\metadata\DockMetaDataDetail.Designer.cs">
+      <DependentUpon>DockMetaDataDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\metadata\metaDataDetailCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ctrl\metadata\metaDataDetailCtrl.Designer.cs">
       <DependentUpon>metaDataDetailCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\org\DockOrgDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\org\DockOrgDetail.Designer.cs">
+      <DependentUpon>DockOrgDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\org\DockOrg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\org\DockOrg.Designer.cs">
+      <DependentUpon>DockOrg.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\org\orgDetailCtrl.cs">
       <SubType>UserControl</SubType>
@@ -109,6 +202,18 @@
     </Compile>
     <Compile Include="Ctrl\business\businessRoleCtrl.Designer.cs">
       <DependentUpon>businessRoleCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\role\DockRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\role\DockRole.Designer.cs">
+      <DependentUpon>DockRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\role\DockRoleDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\role\DockRoleDetail.Designer.cs">
+      <DependentUpon>DockRoleDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\role\roleDetailCtrl.cs">
       <SubType>UserControl</SubType>
@@ -139,6 +244,18 @@
     </Compile>
     <Compile Include="Ctrl\business\businessCtrl.Designer.cs">
       <DependentUpon>businessCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\user\DockUserDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\user\DockUserDetail.Designer.cs">
+      <DependentUpon>DockUserDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\user\DockUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\user\DockUser.Designer.cs">
+      <DependentUpon>DockUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\user\userDetailCtrl.cs">
       <SubType>UserControl</SubType>
@@ -241,17 +358,59 @@
     <EmbeddedResource Include="Ctrl\businessdata\businessDataDetailCtrl.resx">
       <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\businessFormCtrl.resx">
-      <DependentUpon>businessFormCtrl.cs</DependentUpon>
+    <EmbeddedResource Include="Ctrl\businessdata\DockBusinessData.resx">
+      <DependentUpon>DockBusinessData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\businessdata\DockBusinessDataDetail.resx">
+      <DependentUpon>DockBusinessDataDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockActivity.resx">
+      <DependentUpon>DockActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockBusiness.resx">
+      <DependentUpon>DockBusiness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\businessFormCtrl2.resx">
+      <DependentUpon>businessFormCtrl2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\businessProcessCtrl.resx">
       <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockProcessDesigner.resx">
+      <DependentUpon>DockProcessDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockBusinessProcess.resx">
+      <DependentUpon>DockBusinessProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\form\Controls.resx">
+      <DependentUpon>Controls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\form\Forms.resx">
+      <DependentUpon>Forms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\configCtrl.resx">
       <DependentUpon>configCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\DockConsole.resx">
+      <DependentUpon>DockConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\DockConfig.resx">
+      <DependentUpon>DockConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\metadata\DockMetaData.resx">
+      <DependentUpon>DockMetaData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\metadata\DockMetaDataDetail.resx">
+      <DependentUpon>DockMetaDataDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\metadata\metaDataDetailCtrl.resx">
       <DependentUpon>metaDataDetailCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\org\DockOrg.resx">
+      <DependentUpon>DockOrg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\org\DockOrgDetail.resx">
+      <DependentUpon>DockOrgDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\org\orgDetailCtrl.resx">
       <DependentUpon>orgDetailCtrl.cs</DependentUpon>
@@ -261,6 +420,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\businessRoleCtrl.resx">
       <DependentUpon>businessRoleCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\role\DockRole.resx">
+      <DependentUpon>DockRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\role\DockRoleDetail.resx">
+      <DependentUpon>DockRoleDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\role\roleDetailCtrl.resx">
       <DependentUpon>roleDetailCtrl.cs</DependentUpon>
@@ -273,6 +438,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\businessCtrl.resx">
       <DependentUpon>businessCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\user\DockUser.resx">
+      <DependentUpon>DockUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\user\DockUserDetail.resx">
+      <DependentUpon>DockUserDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\user\userDetailCtrl.resx">
       <DependentUpon>userDetailCtrl.cs</DependentUpon>
@@ -482,6 +653,24 @@
   <ItemGroup>
     <None Include="Resources\table.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataFrame.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditor.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndBase.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZxlFormDesigner.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

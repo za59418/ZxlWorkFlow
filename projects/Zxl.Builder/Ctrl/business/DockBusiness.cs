@@ -9,21 +9,17 @@ using System.Windows.Forms;
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList.Nodes;
-using DevExpress.XtraTreeList;
 using Zxl.Data;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Zxl.Builder
 {
-    public partial class businessCtrl : UserControl
+    public partial class DockBusiness : DockContent
     {
-
         public IBusinessService BusinessServcie = new BusinessService();
-
-        public businessCtrl()
+        public DockBusiness()
         {
             InitializeComponent();
-
             treeBusiness.ItemHeight = 20;
             imageList1.Images.Clear();
             imageList1.Images.Add(global::Zxl.Builder.Properties.Resources.folder);
@@ -38,8 +34,8 @@ namespace Zxl.Builder
             treeBusiness.ImageList = imageList1;
 
             RefreshBusinessTree();
-        }
 
+        }
 
         public FormMain MainForm { get; set; }
 
@@ -53,7 +49,7 @@ namespace Zxl.Builder
         #region 业务树事件
         private void treeBusiness_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if(e.Node.Tag is SYS_BUSINESSROLE)
+            if (e.Node.Tag is SYS_BUSINESSROLE)
             {
                 CurrRole = e.Node.Tag as SYS_BUSINESSROLE;
             }
@@ -77,8 +73,9 @@ namespace Zxl.Builder
             {
                 CurrBusinessGroup = e.Node.Tag as SYS_BUSINESSGROUP;
             }
-            else{ // 角色，材料，表单，流程文件夹
-                if(e.Node.Parent.Tag is SYS_BUSINESS)
+            else
+            { // 角色，材料，表单，流程文件夹
+                if (e.Node.Parent.Tag is SYS_BUSINESS)
                 {
                     CurrBusiness = e.Node.Parent.Tag as SYS_BUSINESS;
                     CurrBusinessGroup = e.Node.Parent.Parent.Tag as SYS_BUSINESSGROUP;
@@ -105,10 +102,13 @@ namespace Zxl.Builder
             }
             else if (e.Node.Tag is SYS_BUSINESSPROCESS)
             {
-                businessProcessCtrl ctrl = new businessProcessCtrl();
-                ctrl.Dock = DockStyle.Fill;
-                ctrl.CurrProcess = e.Node.Tag as SYS_BUSINESSPROCESS;
+                //businessProcessCtrl ctrl = new businessProcessCtrl();
+                //ctrl.Dock = DockStyle.Fill;
+                //ctrl.CurrProcess = e.Node.Tag as SYS_BUSINESSPROCESS;
                 //MainForm.AddTab(ctrl.CurrProcess.PROCESSNAME, ctrl);
+
+                DockBusinessProcess dbp = new DockBusinessProcess(e.Node.Tag as SYS_BUSINESSPROCESS);
+                dbp.Show(MainForm.MainDockPanel);
             }
         }
 

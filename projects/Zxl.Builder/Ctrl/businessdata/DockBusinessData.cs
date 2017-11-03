@@ -1,35 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+using WeifenLuo.WinFormsUI.Docking;
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
 using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class businessDataCtrl : UserControl
+    public partial class DockBusinessData : DockContent
     {
-
         public IBusinessService BusinessServcie = new BusinessService();
 
         public FormMain MainForm { get; set; }
 
         private SYS_BUSINESSDATA CurrBusinessData;
 
-        public businessDataCtrl()
+        public DockBusinessData()
         {
             InitializeComponent();
             RefreshBusinessDataTree();
         }
-
         #region 业务数据点击事件
         private void treeBusinessData_MouseClick(object sender, MouseEventArgs e)
         {
@@ -54,10 +54,10 @@ namespace Zxl.Builder
 
         private void treeBusinessData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            businessDataDetailCtrl ctrl = new businessDataDetailCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            ctrl.CurrBusinessData = CurrBusinessData;
-            //MainForm.AddTab(ctrl.CurrBusinessData.NAME, ctrl);
+            DockBusinessDataDetail dbdd = new DockBusinessDataDetail();
+            dbdd.CurrBusinessData = CurrBusinessData;
+            dbdd.TabText = CurrBusinessData.NAME;
+            dbdd.Show(MainForm.MainDockPanel);
         }
 
         private void tsmiDel_Click(object sender, EventArgs e)
