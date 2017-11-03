@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
 using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class roleCtrl : UserControl
+    public partial class DockRole : DockContent
     {
-
         public IUserService UserService = new UserService();
-
-        public roleCtrl()
+        public DockRole()
         {
             InitializeComponent();
             RefreshRoleTree();
@@ -29,8 +29,7 @@ namespace Zxl.Builder
         public FormMain MainForm { get; set; }
 
         private ORUP_ROLE CurrRole;
-
-
+        
         #region 角色树点击事件
         private void treeRole_MouseClick(object sender, MouseEventArgs e)
         {
@@ -55,10 +54,10 @@ namespace Zxl.Builder
 
         private void treeRole_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            roleDetailCtrl ctrl = new roleDetailCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            ctrl.CurrRole = CurrRole;
-            //MainForm.AddTab(ctrl.CurrRole.ROLENAME, ctrl);
+            DockRoleDetail drd = new DockRoleDetail();
+            drd.CurrRole = CurrRole;
+            drd.TabText = CurrRole.ROLENAME;
+            drd.Show(MainForm.MainDockPanel);
         }
 
 
@@ -141,6 +140,5 @@ namespace Zxl.Builder
             treeRole.ExpandAll();
         }
         #endregion 角色树点击事件
-
     }
 }

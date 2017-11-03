@@ -6,11 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraTab;
-using DevExpress.XtraBars;
-using DevExpress.XtraNavBar;
-using DevExpress.XtraTab.Buttons;
-using DevExpress.XtraBars.Docking;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Zxl.Builder
 {
@@ -19,6 +15,7 @@ namespace Zxl.Builder
         public FormMain()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         public delegate void DelegateLog(string Msg);
@@ -28,18 +25,18 @@ namespace Zxl.Builder
 
         void info(string Msg)
         {
-            this.rtbLog.ForeColor = Color.Green;
-            this.rtbLog.AppendText(">> " + Msg + "\r\n");
+            dConsole.rtbLog.ForeColor = Color.Green;
+            dConsole.rtbLog.AppendText(">> " + Msg + "\r\n");
         }
         void warn(string Msg)
         {
-            this.rtbLog.ForeColor = Color.Yellow;
-            this.rtbLog.AppendText(">> " + Msg + "\r\n");
+            dConsole.rtbLog.ForeColor = Color.Yellow;
+            dConsole.rtbLog.AppendText(">> " + Msg + "\r\n");
         }
         void error(string Msg)
         {
-            this.rtbLog.ForeColor = Color.Red;
-            this.rtbLog.AppendText(">> " + Msg + "\r\n");
+            dConsole.rtbLog.ForeColor = Color.Red;
+            dConsole.rtbLog.AppendText(">> " + Msg + "\r\n");
         }
 
 
@@ -51,161 +48,125 @@ namespace Zxl.Builder
             ERROR = new DelegateLog(error);
         }
 
+        public DockPanel MainDockPanel
+        {
+            get
+            {
+                return this.dockPanel1;
+            }
+        }
+
+        DockMetaData dmd = new DockMetaData();
+        DockBusinessData dbd = new DockBusinessData();
+        DockBusiness db = new DockBusiness();
+        DockOrg dOrg = new DockOrg();
+        DockRole dRole = new DockRole();
+        DockUser dUser = new DockUser();
+        DockConfig dCnfg = new DockConfig();
+        DockConsole dConsole = new DockConsole();
 
         void Init()
         {
-            businessCtrl bCtrl = new businessCtrl();
-            bCtrl.MainForm = this;
-            bCtrl.Dock = DockStyle.Fill;
-            businessPanel.ControlContainer.Controls.Add(bCtrl);
+            MainDockPanel.DockLeftPortion = 0.15;
+            MainDockPanel.DockRightPortion = 0.15;
+            MainDockPanel.DockBottomPortion = 0.15;
 
-            metaDataCtrl mdCtrl = new metaDataCtrl();
-            mdCtrl.MainForm = this;
-            mdCtrl.Dock = DockStyle.Fill;
-            metaDataPanel.ControlContainer.Controls.Add(mdCtrl);
+            dCnfg.TabText = "配置";
+            dCnfg.HideOnClose = true;
+            dCnfg.Show(MainDockPanel, DockState.DockRight);
+            dConsole.TabText = "控制台";
+            dConsole.HideOnClose = true;
+            dConsole.Show(MainDockPanel, DockState.DockBottom);
 
-            businessDataCtrl bdCtrl = new businessDataCtrl();
-            bdCtrl.MainForm = this;
-            bdCtrl.Dock = DockStyle.Fill;
-            businessDataPanel.ControlContainer.Controls.Add(bdCtrl);
+            dmd.TabText = "原数据";
+            dmd.MainForm = this;
+            dmd.HideOnClose = true;
+            dmd.Show(MainDockPanel, DockState.DockLeft);
 
-            userCtrl uCtrl = new userCtrl();
-            uCtrl.MainForm = this;
-            uCtrl.Dock = DockStyle.Fill;
-            userPanel.ControlContainer.Controls.Add(uCtrl);
+            dbd.TabText = "业务数据";
+            dbd.MainForm = this;
+            dbd.HideOnClose = true;
+            dbd.Show(MainDockPanel, DockState.DockLeft);
 
-            roleCtrl rCtrl = new roleCtrl();
-            rCtrl.MainForm = this;
-            rCtrl.Dock = DockStyle.Fill;
-            rolePanel.ControlContainer.Controls.Add(rCtrl);
+            db.TabText = "业务列表";
+            db.MainForm = this;
+            db.HideOnClose = true;
+            db.Show(MainDockPanel, DockState.DockLeft);
 
-            orgCtrl oCtrl = new orgCtrl();
-            oCtrl.MainForm = this;
-            oCtrl.Dock = DockStyle.Fill;
-            orgPanel.ControlContainer.Controls.Add(oCtrl);
+            dOrg.TabText = "机构";
+            dOrg.MainForm = this;
+            dOrg.Show(this.dockPanel1);
+            dOrg.HideOnClose = true;
+            dOrg.DockTo(MainDockPanel, DockStyle.Left);
+
+            dRole.TabText = "角色";
+            dRole.MainForm = this;
+            dRole.Show(this.dockPanel1);
+            dRole.HideOnClose = true;
+            dRole.DockTo(dOrg.Pane, DockStyle.Fill, 1);
+
+            dUser.TabText = "用户";
+            dUser.MainForm = this;
+            dUser.Show(this.dockPanel1);
+            dUser.HideOnClose = true;
+            dUser.DockTo(dOrg.Pane, DockStyle.Fill, 2);
         }
 
-        //业务
+        //业务+9
         private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //DockPanel businessPanel = new DockPanel();
-            //businessPanel.Text = "业务管理";
-            //ControlContainer container = new ControlContainer();
-
-            //businessPanel.Controls.Add(container);
-            //AddDockPanel(businessPanel, DockingStyle.Left);
-
-            //businessCtrl ctrl = new businessCtrl();
-            //ctrl.Dock = DockStyle.Fill;
-            //businessPanel.ControlContainer.Controls.Add(ctrl);
-
-            this.containerBusiness.Visibility = DockVisibility.Visible;
-            this.businessPanel.Visibility = DockVisibility.Visible;
-            this.containerBusiness.ActiveChild = this.businessPanel;
+            db.Visible = true;
+            db.Activate();
         }
         //元数据
         private void metaData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.containerBusiness.Visibility = DockVisibility.Visible;
-            this.metaDataPanel.Visibility = DockVisibility.Visible;
-            this.containerBusiness.ActiveChild = this.metaDataPanel;
+            dmd.Visible = true;
+            dmd.Activate();
         }
         //业务数据
         private void businessData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.containerBusiness.Visibility = DockVisibility.Visible;
-            this.businessDataPanel.Visibility = DockVisibility.Visible;
-            this.containerBusiness.ActiveChild = this.businessDataPanel;
+            dbd.Visible = true;
+            dbd.Activate();
         }
         //用户
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.containerOrup.Visibility = DockVisibility.Visible;
-            this.userPanel.Visibility = DockVisibility.Visible;
-            this.containerOrup.ActiveChild = this.userPanel;
+            dUser.Visible = true;
+            dUser.Activate();
         }
         //角色
         private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.containerOrup.Visibility = DockVisibility.Visible;
-            this.rolePanel.Visibility = DockVisibility.Visible;
-            this.containerOrup.ActiveChild = this.rolePanel;
+            dRole.Visible = true;
+            dRole.Activate();
         }
         //机构
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.containerOrup.Visibility = DockVisibility.Visible;
-            this.orgPanel.Visibility = DockVisibility.Visible;
-            this.containerOrup.ActiveChild = this.orgPanel;
+            dOrg.Visible = true;
+            dOrg.Activate();
         }
-
-        public void AddTab(string Title, UserControl ctrl)
+        //配置
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DockPanel dockPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            ControlContainer controlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
-            dockPanel.Text = Title;
-            dockPanel.Dock = DockingStyle.Fill;
-
-            AddDockPanel(dockPanel, DockingStyle.Fill);
-
-            controlContainer.Dock = DockStyle.Fill;
-            dockPanel.Controls.Add(controlContainer);
-            dockPanel.DockedAsTabbedDocument = true;
-            controlContainer.TabIndex = 0;
-            controlContainer.Controls.Add(ctrl);
-
+            dCnfg.Visible = true;
+            dCnfg.Activate();
         }
-
+        //表单
         private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             emptyCtrl ctrl = new emptyCtrl();
             ctrl.Dock = DockStyle.Fill;
             //AddPage("表单管理", ctrl);
         }
-
+        //材料
         private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             emptyCtrl ctrl = new emptyCtrl();
             ctrl.Dock = DockStyle.Fill;
             //AddPage("材料管理", ctrl);
-        }
-
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-            DockPanel configPanel = new DockPanel();
-            configPanel.Text = "系统配置";
-            ControlContainer container = new ControlContainer();
-
-            configPanel.Controls.Add(container);
-            AddDockPanel(configPanel, DockingStyle.Right);
-
-            configCtrl ctrl = new configCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            configPanel.ControlContainer.Controls.Add(ctrl);
-        }
-
-        void AddDockPanel(DockPanel panel, DockingStyle style)
-        {
-            DockPanel currPanel = null;
-            foreach (DockPanel temp in dockManager1.Panels)
-            {
-                if (temp.Text == panel.Text)
-                {
-                    currPanel = temp;
-                    break;
-                }
-            }
-            if (null != currPanel)
-            {
-                currPanel.Visibility = DockVisibility.Visible;
-                tabbedView1.ActivateDocument(currPanel);
-            }
-            else
-            {
-                dockManager1.AddPanel(style, panel);
-            }
         }
     }
 }

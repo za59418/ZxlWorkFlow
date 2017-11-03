@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
+using DevExpress.XtraTreeList.Nodes;
+using DevExpress.XtraTreeList;
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList.Nodes;
-using DevExpress.XtraTreeList;
 using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class userCtrl : UserControl
+    public partial class DockUser : DockContent
     {
-
         public IBusinessService BusinessServcie = new BusinessService();
         public IUserService UserServcie = new UserService();
 
-        public userCtrl()
+        public DockUser()
         {
             InitializeComponent();
             RefreshUserTree();
@@ -55,11 +56,11 @@ namespace Zxl.Builder
 
         private void treeUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            userDetailCtrl ctrl = new userDetailCtrl();
-            ctrl.MainForm = MainForm;
-            ctrl.Dock = DockStyle.Fill;
-            ctrl.CurrUser = CurrUser;
-            //MainForm.AddTab(ctrl.CurrUser.USERNAME, ctrl);
+            DockUserDetail dud = new DockUserDetail();
+            dud.MainForm = MainForm;
+            dud.CurrUser = CurrUser;
+            dud.TabText = CurrUser.USERNAME;
+            dud.Show(MainForm.MainDockPanel);
         }
 
         private void cmsAddUser_Click(object sender, EventArgs e)
@@ -90,7 +91,7 @@ namespace Zxl.Builder
             string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             List<ORUP_USER> users = UserServcie.Users();
             users.Sort((a, b) => a.USERNAME.CompareTo(b.USERNAME));
-            foreach(string letter in letters)
+            foreach (string letter in letters)
             {
                 TreeListNode lNode = treeUser.AppendNode(new object[] { letter }, root);
                 lNode.Tag = letter;

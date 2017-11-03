@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
+using DevExpress.XtraTreeList.Nodes;
+using DevExpress.XtraTreeList;
+
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList.Nodes;
-using DevExpress.XtraTreeList;
 using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class metaDataCtrl : UserControl
+    public partial class DockMetaData : DockContent
     {
-
         public IBusinessService BusinessServcie = new BusinessService();
-
-        public metaDataCtrl()
+        public DockMetaData()
         {
             InitializeComponent();
             RefreshMetaDataTree();
         }
-
         private SYS_METADATA CurrMetaData;
         public FormMain MainForm { get; set; }
 
@@ -45,17 +45,17 @@ namespace Zxl.Builder
             // 加载右边的详情树
             if (null != treeMetaData.FocusedNode && treeMetaData.FocusedNode.Level != 0) // 点击的是非根节点
             {
-               CurrMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
-               treeMetaData.ContextMenuStrip = cmsMetadata;
+                CurrMetaData = treeMetaData.FocusedNode.Tag as SYS_METADATA;
+                treeMetaData.ContextMenuStrip = cmsMetadata;
             }
         }
 
         private void treeMetaData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            metaDataDetailCtrl ctrl = new metaDataDetailCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            ctrl.CurrMetaData = CurrMetaData;
-            //MainForm.AddTab(ctrl.CurrMetaData.NAME, ctrl);
+            DockMetaDataDetail dmdd = new DockMetaDataDetail();
+            dmdd.CurrMetaData = CurrMetaData;
+            dmdd.TabText = CurrMetaData.NAME;
+            dmdd.Show(MainForm.MainDockPanel);
         }
 
         private void cmsAddMetaData_Click(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace Zxl.Builder
             SYS_METADATA obj = new SYS_METADATA();
             obj.ID = 0;
             obj.NAME = "元数据";
-            TreeListNode root = treeMetaData.AppendNode(new object[] {obj.NAME }, -1);
+            TreeListNode root = treeMetaData.AppendNode(new object[] { obj.NAME }, -1);
 
             List<SYS_METADATA> datas = BusinessServcie.MetaDatas();
             foreach (SYS_METADATA data in datas)
@@ -113,7 +113,6 @@ namespace Zxl.Builder
         }
 
         #endregion 元数据树事件
-
 
     }
 }

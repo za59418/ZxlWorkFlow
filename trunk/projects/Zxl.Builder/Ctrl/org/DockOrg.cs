@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
 using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class orgCtrl : UserControl
+    public partial class DockOrg : DockContent
     {
-
         public IUserService UserService = new UserService();
-
-        public orgCtrl()
+        public DockOrg()
         {
             InitializeComponent();
             RefreshOrgTree();
         }
-
         public FormMain MainForm { get; set; }
 
         private ORUP_ORGANIZATION CurrOrg;
@@ -57,10 +57,10 @@ namespace Zxl.Builder
 
         private void treeOrg_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            orgDetailCtrl ctrl = new orgDetailCtrl();
-            ctrl.Dock = DockStyle.Fill;
-            ctrl.CurrOrg = CurrOrg;
-            //MainForm.AddTab(ctrl.CurrOrg.ORGNAME, ctrl);
+            DockOrgDetail dod = new DockOrgDetail();
+            dod.CurrOrg = CurrOrg;
+            dod.TabText = CurrOrg.ORGNAME;
+            dod.Show(MainForm.MainDockPanel);
         }
 
         private void tsmiDel_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Zxl.Builder
         private void tsmiEdit_Click(object sender, EventArgs e)
         {
             DlgEditOrg dlg = new DlgEditOrg();
-            dlg.Organization= treeOrg.FocusedNode.Tag as ORUP_ORGANIZATION;
+            dlg.Organization = treeOrg.FocusedNode.Tag as ORUP_ORGANIZATION;
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 UserService.SaveOrg(dlg.Organization);

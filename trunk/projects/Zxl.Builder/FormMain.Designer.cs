@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.metaData = new DevExpress.XtraBars.BarButtonItem();
             this.businessData = new DevExpress.XtraBars.BarButtonItem();
@@ -54,42 +53,8 @@
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
-            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
-            this.containerBusiness = new DevExpress.XtraBars.Docking.DockPanel();
-            this.businessPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.metaDataPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel7_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.businessDataPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel6_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.containerOrup = new DevExpress.XtraBars.Docking.DockPanel();
-            this.userPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.rolePanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel4_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.orgPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.consolePanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel8_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
-            this.panelContainer1.SuspendLayout();
-            this.containerBusiness.SuspendLayout();
-            this.businessPanel.SuspendLayout();
-            this.metaDataPanel.SuspendLayout();
-            this.businessDataPanel.SuspendLayout();
-            this.containerOrup.SuspendLayout();
-            this.userPanel.SuspendLayout();
-            this.rolePanel.SuspendLayout();
-            this.orgPanel.SuspendLayout();
-            this.consolePanel.SuspendLayout();
-            this.dockPanel8_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -117,7 +82,7 @@
             this.ribbonPage1,
             this.ribbonPage2});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl1.Size = new System.Drawing.Size(979, 147);
+            this.ribbonControl1.Size = new System.Drawing.Size(1067, 147);
             // 
             // metaData
             // 
@@ -314,237 +279,32 @@
             this.barButtonItem9.Name = "barButtonItem9";
             this.barButtonItem9.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
             // 
-            // dockManager1
+            // dockPanel1
             // 
-            this.dockManager1.Form = this;
-            this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.panelContainer1,
-            this.consolePanel});
-            this.dockManager1.TopZIndexControls.AddRange(new string[] {
-            "DevExpress.XtraBars.BarDockControl",
-            "DevExpress.XtraBars.StandaloneBarDockControl",
-            "System.Windows.Forms.StatusBar",
-            "System.Windows.Forms.MenuStrip",
-            "System.Windows.Forms.StatusStrip",
-            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
-            "DevExpress.XtraBars.Ribbon.RibbonControl",
-            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
-            "DevExpress.XtraBars.Navigation.TileNavPane"});
-            // 
-            // panelContainer1
-            // 
-            this.panelContainer1.Controls.Add(this.containerBusiness);
-            this.panelContainer1.Controls.Add(this.containerOrup);
-            this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.panelContainer1.ID = new System.Guid("fbf9a479-79d3-4b56-8924-94a0bc0b9034");
-            this.panelContainer1.Location = new System.Drawing.Point(0, 147);
-            this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.OriginalSize = new System.Drawing.Size(306, 200);
-            this.panelContainer1.Size = new System.Drawing.Size(306, 360);
-            this.panelContainer1.Text = "panelContainer1";
-            // 
-            // containerBusiness
-            // 
-            this.containerBusiness.ActiveChild = this.businessPanel;
-            this.containerBusiness.Controls.Add(this.metaDataPanel);
-            this.containerBusiness.Controls.Add(this.businessDataPanel);
-            this.containerBusiness.Controls.Add(this.businessPanel);
-            this.containerBusiness.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
-            this.containerBusiness.ID = new System.Guid("cd997fb5-affe-4688-a189-fda7b574df13");
-            this.containerBusiness.Location = new System.Drawing.Point(0, 0);
-            this.containerBusiness.Name = "containerBusiness";
-            this.containerBusiness.OriginalSize = new System.Drawing.Size(200, 200);
-            this.containerBusiness.Size = new System.Drawing.Size(306, 236);
-            this.containerBusiness.Tabbed = true;
-            this.containerBusiness.Text = "containerBusiness";
-            // 
-            // businessPanel
-            // 
-            this.businessPanel.Controls.Add(this.dockPanel2_Container);
-            this.businessPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.businessPanel.ID = new System.Guid("59c97650-b7df-4230-ad8a-63a777133c77");
-            this.businessPanel.Location = new System.Drawing.Point(4, 23);
-            this.businessPanel.Name = "businessPanel";
-            this.businessPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.businessPanel.Size = new System.Drawing.Size(298, 181);
-            this.businessPanel.Text = "业务管理";
-            // 
-            // dockPanel2_Container
-            // 
-            this.dockPanel2_Container.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel2_Container.Name = "dockPanel2_Container";
-            this.dockPanel2_Container.Size = new System.Drawing.Size(298, 181);
-            this.dockPanel2_Container.TabIndex = 0;
-            // 
-            // metaDataPanel
-            // 
-            this.metaDataPanel.Controls.Add(this.dockPanel7_Container);
-            this.metaDataPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.metaDataPanel.ID = new System.Guid("b04c2774-ec04-40c1-b0dc-20af8a6beefc");
-            this.metaDataPanel.Location = new System.Drawing.Point(4, 23);
-            this.metaDataPanel.Name = "metaDataPanel";
-            this.metaDataPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.metaDataPanel.Size = new System.Drawing.Size(298, 181);
-            this.metaDataPanel.Text = "元数据管理";
-            // 
-            // dockPanel7_Container
-            // 
-            this.dockPanel7_Container.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel7_Container.Name = "dockPanel7_Container";
-            this.dockPanel7_Container.Size = new System.Drawing.Size(298, 181);
-            this.dockPanel7_Container.TabIndex = 0;
-            // 
-            // businessDataPanel
-            // 
-            this.businessDataPanel.Controls.Add(this.dockPanel6_Container);
-            this.businessDataPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.businessDataPanel.ID = new System.Guid("570445c6-59fa-4446-b55f-c43004612af4");
-            this.businessDataPanel.Location = new System.Drawing.Point(4, 23);
-            this.businessDataPanel.Name = "businessDataPanel";
-            this.businessDataPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.businessDataPanel.Size = new System.Drawing.Size(298, 181);
-            this.businessDataPanel.Text = "业务数据管理";
-            // 
-            // dockPanel6_Container
-            // 
-            this.dockPanel6_Container.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel6_Container.Name = "dockPanel6_Container";
-            this.dockPanel6_Container.Size = new System.Drawing.Size(298, 181);
-            this.dockPanel6_Container.TabIndex = 0;
-            // 
-            // containerOrup
-            // 
-            this.containerOrup.ActiveChild = this.userPanel;
-            this.containerOrup.Controls.Add(this.userPanel);
-            this.containerOrup.Controls.Add(this.rolePanel);
-            this.containerOrup.Controls.Add(this.orgPanel);
-            this.containerOrup.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
-            this.containerOrup.ID = new System.Guid("4a13f7d1-6ba8-47a7-9ab4-64515c00788a");
-            this.containerOrup.Location = new System.Drawing.Point(0, 236);
-            this.containerOrup.Name = "containerOrup";
-            this.containerOrup.OriginalSize = new System.Drawing.Size(200, 200);
-            this.containerOrup.Size = new System.Drawing.Size(306, 124);
-            this.containerOrup.Tabbed = true;
-            this.containerOrup.Text = "containerOrup";
-            // 
-            // userPanel
-            // 
-            this.userPanel.Controls.Add(this.dockPanel1_Container);
-            this.userPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.userPanel.ID = new System.Guid("fa6b8a55-d347-4566-ba50-000ceceea76e");
-            this.userPanel.Location = new System.Drawing.Point(4, 23);
-            this.userPanel.Name = "userPanel";
-            this.userPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.userPanel.Size = new System.Drawing.Size(298, 69);
-            this.userPanel.Text = "用户管理";
-            // 
-            // dockPanel1_Container
-            // 
-            this.dockPanel1_Container.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(298, 69);
-            this.dockPanel1_Container.TabIndex = 0;
-            // 
-            // rolePanel
-            // 
-            this.rolePanel.Controls.Add(this.dockPanel4_Container);
-            this.rolePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.rolePanel.ID = new System.Guid("295b0547-b599-4b0d-9c8f-6b5a4e508a65");
-            this.rolePanel.Location = new System.Drawing.Point(4, 23);
-            this.rolePanel.Name = "rolePanel";
-            this.rolePanel.OriginalSize = new System.Drawing.Size(192, 305);
-            this.rolePanel.Size = new System.Drawing.Size(298, 69);
-            this.rolePanel.Text = "角色管理";
-            // 
-            // dockPanel4_Container
-            // 
-            this.dockPanel4_Container.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel4_Container.Name = "dockPanel4_Container";
-            this.dockPanel4_Container.Size = new System.Drawing.Size(298, 69);
-            this.dockPanel4_Container.TabIndex = 0;
-            // 
-            // orgPanel
-            // 
-            this.orgPanel.Controls.Add(this.dockPanel3_Container);
-            this.orgPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.orgPanel.ID = new System.Guid("918d40a8-8f9e-418e-9ab0-543068e2b6e9");
-            this.orgPanel.Location = new System.Drawing.Point(4, 23);
-            this.orgPanel.Name = "orgPanel";
-            this.orgPanel.OriginalSize = new System.Drawing.Size(192, 305);
-            this.orgPanel.Size = new System.Drawing.Size(298, 69);
-            this.orgPanel.Text = "机构管理";
-            // 
-            // dockPanel3_Container
-            // 
-            this.dockPanel3_Container.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(298, 69);
-            this.dockPanel3_Container.TabIndex = 0;
-            // 
-            // consolePanel
-            // 
-            this.consolePanel.Controls.Add(this.dockPanel8_Container);
-            this.consolePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
-            this.consolePanel.ID = new System.Guid("f28407a6-f85b-4348-8000-4e293615514b");
-            this.consolePanel.Location = new System.Drawing.Point(306, 311);
-            this.consolePanel.Name = "consolePanel";
-            this.consolePanel.OriginalSize = new System.Drawing.Size(200, 196);
-            this.consolePanel.Size = new System.Drawing.Size(673, 196);
-            this.consolePanel.Text = "控制台";
-            // 
-            // dockPanel8_Container
-            // 
-            this.dockPanel8_Container.Controls.Add(this.rtbLog);
-            this.dockPanel8_Container.Location = new System.Drawing.Point(4, 23);
-            this.dockPanel8_Container.Name = "dockPanel8_Container";
-            this.dockPanel8_Container.Size = new System.Drawing.Size(665, 169);
-            this.dockPanel8_Container.TabIndex = 0;
-            // 
-            // documentManager1
-            // 
-            this.documentManager1.ContainerControl = this;
-            this.documentManager1.View = this.tabbedView1;
-            this.documentManager1.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
-            this.tabbedView1});
-            // 
-            // rtbLog
-            // 
-            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbLog.Location = new System.Drawing.Point(0, 0);
-            this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(665, 169);
-            this.rtbLog.TabIndex = 1;
-            this.rtbLog.Text = "";
+            this.dockPanel1.ActiveAutoHideContent = null;
+            this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanel1.Location = new System.Drawing.Point(0, 147);
+            this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.RightToLeftLayout = true;
+            this.dockPanel1.ShowPadIcon = false;
+            this.dockPanel1.Size = new System.Drawing.Size(1067, 447);
+            this.dockPanel1.TabIndex = 4;
             // 
             // FormMain
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 507);
-            this.Controls.Add(this.consolePanel);
-            this.Controls.Add(this.panelContainer1);
+            this.ClientSize = new System.Drawing.Size(1067, 594);
+            this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.ribbonControl1);
+            this.IsMdiContainer = true;
             this.Name = "FormMain";
             this.Ribbon = this.ribbonControl1;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
-            this.panelContainer1.ResumeLayout(false);
-            this.containerBusiness.ResumeLayout(false);
-            this.businessPanel.ResumeLayout(false);
-            this.metaDataPanel.ResumeLayout(false);
-            this.businessDataPanel.ResumeLayout(false);
-            this.containerOrup.ResumeLayout(false);
-            this.userPanel.ResumeLayout(false);
-            this.rolePanel.ResumeLayout(false);
-            this.orgPanel.ResumeLayout(false);
-            this.consolePanel.ResumeLayout(false);
-            this.dockPanel8_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -577,27 +337,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
-        private DevExpress.XtraBars.Docking.DockManager dockManager1;
-        private DevExpress.XtraBars.Docking2010.DocumentManager documentManager1;
-        private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
-        private DevExpress.XtraBars.Docking.DockPanel containerOrup;
-        private DevExpress.XtraBars.Docking.DockPanel rolePanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel4_Container;
-        private DevExpress.XtraBars.Docking.DockPanel orgPanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel3_Container;
-        private DevExpress.XtraBars.Docking.DockPanel panelContainer1;
-        private DevExpress.XtraBars.Docking.DockPanel containerBusiness;
-        private DevExpress.XtraBars.Docking.DockPanel metaDataPanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel7_Container;
-        private DevExpress.XtraBars.Docking.DockPanel businessDataPanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel6_Container;
-        private DevExpress.XtraBars.Docking.DockPanel businessPanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel2_Container;
-        private DevExpress.XtraBars.Docking.DockPanel userPanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
-        private DevExpress.XtraBars.Docking.DockPanel consolePanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel8_Container;
-        private System.Windows.Forms.RichTextBox rtbLog;
+        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
     }
 }
 
