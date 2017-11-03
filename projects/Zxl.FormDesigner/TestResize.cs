@@ -4,16 +4,15 @@ using System.Drawing;
 
 namespace Zxl.Test
 {
-    public class PickBox
+    public class TestResize
     {
         //////////////////////////////////////////////////////////////////  
         // PRIVATE CONSTANTS AND VARIABLES  
         //////////////////////////////////////////////////////////////////  
         private const int BOX_SIZE = 8;
         private Color BOX_COLOR = Color.White;
-        private ContainerControl m_container;
+        //private ContainerControl m_container;
         private Control m_control;
-        private Label[] lbl = new Label[8];
         private int startl;
         private int startt;
         private int startw;
@@ -21,16 +20,16 @@ namespace Zxl.Test
         private int startx;
         private int starty;
         private bool dragging;
-        private Cursor[] arrArrow = new Cursor[] {Cursors.SizeNWSE, Cursors.SizeNS,  
-   Cursors.SizeNESW, Cursors.SizeWE, Cursors.SizeNWSE, Cursors.SizeNS,  
-   Cursors.SizeNESW, Cursors.SizeWE};
+
+        private Label[] lbl = new Label[8];
+        private Cursor[] arrArrow = new Cursor[] { Cursors.SizeNWSE, Cursors.SizeNS, Cursors.SizeNESW, Cursors.SizeWE, Cursors.SizeNWSE, Cursors.SizeNS, Cursors.SizeNESW, Cursors.SizeWE };
         private Cursor oldCursor;
         private const int MIN_SIZE = 20;
         //  
         // Constructor creates 8 sizing handles & wires mouse events  
         // to each that implement sizing functions  
         //  
-        public PickBox()
+        public TestResize()
         {
             for (int i = 0; i < 8; i++)
             {
@@ -40,7 +39,7 @@ namespace Zxl.Test
                 lbl[i].BorderStyle = BorderStyle.FixedSingle;
                 lbl[i].BackColor = BOX_COLOR;
                 lbl[i].Cursor = arrArrow[i];
-                lbl[i].Text = "1";
+                lbl[i].Text = "";
                 lbl[i].BringToFront();
                 lbl[i].MouseDown += new MouseEventHandler(this.lbl_MouseDown);
                 lbl[i].MouseMove += new MouseEventHandler(this.lbl_MouseMove);

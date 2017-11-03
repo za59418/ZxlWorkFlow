@@ -48,11 +48,11 @@ namespace Zxl.WorkflowDesigner
         private void WorkflowControl_Resize(object sender, EventArgs e)
         {
             int pageSize = Height - hScrollBar.Height;
-            vScrollBar.LargeChange = pageSize;
+            vScrollBar.LargeChange = pageSize > 0 ? pageSize : 0;
             vScrollBar.Maximum = panelWorkflow.Height + 40;
 
             pageSize = Width - vScrollBar.Width;
-            hScrollBar.LargeChange = pageSize;
+            hScrollBar.LargeChange = pageSize > 0 ? pageSize : 0;
             hScrollBar.Maximum = panelWorkflow.Width + 40;
         }
 

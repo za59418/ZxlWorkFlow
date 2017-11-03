@@ -1,6 +1,6 @@
-﻿namespace Zxl.FormDesigner
+﻿namespace Zxl.Test
 {
-    partial class ListBoxDrgDropListBox
+    partial class TestListBoxDrgDropListBox
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.myButton1 = new Zxl.FormDesigner.MyButton();
             this.SuspendLayout();
             // 
             // button1
@@ -55,25 +54,11 @@
             this.textBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Controls_MouseMove);
             this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Controls_MouseUp);
             // 
-            // myButton1
-            // 
-            this.myButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.myButton1.Location = new System.Drawing.Point(293, 106);
-            this.myButton1.Name = "myButton1";
-            this.myButton1.Size = new System.Drawing.Size(75, 23);
-            this.myButton1.TabIndex = 4;
-            this.myButton1.Text = "myButton1";
-            this.myButton1.UseVisualStyleBackColor = true;
-            this.myButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Controls_MouseDown);
-            this.myButton1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Controls_MouseMove);
-            this.myButton1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Controls_MouseUp);
-            // 
             // ListBoxDrgDropListBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 357);
-            this.Controls.Add(this.myButton1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "ListBoxDrgDropListBox";
@@ -87,7 +72,6 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private MyButton myButton1;
 
     }
 }

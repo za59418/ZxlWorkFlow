@@ -10,7 +10,7 @@ using Zxl.Business.Impl;
 
 namespace Zxl.FormDesigner
 {
-    public class Control
+    public class Control : System.Windows.Forms.Control // 定义为ctrl
     {
         public enum HitTestState
         {

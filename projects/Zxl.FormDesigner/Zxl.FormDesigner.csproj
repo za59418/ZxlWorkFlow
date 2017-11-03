@@ -49,38 +49,86 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\Control.cs" />
-    <Compile Include="Control\BaseControl.cs" />
-    <Compile Include="Control\LineControl.cs" />
-    <Compile Include="Control\LabelControl.cs" />
-    <Compile Include="Control\RadioButtonControl.cs" />
-    <Compile Include="Control\CheckBoxControl.cs" />
-    <Compile Include="Control\ComboBoxControl.cs" />
-    <Compile Include="Control\ButtonControl.cs" />
-    <Compile Include="Control\TextBoxControl.cs" />
+    <Compile Include="Control\Control.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\BaseControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\LineControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\LabelControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\RadioButtonControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\CheckBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\ComboBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\ButtonControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\TextBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\BaseCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\ButtonCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\CheckBoxCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\ComboBoxCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\LabelCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\RadioButtonCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrl\TextBoxCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListBoxDrgDropListBox.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListBoxDrgDropListBox.Designer.cs">
-      <DependentUpon>ListBoxDrgDropListBox.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyButton.cs">
+    <Compile Include="MyControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PickBox.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs">
+    <Compile Include="MyControl.Designer.cs">
+      <DependentUpon>MyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestListBoxDrgDropListBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
+    <Compile Include="TestListBoxDrgDropListBox.Designer.cs">
+      <DependentUpon>TestListBoxDrgDropListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestResize.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDrawFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestDrawFrame.Designer.cs">
+      <DependentUpon>TestDrawFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Tool\BaseTool.cs" />
     <Compile Include="Tool\LineControlTool.cs" />
@@ -106,12 +154,14 @@
     <Compile Include="FormPanel.Designer.cs">
       <DependentUpon>FormPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util_GDI.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListBoxDrgDropListBox.resx">
-      <DependentUpon>ListBoxDrgDropListBox.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestListBoxDrgDropListBox.resx">
+      <DependentUpon>TestListBoxDrgDropListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -127,8 +177,8 @@
     <EmbeddedResource Include="FormControl.resx">
       <DependentUpon>FormControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
+    <EmbeddedResource Include="TestDrawFrame.resx">
+      <DependentUpon>TestDrawFrame.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

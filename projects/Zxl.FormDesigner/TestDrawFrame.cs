@@ -10,12 +10,16 @@ using System.Windows.Forms;
 
 namespace Zxl.Test
 {
-    public partial class Test : Form
+    public partial class TestDrawFrame : Form
     {
-        public Test()
+        public TestDrawFrame()
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            TestResize resize = new TestResize();
+            resize.WireControl(this.button1);
+            resize.WireControl(this.myControl1);
         }
 
         // The following three methods will draw a rectangle and allow 
