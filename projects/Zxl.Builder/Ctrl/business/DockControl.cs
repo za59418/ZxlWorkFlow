@@ -18,44 +18,14 @@ namespace Zxl.Builder
         public DockControl()
         {
             InitializeComponent();
-            //InitToolBox();
         }
 
-        public void InitToolBox()
-        {
-            navBarControl1.Groups.Clear();
-            navBarControl1.Items.Clear();
-            foreach (KeyValuePair<string, string> kvp in DAP2ControlMapping.GetInstance().GetAllCategories())
-            {
-                NavBarGroup group = new NavBarGroup(kvp.Value);
-                group.Expanded = true;
-                this.navBarControl1.Groups.Add(group);
-                foreach (KeyValuePair<string, string> kvpItem in
-                    DAP2ControlMapping.GetInstance().GetControlsByCategory(kvp.Value))
-                {
-                    NavBarItem item = new NavBarItem(kvpItem.Value);
-                    item.SmallImageIndex = Convert.ToInt32(kvpItem.Key) - 60300;
-                    item.Name = kvpItem.Key;
-                    item.LinkClicked += new NavBarLinkEventHandler(item_LinkClicked);
-                    navBarControl1.Items.Add(item);
-                    group.ItemLinks.Add(item);
-                }
-            }
-        }
-
-        void item_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            if (e.Link != null)
-            {
-                ExecuteToolBarCommand(Convert.ToUInt32(e.Link.ItemName));
-            }
-        }
         public void ExecuteToolBarCommand(uint nId)
         {
             Dap2xProvoider.DoToolBarCmd(nId);
         }
 
-
+        #region 控件
         private void nbiLabel_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             Dap2xProvoider.DoToolBarCmd(60302);            
@@ -86,10 +56,121 @@ namespace Zxl.Builder
             Dap2xProvoider.DoToolBarCmd(60318);
         }
 
+        private void nbiSelector_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(0);
+        }
+        #endregion
+
+        #region 控件命令
+        private void nbiLeft_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60319"));
+        }
+
+        private void nbiRight_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60320"));
+        }
+
+        private void nbiTop_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60321"));
+        }
+
+        private void nbiBottom_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60322"));
+        }
+
+        private void nbiWidth_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60323"));
+        }
+
+        private void nbiHeight_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60324"));
+        }
+
+        private void nbiHorizontal_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60326"));
+        }
+
+        private void nbiVertical_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            ExecuteToolBarCommand(uint.Parse("60327"));
+        }
+        #endregion
+
+        #region 表格命令
+        private void nbiSelectGrid_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60003);
+        }
+
+        private void nbiGrid_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60001);
+        }
+
+        private void nbiEraser_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60002);
+        }
+
+        private void nbiMerge_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60004);
+        }
+
+        private void nbiSplit_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60005);
+        }
+
+        private void nbiRowHeight_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60006);
+        }
+
+        private void nbiCelWidth_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60007);
+        }
+        private void nbiPrintSetting_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60015);
+        }
+
+        private void nbiPrintPreview_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60033);
+        }
+
+        private void nbiProperty_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60029);
+        }
+
+        private void nbiBgImg_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60027);
+        }
+
+        private void nbiAddPage_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60023);
+        }
+
+        private void nbiDelPage_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            Dap2xProvoider.DoToolBarCmd(60024);
+        }        
+        #endregion
+
         //public WorkflowControl workflowControl { get; set; }
         //public WorkflowEngine workflowEngine { get; set; }
-
-
-
     }
 }

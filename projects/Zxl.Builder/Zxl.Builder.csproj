@@ -47,6 +47,7 @@
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -140,6 +141,19 @@
     <Compile Include="Ctrl\business\DockBusinessRole.Designer.cs">
       <DependentUpon>DockBusinessRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\business\formDesigner\Attribute\DataBindAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\DataGridControlAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\GeneralAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\GridColumnAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\GridDataBindAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\IControlAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\RadioButtonListAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\RightAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\SingleDataBindAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\TableContorlAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\ValidatesAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlItemAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlsDictionary.cs" />
     <Compile Include="Ctrl\business\formDesigner\DAP2ControlMapping.cs" />
     <Compile Include="Ctrl\business\formDesigner\Dap2xProvoider.cs" />
     <Compile Include="Ctrl\business\formDesigner\FormDesignerProvider.cs" />
@@ -147,6 +161,7 @@
     <Compile Include="Ctrl\business\formDesigner\NativeOriginalStyleFormDesigner.cs" />
     <Compile Include="Ctrl\business\formDesigner\NativeWordStyleFormDesigner.cs" />
     <Compile Include="Ctrl\business\formDesigner\OriginalStyleFormDesigner.cs" />
+    <Compile Include="Ctrl\business\formDesigner\UITextBoxEditor.cs" />
     <Compile Include="Ctrl\business\formDesigner\WordStyleFormDesigner.cs" />
     <Compile Include="Ctrl\business\formDesigner\XmlParser.cs" />
     <Compile Include="Ctrl\business\form\Controls.cs">
@@ -178,6 +193,12 @@
     </Compile>
     <Compile Include="Ctrl\DockConfig.Designer.cs">
       <DependentUpon>DockConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockProperty.Designer.cs">
+      <DependentUpon>DockProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\metadata\DockMetaData.cs">
       <SubType>Form</SubType>
@@ -364,6 +385,9 @@
     <EmbeddedResource Include="Ctrl\business\DockBusinessRole.resx">
       <DependentUpon>DockBusinessRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockProperty.resx">
+      <DependentUpon>DockProperty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\form\Controls.resx">
       <DependentUpon>Controls.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,9 +484,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <EmbeddedResource Include="Form\FormDesigner.Config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
