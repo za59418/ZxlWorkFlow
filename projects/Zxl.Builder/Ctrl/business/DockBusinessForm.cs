@@ -23,18 +23,15 @@ namespace Zxl.Builder
         {
             InitializeComponent();
 
-            DockActivity da = new DockActivity();
-            da.TabText = "活动列表";
-            da.Show(this.dockPanel1, DockState.DockRight);
-            da.CloseButton = false;
+            DockControl dc = new DockControl();
+            dc.TabText = "控件列表";
+            dc.Show(this.dockPanel1, DockState.DockRight);
+            dc.CloseButton = false;
             this.dockPanel1.DockRightPortion = 0.1;
 
-            //DockProcessDesigner dpd = new DockProcessDesigner();
-            //dpd.CurrProcess = CurrProcess;
-            //dpd.Show(this.dockPanel1);
-            ////重要
-            //da.workflowControl = dpd.workflowControl;
-            //da.workflowEngine = dpd.workflowEngine;
+            DockFormDesigner dfd = new DockFormDesigner();
+            dfd.CurrForm = CurrForm;
+            dfd.Show(this.dockPanel1);
         }
     }
 }

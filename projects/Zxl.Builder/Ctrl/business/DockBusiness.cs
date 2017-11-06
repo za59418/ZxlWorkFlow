@@ -86,22 +86,35 @@ namespace Zxl.Builder
         {
             if (e.Node.Tag is SYS_BUSINESSROLE)
             {
-                DockBusinessRole dbr = new DockBusinessRole();
-                dbr.CurrRole = CurrRole;
-                dbr.TabText = CurrRole.ROLENAME;
-                dbr.Show(MainForm.MainDockPanel);
+                if (null != CurrRole)
+                {
+                    DockBusinessRole dbr = new DockBusinessRole();
+                    dbr.CurrRole = CurrRole;
+                    dbr.TabText = CurrRole.ROLENAME;
+                    dbr.Show(MainForm.MainDockPanel);
+                }
             }
             else if (e.Node.Tag is SYS_BUSINESSFORM)
             {
-                DockBusinessForm dbf = new DockBusinessForm(CurrForm);
-                dbf.TabText = CurrForm.FORMNAME;
-                dbf.Show(MainForm.MainDockPanel);
+                if (null != CurrForm)
+                {
+                    DockBusinessForm dbf = new DockBusinessForm(CurrForm);
+                    dbf.TabText = CurrForm.FORMNAME;
+                    dbf.Show(MainForm.MainDockPanel);
+                }
             }
             else if (e.Node.Tag is SYS_BUSINESSPROCESS)
             {
-                DockBusinessProcess dbp = new DockBusinessProcess(CurrProcess);
-                dbp.TabText = CurrProcess.PROCESSNAME;
-                dbp.Show(MainForm.MainDockPanel);
+                if (null != CurrProcess)
+                {
+                    DockBusinessProcess dbp = new DockBusinessProcess(CurrProcess);
+                    dbp.TabText = CurrProcess.PROCESSNAME;
+                    dbp.Show(MainForm.MainDockPanel);
+                }
+            }
+            else
+            {
+
             }
         }
 
@@ -392,7 +405,7 @@ namespace Zxl.Builder
                     businessNode.ContextMenuStrip = cmsBusiness;
                     businessNode.Tag = business;
 
-                    TreeNode rolesNode = businessNode.Nodes.Add("material", "角色列表");
+                    TreeNode rolesNode = businessNode.Nodes.Add("role", "角色列表");
                     rolesNode.ImageIndex = 1;
                     rolesNode.SelectedImageIndex = 1;
                     rolesNode.ContextMenuStrip = cmsRoles;
