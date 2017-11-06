@@ -24,15 +24,15 @@ namespace Zxl.Builder
             InitializeComponent();
 
             DockControl dc = new DockControl();
-            dc.TabText = "控件列表";
-            dc.Show(this.dockPanel1, DockState.DockRight);
+            dc.TabText = "工具箱";
+            dc.Show(this.dockPanel1, DockState.DockLeft);
             dc.CloseButton = false;
-            this.dockPanel1.DockRightPortion = 0.2;
+            this.dockPanel1.DockLeftPortion = 0.1;
 
             DockProperty dp = new DockProperty();
             dp.TabText = "控件属性";
-            dp.Show(this.dockPanel1);
-            dp.DockTo(this.dockPanel1, DockStyle.Right);
+            dp.Show(this.dockPanel1, DockState.DockRight);
+            this.dockPanel1.DockRightPortion = 0.2;
 
             DockFormDesigner dfd = new DockFormDesigner();
             dfd.CurrForm = CurrForm;

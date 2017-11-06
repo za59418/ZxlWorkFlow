@@ -173,6 +173,7 @@
             // navBarGroup2
             // 
             this.navBarGroup2.Caption = "控件命令";
+            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiLeft),
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiRight),
@@ -188,53 +189,62 @@
             // 
             this.nbiLeft.Caption = "左对齐";
             this.nbiLeft.Name = "nbiLeft";
+            this.nbiLeft.SmallImage = global::Zxl.Builder.Properties.Resources.left;
             this.nbiLeft.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiLeft_LinkClicked);
             // 
             // nbiRight
             // 
             this.nbiRight.Caption = "右对齐";
             this.nbiRight.Name = "nbiRight";
+            this.nbiRight.SmallImage = global::Zxl.Builder.Properties.Resources.right;
             this.nbiRight.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiRight_LinkClicked);
             // 
             // nbiTop
             // 
             this.nbiTop.Caption = "上对齐";
             this.nbiTop.Name = "nbiTop";
+            this.nbiTop.SmallImage = global::Zxl.Builder.Properties.Resources.top;
             this.nbiTop.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiTop_LinkClicked);
             // 
             // nbiBottom
             // 
             this.nbiBottom.Caption = "下对齐";
             this.nbiBottom.Name = "nbiBottom";
+            this.nbiBottom.SmallImage = global::Zxl.Builder.Properties.Resources.bottom;
             this.nbiBottom.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiBottom_LinkClicked);
             // 
             // nbiWidth
             // 
             this.nbiWidth.Caption = "同一长度";
             this.nbiWidth.Name = "nbiWidth";
+            this.nbiWidth.SmallImage = global::Zxl.Builder.Properties.Resources.width;
             this.nbiWidth.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiWidth_LinkClicked);
             // 
             // nbiHeight
             // 
             this.nbiHeight.Caption = "同一高度";
             this.nbiHeight.Name = "nbiHeight";
+            this.nbiHeight.SmallImage = global::Zxl.Builder.Properties.Resources.height;
             this.nbiHeight.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiHeight_LinkClicked);
             // 
             // nbiHorizontal
             // 
             this.nbiHorizontal.Caption = "水平吸附";
             this.nbiHorizontal.Name = "nbiHorizontal";
+            this.nbiHorizontal.SmallImage = global::Zxl.Builder.Properties.Resources.horizontal;
             this.nbiHorizontal.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiHorizontal_LinkClicked);
             // 
             // nbiVertical
             // 
             this.nbiVertical.Caption = "垂直吸附";
             this.nbiVertical.Name = "nbiVertical";
+            this.nbiVertical.SmallImage = global::Zxl.Builder.Properties.Resources.vertical;
             this.nbiVertical.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiVertical_LinkClicked);
             // 
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "表格命令";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiSelectGrid),
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiGrid),
@@ -254,54 +264,63 @@
             // 
             this.nbiSelectGrid.Caption = "选择表格";
             this.nbiSelectGrid.Name = "nbiSelectGrid";
+            this.nbiSelectGrid.SmallImage = global::Zxl.Builder.Properties.Resources.select;
             this.nbiSelectGrid.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiSelectGrid_LinkClicked);
             // 
             // nbiGrid
             // 
             this.nbiGrid.Caption = "画表格";
             this.nbiGrid.Name = "nbiGrid";
+            this.nbiGrid.SmallImage = global::Zxl.Builder.Properties.Resources.table;
             this.nbiGrid.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiGrid_LinkClicked);
             // 
             // nbiEraser
             // 
             this.nbiEraser.Caption = "橡皮擦";
             this.nbiEraser.Name = "nbiEraser";
+            this.nbiEraser.SmallImage = global::Zxl.Builder.Properties.Resources.eraser;
             this.nbiEraser.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiEraser_LinkClicked);
             // 
             // nbiMerge
             // 
             this.nbiMerge.Caption = "合并单元格";
             this.nbiMerge.Name = "nbiMerge";
+            this.nbiMerge.SmallImage = global::Zxl.Builder.Properties.Resources.merge;
             this.nbiMerge.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiMerge_LinkClicked);
             // 
             // nbiSplit
             // 
             this.nbiSplit.Caption = "拆分单元格";
             this.nbiSplit.Name = "nbiSplit";
+            this.nbiSplit.SmallImage = global::Zxl.Builder.Properties.Resources.split;
             this.nbiSplit.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiSplit_LinkClicked);
             // 
             // nbiRowHeight
             // 
             this.nbiRowHeight.Caption = "行等高";
             this.nbiRowHeight.Name = "nbiRowHeight";
+            this.nbiRowHeight.SmallImage = global::Zxl.Builder.Properties.Resources.height;
             this.nbiRowHeight.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiRowHeight_LinkClicked);
             // 
             // nbiCelWidth
             // 
             this.nbiCelWidth.Caption = "列等宽";
             this.nbiCelWidth.Name = "nbiCelWidth";
+            this.nbiCelWidth.SmallImage = global::Zxl.Builder.Properties.Resources.width;
             this.nbiCelWidth.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiCelWidth_LinkClicked);
             // 
             // nbiPrintSetting
             // 
             this.nbiPrintSetting.Caption = "打印设置";
             this.nbiPrintSetting.Name = "nbiPrintSetting";
+            this.nbiPrintSetting.SmallImage = global::Zxl.Builder.Properties.Resources.print;
             this.nbiPrintSetting.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiPrintSetting_LinkClicked);
             // 
             // nbiProperty
             // 
             this.nbiProperty.Caption = "属性设置";
             this.nbiProperty.Name = "nbiProperty";
+            this.nbiProperty.SmallImage = global::Zxl.Builder.Properties.Resources.setting;
             this.nbiProperty.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiProperty_LinkClicked);
             // 
             // nbiBgImg
@@ -314,12 +333,14 @@
             // 
             this.nbiAddPage.Caption = "增加一页";
             this.nbiAddPage.Name = "nbiAddPage";
+            this.nbiAddPage.SmallImage = global::Zxl.Builder.Properties.Resources.pageAdd;
             this.nbiAddPage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiAddPage_LinkClicked);
             // 
             // nbiDelPage
             // 
             this.nbiDelPage.Caption = "删除一页";
             this.nbiDelPage.Name = "nbiDelPage";
+            this.nbiDelPage.SmallImage = global::Zxl.Builder.Properties.Resources.pageDel;
             this.nbiDelPage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiDelPage_LinkClicked);
             // 
             // DockControl
@@ -331,7 +352,7 @@
             this.Name = "DockControl";
             this.ShowIcon = false;
             this.TabText = "活动列表";
-            this.Text = "控件列表";
+            this.Text = "工具箱";
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.ResumeLayout(false);
 
