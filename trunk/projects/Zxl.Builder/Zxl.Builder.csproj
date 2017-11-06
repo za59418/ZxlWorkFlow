@@ -75,12 +75,6 @@
     <Compile Include="Ctrl\businessdata\DockBusinessDataDetail.Designer.cs">
       <DependentUpon>DockBusinessDataDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\business\businessFormCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\businessFormCtrl.Designer.cs">
-      <DependentUpon>businessFormCtrl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ctrl\business\DockControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,18 +92,6 @@
     </Compile>
     <Compile Include="Ctrl\business\DockBusiness.Designer.cs">
       <DependentUpon>DockBusiness.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\business\businessFormCtrl2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\businessFormCtrl2.Designer.cs">
-      <DependentUpon>businessFormCtrl2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\business\businessProcessCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\businessProcessCtrl.Designer.cs">
-      <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\business\DockBusinessForm.cs">
       <SubType>Form</SubType>
@@ -224,12 +206,6 @@
     <Compile Include="Ctrl\org\DockOrg.Designer.cs">
       <DependentUpon>DockOrg.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\business\businessRoleCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\businessRoleCtrl.Designer.cs">
-      <DependentUpon>businessRoleCtrl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ctrl\role\DockRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,12 +223,6 @@
     </Compile>
     <Compile Include="Ctrl\emptyCtrl.Designer.cs">
       <DependentUpon>emptyCtrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\business\businessCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\businessCtrl.Designer.cs">
-      <DependentUpon>businessCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\user\DockUserDetail.cs">
       <SubType>Form</SubType>
@@ -352,9 +322,6 @@
     <EmbeddedResource Include="Ctrl\businessdata\DockBusinessDataDetail.resx">
       <DependentUpon>DockBusinessDataDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\businessFormCtrl.resx">
-      <DependentUpon>businessFormCtrl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockControl.resx">
       <DependentUpon>DockControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,12 +330,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockBusiness.resx">
       <DependentUpon>DockBusiness.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\businessFormCtrl2.resx">
-      <DependentUpon>businessFormCtrl2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\businessProcessCtrl.resx">
-      <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockBusinessForm.resx">
       <DependentUpon>DockBusinessForm.cs</DependentUpon>
@@ -415,17 +376,11 @@
     <EmbeddedResource Include="Ctrl\org\DockOrgDetail.resx">
       <DependentUpon>DockOrgDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\businessRoleCtrl.resx">
-      <DependentUpon>businessRoleCtrl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\role\DockRole.resx">
       <DependentUpon>DockRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\role\DockRoleDetail.resx">
       <DependentUpon>DockRoleDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\businessCtrl.resx">
-      <DependentUpon>businessCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\user\DockUser.resx">
       <DependentUpon>DockUser.cs</DependentUpon>
@@ -649,7 +604,54 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\width.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\height.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eraser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\merge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\split.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pageAdd .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pageDel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pageAdd.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
