@@ -62,12 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\businessdata\businessDataDetailCtrl.Designer.cs">
-      <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ctrl\businessdata\DockBusinessData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +73,18 @@
     </Compile>
     <Compile Include="Ctrl\businessdata\DockBusinessDataDetail.Designer.cs">
       <DependentUpon>DockBusinessDataDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\businessFormCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\businessFormCtrl.Designer.cs">
+      <DependentUpon>businessFormCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockControl.Designer.cs">
+      <DependentUpon>DockControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\business\DockActivity.cs">
       <SubType>Form</SubType>
@@ -109,6 +115,12 @@
     </Compile>
     <Compile Include="Ctrl\business\DockBusinessForm.Designer.cs">
       <DependentUpon>DockBusinessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockFormDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockFormDesigner.Designer.cs">
+      <DependentUpon>DockFormDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\business\DockProcessDesigner.cs">
       <SubType>Form</SubType>
@@ -179,12 +191,6 @@
     <Compile Include="Ctrl\metadata\DockMetaDataDetail.Designer.cs">
       <DependentUpon>DockMetaDataDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\metadata\metaDataDetailCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\metadata\metaDataDetailCtrl.Designer.cs">
-      <DependentUpon>metaDataDetailCtrl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ctrl\org\DockOrgDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,18 +202,6 @@
     </Compile>
     <Compile Include="Ctrl\org\DockOrg.Designer.cs">
       <DependentUpon>DockOrg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\org\orgDetailCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\org\orgDetailCtrl.Designer.cs">
-      <DependentUpon>orgDetailCtrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\org\orgCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\org\orgCtrl.Designer.cs">
-      <DependentUpon>orgCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\business\businessRoleCtrl.cs">
       <SubType>UserControl</SubType>
@@ -226,24 +220,6 @@
     </Compile>
     <Compile Include="Ctrl\role\DockRoleDetail.Designer.cs">
       <DependentUpon>DockRoleDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\role\roleDetailCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\role\roleDetailCtrl.Designer.cs">
-      <DependentUpon>roleDetailCtrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\role\roleCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\role\roleCtrl.Designer.cs">
-      <DependentUpon>roleCtrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\businessdata\businessDataCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\businessdata\businessDataCtrl.Designer.cs">
-      <DependentUpon>businessDataCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\emptyCtrl.cs">
       <SubType>UserControl</SubType>
@@ -268,24 +244,6 @@
     </Compile>
     <Compile Include="Ctrl\user\DockUser.Designer.cs">
       <DependentUpon>DockUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\user\userDetailCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\user\userDetailCtrl.Designer.cs">
-      <DependentUpon>userDetailCtrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\user\userCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\user\userCtrl.Designer.cs">
-      <DependentUpon>userCtrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\metadata\metaDataCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ctrl\metadata\metaDataCtrl.Designer.cs">
-      <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Dlg\DlgEditBusinessForm.cs">
       <SubType>Form</SubType>
@@ -367,14 +325,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Ctrl\businessdata\businessDataDetailCtrl.resx">
-      <DependentUpon>businessDataDetailCtrl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\businessdata\DockBusinessData.resx">
       <DependentUpon>DockBusinessData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\businessdata\DockBusinessDataDetail.resx">
       <DependentUpon>DockBusinessDataDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\businessFormCtrl.resx">
+      <DependentUpon>businessFormCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockControl.resx">
+      <DependentUpon>DockControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockActivity.resx">
       <DependentUpon>DockActivity.cs</DependentUpon>
@@ -390,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockBusinessForm.resx">
       <DependentUpon>DockBusinessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockFormDesigner.resx">
+      <DependentUpon>DockFormDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockProcessDesigner.resx">
       <DependentUpon>DockProcessDesigner.cs</DependentUpon>
@@ -421,20 +385,11 @@
     <EmbeddedResource Include="Ctrl\metadata\DockMetaDataDetail.resx">
       <DependentUpon>DockMetaDataDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\metadata\metaDataDetailCtrl.resx">
-      <DependentUpon>metaDataDetailCtrl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\org\DockOrg.resx">
       <DependentUpon>DockOrg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\org\DockOrgDetail.resx">
       <DependentUpon>DockOrgDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\org\orgDetailCtrl.resx">
-      <DependentUpon>orgDetailCtrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\org\orgCtrl.resx">
-      <DependentUpon>orgCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\businessRoleCtrl.resx">
       <DependentUpon>businessRoleCtrl.cs</DependentUpon>
@@ -445,15 +400,6 @@
     <EmbeddedResource Include="Ctrl\role\DockRoleDetail.resx">
       <DependentUpon>DockRoleDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\role\roleDetailCtrl.resx">
-      <DependentUpon>roleDetailCtrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\role\roleCtrl.resx">
-      <DependentUpon>roleCtrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\businessdata\businessDataCtrl.resx">
-      <DependentUpon>businessDataCtrl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\businessCtrl.resx">
       <DependentUpon>businessCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -462,15 +408,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\user\DockUserDetail.resx">
       <DependentUpon>DockUserDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\user\userDetailCtrl.resx">
-      <DependentUpon>userDetailCtrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\user\userCtrl.resx">
-      <DependentUpon>userCtrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\metadata\metaDataCtrl.resx">
-      <DependentUpon>metaDataCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dlg\DlgEditBusinessForm.resx">
       <DependentUpon>DlgEditBusinessForm.cs</DependentUpon>
@@ -523,6 +460,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <EmbeddedResource Include="Form\FormDesigner.Config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

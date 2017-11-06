@@ -12,7 +12,7 @@ namespace FormDesigner
 
         private DAP2ControlMapping()
         {
-            _xmlparser = new XmlParser(AppDomain.CurrentDomain.BaseDirectory + @"Form//DistFormDesigner.Config");
+            _xmlparser = new XmlParser(AppDomain.CurrentDomain.BaseDirectory + @"Form//FormDesigner.Config");
         }
 
         private static DAP2ControlMapping _dAP2ControlMapping;
