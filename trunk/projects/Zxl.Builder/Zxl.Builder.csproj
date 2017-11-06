@@ -104,6 +104,12 @@
     <Compile Include="Ctrl\business\businessProcessCtrl.Designer.cs">
       <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ctrl\business\DockBusinessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusinessForm.Designer.cs">
+      <DependentUpon>DockBusinessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\business\DockProcessDesigner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="Ctrl\business\DockBusinessProcess.Designer.cs">
       <DependentUpon>DockBusinessProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusinessRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\DockBusinessRole.Designer.cs">
+      <DependentUpon>DockBusinessRole.cs</DependentUpon>
     </Compile>
     <Compile Include="Ctrl\business\formDesigner\DAP2ControlMapping.cs" />
     <Compile Include="Ctrl\business\formDesigner\Dap2xProvoider.cs" />
@@ -376,11 +388,17 @@
     <EmbeddedResource Include="Ctrl\business\businessProcessCtrl.resx">
       <DependentUpon>businessProcessCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockBusinessForm.resx">
+      <DependentUpon>DockBusinessForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockProcessDesigner.resx">
       <DependentUpon>DockProcessDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockBusinessProcess.resx">
       <DependentUpon>DockBusinessProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\DockBusinessRole.resx">
+      <DependentUpon>DockBusinessRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\form\Controls.resx">
       <DependentUpon>Controls.cs</DependentUpon>

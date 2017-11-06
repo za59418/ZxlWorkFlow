@@ -1,53 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
 using Zxl.Business.Model;
 using Zxl.Business.Interface;
 using Zxl.Business.Impl;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
 using Zxl.Data;
 
 namespace Zxl.Builder
 {
-    public partial class orgDetailCtrl : UserControl
+    public partial class DockBusinessRole : DockContent
     {
-
         public IUserService UserService = new UserService();
-
-        public orgDetailCtrl()
+        public DockBusinessRole()
         {
             InitializeComponent();
         }
 
-        private ORUP_ORGANIZATION _currOrg;
-        public ORUP_ORGANIZATION CurrOrg
+        private SYS_BUSINESSROLE _currRole;
+        public SYS_BUSINESSROLE CurrRole
         {
             get
             {
-                return _currOrg;
+                return _currRole;
             }
             set
             {
-                _currOrg = value;
-                txtOrgName.Text = _currOrg.ORGNAME;
-                RefreshUserOrgTree(_currOrg);
+                _currRole = value;
+                txtRoleName.Text = _currRole.ROLENAME;
+                RefreshUserRoleTree(_currRole);
             }
         }
 
         #region 详情树点击事件
-        private void treeUserOrg_MouseUp(object sender, MouseEventArgs e)
+        private void treeUserRole_MouseUp(object sender, MouseEventArgs e)
         {
             // 复选框控制
-            TreeListHitInfo hitInfo = treeUserOrg.CalcHitInfo(new Point(e.X, e.Y));
+            TreeListHitInfo hitInfo = treeUserRole.CalcHitInfo(new Point(e.X, e.Y));
             TreeListNode node = hitInfo.Node;
-            treeUserOrg.FocusedNode = node;
-            treeUserOrg.UncheckAll();
+            treeUserRole.FocusedNode = node;
+            treeUserRole.UncheckAll();
             if (null != node)
                 node.CheckState = CheckState.Checked;
             else
@@ -56,7 +56,7 @@ namespace Zxl.Builder
             //右键菜单控制
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                treeUserOrg.ContextMenuStrip = null;
+                treeUserRole.ContextMenuStrip = null;
                 ORUP_USER temp = node.Tag as ORUP_USER;
 
                 if (node.Level == 0) // 根root
@@ -69,7 +69,7 @@ namespace Zxl.Builder
                     tsmiAddUser.Visible = false;
                     tsmiDelUser.Visible = true;
                 }
-                treeUserOrg.ContextMenuStrip = contextMenuRoleDetail;
+                treeUserRole.ContextMenuStrip = contextMenuRoleDetail;
             }
         }
 
@@ -83,42 +83,41 @@ namespace Zxl.Builder
                 List<ORUP_USER> list = dlg.SelectedItems;
                 foreach (ORUP_USER user in list)
                 {
-                    UserService.SaveUserOrg(user.ID, CurrOrg.ID);
+                    UserService.SaveUserRole(user.ID, _currRole.ID);
                 }
             }
-            RefreshUserOrgTree(CurrOrg);
+            RefreshUserRoleTree(_currRole);
         }
 
         private void cmsDelUser_Click(object sender, EventArgs e)
         {
             //当前选中的用户
-            ORUP_USERORGANIZATION uo = treeUserOrg.FocusedNode.Tag as ORUP_USERORGANIZATION;
-            UserService.DelUserOrg(uo.ID);
-            RefreshUserOrgTree(CurrOrg);
+            ORUP_USERROLE ur = treeUserRole.FocusedNode.Tag as ORUP_USERROLE;
+            UserService.DelUserRole(ur.ID);
+            RefreshUserRoleTree(_currRole);
         }
 
         /// <summary>
         /// 刷新右侧详情树
         /// </summary>
         /// <param name="currBusinessData">选中的业务数据</param>
-        void RefreshUserOrgTree(ORUP_ORGANIZATION currOrg)
+        void RefreshUserRoleTree(SYS_BUSINESSROLE currRole)
         {
-            treeUserOrg.Nodes.Clear();
+            treeUserRole.Nodes.Clear();
             // 根节点
-            TreeListNode root = treeUserOrg.AppendNode(new object[] { currOrg.ORGNAME }, -1);
-            root.Tag = currOrg;
-            List<ORUP_USERORGANIZATION> userOrgs = UserService.GetUserOrgsByOrgID(currOrg.ID);
-            foreach (ORUP_USERORGANIZATION uo in userOrgs)
+            TreeListNode root = treeUserRole.AppendNode(new object[] { currRole.ROLENAME }, -1);
+            root.Tag = currRole;
+            List<ORUP_USERROLE> userRoles = UserService.GetUserRolesByRoleID(currRole.ID);
+            foreach (ORUP_USERROLE ur in userRoles)
             {
-                ORUP_USER user = UserService.GetUser(uo.USERID);
-                TreeListNode node = treeUserOrg.AppendNode(new object[] { user.USERNAME, user.NICKNAME, user.MOBILE, user.PHONE, user.EMAIL, user.CREATETIME }, root);
-                node.Tag = uo;
+                ORUP_USER user = UserService.GetUser(ur.UserID);
+                TreeListNode node = treeUserRole.AppendNode(new object[] { user.USERNAME, user.NICKNAME, user.MOBILE, user.PHONE, user.EMAIL, user.CREATETIME }, root);
+                node.Tag = ur;
             }
 
-            treeUserOrg.ExpandAll();
+            treeUserRole.ExpandAll();
         }
 
         #endregion 详情树点击事件
-
     }
 }

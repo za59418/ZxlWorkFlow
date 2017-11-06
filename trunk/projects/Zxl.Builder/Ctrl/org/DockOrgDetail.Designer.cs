@@ -169,7 +169,7 @@
             // 
             this.tsmiAddUser.Image = global::Zxl.Builder.Properties.Resources.add1;
             this.tsmiAddUser.Name = "tsmiAddUser";
-            this.tsmiAddUser.Size = new System.Drawing.Size(152, 22);
+            this.tsmiAddUser.Size = new System.Drawing.Size(124, 22);
             this.tsmiAddUser.Text = "添加用户";
             this.tsmiAddUser.Click += new System.EventHandler(this.cmsAddUser_Click);
             // 
@@ -177,7 +177,7 @@
             // 
             this.tsmiDelUser.Image = global::Zxl.Builder.Properties.Resources.del1;
             this.tsmiDelUser.Name = "tsmiDelUser";
-            this.tsmiDelUser.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDelUser.Size = new System.Drawing.Size(124, 22);
             this.tsmiDelUser.Text = "删除用户";
             this.tsmiDelUser.Click += new System.EventHandler(this.cmsDelUser_Click);
             // 
@@ -191,6 +191,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.txtOrgName);

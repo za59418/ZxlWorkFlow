@@ -34,7 +34,6 @@ namespace Zxl.Builder
             treeBusiness.ImageList = imageList1;
 
             RefreshBusinessTree();
-
         }
 
         public FormMain MainForm { get; set; }
@@ -85,29 +84,23 @@ namespace Zxl.Builder
 
         private void treeBusiness_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
             if (e.Node.Tag is SYS_BUSINESSROLE)
             {
-                businessRoleCtrl ctrl = new businessRoleCtrl();
-                ctrl.Dock = DockStyle.Fill;
-                ctrl.CurrRole = e.Node.Tag as SYS_BUSINESSROLE;
-                //MainForm.AddTab(ctrl.CurrRole.ROLENAME, ctrl);
+                DockBusinessRole dbr = new DockBusinessRole();
+                dbr.CurrRole = CurrRole;
+                dbr.TabText = CurrRole.ROLENAME;
+                dbr.Show(MainForm.MainDockPanel);
             }
             else if (e.Node.Tag is SYS_BUSINESSFORM)
             {
-                businessFormCtrl2 ctrl = new businessFormCtrl2();
-                ctrl.Dock = DockStyle.Fill;
-                ctrl.CurrForm = e.Node.Tag as SYS_BUSINESSFORM;
-                //MainForm.AddTab(ctrl.CurrForm.FORMNAME, ctrl);
+                DockBusinessForm dbf = new DockBusinessForm(CurrForm);
+                dbf.TabText = CurrForm.FORMNAME;
+                dbf.Show(MainForm.MainDockPanel);
             }
             else if (e.Node.Tag is SYS_BUSINESSPROCESS)
             {
-                //businessProcessCtrl ctrl = new businessProcessCtrl();
-                //ctrl.Dock = DockStyle.Fill;
-                //ctrl.CurrProcess = e.Node.Tag as SYS_BUSINESSPROCESS;
-                //MainForm.AddTab(ctrl.CurrProcess.PROCESSNAME, ctrl);
-
-                DockBusinessProcess dbp = new DockBusinessProcess(e.Node.Tag as SYS_BUSINESSPROCESS);
+                DockBusinessProcess dbp = new DockBusinessProcess(CurrProcess);
+                dbp.TabText = CurrProcess.PROCESSNAME;
                 dbp.Show(MainForm.MainDockPanel);
             }
         }
