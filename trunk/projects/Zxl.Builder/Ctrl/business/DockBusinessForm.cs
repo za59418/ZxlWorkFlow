@@ -27,10 +27,16 @@ namespace Zxl.Builder
             dc.TabText = "控件列表";
             dc.Show(this.dockPanel1, DockState.DockRight);
             dc.CloseButton = false;
-            this.dockPanel1.DockRightPortion = 0.1;
+            this.dockPanel1.DockRightPortion = 0.2;
+
+            DockProperty dp = new DockProperty();
+            dp.TabText = "控件属性";
+            dp.Show(this.dockPanel1);
+            dp.DockTo(this.dockPanel1, DockStyle.Right);
 
             DockFormDesigner dfd = new DockFormDesigner();
             dfd.CurrForm = CurrForm;
+            dfd.DockProperty = dp; ///////////////////初使化属性框
             dfd.Show(this.dockPanel1);
         }
     }
