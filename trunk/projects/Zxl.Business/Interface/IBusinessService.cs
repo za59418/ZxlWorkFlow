@@ -53,6 +53,7 @@ namespace Zxl.Business.Interface
         int DelMetaDataDetail(int ID);
 
         List<SYS_BUSINESSDATA> BusinessDatas();
+        SYS_BUSINESSDATA BusinessData(int BusinessDataID);
         List<SYS_BUSINESSDATADETAIL> BusinessDataDetails(int BusinessDataID, int ParentID);
         SYS_BUSINESSDATADETAIL BusinessDataDetail(int BusinessDataID, int MetaDataID);
         int DelBusinessData(int ID);
