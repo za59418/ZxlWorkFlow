@@ -78,7 +78,7 @@ namespace Zxl.Builder
             dConsole.HideOnClose = true;
             dConsole.Show(MainDockPanel, DockState.DockBottom);
 
-            dmd.TabText = "原数据";
+            dmd.TabText = "元数据";
             dmd.MainForm = this;
             dmd.HideOnClose = true;
             dmd.Show(MainDockPanel, DockState.DockLeft);
@@ -93,7 +93,7 @@ namespace Zxl.Builder
             db.HideOnClose = true;
             db.Show(MainDockPanel, DockState.DockLeft);
 
-            dOrg.TabText = "机构";
+            dOrg.TabText = "组织机构";
             dOrg.MainForm = this;
             dOrg.Show(this.dockPanel1);
             dOrg.HideOnClose = true;
