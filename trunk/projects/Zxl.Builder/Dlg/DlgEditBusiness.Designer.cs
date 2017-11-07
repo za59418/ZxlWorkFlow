@@ -36,10 +36,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.tbDescription = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.cbBusinessData = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tbSortIndex = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbDescription = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -68,14 +70,14 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(90, 20);
+            this.tbName.Location = new System.Drawing.Point(106, 20);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(219, 22);
             this.tbName.TabIndex = 2;
             // 
             // tbShortName
             // 
-            this.tbShortName.Location = new System.Drawing.Point(90, 60);
+            this.tbShortName.Location = new System.Drawing.Point(106, 60);
             this.tbShortName.Name = "tbShortName";
             this.tbShortName.Size = new System.Drawing.Size(219, 22);
             this.tbShortName.TabIndex = 3;
@@ -83,29 +85,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 20);
+            this.label1.Location = new System.Drawing.Point(37, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 14);
+            this.label1.Size = new System.Drawing.Size(67, 14);
             this.label1.TabIndex = 4;
-            this.label1.Text = "名称：";
+            this.label1.Text = "业务名称：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 60);
+            this.label2.Location = new System.Drawing.Point(13, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 14);
+            this.label2.Size = new System.Drawing.Size(91, 14);
             this.label2.TabIndex = 5;
-            this.label2.Text = "简称：";
+            this.label2.Text = "绑定业务数据：";
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.button1);
             this.panelControl1.Controls.Add(this.button2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 183);
+            this.panelControl1.Location = new System.Drawing.Point(0, 217);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(364, 42);
+            this.panelControl1.Size = new System.Drawing.Size(358, 42);
             this.panelControl1.TabIndex = 6;
             // 
             // panelControl2
@@ -113,6 +115,8 @@
             this.panelControl2.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.cbBusinessData);
+            this.panelControl2.Controls.Add(this.label5);
             this.panelControl2.Controls.Add(this.tbSortIndex);
             this.panelControl2.Controls.Add(this.label4);
             this.panelControl2.Controls.Add(this.tbDescription);
@@ -124,28 +128,28 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(364, 183);
+            this.panelControl2.Size = new System.Drawing.Size(358, 217);
             this.panelControl2.TabIndex = 7;
             // 
-            // tbDescription
+            // cbBusinessData
             // 
-            this.tbDescription.Location = new System.Drawing.Point(90, 100);
-            this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(219, 22);
-            this.tbDescription.TabIndex = 6;
+            this.cbBusinessData.Location = new System.Drawing.Point(106, 100);
+            this.cbBusinessData.Name = "cbBusinessData";
+            this.cbBusinessData.Size = new System.Drawing.Size(219, 22);
+            this.cbBusinessData.TabIndex = 10;
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 14);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "描述：";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 14);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "业务简称：";
             // 
             // tbSortIndex
             // 
-            this.tbSortIndex.Location = new System.Drawing.Point(90, 140);
+            this.tbSortIndex.Location = new System.Drawing.Point(106, 180);
             this.tbSortIndex.Name = "tbSortIndex";
             this.tbSortIndex.Size = new System.Drawing.Size(219, 22);
             this.tbSortIndex.TabIndex = 8;
@@ -153,17 +157,33 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 140);
+            this.label4.Location = new System.Drawing.Point(61, 180);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 14);
             this.label4.TabIndex = 9;
             this.label4.Text = "排序：";
             // 
+            // tbDescription
+            // 
+            this.tbDescription.Location = new System.Drawing.Point(106, 140);
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.Size = new System.Drawing.Size(219, 22);
+            this.tbDescription.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(37, 140);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 14);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "业务描述：";
+            // 
             // DlgEditBusiness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 225);
+            this.ClientSize = new System.Drawing.Size(358, 259);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -198,5 +218,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbBusinessData;
+        private System.Windows.Forms.Label label5;
     }
 }

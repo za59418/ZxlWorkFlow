@@ -103,6 +103,16 @@ namespace Zxl.Builder.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap bgImg {
+            get {
+                object obj = ResourceManager.GetObject("bgImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap bottom {
             get {
                 object obj = ResourceManager.GetObject("bottom", resourceCulture);
