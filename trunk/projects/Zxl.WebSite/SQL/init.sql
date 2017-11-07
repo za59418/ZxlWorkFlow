@@ -62,6 +62,7 @@ create table sys_business
 (
 	id integer primary key,
 	REF_GROUP_ID number,
+	REF_BUSINESSDATA_ID number,
 	BUSINESSNAME varchar2(100),
 	SHORTNAME varchar2(50),       
 	createtime date,
