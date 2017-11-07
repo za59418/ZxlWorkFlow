@@ -314,6 +314,16 @@ namespace Zxl.Business.Impl
             return list;
         }
 
+        public SYS_BUSINESSDATA BusinessData(int BusinessDataID)
+        {
+            SYS_BUSINESSDATA result = null;
+            using (ORMHandler orm = Zxl.Data.DatabaseManager.ORMHandler)
+            {
+                result = orm.Init<SYS_BUSINESSDATA>("where ID=" + BusinessDataID);
+            }
+            return result;
+        }
+
         public List<SYS_BUSINESSDATADETAIL> BusinessDataDetails(int BusinessDataID, int ParentID)
         {
             List<SYS_BUSINESSDATADETAIL> list = null;
