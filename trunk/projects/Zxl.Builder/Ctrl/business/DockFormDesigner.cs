@@ -45,7 +45,7 @@ namespace Zxl.Builder
             delegateFormItemChange = new FormItemChange(DapxControlChange);
             Dap2xProvoider.FormItemChangeFun(Marshal.GetFunctionPointerForDelegate(delegateFormItemChange));
 
-            DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute();//默认空控件属性
+            DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute(); // 默认空控件属性
         }
 
         private bool _itemChanged = false;
@@ -54,6 +54,7 @@ namespace Zxl.Builder
             get { return _itemChanged; }
             set { _itemChanged = value; }
         }
+
         public DockProperty DockProperty { get; set; }
         public DockCurrBusinessData DockCurrBusinessData { get; set; }
 
@@ -91,7 +92,6 @@ namespace Zxl.Builder
                 MessageBox.Show(E.Message, "系统提示", MessageBoxButtons.OK);
             }
         }
-
 
         private void DockFormDesigner_Resize(object sender, EventArgs e)
         {
