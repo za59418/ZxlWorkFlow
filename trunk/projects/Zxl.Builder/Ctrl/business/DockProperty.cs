@@ -13,6 +13,7 @@ using DevExpress.XtraNavBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraVerticalGrid.Rows;
+using DevExpress.XtraVerticalGrid;
 
 using FormDesigner;
 using FormDesigner.Attribute;
@@ -37,6 +38,14 @@ namespace Zxl.Builder
         {
             get { return _selectedControl; }
             set { _selectedControl = value; }
+        }
+
+        public PropertyGridControl PropertyGridControl 
+        {
+            get
+            {
+                return this.propertyGridControl1;
+            }
         }
 
 

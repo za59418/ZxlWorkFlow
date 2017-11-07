@@ -16,7 +16,9 @@ using Zxl.Business.Interface;
 using Zxl.Business.Impl;
 using Zxl.Data;
 using Zxl.WorkflowDesigner;
+
 using FormDesigner;
+using FormDesigner.Attribute;
 
 
 namespace Zxl.Builder
@@ -42,6 +44,8 @@ namespace Zxl.Builder
             //属性
             delegateFormItemChange = new FormItemChange(DapxControlChange);
             Dap2xProvoider.FormItemChangeFun(Marshal.GetFunctionPointerForDelegate(delegateFormItemChange));
+
+            DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute();//默认空控件属性
         }
 
         private bool _itemChanged = false;
@@ -51,6 +55,7 @@ namespace Zxl.Builder
             set { _itemChanged = value; }
         }
         public DockProperty DockProperty { get; set; }
+        public DockCurrBusinessData DockCurrBusinessData { get; set; }
 
         public void DapxControlChange(Dap2xProvoider.FormItemInfo itemInfo)
         {
@@ -64,6 +69,22 @@ namespace Zxl.Builder
                     DockProperty.SelectedControl = itemInfo;//
                     DockProperty.FormItemProperty();//
                 }
+
+                if (DockCurrBusinessData.selectedProperty != null && DockCurrBusinessData.selectedMetadata != null)
+                {
+                    SingleDataBindAttribute dataBindAttribute = new SingleDataBindAttribute(itemInfo.formItemID.ToString());
+                    dataBindAttribute.Value = "/" + DockCurrBusinessData.selectedMetadata.NAME + "/" + DockCurrBusinessData.selectedProperty.NAME;
+
+                    //if (!formDataCollection.ContainsKey(itemInfo.formItemID.ToString()))
+                    //{
+                    //    formDataCollection.Add(itemInfo.formItemID.ToString(), dataBindAttribute);
+                    //}
+
+                    DockCurrBusinessData.selectedProperty = null;
+                    DockCurrBusinessData.selectedMetadata = null;
+                }
+                this.Focus();
+
             }
             catch (Exception E)
             {
