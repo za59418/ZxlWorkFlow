@@ -17,6 +17,7 @@ using DevExpress.XtraVerticalGrid;
 
 using FormDesigner;
 using FormDesigner.Attribute;
+using FormDesigner.Common;
 
 namespace Zxl.Builder
 {
@@ -82,10 +83,10 @@ namespace Zxl.Builder
 
                         }
                         //点击控件显示其 绑定信息
-                        //if (_selectedControl.formItemType == 1 && Dap2xProvoider.GetSelectedFormItemsCount()==1)
-                        //{
-                        //    attr.Text = attr.DataItem;
-                        //}
+                        if (_selectedControl.formItemType == 1 && Dap2xProvoider.GetSelectedFormItemsCount() == 1)
+                        {
+                            attr.Text = attr.DataItem;
+                        }
 
                         //get the contorl's color
                         Int32 oldColor;

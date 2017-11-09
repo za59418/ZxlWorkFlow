@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace FormDesigner
+namespace FormDesigner.Common
 {
     /// <summary>
     /// xml≈‰÷√¿‡

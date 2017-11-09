@@ -67,14 +67,17 @@ namespace Zxl.Builder
         void RefreshBusinessDataDetailTree(SYS_BUSINESSDATA currBusinessData)
         {
             treeListDetail.Nodes.Clear();
-            // 根节点
-            SYS_BUSINESSDATADETAIL obj = new SYS_BUSINESSDATADETAIL();
-            obj.ID = 0;
-            TreeListNode root = treeListDetail.AppendNode(new object[] { currBusinessData.NAME }, -1);
-            root.Tag = obj;
+            if (null!= currBusinessData)
+            {
+                // 根节点
+                SYS_BUSINESSDATADETAIL obj = new SYS_BUSINESSDATADETAIL();
+                obj.ID = 0;
+                TreeListNode root = treeListDetail.AppendNode(new object[] { currBusinessData.NAME }, -1);
+                root.Tag = obj;
 
-            CascadeAddNode(currBusinessData.ID, 0, root);
-            treeListDetail.ExpandAll();
+                CascadeAddNode(currBusinessData.ID, 0, root);
+                treeListDetail.ExpandAll();
+            }
         }
 
         /// <summary>
