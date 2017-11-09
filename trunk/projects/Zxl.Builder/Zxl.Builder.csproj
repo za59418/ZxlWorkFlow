@@ -140,8 +140,28 @@
     <Compile Include="Ctrl\business\formDesigner\Attribute\SingleDataBindAttribute.cs" />
     <Compile Include="Ctrl\business\formDesigner\Attribute\TableContorlAttribute.cs" />
     <Compile Include="Ctrl\business\formDesigner\Attribute\ValidatesAttribute.cs" />
-    <Compile Include="Ctrl\business\formDesigner\ControlItemAttribute.cs" />
-    <Compile Include="Ctrl\business\formDesigner\ControlsDictionary.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\ControlsDictionary.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\DAP2ControlsCollection.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\DistControlCollection.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\DistFormXmlParser.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\FormXmlFacade.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\PageProperty.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\XmlParser.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Attribute\ControlItemAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyComboxEditItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyControlExpression.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyControlScript.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyControlTypeItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyDataItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyDataSource.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyDesignItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyLabelBorderItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyNumberRuleItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyPrintItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyReadOnlyItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyRelationControlItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyRightItem.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyValidateItem.cs" />
     <Compile Include="Ctrl\business\formDesigner\DAP2ControlMapping.cs" />
     <Compile Include="Ctrl\business\formDesigner\Dap2xProvoider.cs" />
     <Compile Include="Ctrl\business\formDesigner\FormDesignerProvider.cs" />
@@ -151,19 +171,6 @@
     <Compile Include="Ctrl\business\formDesigner\OriginalStyleFormDesigner.cs" />
     <Compile Include="Ctrl\business\formDesigner\UITextBoxEditor.cs" />
     <Compile Include="Ctrl\business\formDesigner\WordStyleFormDesigner.cs" />
-    <Compile Include="Ctrl\business\formDesigner\XmlParser.cs" />
-    <Compile Include="Ctrl\business\form\Controls.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\form\Controls.Designer.cs">
-      <DependentUpon>Controls.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Ctrl\business\form\Forms.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ctrl\business\form\Forms.Designer.cs">
-      <DependentUpon>Forms.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ctrl\configCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -357,12 +364,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\business\DockProperty.resx">
       <DependentUpon>DockProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\form\Controls.resx">
-      <DependentUpon>Controls.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\business\form\Forms.resx">
-      <DependentUpon>Forms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\configCtrl.resx">
       <DependentUpon>configCtrl.cs</DependentUpon>

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FormDesigner
+namespace FormDesigner.Common
 {
     public class ControlsDictionary : Dictionary<int, string>
     {

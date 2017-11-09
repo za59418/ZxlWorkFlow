@@ -19,6 +19,7 @@ using Zxl.WorkflowDesigner;
 
 using FormDesigner;
 using FormDesigner.Attribute;
+using FormDesigner.Common;
 
 
 namespace Zxl.Builder
@@ -36,7 +37,23 @@ namespace Zxl.Builder
         public delegate void FormItemChange(Dap2xProvoider.FormItemInfo itemIinfo);
         private FormItemChange delegateFormItemChange;
 
+
+        public static List<string> controlIdItems = new List<string>();
+        public static ControlsDictionary controlsDictionary = new ControlsDictionary();
+
         private void DockFormDesigner_Load(object sender, EventArgs e)
+        {            
+            InitForm();
+            InitSheet();
+            if (null != CurrForm.CONTENT && CurrForm.CONTENT.Length > 0)
+            {
+                string s = System.Text.Encoding.Default.GetString(CurrForm.CONTENT);
+                new FormXmlFacade().ResetXml(this, s);
+            }
+
+        }
+
+        private void InitForm()
         {
             //画表单
             Dap2xProvoider.CreateFormEditor(this.Handle);
@@ -47,6 +64,21 @@ namespace Zxl.Builder
 
             DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute(); // 默认空控件属性
         }
+
+        private void InitSheet()
+        {
+            if (null != CurrForm.SHEET)
+            {
+                int nLen = (int)CurrForm.SHEET.Length;
+
+                // 通过内存加载
+                IntPtr xxBuffer = Marshal.AllocHGlobal(nLen);
+                Marshal.Copy(CurrForm.SHEET, 0, xxBuffer, nLen);
+                Dap2xProvoider.LoadSheetFromBuffer(xxBuffer);
+                Marshal.FreeHGlobal(xxBuffer);
+            }
+        }
+
 
         private bool _itemChanged = false;
         public bool ItemChanged
