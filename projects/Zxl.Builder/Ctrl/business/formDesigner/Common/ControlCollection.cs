@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FormDesigner.Common
 {
-    public class DAP2ControlsCollection : Dictionary<string, object>
+    public class ControlCollection : Dictionary<string, object>
     {
     }
 }

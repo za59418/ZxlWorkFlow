@@ -179,7 +179,7 @@ namespace FormDesigner
         //[DllImport(@"SheetBase_Word.dll", EntryPoint = "InsertTabPage")]
         public static bool InsertTabPage(Int32 formitemid, String caption, int page)
         {
-            // weixq20100916 word 设计器目前不支持此入口，先屏蔽掉DllImport, 使用静态方法.
+            // word 设计器目前不支持此入口，先屏蔽掉DllImport, 使用静态方法.
             return false;
         }
 
@@ -400,8 +400,7 @@ namespace FormDesigner
 
         /////////////////////////////////////////////////////////////////////////////////
         /*
-         *  author      :   weixq
-         *  function    :   小强将原来的SheetBase_Word.dll替换原来的SheetBase_Word.dll
+         *  function    :   将原来的SheetBase_Word.dll替换原来的SheetBase_Word.dll
          *                  注释掉上面4个扩展调用函数，新增下面4个空函数入口
          *  createDate  :   2010-6-9 13:36:28
          * 

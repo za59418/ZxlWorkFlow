@@ -22,43 +22,43 @@ namespace Zxl.Builder
 
         public void ExecuteToolBarCommand(uint nId)
         {
-            Dap2xProvoider.DoToolBarCmd(nId);
+            FormProvoider.DoToolBarCmd(nId);
         }
 
         #region 控件
         private void nbiLabel_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60302);            
+            FormProvoider.DoToolBarCmd(60302);            
         }
 
         private void nbiButton_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60305);
+            FormProvoider.DoToolBarCmd(60305);
         }
 
         private void nbiTextBox_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60303);
+            FormProvoider.DoToolBarCmd(60303);
         }
 
         private void nbiComboBox_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60304);
+            FormProvoider.DoToolBarCmd(60304);
         }
 
         private void nbiRadioButton_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60317);
+            FormProvoider.DoToolBarCmd(60317);
         }
 
         private void nbiCheckBox_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60318);
+            FormProvoider.DoToolBarCmd(60318);
         }
 
         private void nbiSelector_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(0);
+            FormProvoider.DoToolBarCmd(0);
         }
         #endregion
 
@@ -107,66 +107,66 @@ namespace Zxl.Builder
         #region 表格命令
         private void nbiSelectGrid_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60003);
+            FormProvoider.DoToolBarCmd(60003);
         }
 
         private void nbiGrid_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60001);
+            FormProvoider.DoToolBarCmd(60001);
         }
 
         private void nbiEraser_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60002);
+            FormProvoider.DoToolBarCmd(60002);
         }
 
         private void nbiMerge_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60004);
+            FormProvoider.DoToolBarCmd(60004);
         }
 
         private void nbiSplit_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60005);
+            FormProvoider.DoToolBarCmd(60005);
         }
 
         private void nbiRowHeight_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60006);
+            FormProvoider.DoToolBarCmd(60006);
         }
 
         private void nbiCelWidth_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60007);
+            FormProvoider.DoToolBarCmd(60007);
         }
         private void nbiPrintSetting_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60015);
+            FormProvoider.DoToolBarCmd(60015);
         }
 
         private void nbiPrintPreview_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60033);
+            FormProvoider.DoToolBarCmd(60033);
         }
 
         private void nbiProperty_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60029);
+            FormProvoider.DoToolBarCmd(60029);
         }
 
         private void nbiBgImg_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60027);
+            FormProvoider.DoToolBarCmd(60027);
         }
 
         private void nbiAddPage_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60023);
+            FormProvoider.DoToolBarCmd(60023);
         }
 
         private void nbiDelPage_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            Dap2xProvoider.DoToolBarCmd(60024);
+            FormProvoider.DoToolBarCmd(60024);
         }        
         #endregion
 

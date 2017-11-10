@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <Mapping>
+    <Item id="60363" formItemType="255" distname="Line" name="直线" Category="单体控件" />
+    <Item id="60305" formItemType="15" distname="Button" name="按钮" Category="单体控件" />
+    <Item id="60302" formItemType="4" distname="Label" name="静态文本" Category="单体控件" />
+    <Item id="60303" formItemType="1" distname="TextBox" name="文本框" Category="单体控件" />
+    <Item id="60304" formItemType="2" distname="ComboBox" name="下拉框" Category="单体控件" />
+    <Item id="60318" formItemType="3" distname="CheckBox" name="选择框" Category="单体控件" />
+    <Item id="60306" formItemType="5" distname="TabControl" name="分页框" Category="容器控件" />
+    <Item id="60307" formItemType="6" distname="GroupBox" name="分组框" Category="容器控件" />
+    <Item id="60309" formItemType="7" distname="DataGrid" name="数据网格" Category="单体控件" />
+    <Item id="60317" formItemType="20" distname="RadioButtonList" name="组合框" Category="单体控件" />
+  </Mapping>
+  <ControlExtention>
+    <control formItemType ="255">
+      <Item id ="0" name="直线" />
+    </control>
+    <control formItemType ="15">
+      <Item id ="0" name="习惯用语按钮" />
+      <Item id ="1" name="弹出表单" />
+      <Item id ="2" name="控规信息按钮" />
+      <Item id ="3" name="表单计算" />
+      <Item id ="4" name="容积率/建筑密度/绿地率"/>
+      <Item id ="5" name="弹出表格"/>
+      <Item id ="6" name="签名按钮"/>
+      <Item id ="7" name='习惯用语按钮' />
+      <Item id ="8" name='取数按钮' />
+      <Item id ="9" name='关联项目按钮' />
+      <Item id ="10" name='固化窗口按钮' />
+      <Item id ="11" name='许可证面积获取按钮' />
+    </control>
+    <control formItemType ="4">
+      <Item id ="0" name="静态文本" />
+    </control>
+    <control formItemType ="1">
+      <Item id ="0" name="文本框" />
+      <Item id ="1" name="日期框" />
+      <Item id ="5" name="多行文本框" />
+      <Item id ="2" name="签字口令框" />
+      <Item id ="3" name="签字日期框" />
+      <Item id ="4" name="文号框" />
+      <Item id ="6" name="日期框(默认当前日期)" />
+      <Item id ="7" name="红拨编号" />
+      <Item id ="8" name="日期框(当前日期)" />
+      <Item id ="9" name="表达式文本框" />
+      <Item id ="10" name="当前用户处室" />
+      <Item id ="11" name="表达式计算框" />
+      <Item id ="12" name="市政两个审批表" />
+      <Item id ="13" name="规划核实数据框" />
+      <Item id ="14" name="三维浏览" />
+      <Item id ='15' name ="分节控件" />
+      <Item id ="16" name="控规浏览" />
+      <Item id ="17" name="工程图浏览" />
+      <Item id ="18" name="项目ID" />
+    
+
+    </control>
+    <control formItemType ="2">
+      <Item id ="0" name="下拉框" />
+      <Item id ="1" name="树状下拉框" />
+      <Item id ="2" name="带勾选的树状下拉框" />
+      <Item id ="3" name="克隆表单下拉框" />
+    </control>
+    <control formItemType ="3">
+      <Item id ="0" name="选择框" />
+      <Item id ="1" name="克隆表单选择框" />
+     <Item id ="2" name="关联选择框" />
+      <Item id ="3" name="拆迁或旧城改造" />
+    </control>
+    <control formItemType ="5">
+      <Item id ="0" name="分页框" />
+    </control>
+    <control formItemType ="6">
+      <Item id ="0" name="分组框" />
+    </control>
+    <control formItemType ="7">
+      <Item id ="0" name="数据网格" />
+      <Item id ="1" name="树状数据网格" />
+      <Item id ="2" name="顺序数据网格" /> 
+      <Item id ="3" name="数据网格隐藏删除" />
+      <Item id ="4" name="多行意见框" />
+    </control>
+    <control formItemType ="20">
+      <Item id ="0" name="组合框" />
+      <Item id ="1" name="组合框（多选）" />
+    </control>
+  </ControlExtention>
+  <DataProvider>
+    <Item key="DesignDataProvider" assembly="Dist.ApplicationBuildPlatform.WinFormDesigner.DataProvider,Dist.ApplicationBuildPlatform.WinFormDesigner.DataProvider.DesignerDataProvider"/>
+  </DataProvider>
+</Config>

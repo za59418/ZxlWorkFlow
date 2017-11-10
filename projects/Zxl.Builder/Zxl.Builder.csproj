@@ -140,10 +140,9 @@
     <Compile Include="Ctrl\business\formDesigner\Attribute\SingleDataBindAttribute.cs" />
     <Compile Include="Ctrl\business\formDesigner\Attribute\TableContorlAttribute.cs" />
     <Compile Include="Ctrl\business\formDesigner\Attribute\ValidatesAttribute.cs" />
-    <Compile Include="Ctrl\business\formDesigner\Common\ControlsDictionary.cs" />
-    <Compile Include="Ctrl\business\formDesigner\Common\DAP2ControlsCollection.cs" />
-    <Compile Include="Ctrl\business\formDesigner\Common\DistControlCollection.cs" />
-    <Compile Include="Ctrl\business\formDesigner\Common\DistFormXmlParser.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\ControlDictionary.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\ControlCollection.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\FormXmlParser.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\FormXmlFacade.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\PageProperty.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\XmlParser.cs" />
@@ -162,8 +161,8 @@
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyRelationControlItem.cs" />
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyRightItem.cs" />
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyValidateItem.cs" />
-    <Compile Include="Ctrl\business\formDesigner\DAP2ControlMapping.cs" />
-    <Compile Include="Ctrl\business\formDesigner\Dap2xProvoider.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlMapping.cs" />
+    <Compile Include="Ctrl\business\formDesigner\FormProvoider.cs" />
     <Compile Include="Ctrl\business\formDesigner\FormDesignerProvider.cs" />
     <Compile Include="Ctrl\business\formDesigner\IFormDesigner.cs" />
     <Compile Include="Ctrl\business\formDesigner\NativeOriginalStyleFormDesigner.cs" />
@@ -449,6 +448,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <EmbeddedResource Include="configuration\control.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

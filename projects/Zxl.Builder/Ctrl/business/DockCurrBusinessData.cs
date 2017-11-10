@@ -54,7 +54,7 @@ namespace Zxl.Builder
                     {
                         selectedProperty = treeListDetail.FocusedNode.Tag as SYS_METADATADETAIL;
                         selectedMetadata = treeListDetail.FocusedNode.ParentNode.Tag as SYS_METADATA;
-                        Dap2xProvoider.DoToolBarCmd(60303);
+                        FormProvoider.DoToolBarCmd(60303);
                     }
                 }
             }            

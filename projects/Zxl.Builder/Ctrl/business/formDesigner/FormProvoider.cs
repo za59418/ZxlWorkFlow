@@ -9,7 +9,7 @@ namespace FormDesigner
     /// 目  的：DAP2X面板接口
     /// 创建日期：2008-02-22
     /// </summary>
-    public class Dap2xProvoider
+    public class FormProvoider
     {
 
         private static IFormDesigner _designer = null;

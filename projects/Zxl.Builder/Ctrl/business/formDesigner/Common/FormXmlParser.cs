@@ -1,18 +1,3 @@
-/*----------------------------------------------------------------
-// Copyright (C) 2010 上海数慧系统技术有限公司
-// 版权所有。 
-//
-// 文件名：DistFormXmlParser.cs
-// 功能描述：表单脚本编辑对话框
-//  
-// 
-// 创建标识：
-//
-// 修改标识：zhanben20100919
-// 修改描述：新增表单脚本功能
-//
-//----------------------------------------------------------------*/
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,30 +12,25 @@ using Zxl.Builder;
 
 namespace FormDesigner.Common
 {
-    /// <summary>
-    /// 目  的: 表单实例xml文件解析
-    /// 创建人：weiwy
-    /// 创建日期：2008-03-19
-    /// </summary>
-    public class DistFormXmlParser
+    public class FormXmlParser
     {
-        private XmlParser distFormXmlParser = null;
+        private XmlParser formXmlParser = null;
 
-        DockFormDesigner _formDesignerWorkbenchWindow;
+        DockFormDesigner _dockFormDesigner;
 
-        public DistFormXmlParser(string xmlFilePath,bool isXmlString)
+        public FormXmlParser(string xmlFilePath, bool isXmlString)
         {
-            distFormXmlParser = new XmlParser(xmlFilePath,true);
+            formXmlParser = new XmlParser(xmlFilePath, true);
         }
 
-        public DistFormXmlParser(string xmlFile)
+        public FormXmlParser(string xmlFile)
         {
-            distFormXmlParser = new XmlParser(xmlFile);
+            formXmlParser = new XmlParser(xmlFile);
         }
 
         public bool GetPrintProperty(string xpath,string property)
         {
-            string contorlNode = distFormXmlParser.GetNodeAttributeValue(xpath, property);
+            string contorlNode = formXmlParser.GetNodeAttributeValue(xpath, property);
             if (contorlNode.Length > 0)
             {
                 if (bool.Parse(contorlNode))
@@ -66,23 +46,21 @@ namespace FormDesigner.Common
                 return false;
         }
 
-         /// <summary>
+        /// <summary>
         /// 获取控件信息集
         /// </summary>
         /// <param name="xPath"></param>
         /// <returns></returns>
-        //public DAP2ControlsCollection GetDap2xControls(string xPath, out Dictionary<string, string> panelProperty, 
-        //    out TextBoxsType textBoxsType)
-        public DAP2ControlsCollection GetDap2xControls(DockFormDesigner formDesignerWorkbenchWindow, string xPath, out Dictionary<string, string> panelProperty)
+        public ControlCollection GetDap2xControls(DockFormDesigner dockFormDesigner, string xPath, out Dictionary<string, string> panelProperty)
         {
-            _formDesignerWorkbenchWindow = formDesignerWorkbenchWindow;
-            DAP2ControlsCollection dAP2ControlsCollection = new DAP2ControlsCollection();
-            XmlNode contorlNodes = distFormXmlParser.GetNode(xPath);
+            _dockFormDesigner = dockFormDesigner;
+            ControlCollection controlCollection = new ControlCollection();
+            XmlNode contorlNodes = formXmlParser.GetNode(xPath);
             panelProperty = new Dictionary<string, string>();
             //textBoxsType = new TextBoxsType();
             panelProperty.Add("width",contorlNodes.Attributes["width"].Value);
             panelProperty.Add("height", contorlNodes.Attributes["height"].Value);
-            DockFormDesigner.controlsDictionary.Clear();
+            DockFormDesigner.controlDictionary.Clear();
             foreach (XmlNode xmlnode in contorlNodes)
             {
                 GeneralAttribute generalAttribute = new GeneralAttribute();
@@ -129,7 +107,7 @@ namespace FormDesigner.Common
                     case 5:
                         #region ItemType=5
                         TableContorlAttribute tableContorlAttribute = new TableContorlAttribute();
-                        BindGeneralAttribute(tableContorlAttribute, xmlnode, Convert.ToInt16(DAP2ControlMapping.GetInstance().GetFormItemType(xmlnode.Name)));
+                        BindGeneralAttribute(tableContorlAttribute, xmlnode, Convert.ToInt16(ControlMapping.GetInstance().GetFormItemType(xmlnode.Name)));
                         foreach (XmlNode groupNode in xmlnode)
                         {
                             Group group = new Group();
@@ -143,7 +121,7 @@ namespace FormDesigner.Common
                                 //    textBoxsType.AddTextBox(childNode.Attributes["id"].Value);
                                 //}
                                 //else
-                                ItemTypec = Convert.ToInt16(DAP2ControlMapping.GetInstance().GetFormItemType(childNode.Name));
+                                ItemTypec = Convert.ToInt16(ControlMapping.GetInstance().GetFormItemType(childNode.Name));
                                 switch (ItemTypec)
                                 {
                                     case 7:
@@ -177,9 +155,9 @@ namespace FormDesigner.Common
                         BindGeneralAttribute(generalAttribute, xmlnode, ItemType);
                         break;
                 }
-                dAP2ControlsCollection.Add(xmlnode.Attributes["id"].Value, generalAttribute);
+                controlCollection.Add(xmlnode.Attributes["id"].Value, generalAttribute);
             }
-            return dAP2ControlsCollection;
+            return controlCollection;
         }
 
 
@@ -433,17 +411,17 @@ namespace FormDesigner.Common
             {
                 if (xmlNode.Attributes["readonly"].Value == "true")
                 {
-                    DAP2ControlMapping.ReadControls.Add(ContrlAttribute.FormItemId.ToString());
+                    ControlMapping.ReadControls.Add(ContrlAttribute.FormItemId.ToString());
                 }
             }
             if (xmlNode.Attributes["isprint"] != null)
             {
                 if (xmlNode.Attributes["isprint"].Value == "false")
                 {
-                    DAP2ControlMapping.NotPrintControls.Add(ContrlAttribute.FormItemId.ToString());
+                    ControlMapping.NotPrintControls.Add(ContrlAttribute.FormItemId.ToString());
                 }
             }
-            //// weixq 2010-6-18 16:19:00 新增解析isprintwhenarchive的代码
+            //// 新增解析isprintwhenarchive的代码
             //if (xmlNode.Attributes["isprintwhenarchive"] != null)
             //{
             //    DAP2ControlMapping.PrintWhenArchiveControls.Add(ContrlAttribute.FormItemId,
@@ -464,8 +442,7 @@ namespace FormDesigner.Common
             //}
             if (xmlNode.Attributes["tip"] != null)
             {
-                DAP2ControlMapping.ControlTip.Add(ContrlAttribute.FormItemId,
-                    xmlNode.Attributes["tip"].Value);
+                ControlMapping.ControlTip.Add(ContrlAttribute.FormItemId, xmlNode.Attributes["tip"].Value);
             }
             //if (xmlNode.Attributes["numberDefine"] != null)
             //{
@@ -474,11 +451,11 @@ namespace FormDesigner.Common
             //}
             if (xmlNode.Attributes["defaultValue"] != null)
             {
-                DAP2ControlMapping.DefaultValues.Add(ContrlAttribute.FormItemId, xmlNode.Attributes["defaultValue"].Value);
+                ControlMapping.DefaultValues.Add(ContrlAttribute.FormItemId, xmlNode.Attributes["defaultValue"].Value);
             }
             if (xmlNode.Attributes["expression"] != null)
             {
-                DAP2ControlMapping.ExpressionControls.Add(ContrlAttribute.FormItemId, xmlNode.Attributes["expression"].Value);
+                ControlMapping.ExpressionControls.Add(ContrlAttribute.FormItemId, xmlNode.Attributes["expression"].Value);
             }
             if (xmlNode.Attributes["border"] != null)
             {
@@ -491,7 +468,7 @@ namespace FormDesigner.Common
                 {
                     if (xmlNode.Attributes["comboxEdit"].Value == "true")
                     {
-                        DAP2ControlMapping.ComboxEditControls.Add(ContrlAttribute.ControlId);
+                        ControlMapping.ComboxEditControls.Add(ContrlAttribute.ControlId);
                     }
                 }
             }
@@ -507,12 +484,12 @@ namespace FormDesigner.Common
                     {
                         MessageBox.Show("表单中ID为" + xmlnode.Attributes["id"].Value + "的字段名称为空", "系统提示", MessageBoxButtons.OK);
                     }
-                    DockFormDesigner.controlsDictionary.AddValue(Convert.ToInt32(xmlnode.Attributes["id"].Value)
+                    DockFormDesigner.controlDictionary.AddValue(Convert.ToInt32(xmlnode.Attributes["id"].Value)
                             , xmlnode.Attributes["name"].Value);
                 }
                 else
                 {
-                    DockFormDesigner.controlsDictionary.AddValue(Convert.ToInt32(xmlnode.Attributes["id"].Value)
+                    DockFormDesigner.controlDictionary.AddValue(Convert.ToInt32(xmlnode.Attributes["id"].Value)
                         , xmlnode.Attributes["id"].Value);
                 }
             }
@@ -530,7 +507,7 @@ namespace FormDesigner.Common
         /// <returns></returns>
         public string GetFormScriptString(string xpathString)
         {
-            XmlNode node = distFormXmlParser.GetNode(xpathString);
+            XmlNode node = formXmlParser.GetNode(xpathString);
             if (node != null)
             {
                 return node.InnerText;
