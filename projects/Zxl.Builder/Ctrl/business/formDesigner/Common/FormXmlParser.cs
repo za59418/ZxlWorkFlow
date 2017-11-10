@@ -51,7 +51,7 @@ namespace FormDesigner.Common
         /// </summary>
         /// <param name="xPath"></param>
         /// <returns></returns>
-        public ControlCollection GetDap2xControls(DockFormDesigner dockFormDesigner, string xPath, out Dictionary<string, string> panelProperty)
+        public ControlCollection GetControls(DockFormDesigner dockFormDesigner, string xPath, out Dictionary<string, string> panelProperty)
         {
             _dockFormDesigner = dockFormDesigner;
             ControlCollection controlCollection = new ControlCollection();
@@ -433,13 +433,13 @@ namespace FormDesigner.Common
             //    DAP2ControlMapping.ControlRelation.Add(ContrlAttribute.FormItemId,
             //        xmlNode.Attributes["relationControl"].Value);
             //}
-            //if (xmlNode.Attributes["extensionType"]!=null)
-            //{
-            //    string enttype = DAP2ControlMapping.GetInstance().GetExtensionTypeId(ContrlAttribute.FormItemType.ToString()
-            //        , xmlNode.Attributes["extensionType"].Value);
-            //    if (!string.IsNullOrEmpty(enttype))
-            //        ContrlAttribute.ExtensionType = Convert.ToInt16(enttype);
-            //}
+            if (xmlNode.Attributes["extensionType"] != null)
+            {
+                string enttype = ControlMapping.GetInstance().GetExtensionTypeId(ContrlAttribute.FormItemType.ToString()
+                    , xmlNode.Attributes["extensionType"].Value);
+                if (!string.IsNullOrEmpty(enttype))
+                    ContrlAttribute.ExtensionType = Convert.ToInt16(enttype);
+            }
             if (xmlNode.Attributes["tip"] != null)
             {
                 ControlMapping.ControlTip.Add(ContrlAttribute.FormItemId, xmlNode.Attributes["tip"].Value);
