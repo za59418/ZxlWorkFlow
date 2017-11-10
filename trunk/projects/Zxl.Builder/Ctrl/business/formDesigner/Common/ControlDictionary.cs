@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FormDesigner.Common
 {
-    public class ControlsDictionary : Dictionary<int, string>
+    public class ControlDictionary : Dictionary<int, string>
     {
         public string GetValue(int key)
         {

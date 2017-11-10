@@ -394,8 +394,7 @@ namespace FormDesigner
 
         /////////////////////////////////////////////////////////////////////////////////
         /*
-         *  author      :   weixq
-         *  function    :   小强将原来的ZxlFormDesigner.dll替换原来的ZxlFormDesigner.dll
+         *  function    :   将原来的ZxlFormDesigner.dll替换原来的ZxlFormDesigner.dll
          *                  注释掉上面4个扩展调用函数，新增下面4个空函数入口
          *  createDate  :   2010-6-9 13:36:28
          * 

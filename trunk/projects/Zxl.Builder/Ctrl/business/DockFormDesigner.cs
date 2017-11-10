@@ -34,12 +34,12 @@ namespace Zxl.Builder
             DoubleBuffered = true;
         }
 
-        public delegate void FormItemChange(Dap2xProvoider.FormItemInfo itemIinfo);
+        public delegate void FormItemChange(FormProvoider.FormItemInfo itemIinfo);
         private FormItemChange delegateFormItemChange;
 
 
         public static List<string> controlIdItems = new List<string>();
-        public static ControlsDictionary controlsDictionary = new ControlsDictionary();
+        public static ControlDictionary controlDictionary = new ControlDictionary();
 
         private void DockFormDesigner_Load(object sender, EventArgs e)
         {            
@@ -56,11 +56,11 @@ namespace Zxl.Builder
         private void InitForm()
         {
             //画表单
-            Dap2xProvoider.CreateFormEditor(this.Handle);
-            Dap2xProvoider.MoveFormEditor(this.Width, this.Height);
+            FormProvoider.CreateFormEditor(this.Handle);
+            FormProvoider.MoveFormEditor(this.Width, this.Height);
             //属性
             delegateFormItemChange = new FormItemChange(DapxControlChange);
-            Dap2xProvoider.FormItemChangeFun(Marshal.GetFunctionPointerForDelegate(delegateFormItemChange));
+            FormProvoider.FormItemChangeFun(Marshal.GetFunctionPointerForDelegate(delegateFormItemChange));
 
             DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute(); // 默认空控件属性
         }
@@ -74,7 +74,7 @@ namespace Zxl.Builder
                 // 通过内存加载
                 IntPtr xxBuffer = Marshal.AllocHGlobal(nLen);
                 Marshal.Copy(CurrForm.SHEET, 0, xxBuffer, nLen);
-                Dap2xProvoider.LoadSheetFromBuffer(xxBuffer);
+                FormProvoider.LoadSheetFromBuffer(xxBuffer);
                 Marshal.FreeHGlobal(xxBuffer);
             }
         }
@@ -90,7 +90,7 @@ namespace Zxl.Builder
         public DockProperty DockProperty { get; set; }
         public DockCurrBusinessData DockCurrBusinessData { get; set; }
 
-        public void DapxControlChange(Dap2xProvoider.FormItemInfo itemInfo)
+        public void DapxControlChange(FormProvoider.FormItemInfo itemInfo)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace Zxl.Builder
 
         private void DockFormDesigner_Resize(object sender, EventArgs e)
         {
-            Dap2xProvoider.MoveFormEditor(this.Width, this.Height);
+            FormProvoider.MoveFormEditor(this.Width, this.Height);
         }
 
         private SYS_BUSINESSFORM _currForm;

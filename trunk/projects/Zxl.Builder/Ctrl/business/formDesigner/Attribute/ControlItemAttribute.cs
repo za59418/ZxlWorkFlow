@@ -15,8 +15,8 @@ namespace FormDesigner.Attribute
 {
     public class ControlItemAttribute : GeneralAttribute
     {
-        private Dap2xProvoider.FormItemInfo formItemInfo;
-        public Dap2xProvoider.FormItemInfo FormItemInfo
+        private FormProvoider.FormItemInfo formItemInfo;
+        public FormProvoider.FormItemInfo FormItemInfo
         {
             set
             {
@@ -132,7 +132,7 @@ namespace FormDesigner.Attribute
             {
                 if (FormItemType == 2 && ControlId.Length > 1)
                 {
-                    if (DAP2ControlMapping.ComboxEditControls.Contains(ControlId))
+                    if (ControlMapping.ComboxEditControls.Contains(ControlId))
                     {
                         _comboBoxEdit = "true";
                     }
@@ -143,10 +143,10 @@ namespace FormDesigner.Attribute
             {
                 if (value.Length > 0 && FormItemType == 2)
                 {
-                    DAP2ControlMapping.ComboxEditControls.Remove(ControlId);
+                    ControlMapping.ComboxEditControls.Remove(ControlId);
                     if (value == "true")
                     {
-                        DAP2ControlMapping.ComboxEditControls.Add(ControlId);
+                        ControlMapping.ComboxEditControls.Add(ControlId);
                     }
                     _comboBoxEdit = value;
                 }
@@ -169,7 +169,7 @@ namespace FormDesigner.Attribute
             {
                 if (value.Length > 0 && FormItemType == 4)
                 {
-                    Dap2xProvoider.SetFormItemStyle(FormItemId, 0x00800000, bool.Parse(value));
+                    FormProvoider.SetFormItemStyle(FormItemId, 0x00800000, bool.Parse(value));
                     borderStyle = value;
                     Border = bool.Parse(value);
                 }
@@ -183,10 +183,10 @@ namespace FormDesigner.Attribute
             {
                 if (ControlId != "0")
                 {
-                    if (!DockFormDesigner.controlsDictionary.ValueInDictionary(
+                    if (!DockFormDesigner.controlDictionary.ValueInDictionary(
                         Convert.ToInt32(ControlId), value))
                     {
-                        DockFormDesigner.controlsDictionary.SetValue(
+                        DockFormDesigner.controlDictionary.SetValue(
                             Convert.ToInt32(ControlId), value);
                     }
                     else
@@ -200,7 +200,7 @@ namespace FormDesigner.Attribute
             {
                 if (ControlId != "0")
                 {
-                    return DockFormDesigner.controlsDictionary.GetValue(Convert.ToInt32(ControlId));
+                    return DockFormDesigner.controlDictionary.GetValue(Convert.ToInt32(ControlId));
                 }
                 else
                     return null;
@@ -255,7 +255,7 @@ namespace FormDesigner.Attribute
             {
                 if (ControlId.Length > 1)
                 {
-                    if (DAP2ControlMapping.ReadControls.Contains(ControlId))
+                    if (ControlMapping.ReadControls.Contains(ControlId))
                     {
                         readOnly = "true";
                     }
@@ -266,10 +266,10 @@ namespace FormDesigner.Attribute
             {
                 if (value.Length > 0)
                 {
-                    DAP2ControlMapping.ReadControls.Remove(ControlId);
+                    ControlMapping.ReadControls.Remove(ControlId);
                     if (value == "true")
                     {
-                        DAP2ControlMapping.ReadControls.Add(ControlId);
+                        ControlMapping.ReadControls.Add(ControlId);
                     }
                     readOnly = value;
                 }
@@ -290,7 +290,7 @@ namespace FormDesigner.Attribute
                     }
                     else
                     {
-                        if (DAP2ControlMapping.NotPrintControls.Contains(ControlId))
+                        if (ControlMapping.NotPrintControls.Contains(ControlId))
                         {
                             isprint = "false";
                         }
@@ -308,10 +308,10 @@ namespace FormDesigner.Attribute
                     }
                     else
                     {
-                        DAP2ControlMapping.NotPrintControls.Remove(ControlId);
+                        ControlMapping.NotPrintControls.Remove(ControlId);
                         if (value == "false")
                         {
-                            DAP2ControlMapping.NotPrintControls.Add(ControlId);
+                            ControlMapping.NotPrintControls.Add(ControlId);
                         }
                         isprint = value;
                     }
@@ -321,7 +321,7 @@ namespace FormDesigner.Attribute
 
 
         /// <summary>
-        /// weixq 2010-6-18 15:54:37 add IsPrintWhenArchive
+        /// IsPrintWhenArchive
         /// </summary>
         private string _isPrintWhenArchive = "true";
         [CategoryAttribute("外观布局"), Description("是否归档打印"), TypeConverter(typeof(PropertyPrintItem))]
@@ -332,9 +332,9 @@ namespace FormDesigner.Attribute
                 if (ControlId.Length > 0)
                 {
                     int ctlId = Convert.ToInt32(ControlId);
-                    if (DAP2ControlMapping.PrintWhenArchiveControls.ContainsKey(ctlId))
+                    if (ControlMapping.PrintWhenArchiveControls.ContainsKey(ctlId))
                     {
-                        _isPrintWhenArchive = DAP2ControlMapping.PrintWhenArchiveControls[ctlId];
+                        _isPrintWhenArchive = ControlMapping.PrintWhenArchiveControls[ctlId];
                     }
                 }
                 return _isPrintWhenArchive;
@@ -344,7 +344,7 @@ namespace FormDesigner.Attribute
                 if (!String.IsNullOrEmpty(value))
                 {
                     int ctlId = Convert.ToInt32(ControlId);
-                    DAP2ControlMapping.PrintWhenArchiveControls[ctlId] = value;
+                    ControlMapping.PrintWhenArchiveControls[ctlId] = value;
                     _isPrintWhenArchive = value;
                 }
             }
@@ -357,16 +357,16 @@ namespace FormDesigner.Attribute
         {
             get
             {
-                if (DAP2ControlMapping.ControlRelation.ContainsKey(
+                if (ControlMapping.ControlRelation.ContainsKey(
                     Convert.ToInt32(ControlId)))
                 {
-                    if (!DAP2ControlMapping.ControlRelation.TryGetValue(
+                    if (!ControlMapping.ControlRelation.TryGetValue(
                         Convert.ToInt32(ControlId), out relationControl))
                     {
-                        relationControl = DockFormDesigner.controlsDictionary.GetName(
+                        relationControl = DockFormDesigner.controlDictionary.GetName(
                             Convert.ToInt32(ControlId));
                     }
-                    if (!DockFormDesigner.controlsDictionary.ContainsValue(relationControl))
+                    if (!DockFormDesigner.controlDictionary.ContainsValue(relationControl))
                     {
                         relationControl = string.Empty;
                     }
@@ -393,10 +393,9 @@ namespace FormDesigner.Attribute
         {
             get
             {
-                if (DAP2ControlMapping.ControlTip.ContainsKey(Convert.ToInt32(ControlId)))
+                if (ControlMapping.ControlTip.ContainsKey(Convert.ToInt32(ControlId)))
                 {
-                    DAP2ControlMapping.ControlTip.TryGetValue(Convert.ToInt32(ControlId)
-                        , out _tip);
+                    ControlMapping.ControlTip.TryGetValue(Convert.ToInt32(ControlId) , out _tip);
                 }
                 return _tip;
             }

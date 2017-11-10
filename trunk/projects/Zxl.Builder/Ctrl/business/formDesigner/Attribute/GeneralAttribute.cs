@@ -37,12 +37,12 @@ namespace FormDesigner.Attribute
                 left = value;
                 if (left != 0 && top != 0 && width != 0 && height != 0)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     rcRect.left = value;
                     rcRect.right =left+width;
                     rcRect.top = top;
                     rcRect.bottom = top + height;
-                    Dap2xProvoider.MoveActiveFormItem(rcRect);
+                    FormProvoider.MoveActiveFormItem(rcRect);
                 }
             }
         }
@@ -56,12 +56,12 @@ namespace FormDesigner.Attribute
                 top = value;
                 if (left != 0 && top != 0 && width != 0 && height != 0)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     rcRect.left = left;
                     rcRect.right = left + width;
                     rcRect.top = value;
                     rcRect.bottom = value + height;
-                    Dap2xProvoider.MoveActiveFormItem(rcRect);
+                    FormProvoider.MoveActiveFormItem(rcRect);
                 }
             }
         }
@@ -74,12 +74,12 @@ namespace FormDesigner.Attribute
                 width = value;
                 if (left != 0 && top != 0 && width != 0 && height != 0)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     rcRect.left = left;
                     rcRect.right = left + value;
                     rcRect.top = top;
                     rcRect.bottom = top + height;
-                    Dap2xProvoider.MoveActiveFormItem(rcRect);
+                    FormProvoider.MoveActiveFormItem(rcRect);
                 }
             }
         }
@@ -92,12 +92,12 @@ namespace FormDesigner.Attribute
                 height = value;
                 if (left != 0 && top != 0 && width != 0 && height != 0)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     rcRect.left = left;
                     rcRect.right = left + width;
                     rcRect.top = top;
                     rcRect.bottom = top + value;
-                    Dap2xProvoider.MoveActiveFormItem(rcRect);
+                    FormProvoider.MoveActiveFormItem(rcRect);
                 }
             }
         }
@@ -131,23 +131,11 @@ namespace FormDesigner.Attribute
             get { return text; }
             set {
                 text = value;
-                Dap2xProvoider.FormItemInfo formItemInfo;
-                Dap2xProvoider.GetActiveFormItem(out formItemInfo);
-                Dap2xProvoider.SetStaticText(formItemInfo.formItemID, value);
+                FormProvoider.FormItemInfo formItemInfo;
+                FormProvoider.GetActiveFormItem(out formItemInfo);
+                FormProvoider.SetStaticText(formItemInfo.formItemID, value);
                 }
         }
-
-        public string TempText
-        {
-            get { return text; }
-            set
-            {
-                text = value;
-                Dap2xProvoider.FormItemInfo formItemInfo;
-                Dap2xProvoider.GetActiveFormItem(out formItemInfo);
-            }
-        }
-
 
         [CategoryAttribute("外观布局"), DescriptionAttribute("字体,适用于静态文本")]
         public Font WindowTextFont
@@ -193,18 +181,18 @@ namespace FormDesigner.Attribute
         private void SetFont(Font font, int formItemID)
         {
             windowTextFont = font;
-            Dap2xProvoider.FontWnd fonts = new Dap2xProvoider.FontWnd();
+            FormProvoider.FontWnd fonts = new FormProvoider.FontWnd();
             fonts.ftSize = Convert.ToInt32(font.Size);
             fonts.ftStyle = GetFontStyle(font);
             fonts.itemName = font.Name;
-            Dap2xProvoider.SetFormItemFont(formItemID, fonts);
+            FormProvoider.SetFormItemFont(formItemID, fonts);
         }
 
         private void SetColor(Color color,int formItemID)
         {
             windowTextColor = color;
             int col = color.B << 16 | color.G << 8 | color.R;
-            Dap2xProvoider.SetFormItemColor(formItemID, col);
+            FormProvoider.SetFormItemColor(formItemID, col);
         }
 
         #region Methods

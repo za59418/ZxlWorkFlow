@@ -48,9 +48,9 @@ namespace FormDesigner
         
             value = control.Text;
 
-            Dap2xProvoider.FormItemInfo formItemInfo;
-            Dap2xProvoider.GetActiveFormItem(out formItemInfo);
-            Dap2xProvoider.SetStaticText(formItemInfo.formItemID, control.Text);
+            FormProvoider.FormItemInfo formItemInfo;
+            FormProvoider.GetActiveFormItem(out formItemInfo);
+            FormProvoider.SetStaticText(formItemInfo.formItemID, control.Text);
 
             return value;
         }

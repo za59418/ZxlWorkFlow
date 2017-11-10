@@ -7,23 +7,23 @@ using FormDesigner.Common;
 
 namespace FormDesigner
 {
-    public class DAP2ControlMapping
+    public class ControlMapping
     {
         private XmlParser _xmlparser;
 
-        private DAP2ControlMapping()
+        private ControlMapping()
         {
-            _xmlparser = new XmlParser(AppDomain.CurrentDomain.BaseDirectory + @"Form//FormDesigner.Config");
+            _xmlparser = new XmlParser(AppDomain.CurrentDomain.BaseDirectory + @"config//control.xml");
         }
 
-        private static DAP2ControlMapping _dAP2ControlMapping;
-        public static DAP2ControlMapping GetInstance()
+        private static ControlMapping _instance;
+        public static ControlMapping GetInstance()
         {
-            if (_dAP2ControlMapping==null)
+            if (_instance == null)
             {
-                _dAP2ControlMapping = new DAP2ControlMapping();
+                _instance = new ControlMapping();
             }
-            return _dAP2ControlMapping;
+            return _instance;
         }
 
         
@@ -36,7 +36,7 @@ namespace FormDesigner
         public static Dictionary<int, string> DefaultValues = new Dictionary<int, string>();
         public static Dictionary<int, string> ExpressionControls = new Dictionary<int, string>();
         /// <summary>
-        /// weixq 2010-6-18 15:21:38 add IsPrintWhenArchive属性控件列表
+        /// add IsPrintWhenArchive属性控件列表
         /// </summary>
         public static Dictionary<int, string> PrintWhenArchiveControls = new Dictionary<int, string>();
 
@@ -63,7 +63,7 @@ namespace FormDesigner
         public string GetDistControl(string formItemType)
         {
             string xpath = string.Format("/Config/Mapping/Item[@formItemType='{0}']", formItemType);
-            return _xmlparser.GetNodeAttributeValue(xpath,"dist");
+            return _xmlparser.GetNodeAttributeValue(xpath, "dist");
         }
 
         public string GetFormItemType(string distName)

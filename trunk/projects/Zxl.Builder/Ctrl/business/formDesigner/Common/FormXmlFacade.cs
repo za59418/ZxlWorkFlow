@@ -1,18 +1,3 @@
-/*----------------------------------------------------------------
-// Copyright (C) 2010 上海数慧系统技术有限公司
-// 版权所有。 
-//
-// 文件名：FormXmlFacade.cs
-// 功能描述：
-//  
-// 
-// 创建标识：
-//
-// 修改标识：zhanben20100919
-// 修改描述：新增表单脚本功能
-//
-//----------------------------------------------------------------*/
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -73,46 +58,47 @@ namespace FormDesigner.Common
         /// <summary>
         /// 读取单个表单文件
         /// </summary>
-        /// <param name="formDesignerWorkbenchWindow"></param>
+        /// <param name="dockFormDesigner"></param>
         /// <param name="filePath"></param>
-        //public void ResetXml(FormDesignerWorkbenchWindow formDesignerWorkbenchWindow, string filePath, out  TextBoxsType textBoxsType)
-        public void ResetXml(DockFormDesigner formDesignerWorkbenchWindow, string fileContent)
+        public void ResetXml(DockFormDesigner dockFormDesigner, string fileContent)
         {
-            #region//控件
-            DistFormXmlParser getObjectFromXml = new DistFormXmlParser(fileContent, true);
+            #region
+            //控件
+            FormXmlParser getObjectFromXml = new FormXmlParser(fileContent, true);
             PageProperty.IsPrint = getObjectFromXml.GetPrintProperty("/Form", "isprint");
 
             Dictionary<string,string> dic = new Dictionary<string,string>();
-            DAP2ControlsCollection dap2ControlsCollection = getObjectFromXml.GetDap2xControls(formDesignerWorkbenchWindow, "/Form/Control", out dic);
+            ControlCollection controlCollection = getObjectFromXml.GetDap2xControls(dockFormDesigner, "/Form/Control", out dic);
 
             string width, height;
             dic.TryGetValue("width", out width);
             dic.TryGetValue("height", out height);
-            Dap2xProvoider.SetFormViewSize(Convert.ToInt32(width), Convert.ToInt32(height));
-            foreach (KeyValuePair<string, object> kvp in dap2ControlsCollection)
+            FormProvoider.SetFormViewSize(Convert.ToInt32(width), Convert.ToInt32(height));
+
+            foreach (KeyValuePair<string, object> kvp in controlCollection)
             {
                 #region FormItemType == 5
                 if (((GeneralAttribute)kvp.Value).FormItemType == 5)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     SetRect(out rcRect, (GeneralAttribute)kvp.Value);
-                    Dap2xProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
+                    FormProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
                         rcRect, Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).ExtensionType);
 
                     TableContorlAttribute tableContorlAttribute = (TableContorlAttribute)kvp.Value;
                     int page=0;
                     foreach (KeyValuePair<string,Group> kvpGroup in tableContorlAttribute.Groups)
                     {
-                        Dap2xProvoider.InsertTabPage(((GeneralAttribute)kvp.Value).FormItemId, kvpGroup.Value.Name, page);
+                        FormProvoider.InsertTabPage(((GeneralAttribute)kvp.Value).FormItemId, kvpGroup.Value.Name, page);
 
                         foreach (KeyValuePair<string, GeneralAttribute> kvpChildAttribute in kvpGroup.Value.GroupControls)
                         {
-                            Dap2xProvoider.Rect rcRectChild = new Dap2xProvoider.Rect();
+                            FormProvoider.Rect rcRectChild = new FormProvoider.Rect();
                             SetRect(out rcRectChild, (GeneralAttribute)kvpChildAttribute.Value);
-                            Dap2xProvoider.CreateChlidFormItem(kvpChildAttribute.Value.FormItemType, rcRectChild, Convert.ToInt32(kvpChildAttribute.Key),
+                            FormProvoider.CreateChlidFormItem(kvpChildAttribute.Value.FormItemType, rcRectChild, Convert.ToInt32(kvpChildAttribute.Key),
                                 Convert.ToInt32(kvp.Key), page, ((GeneralAttribute)kvpChildAttribute.Value).ExtensionType);
                             if (((GeneralAttribute)kvpChildAttribute.Value).Multiline == true && ((GeneralAttribute)kvpChildAttribute.Value).FormItemType == 1)
-                                Dap2xProvoider.SetFormItemStyle(Convert.ToInt32(kvpChildAttribute.Key), 0x00010000, true);//0x00010000
+                                FormProvoider.SetFormItemStyle(Convert.ToInt32(kvpChildAttribute.Key), 0x00010000, true);//0x00010000
                             if (((GeneralAttribute)kvpChildAttribute.Value).FormItemType == 7)  
                             {
                                 //SetDataGrid(formDesignerWorkbenchWindow, kvpChildAttribute.Key, kvpChildAttribute.Value);
@@ -126,16 +112,16 @@ namespace FormDesigner.Common
                                 ((GeneralAttribute)kvpChildAttribute.Value).FormItemType == 3||
                                 ((GeneralAttribute)kvpChildAttribute.Value).FormItemType == 6)
                             {
-                                Dap2xProvoider.SetStaticText(Convert.ToInt32(kvpChildAttribute.Key), kvpChildAttribute.Value.Text);
+                                FormProvoider.SetStaticText(Convert.ToInt32(kvpChildAttribute.Key), kvpChildAttribute.Value.Text);
                             }
                             if (((GeneralAttribute)kvpChildAttribute.Value).FormItemType == 4)
                             {
-                                Dap2xProvoider.FontWnd font = new Dap2xProvoider.FontWnd();
+                                FormProvoider.FontWnd font = new FormProvoider.FontWnd();
                                 font.itemName = ((GeneralAttribute)kvpChildAttribute.Value).WindowTextFont.FontFamily.Name;
                                 font.ftSize = Convert.ToInt32(((GeneralAttribute)kvpChildAttribute.Value).WindowTextFont.Size);
                                 font.ftStyle = GeneralAttribute.GetFontStyle(((GeneralAttribute)kvpChildAttribute.Value).WindowTextFont);
-                                Dap2xProvoider.SetFormItemFont(((GeneralAttribute)kvpChildAttribute.Value).FormItemId, font);
-                                Dap2xProvoider.SetFormItemStyle(((GeneralAttribute)kvpChildAttribute.Value).FormItemId, 0x00800000, ((GeneralAttribute)kvpChildAttribute.Value).Border);
+                                FormProvoider.SetFormItemFont(((GeneralAttribute)kvpChildAttribute.Value).FormItemId, font);
+                                FormProvoider.SetFormItemStyle(((GeneralAttribute)kvpChildAttribute.Value).FormItemId, 0x00800000, ((GeneralAttribute)kvpChildAttribute.Value).Border);
                             }
                         }
                         page++;
@@ -144,32 +130,32 @@ namespace FormDesigner.Common
                 #endregion
                 else if (((GeneralAttribute)kvp.Value).FormItemType == 7)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     SetRect(out rcRect, (GeneralAttribute)kvp.Value);
-                    Dap2xProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
+                    FormProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
                         rcRect, Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).ExtensionType);
                     //SetDataGrid(formDesignerWorkbenchWindow, kvp.Key, kvp.Value);
                 }
                 else if (((GeneralAttribute)kvp.Value).FormItemType == 20)
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     SetRect(out rcRect, (GeneralAttribute)kvp.Value);
-                    Dap2xProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
+                    FormProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
                         rcRect, Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).ExtensionType);
                     SetRadioButtonList(kvp.Value);
                 }
                 else if (((GeneralAttribute)kvp.Value).FormItemType == 255)//直线
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     SetRect(out rcRect, (GeneralAttribute)kvp.Value);
-                    Dap2xProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
+                    FormProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
                         rcRect, Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).ExtensionType);
                 }
                 else
                 {
-                    Dap2xProvoider.Rect rcRect = new Dap2xProvoider.Rect();
+                    FormProvoider.Rect rcRect = new FormProvoider.Rect();
                     SetRect(out rcRect, (GeneralAttribute)kvp.Value);
-                    Dap2xProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
+                    FormProvoider.CreateFormItem(Convert.ToInt32(((GeneralAttribute)kvp.Value).FormItemType),
                         rcRect, Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).ExtensionType);
                     if (((GeneralAttribute)kvp.Value).FormItemType == 1)
                     {
@@ -177,27 +163,27 @@ namespace FormDesigner.Common
                     }
                     else
                     {
-                        Dap2xProvoider.SetStaticText(Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).Text);
+                        FormProvoider.SetStaticText(Convert.ToInt32(kvp.Key), ((GeneralAttribute)kvp.Value).Text);
                     }
                     //Dap2xProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00800000, false);
 
                     if (((GeneralAttribute)kvp.Value).FormItemType == 1 && ((GeneralAttribute)kvp.Value).Multiline == true)
-                        Dap2xProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00010000, true);
+                        FormProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00010000, true);
                     else
                     {
-                        Dap2xProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00010000, false);
+                        FormProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00010000, false);
                     }
                     if (((GeneralAttribute)kvp.Value).FormItemType == 4)
                     {
-                        Dap2xProvoider.FontWnd font = new Dap2xProvoider.FontWnd();
+                        FormProvoider.FontWnd font = new FormProvoider.FontWnd();
                         font.itemName = ((GeneralAttribute)kvp.Value).WindowTextFont.FontFamily.Name;
                         font.ftSize = Convert.ToInt32(((GeneralAttribute)kvp.Value).WindowTextFont.Size);
                         font.ftStyle = GeneralAttribute.GetFontStyle(((GeneralAttribute)kvp.Value).WindowTextFont);
-                        Dap2xProvoider.SetFormItemFont(((GeneralAttribute)kvp.Value).FormItemId, font);
+                        FormProvoider.SetFormItemFont(((GeneralAttribute)kvp.Value).FormItemId, font);
                         Color color = ((GeneralAttribute)kvp.Value).WindowTextColor;
-                        Dap2xProvoider.SetFormItemColor(((GeneralAttribute)kvp.Value).FormItemId, color.B << 16 | color.G << 8 | color.R);
+                        FormProvoider.SetFormItemColor(((GeneralAttribute)kvp.Value).FormItemId, color.B << 16 | color.G << 8 | color.R);
                         //边框
-                        Dap2xProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00800000, ((GeneralAttribute)kvp.Value).Border);
+                        FormProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00800000, ((GeneralAttribute)kvp.Value).Border);
                     }
                 }
             }
@@ -220,7 +206,7 @@ namespace FormDesigner.Common
         /// </summary>
         /// <param name="rcRect"></param>
         /// <param name="GenerAttribute"></param>
-        private void SetRect(out Dap2xProvoider.Rect rcRect, GeneralAttribute GenerAttribute)
+        private void SetRect(out FormProvoider.Rect rcRect, GeneralAttribute GenerAttribute)
         {
             rcRect.left = GenerAttribute.Left;
             rcRect.right = GenerAttribute.Left + GenerAttribute.Width;
@@ -265,9 +251,9 @@ namespace FormDesigner.Common
         private void SetRadioButtonList(object Attribute)
         {            
             RadioButtonListAttribute radioButtonListAttribute = (RadioButtonListAttribute)Attribute;
-            Dap2xProvoider.SetRaidoButtonCols(radioButtonListAttribute.FormItemId, radioButtonListAttribute.Columns);
-            Dap2xProvoider.SetRaidoButtonRows(radioButtonListAttribute.FormItemId, radioButtonListAttribute.Rows);
-            Dap2xProvoider.SetRadioButtonCaption(radioButtonListAttribute.FormItemId, radioButtonListAttribute.RadioButtonListText);
+            FormProvoider.SetRaidoButtonCols(radioButtonListAttribute.FormItemId, radioButtonListAttribute.Columns);
+            FormProvoider.SetRaidoButtonRows(radioButtonListAttribute.FormItemId, radioButtonListAttribute.Rows);
+            FormProvoider.SetRadioButtonCaption(radioButtonListAttribute.FormItemId, radioButtonListAttribute.RadioButtonListText);
         }
     }
 }
