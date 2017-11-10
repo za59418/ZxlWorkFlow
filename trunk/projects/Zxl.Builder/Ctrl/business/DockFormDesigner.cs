@@ -51,6 +51,8 @@ namespace Zxl.Builder
                 new FormXmlFacade().ResetXml(this, s);
             }
 
+            DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute(); // 默认空控件属性
+
         }
 
         private void InitForm()
@@ -59,10 +61,8 @@ namespace Zxl.Builder
             FormProvoider.CreateFormEditor(this.Handle);
             FormProvoider.MoveFormEditor(this.Width, this.Height);
             //属性
-            delegateFormItemChange = new FormItemChange(DapxControlChange);
+            delegateFormItemChange = new FormItemChange(Control_Change);
             FormProvoider.FormItemChangeFun(Marshal.GetFunctionPointerForDelegate(delegateFormItemChange));
-
-            DockProperty.PropertyGridControl.SelectedObject = new ControlItemAttribute(); // 默认空控件属性
         }
 
         private void InitSheet()
@@ -90,7 +90,7 @@ namespace Zxl.Builder
         public DockProperty DockProperty { get; set; }
         public DockCurrBusinessData DockCurrBusinessData { get; set; }
 
-        public void DapxControlChange(FormProvoider.FormItemInfo itemInfo)
+        public void Control_Change(FormProvoider.FormItemInfo itemInfo)
         {
             try
             {

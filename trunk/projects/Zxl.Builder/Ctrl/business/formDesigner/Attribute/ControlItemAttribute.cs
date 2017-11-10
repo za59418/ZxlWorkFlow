@@ -218,19 +218,19 @@ namespace FormDesigner.Attribute
                 {
                     //if (WorkbenchSingleton.Workbench.ActiveWorkbenchWindow is DockFormDesigner)
                     //{
-                    //    string extValue = DAP2ControlMapping.GetInstance().GetExtensionTypeId(FormItemType.ToString(), value);
-                    //    Dap2xProvoider.SetFormItemExtension(Convert.ToInt32(ControlId), Convert.ToInt16(extValue));
-                    //    UInt16 aa = Dap2xProvoider.GetFormItemExtension(Convert.ToInt32(ControlId));
-                    //    controlType = value;
+                        string extValue = ControlMapping.GetInstance().GetExtensionTypeId(FormItemType.ToString(), value);
+                        FormProvoider.SetFormItemExtension(Convert.ToInt32(ControlId), Convert.ToInt16(extValue));
+                        UInt16 aa = FormProvoider.GetFormItemExtension(Convert.ToInt32(ControlId));
+                        controlType = value;
 
-                    //    //нд╨е
-                    //    if (aa != 4)
-                    //    {
-                    //        if (DAP2ControlMapping.ControlNumberDefine.ContainsKey(int.Parse(ControlId)))
-                    //        {
-                    //            DAP2ControlMapping.ControlNumberDefine.Remove(int.Parse(ControlId));
-                    //        }
-                    //    }
+                        //нд╨е
+                        if (aa != 4)
+                        {
+                            if (ControlMapping.ControlNumberDefine.ContainsKey(int.Parse(ControlId)))
+                            {
+                                ControlMapping.ControlNumberDefine.Remove(int.Parse(ControlId));
+                            }
+                        }
                     //}
                 }
             }

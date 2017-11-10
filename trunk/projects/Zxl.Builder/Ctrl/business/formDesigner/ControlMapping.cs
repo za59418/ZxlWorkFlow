@@ -13,7 +13,7 @@ namespace FormDesigner
 
         private ControlMapping()
         {
-            _xmlparser = new XmlParser(AppDomain.CurrentDomain.BaseDirectory + @"config//control.xml");
+            _xmlparser = new XmlParser(AppDomain.CurrentDomain.BaseDirectory + @"configuration//control.xml");
         }
 
         private static ControlMapping _instance;

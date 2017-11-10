@@ -64,11 +64,11 @@ namespace FormDesigner.Common
         {
             #region
             //¿Ø¼þ
-            FormXmlParser getObjectFromXml = new FormXmlParser(fileContent, true);
-            PageProperty.IsPrint = getObjectFromXml.GetPrintProperty("/Form", "isprint");
+            FormXmlParser formXmlParser = new FormXmlParser(fileContent, true);
+            PageProperty.IsPrint = formXmlParser.GetPrintProperty("/Form", "isprint");
 
             Dictionary<string,string> dic = new Dictionary<string,string>();
-            ControlCollection controlCollection = getObjectFromXml.GetDap2xControls(dockFormDesigner, "/Form/Control", out dic);
+            ControlCollection controlCollection = formXmlParser.GetControls(dockFormDesigner, "/Form/Control", out dic);
 
             string width, height;
             dic.TryGetValue("width", out width);
