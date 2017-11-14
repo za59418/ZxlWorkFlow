@@ -34,6 +34,24 @@ namespace Zxl.Builder
             DoubleBuffered = true;
         }
 
+        private SYS_BUSINESSFORM _currForm;
+        public SYS_BUSINESSFORM CurrForm
+        {
+            get
+            {
+                return _currForm;
+            }
+            set
+            {
+                _currForm = value;
+            }
+        }
+
+        public DockProperty DockProperty { get; set; }
+        public FormProvoider.FormItemInfo SelectedControl { get; set; }
+        public DockCurrBusinessData DockCurrBusinessData { get; set; }
+
+
         public delegate void FormItemChange(FormProvoider.FormItemInfo itemIinfo);
         private FormItemChange delegateFormItemChange;
 
@@ -87,8 +105,6 @@ namespace Zxl.Builder
             set { _itemChanged = value; }
         }
 
-        public DockProperty DockProperty { get; set; }
-        public DockCurrBusinessData DockCurrBusinessData { get; set; }
 
         public void Control_Change(FormProvoider.FormItemInfo itemInfo)
         {
@@ -99,8 +115,9 @@ namespace Zxl.Builder
                 //显示属性
                 if (null != DockProperty)
                 {
-                    DockProperty.SelectedControl = itemInfo;//
-                    DockProperty.FormItemProperty();//
+                    DockProperty.SelectedControl = itemInfo; //
+                    this.SelectedControl = itemInfo; //
+                    DockProperty.FormItemProperty(); //
                 }
 
                 if (DockCurrBusinessData.selectedProperty != null && DockCurrBusinessData.selectedMetadata != null)
@@ -128,19 +145,6 @@ namespace Zxl.Builder
         private void DockFormDesigner_Resize(object sender, EventArgs e)
         {
             FormProvoider.MoveFormEditor(this.Width, this.Height);
-        }
-
-        private SYS_BUSINESSFORM _currForm;
-        public SYS_BUSINESSFORM CurrForm
-        {
-            get
-            {
-                return _currForm;
-            }
-            set
-            {
-                _currForm = value;
-            }
         }
     }
 }

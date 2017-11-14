@@ -6,6 +6,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Xml;
+using Zxl.Builder;
 
 namespace FormDesigner.ControlProperty
 {
@@ -21,12 +22,12 @@ namespace FormDesigner.ControlProperty
             List<string> lstType = new List<string>();
             //if (WorkbenchSingleton.Workbench.ActiveWorkbenchWindow is FormDesignerWorkbenchWindow)
             //{
-            //    if (((FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow).SelectedControl.formItemType.ToString() == "2"
-            //            && ((FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow).SelectedControl.formItemType.ToString() != null)
-            //    {
-            //        lstType.Add("true");
-            //        lstType.Add("false");
-            //    }
+            if (((DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow).SelectedControl.formItemType.ToString() == "2"
+                    && ((DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow).SelectedControl.formItemType.ToString() != null)
+            {
+                lstType.Add("true");
+                lstType.Add("false");
+            }
             //}
             return lstType;
         }
