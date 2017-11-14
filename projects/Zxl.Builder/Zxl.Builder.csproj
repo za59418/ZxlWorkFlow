@@ -144,9 +144,46 @@
     <Compile Include="Ctrl\business\formDesigner\Common\ControlCollection.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\FormXmlParser.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\FormXmlFacade.cs" />
+    <Compile Include="Ctrl\business\formDesigner\Common\GridColumnStyle.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\PageProperty.cs" />
     <Compile Include="Ctrl\business\formDesigner\Common\XmlParser.cs" />
     <Compile Include="Ctrl\business\formDesigner\Attribute\ControlItemAttribute.cs" />
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\EditProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\EditProperty.Designer.cs">
+      <DependentUpon>EditProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\FormLogDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\FormLogDlg.Designer.cs">
+      <DependentUpon>FormLogDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\GridProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\GridProperty.Designer.cs">
+      <DependentUpon>GridProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\PrintSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\PrintSettingDialog.Designer.cs">
+      <DependentUpon>PrintSettingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\RadioButtonListSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\RadioButtonListSet.Designer.cs">
+      <DependentUpon>RadioButtonListSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\TableControlProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrl\business\formDesigner\ControlDesign\TableControlProperty.Designer.cs">
+      <DependentUpon>TableControlProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyComboxEditItem.cs" />
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyControlExpression.cs" />
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyControlScript.cs" />
@@ -365,6 +402,24 @@
     <EmbeddedResource Include="Ctrl\business\DockProperty.resx">
       <DependentUpon>DockProperty.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\formDesigner\ControlDesign\EditProperty.resx">
+      <DependentUpon>EditProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\formDesigner\ControlDesign\FormLogDlg.resx">
+      <DependentUpon>FormLogDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\formDesigner\ControlDesign\GridProperty.resx">
+      <DependentUpon>GridProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\formDesigner\ControlDesign\PrintSettingDialog.resx">
+      <DependentUpon>PrintSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\formDesigner\ControlDesign\RadioButtonListSet.resx">
+      <DependentUpon>RadioButtonListSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\business\formDesigner\ControlDesign\TableControlProperty.resx">
+      <DependentUpon>TableControlProperty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\configCtrl.resx">
       <DependentUpon>configCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -451,6 +506,7 @@
     <None Include="app.config" />
     <EmbeddedResource Include="configuration\control.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

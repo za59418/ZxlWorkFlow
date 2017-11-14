@@ -6,10 +6,11 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Xml;
+using Zxl.Builder;
 
 namespace FormDesigner.ControlProperty
 {
-    public class PropertyRelationControlItem:TypeConverter
+    public class PropertyRelationControlItem : TypeConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
@@ -19,19 +20,19 @@ namespace FormDesigner.ControlProperty
         private List<string> GetItem()
         {
             List<string> lstControls = new List<string>();
-            //if (WorkbenchSingleton.Workbench.ActiveWorkbenchWindow is FormDesignerWorkbenchWindow)
-            //{
-            //    FormDesignerWorkbenchWindow win = (FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow;
-            //    if (win.SelectedControl.formItemID.ToString() != "0"
-            //            && win.SelectedControl.formItemID.ToString() != null)
-            //    {
-            //        lstControls.Add(string.Empty);
-            //        foreach (KeyValuePair<int, string> item in FormDesignerWorkbenchWindow.controlsDictionary)
-            //        {
-            //            lstControls.Add(item.Value);
-            //        }
-            //    }
-            //}
+            if (DockWindowFactory.Instance.CurrDockWindow is DockFormDesigner)
+            {
+                DockFormDesigner win = (DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow;
+                if (win.SelectedControl.formItemID.ToString() != "0"
+                        && win.SelectedControl.formItemID.ToString() != null)
+                {
+                    lstControls.Add(string.Empty);
+                    foreach (KeyValuePair<int, string> item in DockFormDesigner.controlDictionary)
+                    {
+                        lstControls.Add(item.Value);
+                    }
+                }
+            }
             return lstControls;
         }
 

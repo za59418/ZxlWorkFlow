@@ -65,42 +65,8 @@ namespace FormDesigner.Common
             {
                 GeneralAttribute generalAttribute = new GeneralAttribute();
 
-
                 Int16 ItemType = 0;   
-                //ItemType= Convert.ToInt16(DAP2ControlMapping.GetInstance().GetFormItemType(xmlnode.Name));
-                switch(xmlnode.Name)
-                {
-                    case "Line":
-                        ItemType = 255;
-                        break;
-                    case "Button":
-                        ItemType = 15;
-                        break;
-                    case "Label":
-                        ItemType = 4;
-                        break;
-                    case "TextBox":
-                        ItemType = 1;
-                        break;
-                    case "ComboBox":
-                        ItemType = 2;
-                        break;
-                    case "CheckBox":
-                        ItemType = 3;
-                        break;
-                    case "TabControl":
-                        ItemType = 5;
-                        break;
-                    case "GroupBox":
-                        ItemType = 6;
-                        break;
-                    case "DataGrid":
-                        ItemType = 7;
-                        break;
-                    case "RadioButtonList":
-                        ItemType = 20;
-                        break;
-                }
+                ItemType= Convert.ToInt16(ControlMapping.GetInstance().GetFormItemType(xmlnode.Name));
 
                 switch (ItemType)
                 {
