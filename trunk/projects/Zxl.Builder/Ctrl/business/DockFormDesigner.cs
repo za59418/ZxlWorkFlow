@@ -50,6 +50,7 @@ namespace Zxl.Builder
         public DockProperty DockProperty { get; set; }
         public FormProvoider.FormItemInfo SelectedControl { get; set; }
         public DockCurrBusinessData DockCurrBusinessData { get; set; }
+        public GridColumnStyle ColumnStyle = new GridColumnStyle();
 
 
         public delegate void FormItemChange(FormProvoider.FormItemInfo itemIinfo);

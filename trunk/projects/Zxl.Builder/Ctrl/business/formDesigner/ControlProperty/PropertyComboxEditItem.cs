@@ -20,15 +20,15 @@ namespace FormDesigner.ControlProperty
         private List<string> GetItem()
         {
             List<string> lstType = new List<string>();
-            //if (WorkbenchSingleton.Workbench.ActiveWorkbenchWindow is FormDesignerWorkbenchWindow)
-            //{
-            if (((DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow).SelectedControl.formItemType.ToString() == "2"
-                    && ((DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow).SelectedControl.formItemType.ToString() != null)
+            if (DockWindowFactory.Instance.CurrDockWindow is DockFormDesigner)
             {
-                lstType.Add("true");
-                lstType.Add("false");
+                if (((DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow).SelectedControl.formItemType.ToString() == "2"
+                        && ((DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow).SelectedControl.formItemType.ToString() != null)
+                {
+                    lstType.Add("true");
+                    lstType.Add("false");
+                }
             }
-            //}
             return lstType;
         }
 

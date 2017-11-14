@@ -23,7 +23,7 @@ namespace Zxl.Builder
 {
     public partial class DockProperty : DockContent
     {
-        public static ControlDictionary controlDictionary = new ControlDictionary();
+        //public static ControlDictionary controlDictionary = new ControlDictionary();
 
         public DockProperty()
         {
@@ -94,7 +94,7 @@ namespace Zxl.Builder
                         attr.Border = FormProvoider.BorderStyle(_selectedControl);
                     }
                     //_focusedControl = FormParameter.FormId + "_" + _selectedControl.formItemID.ToString();
-                    controlDictionary.AddValue(_selectedControl.formItemID, _selectedControl.formItemID.ToString());
+                    DockFormDesigner.controlDictionary.AddValue(_selectedControl.formItemID, _selectedControl.formItemID.ToString());
                 }
                 else
                 {
@@ -106,7 +106,6 @@ namespace Zxl.Builder
                 propertyGridControl1.SelectedObject = attr;
                 //propertyGridControl1.RetrieveFields();
                 //FormParameter.ControlsCollection = controlsDictionary;
-                //SetPropertyGridShowItem();
 
             }
             catch (Exception E)
@@ -115,6 +114,5 @@ namespace Zxl.Builder
                 MainForm.ERROR(E.Message);
             }
         }
-
     }
 }

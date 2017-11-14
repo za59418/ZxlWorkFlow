@@ -168,7 +168,9 @@ namespace FormDesigner.Common
                     //Dap2xProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00800000, false);
 
                     if (((GeneralAttribute)kvp.Value).FormItemType == 1 && ((GeneralAttribute)kvp.Value).Multiline == true)
+                    {
                         FormProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00010000, true);
+                    }
                     else
                     {
                         FormProvoider.SetFormItemStyle(((GeneralAttribute)kvp.Value).FormItemId, 0x00010000, false);
