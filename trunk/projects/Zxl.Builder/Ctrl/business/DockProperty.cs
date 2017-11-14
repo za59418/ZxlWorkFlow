@@ -30,11 +30,9 @@ namespace Zxl.Builder
             InitializeComponent();
         }
 
+        public FormMain MainForm { get; set; }
 
         private FormProvoider.FormItemInfo _selectedControl;
-        /// <summary>
-        /// current focued control in the form designer
-        /// </summary>
         public FormProvoider.FormItemInfo SelectedControl
         {
             get { return _selectedControl; }
@@ -67,6 +65,7 @@ namespace Zxl.Builder
                     attr.Height = _selectedControl.height;
                     attr.FormItemId = _selectedControl.formItemID;
                     attr.FormItemType = _selectedControl.formItemType;
+                    attr.Text = windowtext.ToString();
                     attr.ControlType = ControlMapping.GetInstance().GetExtensionTypeName(_selectedControl.formItemType.ToString(), _selectedControl.extension.ToString());
 
                     if (_selectedControl.formItemType != 0) //==4
@@ -105,14 +104,15 @@ namespace Zxl.Builder
                 }
 
                 propertyGridControl1.SelectedObject = attr;
-                propertyGridControl1.RetrieveFields();
+                //propertyGridControl1.RetrieveFields();
                 //FormParameter.ControlsCollection = controlsDictionary;
                 //SetPropertyGridShowItem();
 
             }
             catch (Exception E)
             {
-                XtraMessageBox.Show(E.Message, "系统提示", MessageBoxButtons.OK);
+                //XtraMessageBox.Show(E.Message, "系统提示", MessageBoxButtons.OK);
+                MainForm.ERROR(E.Message);
             }
         }
 

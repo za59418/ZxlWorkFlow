@@ -27,7 +27,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -162,6 +162,7 @@
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyRightItem.cs" />
     <Compile Include="Ctrl\business\formDesigner\ControlProperty\PropertyValidateItem.cs" />
     <Compile Include="Ctrl\business\formDesigner\ControlMapping.cs" />
+    <Compile Include="Ctrl\business\formDesigner\DockWindowFactory.cs" />
     <Compile Include="Ctrl\business\formDesigner\FormProvoider.cs" />
     <Compile Include="Ctrl\business\formDesigner\FormDesignerProvider.cs" />
     <Compile Include="Ctrl\business\formDesigner\IFormDesigner.cs" />

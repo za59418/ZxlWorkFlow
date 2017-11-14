@@ -99,6 +99,7 @@ namespace Zxl.Builder
                 if (null != CurrForm)
                 {
                     DockBusinessForm dbf = new DockBusinessForm(CurrForm);
+                    dbf.MainForm = MainForm;
                     dbf.TabText = CurrForm.FORMNAME;
                     dbf.Show(MainForm.MainDockPanel);
                 }

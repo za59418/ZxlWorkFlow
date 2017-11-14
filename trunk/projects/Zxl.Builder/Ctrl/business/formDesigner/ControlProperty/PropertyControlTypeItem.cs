@@ -6,6 +6,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Xml;
+using Zxl.Builder;
 
 namespace FormDesigner.ControlProperty
 {
@@ -20,20 +21,21 @@ namespace FormDesigner.ControlProperty
             List<string> lstType = new List<string>();
             //if (WorkbenchSingleton.Workbench.ActiveWorkbenchWindow is FormDesignerWorkbenchWindow)
             //{
-            //    if (((FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow).SelectedControl.formItemID.ToString() != "0"
-            //            && ((FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow).SelectedControl.formItemID.ToString() != null)
-            //    {
-            //        FormDesignerWorkbenchWindow win = (FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow;
-            //        foreach (XmlNode item in DAP2ControlMapping.GetInstance().GetControlExtention(win.SelectedControl.formItemType.ToString()))
-            //        {
-            //            if (item.Attributes == null) continue;
-            //            if (item.Attributes["name"]!=null)
-            //            {
-            //                lstType.Add(item.Attributes["name"].Value);
+            //if (((FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow).SelectedControl.formItemID.ToString() != "0"
+            //        && ((FormDesignerWorkbenchWindow)WorkbenchSingleton.Workbench.ActiveWorkbenchWindow).SelectedControl.formItemID.ToString() != null)
+            //{
+            DockFormDesigner win = (DockFormDesigner)DockWindowFactory.Instance.CurrDockWindow;
 
-            //            }
-            //        }
-            //    }
+            foreach (XmlNode item in ControlMapping.GetInstance().GetControlExtention(win.SelectedControl.formItemType.ToString()))
+            {
+                if (item.Attributes == null) continue;
+                if (item.Attributes["name"] != null)
+                {
+                    lstType.Add(item.Attributes["name"].Value);
+
+                }
+            }
+            //}
             //}
             return lstType;
         }
